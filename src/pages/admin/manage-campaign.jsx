@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
-import moment from 'moment';
 import { isEmpty } from 'lodash';
+import Pagination from "react-js-pagination";
+import moment from 'moment';
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,23 +22,32 @@ export function AdminManageCampaign(props) {
   const [activeTab, setActiveTab] = useState(1);
   const [emailList, setEmailList] = useState([]);
 
+  // Pagination
+  const limit = 50;
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
     initFetchCampaign({
       id: params.id
     });
-
-    initFetchCampaignEmails({
-      id: params.id
-    });
   }, []);
+
+  useEffect(() => {
+    initFetchCampaignEmails({
+      id: params.id,
+      page: page - 1,
+      limit: limit
+    });
+  }, [page]);
 
   const setUpdateForm = (data) => {
     setUpdateCampaignValue('name', data?.name);
     setUpdateCampaignValue('min_delay', data?.min_delay);
     setUpdateCampaignValue('max_delay', data?.max_delay);
+    setUpdateCampaignValue('provider', data?.provider);
     setUpdateCampaignValue('cron_timing', data?.cron_timing);
     setUpdateCampaignValue('status', data?.status);
-
 
     for (let i = 0; i < data?.templates?.length; i++) {
       setUpdateCampaignValue(`templates[${i}].subject`, data?.templates[i]?.subject);
@@ -57,7 +67,13 @@ export function AdminManageCampaign(props) {
 
   const { mutate: initFetchCampaignEmails, isLoading: loadingFetchCampaignEmails } = useMutation(fetchCampaignEmails, {
     onSuccess: (result) => {
-      setEmailList(result.data);
+      if (!isEmpty(result.data) && result.data.results.length > 0) {
+        setEmailList(result.data.results);
+        setTotal(result.data.total);
+      } else {
+        setEmailList([]);
+        setTotal(0);
+      }
     },
     onError: (error) => {
       errorHandler(error);
@@ -72,6 +88,7 @@ export function AdminManageCampaign(props) {
         max_delay: yup.number().required(),
         cron_timing: yup.string().required(),
         status: yup.string().required(),
+        provider: yup.string().required(),
         templates: yup.array().of(
           yup.object().shape({
             subject: yup.string(),
@@ -85,7 +102,6 @@ export function AdminManageCampaign(props) {
   const onSubmitUpdateCampaign = (form) => {
     form.id = params.id;
     initUpdateCampaign(form);
-    resetUpdateCampaign();
   }
 
   const { mutate: initUpdateCampaign, isLoading: loadingUpdateCampaign } = useMutation(updateCampaign, {
@@ -115,7 +131,9 @@ export function AdminManageCampaign(props) {
   const { mutate: initUploadCampaignCSV, isLoading: loadingUploadCampaignCSV } = useMutation(uploadCampaignCSV, {
     onSuccess: (result) => {
       initFetchCampaignEmails({
-        id: params.id
+        id: params.id,
+        page: page - 1,
+        limit: limit
       });
       successHandler(result);
     },
@@ -145,26 +163,48 @@ export function AdminManageCampaign(props) {
             <div className="p-7">
               <form onSubmit={handleUpdateCampaign(onSubmitUpdateCampaign)}>
                 <div className="mb-5.5 w-full">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Name</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Name</label>
                   <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('name')} />
                   {errorsUpdateCampaign?.name && <span className="text-danger text-sm text-bold">Please add a name for the campaign</span>}
                 </div>
 
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Min. Delay (In Seconds)</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Min. Delay (In Seconds)</label>
                     <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="number" min="0" {...registerUpdateCampaign('min_delay')} />
                     {errorsUpdateCampaign?.min_delay && <span className="text-danger text-sm text-bold">Please add min. delay for the emails</span>}
                   </div>
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="email">Max. Delay (In Seconds)</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Max. Delay (In Seconds)</label>
                     <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="number" min="0" {...registerUpdateCampaign('max_delay')} />
                     {errorsUpdateCampaign?.max_delay && <span className="text-danger text-sm text-bold">Please add max. delay for the emails</span>}
                   </div>
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Cron Timing</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Email Service Provider</label>
+                  <div className="relative z-20 bg-white ">
+                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('provider')} >
+                      <option value="">Select Service Provider</option>
+                      <option value="sendgrid">Sendgrid</option>
+                      <option value="mailgun">Mailgun</option>
+                      <option value="resend">Resend</option>
+                      <option value="plunk">Plunk</option>
+                      <option value="mailersend">Mailer Send</option>
+                    </select>
+                    <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g opacity="0.8">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                        </g>
+                      </svg>
+                    </span>
+                  </div>
+                  {errorsUpdateCampaign?.provider && <span className="text-danger text-sm text-bold">Please select a service provider</span>}
+                </div>
+
+                <div className="mb-5.5">
+                  <label className="mb-3 block text-sm font-medium text-black">Cron Timing</label>
                   <div className="relative z-20 bg-white ">
                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('cron_timing')} >
                       <option value="">Select Timing</option>
@@ -195,7 +235,7 @@ export function AdminManageCampaign(props) {
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Status</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Status</label>
                   <div className="relative z-20 bg-white ">
                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('status')}>
                       <option value="">Select Status</option>
@@ -253,7 +293,7 @@ export function AdminManageCampaign(props) {
                 </div>
               </div>
               <p className="text-sm font-medium text-primary text-center">
-                <a href={`${import.meta.env.VITE_API_URL}/campaign-format.csv`} download>Download Sample CSV format</a>
+                <a href={`${import.meta.env.VITE_API_URL}/files/campaign-format.csv`} download>Download Sample CSV format</a>
               </p>
             </div>
           </div>
@@ -275,51 +315,51 @@ export function AdminManageCampaign(props) {
           <form onSubmit={handleUpdateCampaign(onSubmitUpdateCampaign)}>
             <div className={`font-medium leading-relaxed ${activeTab === 1 ? "" : "hidden"}`}>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Subject</label>
+                <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                 <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('templates[0].subject')} />
               </div>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Message</label>
+                <label className="mb-3 block text-sm font-medium text-black">Message</label>
                 <textarea className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" rows={12} {...registerUpdateCampaign('templates[0].message')}></textarea>
               </div>
             </div>
             <div className={`font-medium leading-relaxed ${activeTab === 2 ? "" : "hidden"}`}>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Subject</label>
+                <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                 <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('templates[1].subject')} />
               </div>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Message</label>
+                <label className="mb-3 block text-sm font-medium text-black">Message</label>
                 <textarea className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" rows={12} {...registerUpdateCampaign('templates[1].message')}></textarea>
               </div>
             </div>
             <div className={`font-medium leading-relaxed ${activeTab === 3 ? "" : "hidden"}`}>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Subject</label>
+                <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                 <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('templates[2].subject')} />
               </div>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Message</label>
+                <label className="mb-3 block text-sm font-medium text-black">Message</label>
                 <textarea className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" rows={12} {...registerUpdateCampaign('templates[2].message')}></textarea>
               </div>
             </div>
             <div className={`font-medium leading-relaxed ${activeTab === 4 ? "" : "hidden"}`}>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Subject</label>
+                <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                 <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('templates[3].subject')} />
               </div>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Message</label>
+                <label className="mb-3 block text-sm font-medium text-black">Message</label>
                 <textarea className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" rows={12} {...registerUpdateCampaign('templates[3].message')}></textarea>
               </div>
             </div>
             <div className={`font-medium leading-relaxed ${activeTab === 5 ? "" : "hidden"}`}>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Subject</label>
+                <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                 <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('templates[4].subject')} />
               </div>
               <div className="mb-5.5 w-full">
-                <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Message</label>
+                <label className="mb-3 block text-sm font-medium text-black">Message</label>
                 <textarea className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" rows={12} {...registerUpdateCampaign('templates[4].message')}></textarea>
               </div>
             </div>
@@ -399,6 +439,15 @@ export function AdminManageCampaign(props) {
             }
           </React.Fragment>
         }
+      </div>
+
+      <div className="">
+        <div className="">
+          <div>Showing <b>{emailList.length}</b> of <b>{total}</b> Emails</div>
+        </div>
+        <div className="">
+          <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
+        </div>
       </div>
     </AdminDashboardLayout>
   )

@@ -3,8 +3,9 @@ import { useNavigate, } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
 import Swal from 'sweetalert2';
-import moment from 'moment';
 import { isEmpty } from 'lodash';
+import Pagination from "react-js-pagination";
+import moment from 'moment';
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,13 +22,27 @@ export function AdminCampaigns(props) {
   const [campaigns, setCampaigns] = useRecoilState(campaignStore);
   const [isActive, setIsActive] = useState('hidden');
 
+  // Pagination
+  const limit = 50;
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
-    initListCampaigns({});
-  }, []);
+    initListCampaigns({
+      page: page - 1,
+      limit: limit
+    });
+  }, [page]);
 
   const { mutate: initListCampaigns, isLoading: loadingListCampaigns } = useMutation(listCampaigns, {
     onSuccess: (result) => {
-      setCampaigns(result.data);
+      if (!isEmpty(result.data) && result.data.results.length > 0) {
+        setCampaigns(result.data.results);
+        setTotal(result.data.total);
+      } else {
+        setCampaigns([]);
+        setTotal(0);
+      }
     },
     onError: (error) => {
       errorHandler(error);
@@ -60,7 +75,10 @@ export function AdminCampaigns(props) {
   const { mutate: initDeleteCampaign, isLoading: loadingDeleteCampaign } = useMutation(deleteCampaign, {
     onSuccess: (result) => {
       successHandler(result);
-      initListCampaigns({});
+      initListCampaigns({
+        page: page - 1,
+        limit: limit
+      });
     },
     onError: (error) => {
       errorHandler(error);
@@ -144,7 +162,7 @@ export function AdminCampaigns(props) {
                         <button className="mx-2" onClick={() => {
                           Swal.fire({
                             title: "Are you sure?",
-                            html: 'This will delete the campaign permanently',
+                            html: 'This will delete the campaign permanently.',
                             icon: 'error',
                             showCancelButton: true,
                             confirmButtonText: 'Yes',
@@ -169,6 +187,15 @@ export function AdminCampaigns(props) {
         }
       </div>
 
+      <div className="">
+        <div className="">
+          <div>Showing <b>{campaigns.length}</b> of <b>{total}</b> Campaigns</div>
+        </div>
+        <div className="">
+          <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
+        </div>
+      </div>
+
       <div className={`fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/90 px-4 py-5 ${isActive}`}>
         <div className="w-full max-w-142.5 rounded-lg bg-white">
           <div className="rounded-sm border border-stroke bg-white shadow-default">
@@ -180,7 +207,7 @@ export function AdminCampaigns(props) {
             <div className="p-7">
               <form onSubmit={handleCreateCampaign(onSubmitCreateCampaign)}>
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Name</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Name</label>
                   <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text"  {...registerCreateCampaign('name')} />
                   {errorsCreateCampaign?.name && <span className="text-danger text-sm text-bold">Please add a name for the campaign</span>}
                 </div>

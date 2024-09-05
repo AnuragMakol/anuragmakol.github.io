@@ -35,7 +35,6 @@ export function AdminProfile(props) {
 
   const onSubmitUpdateProfile = (form) => {
     initUpdateProfile(form);
-    resetUpdateProfile();
   }
 
   const { mutate: initUpdateProfile, isLoading: loadingUpdateProfile } = useMutation(updateProfile, {
@@ -103,42 +102,49 @@ export function AdminProfile(props) {
               <form onSubmit={handleSubmitUpdateProfile(onSubmitUpdateProfile)}>
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">Full Name</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Full Name</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.name} {...registerUpdateProfile('name')} />
+                    {errorsUpdateProfile?.name && <span className="text-danger text-sm text-bold">Please add a name</span>}
                   </div>
 
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="email">Email Address</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Email Address</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="email" defaultValue={user?.email} {...registerUpdateProfile('email')} />
+                    {errorsUpdateProfile?.email && <span className="text-danger text-sm text-bold">Please add an email</span>}
                   </div>
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Address</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Address</label>
                   <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.address}  {...registerUpdateProfile('address')} />
+                  {errorsUpdateProfile?.address && <span className="text-danger text-sm text-bold">Please add an address</span>}
                 </div>
 
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="city">City</label>
+                    <label className="mb-3 block text-sm font-medium text-black">City</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.city}  {...registerUpdateProfile('city')} />
+                    {errorsUpdateProfile?.city && <span className="text-danger text-sm text-bold">Please add a city</span>}
                   </div>
 
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="postal_code">Postal Code</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Postal Code</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.postal_code}  {...registerUpdateProfile('postal_code')} />
+                    {errorsUpdateProfile?.postal_code && <span className="text-danger text-sm text-bold">Please add a postal code</span>}
                   </div>
                 </div>
 
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="state">State</label>
+                    <label className="mb-3 block text-sm font-medium text-black">State</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.state}  {...registerUpdateProfile('state')} />
+                    {errorsUpdateProfile?.state && <span className="text-danger text-sm text-bold">Please add a state</span>}
                   </div>
 
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="country">Country</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Country</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" defaultValue={user?.country}  {...registerUpdateProfile('country')} />
+                    {errorsUpdateProfile?.country && <span className="text-danger text-sm text-bold">Please add a country</span>}
                   </div>
                 </div>
 

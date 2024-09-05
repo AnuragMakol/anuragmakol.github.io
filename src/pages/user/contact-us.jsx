@@ -28,28 +28,28 @@ export function ContactUs(props) {
               <form>
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="name">First Name</label>
+                    <label className="mb-3 block text-sm font-medium text-black">First Name</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" />
                   </div>
 
                   <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black" htmlFor="email">Last Name</label>
+                    <label className="mb-3 block text-sm font-medium text-black">Last Name</label>
                     <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" />
                   </div>
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Email Address</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Email Address</label>
                   <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="email" />
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Subject</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Subject</label>
                   <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text" />
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black" htmlFor="address">Message</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Message</label>
                   <textarea className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" rows={5}></textarea>
                 </div>
 

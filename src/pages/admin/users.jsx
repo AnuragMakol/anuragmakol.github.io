@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import moment from 'moment';
 import { isEmpty } from 'lodash';
+import Pagination from "react-js-pagination";
+import moment from 'moment';
 
 import { Loader } from '../../loader';
 import { AdminDashboardLayout } from '../../components/layouts';
@@ -14,13 +15,27 @@ export function AdminUsers(props) {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
+  // Pagination
+  const limit = 50;
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
-    initListUsers({});
-  }, []);
+    initListUsers({
+      page: page - 1,
+      limit: limit
+    });
+  }, [page]);
 
   const { mutate: initListUsers, isLoading: loadingListUsers } = useMutation(listUsers, {
     onSuccess: (result) => {
-      setUsers(result.data);
+      if (!isEmpty(result.data) && result.data.results.length > 0) {
+        setUsers(result.data.results);
+        setTotal(result.data.total);
+      } else {
+        setUsers([]);
+        setTotal(0);
+      }
     },
     onError: (error) => {
       errorHandler(error);
@@ -100,6 +115,15 @@ export function AdminUsers(props) {
             }
           </React.Fragment>
         }
+      </div>
+
+      <div className="">
+        <div className="">
+          <div>Showing <b>{users.length}</b> of <b>{total}</b> Users</div>
+        </div>
+        <div className="">
+          <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
+        </div>
       </div>
     </AdminDashboardLayout>
   )

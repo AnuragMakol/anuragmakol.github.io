@@ -22,8 +22,9 @@ import { Logout } from './pages/user/auth/logout';
 
 // Pages
 import { Dashboard } from './pages/user/dashboard';
-import { ContactUs } from './pages/user/contact-us';
 import { Profile } from './pages/user/profile';
+import { Templates } from './pages/user/templates';
+import { Plans } from './pages/user/plans';
 
 // Adminstrator Login
 import { AdminLogin } from './pages/admin/auth/login';
@@ -62,7 +63,8 @@ const App = () => {
             {/* App Pages */}
             <Route path="/dashboard" element={<UserLockedRoute><Dashboard /></UserLockedRoute>} />
             <Route path="/profile" element={<UserLockedRoute><Profile /></UserLockedRoute>} />
-            <Route path="/contact-us" element={<UserLockedRoute><ContactUs /></UserLockedRoute>} />
+            <Route path="/templates" element={<UserLockedRoute><Templates /></UserLockedRoute>} />
+            <Route path="/plans" element={<UserLockedRoute><Plans /></UserLockedRoute>} />
 
             {/* Admin Auth */}
             <Route path="/admin/login" element={<AdminLogin />} />

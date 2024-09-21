@@ -183,7 +183,7 @@ export function AdminManageCampaign(props) {
 
                 <div className="mb-5.5">
                   <label className="mb-3 block text-sm font-medium text-black">Email Service Provider</label>
-                  <div className="relative z-20 bg-white ">
+                  <div className="relative z-20 bg-white">
                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('provider')} >
                       <option value="">Select Service Provider</option>
                       <option value="sendgrid">Sendgrid</option>
@@ -254,9 +254,6 @@ export function AdminManageCampaign(props) {
                 </div>
 
                 <div className="flex justify-end gap-4.5">
-                  <button className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1" type="submit" onClick={() => resetUpdateCampaign()}>
-                    Cancel
-                  </button>
                   <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
                     Save
                   </button>
@@ -364,9 +361,6 @@ export function AdminManageCampaign(props) {
               </div>
             </div>
             <div className="flex justify-end gap-4.5">
-              <button className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1" type="submit">
-                Cancel
-              </button>
               <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
                 Save
               </button>

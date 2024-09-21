@@ -100,7 +100,7 @@ export function AdminCampaigns(props) {
 
       <div className="rounded-sm border border-stroke bg-white shadow-default">
         <div className="px-4 py-6 md:px-6 xl:px-7.5">
-          <h4 className="text-xl font-bold text-black ">Mailer Listing</h4>
+          <h4 className="text-xl font-bold text-black">Mailer Listing</h4>
         </div>
 
         <div className="grid grid-cols-6 bg-gray border-t border-stroke px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">

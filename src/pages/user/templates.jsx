@@ -19,30 +19,31 @@ export function Templates(props) {
     const [user, setUser] = useRecoilState(userStore);
 
     useEffect(() => {
-        if (user?.widget_type === "custom") {
-            setUpdateWidgetTemplateValue('widget_position', user?.widget_settings?.widget_position);
-            setUpdateWidgetTemplateValue('product_image_size', user?.widget_settings?.product_image_size);
-            setUpdateWidgetTemplateValue('product_image_style', user?.widget_settings?.product_image_style);
-            setUpdateWidgetTemplateValue('product_title_size', user?.widget_settings?.product_title_size);
-            setUpdateWidgetTemplateValue('product_title_color', user?.widget_settings?.product_title_color);
-            setUpdateWidgetTemplateValue('option_selector_style', user?.widget_settings?.option_selector_style);
-            setUpdateWidgetTemplateValue('option_selector_text_size', user?.widget_settings?.option_selector_text_size);
-            setUpdateWidgetTemplateValue('option_selector_text_color', user?.widget_settings?.option_selector_text_color);
-            setUpdateWidgetTemplateValue('compare_price_text_size', user?.widget_settings?.compare_price_text_size);
-            setUpdateWidgetTemplateValue('compare_price_text_color', user?.widget_settings?.compare_price_text_color);
-            setUpdateWidgetTemplateValue('offer_price_text_size', user?.widget_settings?.offer_price_text_size);
-            setUpdateWidgetTemplateValue('offer_price_text_color', user?.widget_settings?.offer_price_text_color);
-            setUpdateWidgetTemplateValue('add_to_cart_button_text_size', user?.widget_settings?.add_to_cart_button_text_size);
-            setUpdateWidgetTemplateValue('add_to_cart_button_text_color', user?.widget_settings?.add_to_cart_button_text_color);
-            setUpdateWidgetTemplateValue('add_to_cart_button_background_color', user?.widget_settings?.add_to_cart_button_background_color);
-            setUpdateWidgetTemplateValue('add_to_cart_button_style', user?.widget_settings?.add_to_cart_button_style);
-            setUpdateWidgetTemplateValue('add_to_cart_button_border_width', user?.widget_settings?.add_to_cart_button_border_width);
-            setUpdateWidgetTemplateValue('add_to_cart_button_border_color', user?.widget_settings?.add_to_cart_button_border_color);
-        } else {
+        setTimeout(() => {
+            if (user?.widget_type === "custom-form") {
+                setUpdateWidgetTemplateValue('widget_position', user?.widget_settings?.widget_position);
+                setUpdateWidgetTemplateValue('product_image_size', user?.widget_settings?.product_image_size);
+                setUpdateWidgetTemplateValue('product_image_style', user?.widget_settings?.product_image_style);
+                setUpdateWidgetTemplateValue('product_title_size', user?.widget_settings?.product_title_size);
+                setUpdateWidgetTemplateValue('product_title_color', user?.widget_settings?.product_title_color);
+                setUpdateWidgetTemplateValue('option_selector_style', user?.widget_settings?.option_selector_style);
+                setUpdateWidgetTemplateValue('option_selector_text_size', user?.widget_settings?.option_selector_text_size);
+                setUpdateWidgetTemplateValue('option_selector_text_color', user?.widget_settings?.option_selector_text_color);
+                setUpdateWidgetTemplateValue('compare_price_text_size', user?.widget_settings?.compare_price_text_size);
+                setUpdateWidgetTemplateValue('compare_price_text_color', user?.widget_settings?.compare_price_text_color);
+                setUpdateWidgetTemplateValue('offer_price_text_size', user?.widget_settings?.offer_price_text_size);
+                setUpdateWidgetTemplateValue('offer_price_text_color', user?.widget_settings?.offer_price_text_color);
+                setUpdateWidgetTemplateValue('add_to_cart_button_text_size', user?.widget_settings?.add_to_cart_button_text_size);
+                setUpdateWidgetTemplateValue('add_to_cart_button_text_color', user?.widget_settings?.add_to_cart_button_text_color);
+                setUpdateWidgetTemplateValue('add_to_cart_button_background_color', user?.widget_settings?.add_to_cart_button_background_color);
+                setUpdateWidgetTemplateValue('add_to_cart_button_style', user?.widget_settings?.add_to_cart_button_style);
+                setUpdateWidgetTemplateValue('add_to_cart_button_border_width', user?.widget_settings?.add_to_cart_button_border_width);
+                setUpdateWidgetTemplateValue('add_to_cart_button_border_color', user?.widget_settings?.add_to_cart_button_border_color);
+            } 
+                
             let index = user?.widget_type.replace('template', '');
-
             document.getElementsByName('template-selector')[index - 1].checked = true;
-        }
+        }, 3000);
     }, []);
 
     const { mutate: initUpdateWidgetType } = useMutation(updateWidgetType, {
@@ -81,6 +82,18 @@ export function Templates(props) {
     });
 
     const onSubmitUpdateProfile = (form) => {
+        initUpdateWidgetTemplate(form);
+    }
+
+    const { register: registerUpdateWidgetTemplate2, handleSubmit: handleUpdateWidgetTemplate2, formState: { errors: errorsUpdateWidgetTemplate2 }, setValue: setUpdateWidgetTemplateValue2 } = useForm({
+        resolver: yupResolver(
+            yup.object().shape({
+                widget_style: yup.string().required()
+            })
+        )
+    });
+
+    const onSubmitUpdateProfile2 = (form) => {
         initUpdateWidgetTemplate(form);
     }
 
@@ -166,13 +179,13 @@ export function Templates(props) {
             </div>
 
             {
-                user?.plan_details === undefined ? <div className="rounded-sm border border-stroke bg-white shadow-default ">
+                user?.plan_details === undefined ? <div className="rounded-sm border border-stroke bg-white shadow-default mb-2">
                     <div className="border-b border-stroke px-7 py-4">
                         <h3 className="font-medium text-black">
-                            <input type="radio" name="template-selector" value="custom" onClick={() => initUpdateWidgetType({
-                                widget_type: 'custom'
+                            <input type="radio" name="template-selector" value="custom-form" onClick={() => initUpdateWidgetType({
+                                widget_type: 'custom-form'
                             })} />
-                            <span className="ml-2">Customize Widget</span>
+                            <span className="ml-2">Customize Widget Form - (Ideal for users not experienced with HTML, CSS)</span>
                         </h3>
                     </div>
                     <div className="p-7">
@@ -380,6 +393,36 @@ export function Templates(props) {
                                     <input type="color" {...registerUpdateWidgetTemplate('add_to_cart_button_border_color')} />
                                 </div>
                                 {errorsUpdateWidgetTemplate?.add_to_cart_button_border_color && <span className="text-danger text-sm text-bold">Please select a add to cart button border color</span>}
+                            </div>
+
+                            <div className="flex justify-end gap-4.5">
+                                <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div> : ""
+            }
+
+            {
+                user?.plan_details === undefined ? <div className="rounded-sm border border-stroke bg-white shadow-default">
+                    <div className="border-b border-stroke px-7 py-4">
+                        <h3 className="font-medium text-black">
+                            <input type="radio" name="template-selector" value="custom-css" onClick={() => initUpdateWidgetType({
+                                widget_type: 'custom-css'
+                            })} />
+                            <span className="ml-2">Customize Widget Direct - (Ideal for users experienced with HTML, CSS or Web Developers)</span>
+                        </h3>
+                    </div>
+                    <div className="p-7">
+                        <form onSubmit={handleUpdateWidgetTemplate2(onSubmitUpdateProfile2)}>
+                            <div className="mb-5.5">
+                                <label className="mb-3 block text-sm font-medium text-black">Widget Style</label>
+                                <textarea className="w-full rounded border border-stroke px-5 py-3 font-normal text-black outline-none transition focus:border-primary" rows={20} {...registerUpdateWidgetTemplate2('widget_style')} ></textarea>
+                                <div className="relative z-20 bg-white">
+                                    {errorsUpdateWidgetTemplate2?.widget_style && <span className="text-danger text-sm text-bold">Please add a custom widget style</span>}
+                                </div>
                             </div>
 
                             <div className="flex justify-end gap-4.5">

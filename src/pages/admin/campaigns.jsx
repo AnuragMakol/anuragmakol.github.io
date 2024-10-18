@@ -207,7 +207,7 @@ export function AdminCampaigns(props) {
             <div className="p-7">
               <form onSubmit={handleCreateCampaign(onSubmitCreateCampaign)}>
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black">Name</label>
+                  <label className="mb-3 block text-sm font-medium text-black">Campaign Name</label>
                   <input className="w-full rounded border border-stroke px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none" type="text"  {...registerCreateCampaign('name')} />
                   {errorsCreateCampaign?.name && <span className="text-danger text-sm text-bold">Please add a name for the campaign</span>}
                 </div>

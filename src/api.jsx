@@ -6,7 +6,7 @@ import { FetchFromStorage } from './helpers';
 //  / / / / ___/ _ \/ ___/  / /| | / /_/ // / |// ___/
 // / /_/ (__  )  __/ /     / ___ |/ ____// /   (__  ) 
 // \____/____/\___/_/     /_/  |_/_/   /___/  /____/  
-                                                   
+
 export const getToken = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/init`, payload);
     return response.data;
@@ -63,6 +63,15 @@ export const resetScriptTag = async (payload) => {
     return response.data;
 }
 
+export const toggleWidgetStatus = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/toggle-widget-status`, payload, {
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("token")
+        }
+    });
+    return response.data;
+}
+
 export const uploadUserProfilePicture = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/upload-user-profile-picture`, payload.formdata, {
         headers: {
@@ -83,8 +92,8 @@ export const deleteUserProfilePicture = async (payload) => {
     return response.data;
 }
 
-export const updateWidgetType = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-type`, payload, {
+export const updateWidgetSelectedTemplate = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-selected-template`, payload, {
         headers: {
             "Authorization": "Bearer " + FetchFromStorage("token")
         }
@@ -103,12 +112,22 @@ export const updateWidgetTemplate = async (payload) => {
     return response.data;
 }
 
+export const fetchProductStatistics = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/fetch-product-statistics`, payload, {
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("token")
+        }
+    });
+
+    return response.data;
+}
+
 //     ___       __          _          ___    ____  _____      
 //    /   | ____/ /___ ___  (_)___     /   |  / __ \/  _( )_____
 //   / /| |/ __  / __ `__ \/ / __ \   / /| | / /_/ // / |// ___/
 //  / ___ / /_/ / / / / / / / / / /  / ___ |/ ____// /   (__  ) 
 // /_/  |_\__,_/_/ /_/ /_/_/_/ /_/  /_/  |_/_/   /___/  /____/  
-                                                             
+
 export const adminLogin = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/admin/login`, payload);
 
@@ -154,7 +173,7 @@ export const createCampaign = async (payload) => {
             "Authorization": "Bearer " + FetchFromStorage("admin_token")
         }
     });
-    
+
     return response.data;
 }
 
@@ -164,7 +183,7 @@ export const updateCampaign = async (payload) => {
             "Authorization": "Bearer " + FetchFromStorage("admin_token")
         }
     });
-    
+
     return response.data;
 }
 
@@ -174,7 +193,7 @@ export const deleteCampaign = async (payload) => {
             "Authorization": "Bearer " + FetchFromStorage("admin_token")
         }
     });
-    
+
     return response.data;
 }
 
@@ -195,6 +214,6 @@ export const uploadCampaignCSV = async (payload) => {
             "Authorization": "Bearer " + FetchFromStorage("admin_token")
         }
     });
-    
+
     return response.data;
 }

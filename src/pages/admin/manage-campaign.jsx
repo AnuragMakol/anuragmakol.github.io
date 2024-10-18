@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { useRecoilState } from "recoil";
 import { isEmpty } from 'lodash';
 import Pagination from "react-js-pagination";
 import moment from 'moment';
@@ -43,9 +42,11 @@ export function AdminManageCampaign(props) {
 
   const setUpdateForm = (data) => {
     setUpdateCampaignValue('name', data?.name);
+    setUpdateCampaignValue('email_address', data?.email_address);
     setUpdateCampaignValue('min_delay', data?.min_delay);
     setUpdateCampaignValue('max_delay', data?.max_delay);
     setUpdateCampaignValue('provider', data?.provider);
+    setUpdateCampaignValue('provider_key', data?.provider_key);
     setUpdateCampaignValue('cron_timing', data?.cron_timing);
     setUpdateCampaignValue('status', data?.status);
 
@@ -84,11 +85,13 @@ export function AdminManageCampaign(props) {
     resolver: yupResolver(
       yup.object().shape({
         name: yup.string().required(),
+        email_address: yup.string().required(),
         min_delay: yup.number().required(),
         max_delay: yup.number().required(),
         cron_timing: yup.string().required(),
         status: yup.string().required(),
         provider: yup.string().required(),
+        provider_key: yup.string().required(),
         templates: yup.array().of(
           yup.object().shape({
             subject: yup.string(),
@@ -162,10 +165,17 @@ export function AdminManageCampaign(props) {
             </div>
             <div className="p-7">
               <form onSubmit={handleUpdateCampaign(onSubmitUpdateCampaign)}>
-                <div className="mb-5.5 w-full">
-                  <label className="mb-3 block text-sm font-medium text-black">Name</label>
-                  <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('name')} />
-                  {errorsUpdateCampaign?.name && <span className="text-danger text-sm text-bold">Please add a name for the campaign</span>}
+                <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                  <div className="w-full sm:w-1/2">
+                    <label className="mb-3 block text-sm font-medium text-black">Campaign Name</label>
+                    <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('name')} />
+                    {errorsUpdateCampaign?.name && <span className="text-danger text-sm text-bold">Please add a name for the campaign</span>}
+                  </div>
+                  <div className="w-full sm:w-1/2">
+                    <label className="mb-3 block text-sm font-medium text-black">Sender Email Address</label>
+                    <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('email_address')} />
+                    {errorsUpdateCampaign?.email_address && <span className="text-danger text-sm text-bold">Please add a sender email address</span>}
+                  </div>
                 </div>
 
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
@@ -187,7 +197,6 @@ export function AdminManageCampaign(props) {
                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('provider')} >
                       <option value="">Select Service Provider</option>
                       <option value="sendgrid">Sendgrid</option>
-                      <option value="mailgun">Mailgun</option>
                       <option value="resend">Resend</option>
                       <option value="plunk">Plunk</option>
                       <option value="mailersend">Mailer Send</option>
@@ -204,53 +213,62 @@ export function AdminManageCampaign(props) {
                 </div>
 
                 <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black">Cron Timing</label>
-                  <div className="relative z-20 bg-white ">
-                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('cron_timing')} >
-                      <option value="">Select Timing</option>
-                      <option value="* * * * *">Every Minute</option>
-                      <option value="*/5 * * * *">Every 5 Minutes</option>
-                      <option value="*/10 * * * *">Every 10 Minutes</option>
-                      <option value="*/15 * * * *">Every 15 Minutes</option>
-                      <option value="*/30 * * * *">Every 30 Minutes</option>
-                      <option value="0 * * * *">Every Hour</option>
-                      <option value="0 */3 * * *">Every 3 Hours</option>
-                      <option value="0 */6 * * *">Every 6 Hours</option>
-                      <option value="0 */9 * * *">Every 9 Hours</option>
-                      <option value="0 */12 * * *">Every 12 Hours</option>
-                      <option value="0 0 * * *">Every Day At Night</option>
-                      <option value="0 6 * * *">Every Day At 6 AM</option>
-                      <option value="0 12 * *">Every Day At Noon</option>
-                      <option value="0 18 * * *">Every Day At 6 PM</option>
-                    </select>
-                    <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g opacity="0.8">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                        </g>
-                      </svg>
-                    </span>
+                  <label className="mb-3 block text-sm font-medium text-black">Email Service Provider - API Key</label>
+                  <div className="relative z-20 bg-white">
+                    <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('provider_key')} />
                   </div>
-                  {errorsUpdateCampaign?.cron_timing && <span className="text-danger text-sm text-bold">Please select cron timing for the campaign</span>}
+                  {errorsUpdateCampaign?.provider_key && <span className="text-danger text-sm text-bold">Please add an API Key</span>}
                 </div>
 
-                <div className="mb-5.5">
-                  <label className="mb-3 block text-sm font-medium text-black">Status</label>
-                  <div className="relative z-20 bg-white ">
-                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('status')}>
-                      <option value="">Select Status</option>
-                      <option value="started">Started</option>
-                      <option value="stopped">Stopped</option>
-                    </select>
-                    <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g opacity="0.8">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                        </g>
-                      </svg>
-                    </span>
+                <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                  <div className="w-full sm:w-1/2">
+                    <label className="mb-3 block text-sm font-medium text-black">Cron Timing</label>
+                    <div className="relative z-20 bg-white ">
+                      <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('cron_timing')} >
+                        <option value="">Select Timing</option>
+                        <option value="* * * * *">Every Minute</option>
+                        <option value="*/5 * * * *">Every 5 Minutes</option>
+                        <option value="*/10 * * * *">Every 10 Minutes</option>
+                        <option value="*/15 * * * *">Every 15 Minutes</option>
+                        <option value="*/30 * * * *">Every 30 Minutes</option>
+                        <option value="0 * * * *">Every Hour</option>
+                        <option value="0 */3 * * *">Every 3 Hours</option>
+                        <option value="0 */6 * * *">Every 6 Hours</option>
+                        <option value="0 */9 * * *">Every 9 Hours</option>
+                        <option value="0 */12 * * *">Every 12 Hours</option>
+                        <option value="0 0 * * *">Every Day At Night</option>
+                        <option value="0 6 * * *">Every Day At 6 AM</option>
+                        <option value="0 12 * *">Every Day At Noon</option>
+                        <option value="0 18 * * *">Every Day At 6 PM</option>
+                      </select>
+                      <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g opacity="0.8">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                    {errorsUpdateCampaign?.cron_timing && <span className="text-danger text-sm text-bold">Please select cron timing for the campaign</span>}
                   </div>
-                  {errorsUpdateCampaign?.status && <span className="text-danger text-sm text-bold">Please select a status for the campaign</span>}
+                  <div className="w-full sm:w-1/2">
+                    <label className="mb-3 block text-sm font-medium text-black">Status</label>
+                    <div className="relative z-20 bg-white ">
+                      <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('status')}>
+                        <option value="">Select Status</option>
+                        <option value="started">Started</option>
+                        <option value="stopped">Stopped</option>
+                      </select>
+                      <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g opacity="0.8">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                    {errorsUpdateCampaign?.status && <span className="text-danger text-sm text-bold">Please select a status for the campaign</span>}
+                  </div>
                 </div>
 
                 <div className="flex justify-end gap-4.5">

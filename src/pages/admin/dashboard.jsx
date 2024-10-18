@@ -1,10 +1,9 @@
 import React from 'react';
+
 import { AdminDashboardLayout } from '../../components/layouts';
 
-import { Loader } from '../../loader';
-
 export function AdminDashboard(props) {
-
+ 
   return (
     <AdminDashboardLayout props={props}>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

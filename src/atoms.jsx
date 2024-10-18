@@ -9,6 +9,12 @@ export const userStore = atom({
     effects_UNSTABLE: [persistAtom]
 });
 
+export const statisticsStore = atom({
+    key: "statisticsStore",
+    default: {},
+    effects_UNSTABLE: [persistAtom]
+});
+
 export const campaignStore = atom({
     key: "campaignStore",
     default: {},

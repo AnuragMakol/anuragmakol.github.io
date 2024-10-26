@@ -3,6 +3,7 @@ import { useNavigate, useParams, } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { isEmpty } from 'lodash';
 import Pagination from "react-js-pagination";
+import Swal from "sweetalert2";
 import moment from 'moment';
 
 import { useForm } from "react-hook-form";
@@ -11,7 +12,7 @@ import * as yup from "yup";
 
 import { Loader } from '../../loader';
 import { AdminDashboardLayout } from '../../components/layouts';
-import { fetchCampaign, updateCampaign, fetchCampaignEmails, uploadCampaignCSV } from '../../api';
+import { fetchCampaign, updateCampaign, fetchCampaignEmails, uploadCampaignCSV, toggleCampaignStatus } from '../../api';
 import { successHandler, errorHandler } from '../../helpers';
 
 export function AdminManageCampaign(props) {
@@ -48,7 +49,6 @@ export function AdminManageCampaign(props) {
     setUpdateCampaignValue('provider', data?.provider);
     setUpdateCampaignValue('provider_key', data?.provider_key);
     setUpdateCampaignValue('cron_timing', data?.cron_timing);
-    setUpdateCampaignValue('status', data?.status);
 
     for (let i = 0; i < data?.templates?.length; i++) {
       setUpdateCampaignValue(`templates[${i}].subject`, data?.templates[i]?.subject);
@@ -88,8 +88,6 @@ export function AdminManageCampaign(props) {
         email_address: yup.string().required(),
         min_delay: yup.number().required(),
         max_delay: yup.number().required(),
-        cron_timing: yup.string().required(),
-        status: yup.string().required(),
         provider: yup.string().required(),
         provider_key: yup.string().required(),
         templates: yup.array().of(
@@ -145,14 +143,47 @@ export function AdminManageCampaign(props) {
     }
   });
 
+  const { mutate: initToggleCampaignStatus, isLoading: loadingToggleCampaignStatus } = useMutation(toggleCampaignStatus, {
+    onSuccess: (result) => {
+        successHandler(result);
+        setCampaign(result.data);
+    },
+    onError: (error) => {
+        errorHandler(error);
+    }
+});
+
   return (
     <AdminDashboardLayout props={props}>
-      <Loader loading={loadingFetchCampaign || loadingUpdateCampaign || loadingFetchCampaignEmails || loadingUploadCampaignCSV} />
+      <Loader loading={loadingFetchCampaign || loadingUpdateCampaign || loadingFetchCampaignEmails || loadingUploadCampaignCSV || loadingToggleCampaignStatus} />
 
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-bold text-black ">
           Campaign - {campaign?.name}
         </h2>
+        <div>
+          <div className="relative" onClick={() => {
+            Swal.fire({
+              title: "Are you sure?",
+              html: "This will start/stop the current campaign?.",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes',
+              cancelButtonText: "No"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                initToggleCampaignStatus({
+                  id: params.id,
+                  status: campaign?.status
+                });
+              }
+            });
+          }}>
+            <input type="checkbox" className="sr-only" />
+            <div className={`block h-8 w-14 rounded-full ${campaign?.status === "started" ? "bg-primary" : "bg-black"}`}></div>
+            <div className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${campaign?.status === "started" ? "right-1 translate-x-full" : ""}`}></div>
+          </div>
+        </div>
       </div>
 
       <div className="mb-6 grid grid-cols-5 gap-8">
@@ -218,57 +249,6 @@ export function AdminManageCampaign(props) {
                     <input className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter" type="text" {...registerUpdateCampaign('provider_key')} />
                   </div>
                   {errorsUpdateCampaign?.provider_key && <span className="text-danger text-sm text-bold">Please add an API Key</span>}
-                </div>
-
-                <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                  <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black">Cron Timing</label>
-                    <div className="relative z-20 bg-white ">
-                      <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('cron_timing')} >
-                        <option value="">Select Timing</option>
-                        <option value="* * * * *">Every Minute</option>
-                        <option value="*/5 * * * *">Every 5 Minutes</option>
-                        <option value="*/10 * * * *">Every 10 Minutes</option>
-                        <option value="*/15 * * * *">Every 15 Minutes</option>
-                        <option value="*/30 * * * *">Every 30 Minutes</option>
-                        <option value="0 * * * *">Every Hour</option>
-                        <option value="0 */3 * * *">Every 3 Hours</option>
-                        <option value="0 */6 * * *">Every 6 Hours</option>
-                        <option value="0 */9 * * *">Every 9 Hours</option>
-                        <option value="0 */12 * * *">Every 12 Hours</option>
-                        <option value="0 0 * * *">Every Day At Night</option>
-                        <option value="0 6 * * *">Every Day At 6 AM</option>
-                        <option value="0 12 * *">Every Day At Noon</option>
-                        <option value="0 18 * * *">Every Day At 6 PM</option>
-                      </select>
-                      <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g opacity="0.8">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                          </g>
-                        </svg>
-                      </span>
-                    </div>
-                    {errorsUpdateCampaign?.cron_timing && <span className="text-danger text-sm text-bold">Please select cron timing for the campaign</span>}
-                  </div>
-                  <div className="w-full sm:w-1/2">
-                    <label className="mb-3 block text-sm font-medium text-black">Status</label>
-                    <div className="relative z-20 bg-white ">
-                      <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('status')}>
-                        <option value="">Select Status</option>
-                        <option value="started">Started</option>
-                        <option value="stopped">Stopped</option>
-                      </select>
-                      <span className="absolute right-4 top-1/2 z-10 -translate-y-1/2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g opacity="0.8">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                          </g>
-                        </svg>
-                      </span>
-                    </div>
-                    {errorsUpdateCampaign?.status && <span className="text-danger text-sm text-bold">Please select a status for the campaign</span>}
-                  </div>
                 </div>
 
                 <div className="flex justify-end gap-4.5">

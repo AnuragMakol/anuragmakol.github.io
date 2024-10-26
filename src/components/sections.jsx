@@ -21,7 +21,7 @@ export const UserHeader = (props) => {
         setHeaderDropdown(value);
     }
 
-    const { mutate: initResetScriptTag, isLoading: loadingResetScriptTag } = useMutation(resetScriptTag, {
+    const { mutate: initResetScriptTag } = useMutation(resetScriptTag, {
         onSuccess: (result) => {
             successHandler(result);
         },
@@ -30,7 +30,7 @@ export const UserHeader = (props) => {
         }
     });
 
-    const { mutate: initToggleWidgetStatus, isLoading: loadingToggleWidgetStatus } = useMutation(toggleWidgetStatus, {
+    const { mutate: initToggleWidgetStatus } = useMutation(toggleWidgetStatus, {
         onSuccess: (result) => {
             successHandler(result);
             setUser(result.data);
@@ -63,6 +63,7 @@ export const UserHeader = (props) => {
                 </div>
 
                 <div className="hidden sm:block">
+                    <label>Reset Integration</label>
                     <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
                         Swal.fire({
                             title: "Are you sure?",
@@ -78,7 +79,8 @@ export const UserHeader = (props) => {
                         });
                     }}>Reset Integration</button>
 
-                    <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
+                    <label>Change Integration Status</label>
+                    <div className="relative" onClick={() => {
                         Swal.fire({
                             title: "Are you sure?",
                             html: "This will toggle the visibility of the sticky add to cart widget on your store.",
@@ -91,7 +93,11 @@ export const UserHeader = (props) => {
                                 initToggleWidgetStatus({});
                             }
                         });
-                    }}>Toggle Visibility</button>
+                    }}>
+                        <input type="checkbox" className="sr-only" />
+                        <div className={`block h-8 w-14 rounded-full ${user?.widget_status ? "bg-primary" : "bg-black"}`}></div>
+                        <div className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${user?.widget_status ? "right-1 translate-x-full" : ""}`}></div>
+                    </div>
 
                     <span>Current Status : {user?.widget_status ? "Active" : "Inactive"}</span>
                 </div>

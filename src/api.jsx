@@ -92,16 +92,6 @@ export const deleteUserProfilePicture = async (payload) => {
     return response.data;
 }
 
-export const updateWidgetSelectedTemplate = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-selected-template`, payload, {
-        headers: {
-            "Authorization": "Bearer " + FetchFromStorage("token")
-        }
-    });
-
-    return response.data;
-}
-
 export const updateWidgetTemplate = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-template`, payload, {
         headers: {
@@ -215,5 +205,14 @@ export const uploadCampaignCSV = async (payload) => {
         }
     });
 
+    return response.data;
+}
+
+export const toggleCampaignStatus = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/admin/toggle-campaign-status`, payload, {
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("admin_token")
+        }
+    });
     return response.data;
 }

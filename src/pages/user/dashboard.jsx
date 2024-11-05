@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate, } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
-import Swal from 'sweetalert2';
 import { isEmpty } from 'lodash';
 
 import { Loader } from '../../loader';

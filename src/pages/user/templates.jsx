@@ -111,7 +111,7 @@ export function Templates(props) {
 
             <div className='mb-6 flex justify-between'>
                 <div className='w-115 min-w-115'>
-                    <div className="rounded-sm border border-stroke bg-white shadow-default mb-2">
+                    <div className="rounded-sm border border-stroke bg-white shadow mb-2">
                         <div className="border-b border-stroke px-6 py-4">
                             <h3 className="font-medium text-black">
                                 <span>Sticky bar settings</span>

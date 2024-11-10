@@ -62,9 +62,9 @@ export const UserHeader = (props) => {
                     </a>
                 </div>
 
-                <div className="hidden sm:block">
-                    <label>Reset Integration</label>
-                    <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
+                <div className="hidden sm:flex items-center">
+                    {/* <label>Reset Integration</label> */}
+                    <button className="mr-8 flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
                         Swal.fire({
                             title: "Are you sure?",
                             html: "This will reset the sticky add to cart widget integration with your store. <br /> <br /> Use this function only when you are not able to see the sticky widget on your store after installing the app and customizing the widget for your store.",
@@ -79,8 +79,8 @@ export const UserHeader = (props) => {
                         });
                     }}>Reset Integration</button>
 
-                    <label>Change Integration Status</label>
-                    <div className="relative" onClick={() => {
+                    <label className="mr-2">Integration Status</label>
+                    <div className="relative cursor-pointer" onClick={() => {
                         Swal.fire({
                             title: "Are you sure?",
                             html: "This will toggle the visibility of the sticky add to cart widget on your store.",
@@ -99,7 +99,7 @@ export const UserHeader = (props) => {
                         <div className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${user?.widget_status ? "right-1 translate-x-full" : ""}`}></div>
                     </div>
 
-                    <span>Current Status : {user?.widget_status ? "Active" : "Inactive"}</span>
+                    <span className="ml-2">{user?.widget_status ? "Active" : "Inactive"}</span>
                 </div>
 
                 <div className="flex items-center gap-3 2xsm:gap-7">
@@ -246,7 +246,7 @@ export const AdminHeader = (props) => {
                     </a>
                 </div>
 
-                <div className="hidden sm:block"></div>
+                <div className="hidden sm:flex"></div>
 
                 <div className="flex items-center gap-3 2xsm:gap-7">
                     <div className="relative">

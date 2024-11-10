@@ -103,25 +103,26 @@ export function Templates(props) {
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate} />
 
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mb-6">
                 <h2 className="text-title-md2 font-bold text-black ">
                     Templates
                 </h2>
             </div>
 
-            <div className='mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
-                <div>
+            <div className='mb-6 flex justify-between'>
+                <div className='w-115 min-w-115'>
                     <div className="rounded-sm border border-stroke bg-white shadow-default mb-2">
-                        <div className="border-b border-stroke px-7 py-4">
+                        <div className="border-b border-stroke px-6 py-4">
                             <h3 className="font-medium text-black">
-                                <span>Widget Settings</span>
+                                <span>Sticky bar settings</span>
                             </h3>
                         </div>
 
-                        <div className="p-7">
+                        <div className="py-4 px-6">
+
                             <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                                 <div className="mb-5.5">
-                                    <label className="mb-3 block text-sm font-medium text-black">Widget Template</label>
+                                    <label className="mb-1.5 block font-medium text-graydark">Bar Style</label>
                                     <div className="relative z-20 bg-white">
                                         <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')}>
                                             <option value="">Select Template</option>
@@ -156,7 +157,7 @@ export function Templates(props) {
                                     </div>
                                 </div>
                                 <div className="mb-5.5">
-                                    <label className="mb-3 block text-sm font-medium text-black">Widget Position</label>
+                                    <label className="mb-1.5 block font-medium text-graydark">Bar Position</label>
                                     <div className="relative z-20 bg-white">
                                         <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_position')}>
                                             <option value="">Select Position</option>
@@ -176,9 +177,12 @@ export function Templates(props) {
                                     </div>
                                 </div>
 
-                                <div className="mb-5.5 flex flex-row gap-25 justify-between">
-                                    <div>
-                                        <label className="mb-3 block text-sm font-medium text-black">Hide on Desktop</label>
+                                <div className="mb-5.5 gap-25 justify-between">
+                                    <div className='flex border border-stroke shadow-sm mb-4 rounded overflow-hidden'>
+                                        <div className='p-4 flex-grow text-center bg-primary font-medium text-white'> Desktop</div>
+                                        <div className='p-4 flex-grow text-center font-medium'>Mobile</div>
+                                    </div>
+                                    <div className='pl-1'>
                                         <div className="relative z-20 bg-white">
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
@@ -207,8 +211,8 @@ export function Templates(props) {
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <label className="mb-3 block text-sm font-medium text-black">Hide on Mobile</label>
+                                    <div className='pl-1 hidden'>
+                                        <label className="mb-3 block text-sm font-medium text-graydark">On Mobile</label>
                                         <div className="relative z-20 bg-white">
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
@@ -442,8 +446,103 @@ export function Templates(props) {
                     }
                 </div>
 
-                <div>
-                    View area
+                <div className='flex-grow pl-10'>
+                    <div>
+                        <h3 className='font-medium mb-4'>Desktop View</h3>
+                        <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
+                            <div id="widget-container">
+                                <div className="asbw-stickybag-product">
+                                    <div className="asbw-product-item-image">
+                                        <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                    </div>
+                                    <div className="asbw-stickybag-content">
+                                        <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter this is very very long title fpr product</div>
+                                    </div>
+                                </div>
+                                <div className="asbw-stickybag-widget-events">
+                                    <div id="widget-options" className="asbw-stickybag-options">
+                                        <div className="asbw-variant-opt">
+                                            <label className="asbw-label asbw-select-outer">
+                                                <select id="widget-option1" className="asbw-select">
+                                                    <option value="Navy">Navy</option>
+                                                </select>
+                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                            </label>
+                                        </div>
+                                        <div className="asbw-variant-opt">
+                                            <label className="asbw-label asbw-select-outer">
+                                                <select id="widget-option2" className="asbw-select">
+                                                    <option value="XS">XS</option>
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                </select>
+                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="asbw-stickybag-actions">
+                                        <div id="widget-price" className="asbw-product-price-wrapper">
+                                            <span className="asbw-stickybag-product-price" id="widget-offer-price">Rs. 36.00</span>
+                                            <span className="asbw-item-original-price" id="widget-compare-price">Rs. 46.00</span>
+                                        </div>
+                                        <div className="asbw-stickybag-action-wrapper">
+                                            <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='max-w-125'>
+                        <h3 className='font-medium mb-4'>Mobile View</h3>
+                        <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
+                            <div id="widget-container">
+                                <div className="asbw-stickybag-product">
+                                    <div className="asbw-product-item-image">
+                                        <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                    </div>
+                                    <div className="asbw-stickybag-content">
+                                        <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter this is very very long title fpr product</div>
+                                    </div>
+                                </div>
+                                <div className="asbw-stickybag-widget-events">
+                                    <div id="widget-options" className="asbw-stickybag-options">
+                                        <div className="asbw-variant-opt">
+                                            <label className="asbw-label asbw-select-outer">
+                                                <select id="widget-option1" className="asbw-select">
+                                                    <option value="Navy">Navy</option>
+                                                </select>
+                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                            </label>
+                                        </div>
+                                        <div className="asbw-variant-opt">
+                                            <label className="asbw-label asbw-select-outer">
+                                                <select id="widget-option2" className="asbw-select">
+                                                    <option value="XS">XS</option>
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                </select>
+                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="asbw-stickybag-actions">
+                                        <div id="widget-price" className="asbw-product-price-wrapper">
+                                            <span className="asbw-stickybag-product-price" id="widget-offer-price">Rs. 36.00</span>
+                                            <span className="asbw-item-original-price" id="widget-compare-price">Rs. 46.00</span>
+                                        </div>
+                                        <div className="asbw-stickybag-action-wrapper">
+                                            <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </UserDashboardLayout >

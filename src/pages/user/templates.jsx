@@ -105,7 +105,7 @@ export function Templates(props) {
 
             <div className="mb-6">
                 <h2 className="text-title-md2 font-bold text-black ">
-                    Templates
+                    Sticky bar
                 </h2>
             </div>
 
@@ -447,7 +447,7 @@ export function Templates(props) {
                 </div>
 
                 <div className='flex-grow pl-10'>
-                    <div>
+                    <div className='mb-10 border border-stroke shadow bg-white'>
                         <h3 className='font-medium mb-4'>Desktop View</h3>
                         <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
                             <div id="widget-container">
@@ -495,7 +495,7 @@ export function Templates(props) {
                             </div>
                         </div>
                     </div>
-                    <div className='max-w-125'>
+                    <div className='mb-10 bg-white border border-stroke shadow max-w-125'>
                         <h3 className='font-medium mb-4'>Mobile View</h3>
                         <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
                             <div id="widget-container">

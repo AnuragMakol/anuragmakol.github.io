@@ -45,7 +45,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark xl:border-b-0 xl:border-r xl:pb-0">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.weekly?.views.$numberDecimal == undefined ? 0 : statistics?.weekly?.views.$numberDecimal}
+                {statistics?.weekly?.views?.$numberDecimal == undefined ? 0 : statistics?.weekly?.views?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Views</p>
             </div>
@@ -53,7 +53,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark xl:border-b-0 xl:border-r xl:pb-0">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.weekly?.added_to_cart.$numberDecimal == undefined ? 0 : statistics?.weekly?.added_to_cart.$numberDecimal}
+                {statistics?.weekly?.added_to_cart?.$numberDecimal == undefined ? 0 : statistics?.weekly?.added_to_cart?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Added to Cart</p>
             </div>
@@ -61,7 +61,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark sm:border-b-0 sm:pb-0 xl:border-r">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.weekly?.conversions.$numberDecimal == undefined ? 0 : statistics?.weekly?.conversions.$numberDecimal}
+                {statistics?.weekly?.conversions?.$numberDecimal == undefined ? 0 : statistics?.weekly?.conversions?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Conversions</p>
             </div>
@@ -69,7 +69,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.weekly?.revenue.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.weekly?.revenue.$numberDecimal)}
+                {statistics?.weekly?.revenue?.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.weekly?.revenue?.$numberDecimal)}
               </h4>
               <p className="text-sm">Revenue</p>
             </div>
@@ -83,7 +83,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark xl:border-b-0 xl:border-r xl:pb-0">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.monthly?.views.$numberDecimal == undefined ? 0 : statistics?.monthly?.views.$numberDecimal}
+                {statistics?.monthly?.views?.$numberDecimal == undefined ? 0 : statistics?.monthly?.views?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Views</p>
             </div>
@@ -91,7 +91,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark xl:border-b-0 xl:border-r xl:pb-0">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.monthly?.added_to_cart.$numberDecimal == undefined ? 0 : statistics?.monthly?.added_to_cart.$numberDecimal}
+                {statistics?.monthly?.added_to_cart?.$numberDecimal == undefined ? 0 : statistics?.monthly?.added_to_cart?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Added to Cart</p>
             </div>
@@ -99,7 +99,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2 border-b border-stroke pb-5 dark:border-strokedark sm:border-b-0 sm:pb-0 xl:border-r">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.monthly?.conversions.$numberDecimal == undefined ? 0 : statistics?.monthly?.conversions.$numberDecimal}
+                {statistics?.monthly?.conversions?.$numberDecimal == undefined ? 0 : statistics?.monthly?.conversions?.$numberDecimal}
               </h4>
               <p className="text-sm font-medium">Conversions</p>
             </div>
@@ -107,7 +107,7 @@ export function Dashboard(props) {
           <div className="flex items-center justify-center gap-2">
             <div>
               <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                {statistics?.monthly?.revenue.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.monthly?.revenue.$numberDecimal)}
+                {statistics?.monthly?.revenue?.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.monthly?.revenue?.$numberDecimal)}
               </h4>
               <p className="text-sm">Revenue</p>
             </div>
@@ -137,7 +137,7 @@ export function Dashboard(props) {
           </div>
 
           {
-            !isEmpty(statistics.product_stats.views) && Object.values(statistics.product_stats.views).map((item, index) => {
+            !isEmpty(statistics?.product_stats?.views) && Object.values(statistics?.product_stats?.views).map((item, index) => {
               return (
                 <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key={index}>
                   <div className="col-span-3 flex items-center">
@@ -153,7 +153,7 @@ export function Dashboard(props) {
                   <div className="col-span-2 hidden items-center sm:flex">
                     <p className="text-sm font-medium text-black dark:text-white">
                       {
-                        Object.values(item.variants).map((variant, index2) => {
+                        !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
                             <div key={index2}>
                               {variant?.title}
@@ -201,7 +201,7 @@ export function Dashboard(props) {
           </div>
 
           {
-            !isEmpty(statistics.product_stats.added_to_cart) && Object.values(statistics.product_stats.added_to_cart).map((item, index) => {
+            !isEmpty(statistics?.product_stats?.added_to_cart) && Object.values(statistics?.product_stats?.added_to_cart).map((item, index) => {
               return (
                 <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key={index}>
                   <div className="col-span-3 flex items-center">
@@ -217,7 +217,7 @@ export function Dashboard(props) {
                   <div className="col-span-2 hidden items-center sm:flex">
                     <p className="text-sm font-medium text-black dark:text-white">
                       {
-                        Object.values(item.variants).map((variant, index2) => {
+                        !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
                             <div key={index2}>
                               {variant?.title} - <span className="text-sm font-medium text-meta-3">{variant?.added_to_cart}</span>
@@ -265,7 +265,7 @@ export function Dashboard(props) {
           </div>
 
           {
-            !isEmpty(statistics.product_stats.conversions) && Object.values(statistics.product_stats.conversions).map((item, index) => {
+            !isEmpty(statistics?.product_stats?.conversions) && Object.values(statistics?.product_stats?.conversions).map((item, index) => {
               return (
                 <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key={index}>
                   <div className="col-span-3 flex items-center">
@@ -281,7 +281,7 @@ export function Dashboard(props) {
                   <div className="col-span-2 hidden items-center sm:flex">
                     <p className="text-sm font-medium text-black dark:text-white">
                       {
-                        Object.values(item.variants).map((variant, index2) => {
+                        !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
                             <div key={index2}>
                               {variant?.title} - <span className="text-sm font-medium text-meta-3">{variant?.conversions}</span>
@@ -329,7 +329,7 @@ export function Dashboard(props) {
           </div>
 
           {
-            !isEmpty(statistics.product_stats.revenue) && Object.values(statistics.product_stats.revenue).map((item, index) => {
+            !isEmpty(statistics?.product_stats?.revenue) && Object.values(statistics?.product_stats?.revenue).map((item, index) => {
               return (
                 <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key={index}>
                   <div className="col-span-3 flex items-center">
@@ -345,7 +345,7 @@ export function Dashboard(props) {
                   <div className="col-span-2 hidden items-center sm:flex">
                     <p className="text-sm font-medium text-black dark:text-white">
                       {
-                        Object.values(item.variants).map((variant, index2) => {
+                        !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
                             <div key={index2}>
                               {variant?.title} - <span className="text-sm font-medium text-meta-3">{variant?.revenue == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', variant?.revenue)}</span>

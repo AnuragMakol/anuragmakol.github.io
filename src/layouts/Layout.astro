@@ -1,9 +1,13 @@
 ---
+import Header from '../components/Header.astro';
+import PreLoaders from '../components/PreLoaders.astro';
+
 interface Props {
 	title: string;
+	bodyclass: string
 }
 
-const { title } = Astro.props;
+const { title, bodyclass } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,37 +18,42 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="assets/css/plugins/fontawesome-6.css" />
+		<link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
+		<link rel="stylesheet" href="assets/css/vendor/metismenu.css" />
+		<link rel="stylesheet" href="assets/css/plugins/animate.min.css" />
+		<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class={bodyclass}>
+		{
+			bodyclass.includes('coming-soon') ? "" : <Header />
+		}
 		<slot />
+		{
+			bodyclass.includes('coming-soon') ? "" : <PreLoaders />
+		}
+		<script defer src="assets/js/vendor/jquery.min.js"></script>
+		<script defer src="assets/js/plugins/bootstrap.min.js"></script>
+		<script defer src="assets/js/plugins/contact.form.js"></script>
+		<script defer src="assets/js/vendor/waypoint.js"></script>
+		<script defer src="assets/js/plugins/swiper.js"></script>
+		<script defer src="assets/js/plugins/resizer-sensor.js"></script>
+		<script defer src="assets/js/plugins/sticky-sidebar.js"></script>
+		<script defer src="assets/js/plugins/isotop.js"></script>
+		<script defer src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+		<script defer src="assets/js/plugins/smoothscroll-varticle.js"></script>
+		<script defer src="assets/js/vendor/gsap.js"></script>
+		<script defer src="assets/js/plugins/scrolltiger.js"></script>
+		<script defer src="assets/js/plugins/scrolltoplugin.js"></script>
+		<script defer src="assets/js/plugins/splittext.js"></script>
+		<script defer src="assets/js/plugins/smoothscroll.js"></script>
+		<script defer src="assets/js/plugins/scrollmagic.js"></script>
+		<script defer src="assets/js/plugins/animate-scrollmagic.js"></script>
+		<script defer src="assets/js/plugins/tilt.js"></script>
+		<script defer src="assets/js/plugins/counterup.js"></script>
+		<script defer src="assets/js/vendor/waw.js"></script>
+		<script defer src="assets/js/main.js"></script>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

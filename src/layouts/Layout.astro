@@ -1,10 +1,11 @@
 ---
-import Header from '../components/Header.astro';
-import PreLoaders from '../components/PreLoaders.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PreLoaders from "../components/PreLoaders.astro";
 
 interface Props {
 	title: string;
-	bodyclass: string
+	bodyclass: string;
 }
 
 const { title, bodyclass } = Astro.props;
@@ -27,13 +28,15 @@ const { title, bodyclass } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class={bodyclass}>
-		{
-			bodyclass.includes('coming-soon') ? "" : <Header />
-		}
-		<slot />
-		{
-			bodyclass.includes('coming-soon') ? "" : <PreLoaders />
-		}
+		{bodyclass.includes("coming-soon") ? "" : <Header />}
+
+		<div id="smooth-wrapper">
+			<div id="smooth-content">
+				<slot />
+				{bodyclass.includes("coming-soon") ? "" : <Footer />}
+			</div>
+		</div>
+		{bodyclass.includes("coming-soon") ? "" : <PreLoaders />}
 		<script defer src="assets/js/vendor/jquery.min.js"></script>
 		<script defer src="assets/js/plugins/bootstrap.min.js"></script>
 		<script defer src="assets/js/plugins/contact.form.js"></script>

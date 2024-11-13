@@ -1,7 +1,6 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import PreLoaders from "../components/PreLoaders.astro";
 
 interface Props {
 	title: string;
@@ -27,6 +26,7 @@ const { title, bodyclass } = Astro.props;
 		<link rel="stylesheet" href="assets/css/style.css" />
 		<title>{title}</title>
 	</head>
+
 	<body class={bodyclass}>
 		{bodyclass.includes("coming-soon") ? "" : <Header />}
 
@@ -36,27 +36,27 @@ const { title, bodyclass } = Astro.props;
 				{bodyclass.includes("coming-soon") ? "" : <Footer />}
 			</div>
 		</div>
-		{bodyclass.includes("coming-soon") ? "" : <PreLoaders />}
-		<script defer src="assets/js/vendor/jquery.min.js"></script>
-		<script defer src="assets/js/plugins/bootstrap.min.js"></script>
-		<script defer src="assets/js/plugins/contact.form.js"></script>
-		<script defer src="assets/js/vendor/waypoint.js"></script>
-		<script defer src="assets/js/plugins/swiper.js"></script>
-		<script defer src="assets/js/plugins/resizer-sensor.js"></script>
-		<script defer src="assets/js/plugins/sticky-sidebar.js"></script>
-		<script defer src="assets/js/plugins/isotop.js"></script>
-		<script defer src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
-		<script defer src="assets/js/plugins/smoothscroll-varticle.js"></script>
-		<script defer src="assets/js/vendor/gsap.js"></script>
-		<script defer src="assets/js/plugins/scrolltiger.js"></script>
-		<script defer src="assets/js/plugins/scrolltoplugin.js"></script>
-		<script defer src="assets/js/plugins/splittext.js"></script>
-		<script defer src="assets/js/plugins/smoothscroll.js"></script>
-		<script defer src="assets/js/plugins/scrollmagic.js"></script>
-		<script defer src="assets/js/plugins/animate-scrollmagic.js"></script>
-		<script defer src="assets/js/plugins/tilt.js"></script>
-		<script defer src="assets/js/plugins/counterup.js"></script>
-		<script defer src="assets/js/vendor/waw.js"></script>
-		<script defer src="assets/js/main.js"></script>
 	</body>
+
+	<script defer src="assets/js/vendor/jquery.min.js"></script>
+	<script defer src="assets/js/plugins/bootstrap.min.js"></script>
+	<script defer src="assets/js/plugins/contact.form.js"></script>
+	<script defer src="assets/js/vendor/waypoint.js"></script>
+	<script defer src="assets/js/plugins/swiper.js"></script>
+	<script defer src="assets/js/plugins/resizer-sensor.js"></script>
+	<script defer src="assets/js/plugins/sticky-sidebar.js"></script>
+	<script defer src="assets/js/plugins/isotop.js"></script>
+	<script defer src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+	<script defer src="assets/js/plugins/smoothscroll-varticle.js"></script>
+	<script defer src="assets/js/vendor/gsap.js"></script>
+	<script defer src="assets/js/plugins/scrolltiger.js"></script>
+	<script defer src="assets/js/plugins/scrolltoplugin.js"></script>
+	<script defer src="assets/js/plugins/splittext.js"></script>
+	<script defer src="assets/js/plugins/smoothscroll.js"></script>
+	<script defer src="assets/js/plugins/scrollmagic.js"></script>
+	<script defer src="assets/js/plugins/animate-scrollmagic.js"></script>
+	<script defer src="assets/js/plugins/tilt.js"></script>
+	<script defer src="assets/js/plugins/counterup.js"></script>
+	<script defer src="assets/js/vendor/waw.js"></script>
+	<script defer src="assets/js/main.js"></script>
 </html>

@@ -63,15 +63,6 @@ export const resetScriptTag = async (payload) => {
     return response.data;
 }
 
-export const toggleWidgetStatus = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/toggle-widget-status`, payload, {
-        headers: {
-            "Authorization": "Bearer " + FetchFromStorage("token")
-        }
-    });
-    return response.data;
-}
-
 export const uploadUserProfilePicture = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/upload-user-profile-picture`, payload.formdata, {
         headers: {
@@ -104,6 +95,17 @@ export const updateWidgetTemplate = async (payload) => {
 
 export const fetchProductStatistics = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/fetch-product-statistics`, payload, {
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("token")
+        }
+    });
+
+    return response.data;
+}
+
+export const fetchTemplateStyle = async (payload) => {
+    let response = await axios.get(`${import.meta.env.VITE_API_URL}/shopify/fetch-template-style`, {
+        params: payload,
         headers: {
             "Authorization": "Bearer " + FetchFromStorage("token")
         }

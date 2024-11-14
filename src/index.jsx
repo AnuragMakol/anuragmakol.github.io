@@ -23,7 +23,7 @@ import { Logout } from './pages/user/auth/logout';
 // Pages
 import { Dashboard } from './pages/user/dashboard';
 import { Profile } from './pages/user/profile';
-import { Templates } from './pages/user/templates';
+import { Widget } from './pages/user/widget';
 import { Plans } from './pages/user/plans';
 
 // Adminstrator Login
@@ -63,7 +63,7 @@ const App = () => {
             {/* App Pages */}
             <Route path="/dashboard" element={<UserLockedRoute><Dashboard /></UserLockedRoute>} />
             <Route path="/profile" element={<UserLockedRoute><Profile /></UserLockedRoute>} />
-            <Route path="/templates" element={<UserLockedRoute><Templates /></UserLockedRoute>} />
+            <Route path="/widget" element={<UserLockedRoute><Widget /></UserLockedRoute>} />
             <Route path="/plans" element={<UserLockedRoute><Plans /></UserLockedRoute>} />
 
             {/* Admin Auth */}

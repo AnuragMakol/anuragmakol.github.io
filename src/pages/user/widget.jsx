@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
+import Swal from 'sweetalert2';
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,21 +12,27 @@ import { Loader } from '../../loader';
 import { UserDashboardLayout } from '../../components/layouts';
 
 import { userStore } from '../../atoms';
-import { updateWidgetTemplate } from '../../api';
+import { updateWidgetTemplate, resetScriptTag, fetchTemplateStyle } from '../../api';
 import { successHandler, errorHandler } from "../../helpers";
 
-export function Templates(props) {
+export function Widget(props) {
     const navigate = useNavigate();
     const [user, setUser] = useRecoilState(userStore);
+    const [deviceToggle, setDeviceToggle] = useState('desktop');
+    const [widgetTemplate, setWidgetTemplate] = useState('');
+    const [widgetPosition, setWidgetPosition] = useState('');
+    const [widgetElements, setWidgetElements] = useState('');
+    const [templateStyle, setTemplateStyle] = useState('');
 
     useEffect(() => {
         setValueUpdateWidgetTemplate('widget_template', user?.widget_settings?.widget_template);
         setValueUpdateWidgetTemplate('widget_position', user?.widget_settings?.widget_position);
+        setValueUpdateWidgetTemplate('widget_status', user?.widget_settings?.widget_status);
 
         setValueUpdateWidgetTemplate('desktop_hide_image', user?.widget_settings?.desktop_hide_image);
         setValueUpdateWidgetTemplate('desktop_hide_title', user?.widget_settings?.desktop_hide_title);
         setValueUpdateWidgetTemplate('desktop_hide_compare_price', user?.widget_settings?.desktop_hide_compare_price);
-        setValueUpdateWidgetTemplate('desktop_hide_sale_price', user?.widget_settings?.desktop_hide_sale_price);
+        setValueUpdateWidgetTemplate('desktop_hide_offer_price', user?.widget_settings?.desktop_hide_offer_price);
         setValueUpdateWidgetTemplate('mobile_hide_image', user?.widget_settings?.mobile_hide_image);
         setValueUpdateWidgetTemplate('mobile_hide_title', user?.widget_settings?.mobile_hide_title);
         setValueUpdateWidgetTemplate('mobile_hide_compare_price', user?.widget_settings?.mobile_hide_compare_price);
@@ -49,6 +56,36 @@ export function Templates(props) {
         setValueUpdateWidgetTemplate('add_to_cart_button_style', user?.widget_settings?.add_to_cart_button_style);
         setValueUpdateWidgetTemplate('add_to_cart_button_border_width', user?.widget_settings?.add_to_cart_button_border_width);
         setValueUpdateWidgetTemplate('add_to_cart_button_border_color', user?.widget_settings?.add_to_cart_button_border_color);
+
+        let elementsData = '';
+        if (user?.widget_settings?.desktop_hide_image === true) {
+            elementsData = `${elementsData}di`;
+        }
+        if (user?.widget_settings?.desktop_hide_title === true) {
+            elementsData = `${elementsData}dt`;
+        }
+        if (user?.widget_settings?.desktop_hide_compare_price === true) {
+            elementsData = `${elementsData}dc`;
+        }
+        if (user?.widget_settings?.desktop_hide_offer_price === true) {
+            elementsData = `${elementsData}ds`;
+        }
+        if (user?.widget_settings?.mobile_hide_image === true) {
+            elementsData = `${elementsData}mi`;
+        }
+        if (user?.widget_settings?.mobile_hide_title === true) {
+            elementsData = `${elementsData}mt`;
+        }
+        if (user?.widget_settings?.mobile_hide_compare_price === true) {
+            elementsData = `${elementsData}mc`;
+        }
+        if (user?.widget_settings?.mobile_hide_sale_price === true) {
+            elementsData = `${elementsData}ms`;
+        }
+
+        manageWidgetSettings('template', user?.widget_settings?.widget_template);
+        manageWidgetSettings('position', user?.widget_settings?.widget_position);
+        manageWidgetSettings('elements', elementsData);
     }, []);
 
     const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, setValue: setValueUpdateWidgetTemplate, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
@@ -59,7 +96,7 @@ export function Templates(props) {
                 desktop_hide_image: yup.boolean(),
                 desktop_hide_title: yup.boolean(),
                 desktop_hide_compare_price: yup.boolean(),
-                desktop_hide_sale_price: yup.boolean(),
+                desktop_hide_offer_price: yup.boolean(),
                 mobile_hide_image: yup.boolean(),
                 mobile_hide_title: yup.boolean(),
                 mobile_hide_compare_price: yup.boolean(),
@@ -99,14 +136,109 @@ export function Templates(props) {
         }
     });
 
+    const { mutate: initResetScriptTag } = useMutation(resetScriptTag, {
+        onSuccess: (result) => {
+            successHandler(result);
+        },
+        onError: (error) => {
+            errorHandler(error);
+        }
+    });
+
+    const { mutate: initFetchTemplateStyle } = useMutation(fetchTemplateStyle, {
+        onSuccess: (result) => {
+            successHandler(result);
+            setTemplateStyle(result.data);
+        },
+        onError: (error) => {
+            errorHandler(error);
+        }
+    });
+
+    const manageWidgetSettings = (type, value) => {
+        if (type === "template") {
+            initFetchTemplateStyle({
+                template: value
+            });
+
+            setWidgetTemplate(value);
+        }
+
+        if (type === "position") {
+            let positioning_classes = '';
+
+            if (value == "fixed-top") {
+                positioning_classes = "asbw-fixed-d-top";
+            } else if (value == "fixed-bottom") {
+                positioning_classes = "asbw-fixed-d-bottom";
+            } else if (value == "floating-top") {
+                positioning_classes = "asbw-fixed-d-top asbw-boxed";
+            } else if (value == "floating-bottom") {
+                positioning_classes = "asbw-fixed-d-bottom asbw-boxed";
+            }
+
+            setWidgetPosition(positioning_classes);
+        }
+
+        if (type === "elements") {
+            setWidgetElements(value);
+        }
+    }
+
+    const manageElementsStatus = (type, value) => {
+        let elementsData = widgetElements;
+        if (type === "desktop_hide_image") {
+            elementsData = value ? `${elementsData}di` : elementsData.replace('di', '');
+        }
+        if (type === "desktop_hide_title") {
+            elementsData = value ? `${elementsData}dt` : elementsData.replace('dt', '');
+        }
+        if (type === "desktop_hide_compare_price") {
+            elementsData = value ? `${elementsData}dc` : elementsData.replace('dc', '');
+        }
+        if (type === "desktop_hide_offer_price") {
+            elementsData = value ? `${elementsData}ds` : elementsData.replace('ds', '');
+        }
+        if (type === "mobile_hide_image") {
+            elementsData = value ? `${elementsData}mi` : elementsData.replace('mi', '');
+        }
+        if (type === "mobile_hide_title") {
+            elementsData = value ? `${elementsData}mt` : elementsData.replace('mt', '');
+        }
+        if (type === "mobile_hide_compare_price") {
+            elementsData = value ? `${elementsData}mc` : elementsData.replace('mc', '');
+        }
+        if (type === "mobile_hide_sale_price") {
+            elementsData = value ? `${elementsData}ms` : elementsData.replace('ms', '');
+        }
+
+        manageWidgetSettings('elements', elementsData);
+    }
+
     return (
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate} />
 
-            <div className="mb-6">
+            <div className="mb-6 flex justify-between">
                 <h2 className="text-title-md2 font-bold text-black ">
-                    Sticky bar
+                    Widget Settings
                 </h2>
+                <div>
+                    <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            html: "This will reset the sticky add to cart widget integration with your store. <br /> <br /> Use this function only when you are not able to see the sticky widget on your store after installing the app and customizing the widget for your store.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: "No"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                initResetScriptTag({});
+                            }
+                        });
+                    }}>Reset Integration</button>
+                </div>
             </div>
 
             <div className='mb-6 flex justify-between'>
@@ -114,7 +246,7 @@ export function Templates(props) {
                     <div className="rounded-sm border border-stroke bg-white shadow mb-2">
                         <div className="border-b border-stroke px-6 py-4">
                             <h3 className="font-medium text-black">
-                                <span>Sticky bar settings</span>
+                                <span>Customizer</span>
                             </h3>
                         </div>
 
@@ -122,9 +254,9 @@ export function Templates(props) {
 
                             <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                                 <div className="mb-5.5">
-                                    <label className="mb-1.5 block font-medium text-graydark">Bar Style</label>
+                                    <label className="mb-1.5 block font-medium text-graydark">Widget Style</label>
                                     <div className="relative z-20 bg-white">
-                                        <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')}>
+                                        <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => manageWidgetSettings('template', e.target.value)}>
                                             <option value="">Select Template</option>
                                             <option value="t1-s1">Template 1 - Style 1</option>
                                             <option value="t1-s2">Template 1 - Style 2</option>
@@ -157,9 +289,9 @@ export function Templates(props) {
                                     </div>
                                 </div>
                                 <div className="mb-5.5">
-                                    <label className="mb-1.5 block font-medium text-graydark">Bar Position</label>
+                                    <label className="mb-1.5 block font-medium text-graydark">Widget Position</label>
                                     <div className="relative z-20 bg-white">
-                                        <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_position')}>
+                                        <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_position')} onChange={(e) => manageWidgetSettings('position', e.target.value)}>
                                             <option value="">Select Position</option>
                                             <option value="fixed-top">Fixed Top</option>
                                             <option value="fixed-bottom">Fixed Bottom</option>
@@ -177,65 +309,90 @@ export function Templates(props) {
                                     </div>
                                 </div>
 
+                                <div className="mb-5.5">
+                                    <label className="mb-1.5 block font-medium text-graydark">Widget Status</label>
+                                    <label className="flex cursor-pointer select-none items-center text-sm font-medium mt-3 ml-2">
+                                        <input type="checkbox" {...registerUpdateWidgetTemplate('widget_status')} />
+                                        <span className="ml-2">Active</span>
+                                    </label>
+                                </div>
+
                                 <div className="mb-5.5 gap-25 justify-between">
+                                    <label className="mb-1.5 block font-medium text-graydark">Widget Elements</label>
                                     <div className='flex border border-stroke shadow-sm mb-4 rounded overflow-hidden'>
-                                        <div className='p-4 flex-grow text-center bg-primary font-medium text-white'> Desktop</div>
-                                        <div className='p-4 flex-grow text-center font-medium'>Mobile</div>
-                                    </div>
-                                    <div className='pl-1'>
-                                        <div className="relative z-20 bg-white">
-                                            <div className="mb-3">
-                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_image')} />
-                                                    <span className="ml-2">Hide Image</span>
-                                                </label>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_title')} />
-                                                    <span className="ml-2">Hide TItle</span>
-                                                </label>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_compare_price')} />
-                                                    <span className="ml-2">Hide Compare Price</span>
-                                                </label>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_sale_price')} />
-                                                    <span className="ml-2">Hide Sale Price</span>
-                                                </label>
-                                            </div>
-                                        </div>
+                                        <div className={`p-4 flex-grow text-center font-medium ${deviceToggle === "desktop" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>Desktop</div>
+                                        <div className={`p-4 flex-grow text-center font-medium ${deviceToggle === "mobile" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>Mobile</div>
                                     </div>
 
-                                    <div className='pl-1 hidden'>
-                                        <label className="mb-3 block text-sm font-medium text-graydark">On Mobile</label>
+                                    <div className={`pl-2 ${deviceToggle === "desktop" ? "" : "hidden"}`}>
                                         <div className="relative z-20 bg-white">
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_image')} />
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_image')} onChange={(e) => {
+                                                        manageElementsStatus('desktop_hide_image', e.target.checked);
+                                                    }} />
                                                     <span className="ml-2">Hide Image</span>
                                                 </label>
                                             </div>
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_title')} />
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_title')} onChange={(e) => {
+                                                        manageElementsStatus('desktop_hide_title', e.target.checked);
+                                                    }} />
                                                     <span className="ml-2">Hide Title</span>
                                                 </label>
                                             </div>
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_compare_price')} />
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_compare_price')} onChange={(e) => {
+                                                        manageElementsStatus('desktop_hide_compare_price', e.target.checked);
+                                                    }} />
                                                     <span className="ml-2">Hide Compare Price</span>
                                                 </label>
                                             </div>
                                             <div className="mb-3">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_sale_price')} />
-                                                    <span className="ml-2">Hide Sale Price</span>
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_offer_price')} onChange={(e) => {
+                                                        manageElementsStatus('desktop_hide_offer_price', e.target.checked);
+                                                    }} />
+                                                    <span className="ml-2">Hide Offer Price</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={`pl-2 ${deviceToggle === "mobile" ? "" : "hidden"}`}>
+                                        <div className="relative z-20 bg-white">
+                                            <div className="mb-3">
+                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_image')} onChange={(e) => {
+                                                        manageElementsStatus('mobile_hide_image', e.target.checked);
+                                                    }} />
+                                                    <span className="ml-2">Hide Image</span>
+                                                </label>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_title')} onChange={(e) => {
+                                                        manageElementsStatus('mobile_hide_title', e.target.checked);
+                                                    }} />
+                                                    <span className="ml-2">Hide Title</span>
+                                                </label>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_compare_price')} onChange={(e) => {
+                                                        manageElementsStatus('mobile_hide_compare_price', e.target.checked);
+                                                    }} />
+                                                    <span className="ml-2">Hide Compare Price</span>
+                                                </label>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label className="flex cursor-pointer select-none items-center text-sm font-medium">
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_sale_price')} onChange={(e) => {
+                                                        manageElementsStatus('mobile_hide_sale_price', e.target.checked);
+                                                    }} />
+                                                    <span className="ml-2">Hide Offer Price</span>
                                                 </label>
                                             </div>
                                         </div>
@@ -446,17 +603,32 @@ export function Templates(props) {
                     }
                 </div>
 
+                <style>{templateStyle}</style>
                 <div className='flex-grow pl-10'>
                     <div className='mb-10 border border-stroke shadow bg-white'>
                         <h3 className='font-medium mb-4'>Desktop View</h3>
-                        <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
+                        <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
                             <div id="widget-container">
                                 <div className="asbw-stickybag-product">
                                     <div className="asbw-product-item-image">
-                                        <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                        {
+                                            widgetElements.includes('di') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                        }
                                     </div>
                                     <div className="asbw-stickybag-content">
-                                        <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter this is very very long title fpr product</div>
+                                        {
+                                            widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                        }
+                                        {
+                                            widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                {
+                                                    widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                }
+                                                {
+                                                    widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                }
+                                            </div> : ""
+                                        }
                                     </div>
                                 </div>
                                 <div className="asbw-stickybag-widget-events">
@@ -483,10 +655,16 @@ export function Templates(props) {
                                         </div>
                                     </div>
                                     <div className="asbw-stickybag-actions">
-                                        <div id="widget-price" className="asbw-product-price-wrapper">
-                                            <span className="asbw-stickybag-product-price" id="widget-offer-price">Rs. 36.00</span>
-                                            <span className="asbw-item-original-price" id="widget-compare-price">Rs. 46.00</span>
-                                        </div>
+                                        {
+                                            widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                {
+                                                    widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                }
+                                                {
+                                                    widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                }
+                                            </div>
+                                        }
                                         <div className="asbw-stickybag-action-wrapper">
                                             <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
                                         </div>
@@ -497,14 +675,28 @@ export function Templates(props) {
                     </div>
                     <div className='mb-10 bg-white border border-stroke shadow max-w-125'>
                         <h3 className='font-medium mb-4'>Mobile View</h3>
-                        <div id="widget-area" className="asbw-stickybag-widget asbw-stickybag-t1-s6 asbw-fixed-d-top asbw-boxed">
+                        <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
                             <div id="widget-container">
                                 <div className="asbw-stickybag-product">
                                     <div className="asbw-product-item-image">
-                                        <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                        {
+                                            widgetElements.includes('mi') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                        }
                                     </div>
                                     <div className="asbw-stickybag-content">
-                                        <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter this is very very long title fpr product</div>
+                                        {
+                                            widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                        }
+                                        {
+                                            widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                {
+                                                    widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                }
+                                                {
+                                                    widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                }
+                                            </div> : ""
+                                        }
                                     </div>
                                 </div>
                                 <div className="asbw-stickybag-widget-events">
@@ -531,10 +723,16 @@ export function Templates(props) {
                                         </div>
                                     </div>
                                     <div className="asbw-stickybag-actions">
-                                        <div id="widget-price" className="asbw-product-price-wrapper">
-                                            <span className="asbw-stickybag-product-price" id="widget-offer-price">Rs. 36.00</span>
-                                            <span className="asbw-item-original-price" id="widget-compare-price">Rs. 46.00</span>
-                                        </div>
+                                        {
+                                            widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                {
+                                                    widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                }
+                                                {
+                                                    widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                }
+                                            </div>
+                                        }
                                         <div className="asbw-stickybag-action-wrapper">
                                             <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
                                         </div>
@@ -544,7 +742,7 @@ export function Templates(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </UserDashboardLayout >
     )
 }

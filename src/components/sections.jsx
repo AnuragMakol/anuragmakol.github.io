@@ -74,7 +74,7 @@ export const UserSidebar = (props) => {
                 </button>
             </div>
 
-            <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+            <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
                 <nav className="mt-5 px-4 py-4 lg:mt-2 lg:px-6">
                     <div>
                         <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
@@ -136,7 +136,7 @@ export const UserSidebar = (props) => {
                     </div>
                 </nav>
 
-                <div className="mx-auto mb-10 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default">
+                <div className="mx-auto mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto">
                     <h3 className="mb-1 font-semibold text-white">Facing an Issue ?</h3>
                     <p className="mb-4 text-xs text-white">Contact our support team and the issue will be resolved within 24 hours.</p>
                     <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL}`} className="flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95"> Contact Us </a>
@@ -220,7 +220,7 @@ export const AdminSidebar = (props) => {
                 </button>
             </div>
 
-            <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+            <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
                 <nav className="mt-5 px-4 py-4 lg:mt-2 lg:px-6">
                     <div>
                         <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>

@@ -64,6 +64,10 @@ export default {
         'title-sm': ['20px', '26px'],
         'title-xsm': ['18px', '24px'],
       },
+      borderRadius: {
+        "7xl": "4rem",
+        "iphone-outer": "4.2rem",
+      },
       spacing: {
         4.5: '1.125rem',
         5.5: '1.375rem',

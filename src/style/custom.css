@@ -6,18 +6,21 @@ input[type="checkbox"]  {
   width: 16px;
   height: 16px;
 }
+input[type="color"]  {
+  @apply border border-stroke bg-white appearance-none w-8 h-8;  
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	@apply p-1
+}
+input[type="color"]::-webkit-color-swatch {
+	@apply border-none
+}
 
 .asbw-stickybag-widget {
   position: absolute !important;  
+  z-index: 1 !important;
 }
 
-.desktop-view .asbw-stickybag-widget {  
-
-}
-
-.mobile-view .asbw-stickybag-widget { 
-
-}
 .mobile-view .hide-mobile {
   display: none !important;
 }

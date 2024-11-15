@@ -253,10 +253,17 @@ export function Widget(props) {
                         <div className="py-4 px-6">
 
                             <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
+                                <div className='flex items-center justify-between rounded border-2 border-blue-200 bg-blue-50 bg-opacity-50 p-2 mb-5'>                                    
+                                    <label className="font-bold text-graydark text-sm">Widget Status</label>
+                                    {/* <label className="flex cursor-pointer select-none items-center text-sm font-medium">
+                                        <input type="checkbox" {...registerUpdateWidgetTemplate('widget_status')} />
+                                        <span className="ml-2">Active</span>
+                                    </label> */}
+                                </div>
                                 <div className="mb-5.5">
                                     <label className="mb-1.5 block font-medium text-graydark">Widget Style</label>
                                     <div className="relative z-20 bg-white">
-                                        <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => manageWidgetSettings('template', e.target.value)}>
+                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => manageWidgetSettings('template', e.target.value)}>
                                             <option value="">Select Template</option>
                                             <option value="t1-s1">Template 1 - Style 1</option>
                                             <option value="t1-s2">Template 1 - Style 2</option>
@@ -308,15 +315,6 @@ export function Widget(props) {
                                         {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold">Please select a position</span>}
                                     </div>
                                 </div>
-
-                                <div className="mb-5.5">
-                                    <label className="mb-1.5 block font-medium text-graydark">Widget Status</label>
-                                    <label className="flex cursor-pointer select-none items-center text-sm font-medium mt-3 ml-2">
-                                        <input type="checkbox" {...registerUpdateWidgetTemplate('widget_status')} />
-                                        <span className="ml-2">Active</span>
-                                    </label>
-                                </div>
-
                                 <div className="mb-5.5 gap-25 justify-between">
                                     <label className="mb-1.5 block font-medium text-graydark">Widget Elements</label>
                                     <div className='flex border border-stroke shadow-sm mb-4 rounded overflow-hidden'>
@@ -604,137 +602,173 @@ export function Widget(props) {
                 </div>
 
                 <style>{templateStyle}</style>
-                <div className='flex-grow pl-10'>
-                    <div className='mb-10 border border-stroke shadow bg-white'>
-                        <h3 className='font-medium mb-4'>Desktop View</h3>
-                        <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
-                            <div id="widget-container">
-                                <div className="asbw-stickybag-product">
-                                    <div className="asbw-product-item-image">
-                                        {
-                                            widgetElements.includes('di') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
-                                        }
-                                    </div>
-                                    <div className="asbw-stickybag-content">
-                                        {
-                                            widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
-                                        }
-                                        {
-                                            widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
-                                                {
-                                                    widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
-                                                }
-                                                {
-                                                    widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
-                                                }
-                                            </div> : ""
-                                        }
-                                    </div>
+                <div className='flex-grow pl-6'>
+                    <h3 className='font-bold text-black mb-4 text-2xl'>Desktop View</h3>
+                    <div className='mb-10 border border-stroke shadow bg-white relative min-h-150 rounded-lg desktop-view flex flex-col'>
+                        <div className='border-b border-stroke h-13 flex items-center justify-between'>
+                            <div className='flex space-x-2 pl-5 w-25'>
+                                <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500'></span>
+                                <span className='w-3 h-3 bg-orange-300 rounded-full border border-orange-400'></span>
+                                <span className='w-3 h-3 bg-green-400 rounded-full border border-green-500'></span>
+                            </div>
+                            <div className='w-100 flex items-center'>
+                                <span className='mr-4'><svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.5 17.6147C7.63281 17.6147 7.84863 17.5649 8.05615 17.4487C12.7793 14.8008 14.3979 13.6802 14.3979 10.6504V4.30029C14.3979 3.42871 14.0244 3.15479 13.3188 2.85596C12.3394 2.44922 9.17676 1.31201 8.19727 0.97168C7.97314 0.896973 7.73242 0.847168 7.5 0.847168C7.26758 0.847168 7.02686 0.913574 6.81104 0.97168C5.83154 1.25391 2.66064 2.45752 1.68115 2.85596C0.983887 3.14648 0.602051 3.42871 0.602051 4.30029V10.6504C0.602051 13.6802 2.229 14.7925 6.94385 17.4487C7.15967 17.5649 7.36719 17.6147 7.5 17.6147ZM7.83203 2.2583C9.08545 2.75635 11.5176 3.63623 12.8042 4.07617C13.0283 4.15918 13.0781 4.27539 13.0781 4.55762V10.3433C13.0781 12.9082 11.8496 13.5806 8.01465 15.9131C7.77393 16.0625 7.64111 16.104 7.5083 16.1123V2.18359C7.59131 2.18359 7.69922 2.2085 7.83203 2.2583Z" fill="#737373" />
+                                </svg>
+                                </span>
+                                <div className='flex-grow bg-black bg-opacity-10 h-8 rounded-md flex justify-center items-center'>
+                                    <span className='mr-1'><svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.21094 11.7158H6.78906C7.54492 11.7158 7.91406 11.3408 7.91406 10.5205V6.21973C7.91406 5.48145 7.60938 5.10059 6.98242 5.03613V3.55957C6.98242 1.35059 5.53516 0.28418 4 0.28418C2.46484 0.28418 1.01758 1.35059 1.01758 3.55957V5.06543C0.443359 5.15332 0.0859375 5.52832 0.0859375 6.21973V10.5205C0.0859375 11.3408 0.455078 11.7158 1.21094 11.7158ZM1.96094 3.43652C1.96094 1.96582 2.9043 1.18652 4 1.18652C5.0957 1.18652 6.03906 1.96582 6.03906 3.43652V5.03027L1.96094 5.03613V3.43652Z" fill="#9E9E9E" />
+                                    </svg>
+                                    </span>
+                                    <span className='text-xs font-medium text-zinc-500'>Stickybar.com</span>
                                 </div>
-                                <div className="asbw-stickybag-widget-events">
-                                    <div id="widget-options" className="asbw-stickybag-options">
-                                        <div className="asbw-variant-opt">
-                                            <label className="asbw-label asbw-select-outer">
-                                                <select id="widget-option1" className="asbw-select">
-                                                    <option value="Navy">Navy</option>
-                                                </select>
-                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                            </label>
+                            </div>
+                            <div className='pr-5 w-25 justify-end flex items-center'>
+                                <span className='mr-3'>
+                                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 14.0044C7.90674 14.0044 8.24707 13.6807 8.24707 13.2822V7.76221H13.6094C14.0078 7.76221 14.3481 7.42188 14.3481 7.01514C14.3481 6.6084 14.0078 6.27637 13.6094 6.27637H8.24707V0.748047C8.24707 0.349609 7.90674 0.0258789 7.5 0.0258789C7.09326 0.0258789 6.76123 0.349609 6.76123 0.748047V6.27637H1.39062C0.992188 6.27637 0.651855 6.6084 0.651855 7.01514C0.651855 7.42188 0.992188 7.76221 1.39062 7.76221H6.76123V13.2822C6.76123 13.6807 7.09326 14.0044 7.5 14.0044Z" fill="#737373" />
+                                    </svg>
+                                </span>
+                                <span>
+                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.32422 13.8711H4.74365V15.1411C4.74365 16.8511 5.60693 17.7144 7.3501 17.7144H15.6841C17.4106 17.7144 18.2822 16.8511 18.2822 15.1411V6.74072C18.2822 5.03076 17.4106 4.16748 15.6841 4.16748H14.2563V2.89746C14.2563 1.1875 13.3848 0.324219 11.6582 0.324219H3.32422C1.58105 0.324219 0.717773 1.1875 0.717773 2.89746V11.2979C0.717773 13.0078 1.58105 13.8711 3.32422 13.8711ZM3.34082 12.5347C2.51074 12.5347 2.0542 12.0864 2.0542 11.2231V2.97217C2.0542 2.10889 2.51074 1.66064 3.34082 1.66064H11.6333C12.4551 1.66064 12.9199 2.10889 12.9199 2.97217V4.16748H7.3501C5.60693 4.16748 4.74365 5.02246 4.74365 6.74072V12.5347H3.34082ZM7.3667 16.3779C6.54492 16.3779 6.08008 15.9297 6.08008 15.0664V6.81543C6.08008 5.95215 6.54492 5.50391 7.3667 5.50391H15.6592C16.481 5.50391 16.9458 5.95215 16.9458 6.81543V15.0664C16.9458 15.9297 16.481 16.3779 15.6592 16.3779H7.3667Z" fill="#737373" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div className='relative flex-grow'>
+                            <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
+                                <div id="widget-container">
+                                    <div className="asbw-stickybag-product">
+                                        <div className="asbw-product-item-image">
+                                            {
+                                                widgetElements.includes('di') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                            }
                                         </div>
-                                        <div className="asbw-variant-opt">
-                                            <label className="asbw-label asbw-select-outer">
-                                                <select id="widget-option2" className="asbw-select">
-                                                    <option value="XS">XS</option>
-                                                    <option value="S">S</option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                </select>
-                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                            </label>
+                                        <div className="asbw-stickybag-content">
+                                            {
+                                                widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                            }
+                                            {
+                                                widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    {
+                                                        widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                    }
+                                                    {
+                                                        widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                    }
+                                                </div> : ""
+                                            }
                                         </div>
                                     </div>
-                                    <div className="asbw-stickybag-actions">
-                                        {
-                                            widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
-                                                {
-                                                    widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
-                                                }
-                                                {
-                                                    widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
-                                                }
+                                    <div className="asbw-stickybag-widget-events">
+                                        <div id="widget-options" className="asbw-stickybag-options">
+                                            <div className="asbw-variant-opt">
+                                                <label className="asbw-label asbw-select-outer">
+                                                    <select id="widget-option1" className="asbw-select">
+                                                        <option value="Navy">Navy</option>
+                                                    </select>
+                                                    <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                </label>
                                             </div>
-                                        }
-                                        <div className="asbw-stickybag-action-wrapper">
-                                            <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                            <div className="asbw-variant-opt">
+                                                <label className="asbw-label asbw-select-outer">
+                                                    <select id="widget-option2" className="asbw-select">
+                                                        <option value="XS">XS</option>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                    </select>
+                                                    <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="asbw-stickybag-actions">
+                                            {
+                                                widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    {
+                                                        widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                    }
+                                                    {
+                                                        widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                    }
+                                                </div>
+                                            }
+                                            <div className="asbw-stickybag-action-wrapper">
+                                                <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className='mb-10 bg-white border border-stroke shadow max-w-125 relative mobile-view'>
+                    <div className='mb-10 bg-white border border-stroke shadow max-w-125 h-150 relative mobile-view hidden'>
                         <h3 className='font-medium mb-4'>Mobile View</h3>
-                        <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
-                            <div id="widget-container">
-                                <div className="asbw-stickybag-product">
-                                    <div className="asbw-product-item-image">
-                                        {
-                                            widgetElements.includes('mi') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
-                                        }
-                                    </div>
-                                    <div className="asbw-stickybag-content">
-                                        {
-                                            widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
-                                        }
-                                        {
-                                            widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
-                                                {
-                                                    widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
-                                                }
-                                                {
-                                                    widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
-                                                }
-                                            </div> : ""
-                                        }
-                                    </div>
-                                </div>
-                                <div className="asbw-stickybag-widget-events">
-                                    <div id="widget-options" className="asbw-stickybag-options">
-                                        <div className="asbw-variant-opt">
-                                            <label className="asbw-label asbw-select-outer">
-                                                <select id="widget-option1" className="asbw-select">
-                                                    <option value="Navy">Navy</option>
-                                                </select>
-                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                            </label>
+                        <div className='relative'>
+                            <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
+                                <div id="widget-container">
+                                    <div className="asbw-stickybag-product">
+                                        <div className="asbw-product-item-image">
+                                            {
+                                                widgetElements.includes('mi') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                            }
                                         </div>
-                                        <div className="asbw-variant-opt">
-                                            <label className="asbw-label asbw-select-outer">
-                                                <select id="widget-option2" className="asbw-select">
-                                                    <option value="XS">XS</option>
-                                                    <option value="S">S</option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                </select>
-                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                            </label>
+                                        <div className="asbw-stickybag-content">
+                                            {
+                                                widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                            }
+                                            {
+                                                widgetTemplate.includes('t1') ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    {
+                                                        widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                    }
+                                                    {
+                                                        widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                    }
+                                                </div> : ""
+                                            }
                                         </div>
                                     </div>
-                                    <div className="asbw-stickybag-actions">
-                                        {
-                                            widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
-                                                {
-                                                    widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
-                                                }
-                                                {
-                                                    widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
-                                                }
+                                    <div className="asbw-stickybag-widget-events">
+                                        <div id="widget-options" className="asbw-stickybag-options">
+                                            <div className="asbw-variant-opt">
+                                                <label className="asbw-label asbw-select-outer">
+                                                    <select id="widget-option1" className="asbw-select">
+                                                        <option value="Navy">Navy</option>
+                                                    </select>
+                                                    <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                </label>
                                             </div>
-                                        }
-                                        <div className="asbw-stickybag-action-wrapper">
-                                            <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                            <div className="asbw-variant-opt">
+                                                <label className="asbw-label asbw-select-outer">
+                                                    <select id="widget-option2" className="asbw-select">
+                                                        <option value="XS">XS</option>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                    </select>
+                                                    <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="asbw-stickybag-actions">
+                                            {
+                                                widgetTemplate.includes('t1') ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    {
+                                                        widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                    }
+                                                    {
+                                                        widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                    }
+                                                </div>
+                                            }
+                                            <div className="asbw-stickybag-action-wrapper">
+                                                <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

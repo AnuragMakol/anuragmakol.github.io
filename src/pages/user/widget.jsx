@@ -297,7 +297,7 @@ export function Widget(props) {
                                         <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('widget_status')} />
                                         <span class="absolute cursor-pointer inset-0 bg-red-600 ring-1 ring-red-700 transition-all slider rounded-full flex items-center">
                                             <span className='status-text active text-white font-medium text-xs mr-8.5'>Yes</span>
-                                            <span className='status-text inactive text-white font-medium text-xs mr-2.5'>No</span>
+                                            <span className='status-text inactive text-white font-medium text-xs mr-2.5 ml-auto'>No</span>
                                         </span>
                                     </label>
                                 </div>

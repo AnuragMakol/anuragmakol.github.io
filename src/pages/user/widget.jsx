@@ -242,7 +242,7 @@ export function Widget(props) {
             </div>
 
             <div className='mb-6 flex justify-between'>
-                <div className='w-115 min-w-115'>
+                <div className='w-95 min-w-95'>
                     <div className="rounded-sm border border-stroke bg-white shadow mb-2">
                         <div className="border-b border-stroke px-6 py-4">
                             <h3 className="font-medium text-black">
@@ -673,7 +673,7 @@ export function Widget(props) {
                             </div>
                         </div>
                     </div>
-                    <div className='mb-10 bg-white border border-stroke shadow max-w-125'>
+                    <div className='mb-10 bg-white border border-stroke shadow max-w-125 relative mobile-view'>
                         <h3 className='font-medium mb-4'>Mobile View</h3>
                         <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate} ${widgetPosition}`}>
                             <div id="widget-container">

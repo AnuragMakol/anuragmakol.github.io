@@ -700,11 +700,12 @@ export function Widget(props) {
                                 <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "asbw-fixed-d-top" : "asbw-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "asbw-boxed" : ""}`}>
                                     <div id="widget-container">
                                         <div className="asbw-stickybag-product">
-                                            <div className="asbw-product-item-image">
-                                                {
-                                                    widgetSettings?.desktop_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
-                                                }
-                                            </div>
+                                            {
+                                                widgetSettings?.desktop_hide_image ? "" : <div className="asbw-product-item-image">
+                                                    <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                                </div>
+                                            }
+
                                             <div className="asbw-stickybag-content">
                                                 {
                                                     widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>

@@ -24,6 +24,7 @@ export function Widget(props) {
     const [widgetPosition, setWidgetPosition] = useState('');
     const [widgetWidth, setWidgetWidth] = useState('');
     const [widgetElements, setWidgetElements] = useState('');
+    const [toggleAdvanced, setToggleAdvanced] = useState(false);
     const [templateStyle, setTemplateStyle] = useState('');
 
     useEffect(() => {
@@ -42,24 +43,16 @@ export function Widget(props) {
         setValueUpdateWidgetTemplate('mobile_hide_compare_price', user?.widget_settings?.mobile_hide_compare_price);
         setValueUpdateWidgetTemplate('mobile_hide_sale_price', user?.widget_settings?.mobile_hide_sale_price);
 
-        // Customizations
-        setValueUpdateWidgetTemplate('product_image_size', user?.widget_settings?.product_image_size);
-        setValueUpdateWidgetTemplate('product_image_style', user?.widget_settings?.product_image_style);
-        setValueUpdateWidgetTemplate('product_title_size', user?.widget_settings?.product_title_size);
-        setValueUpdateWidgetTemplate('product_title_color', user?.widget_settings?.product_title_color);
-        setValueUpdateWidgetTemplate('option_selector_style', user?.widget_settings?.option_selector_style);
-        setValueUpdateWidgetTemplate('option_selector_text_size', user?.widget_settings?.option_selector_text_size);
-        setValueUpdateWidgetTemplate('option_selector_text_color', user?.widget_settings?.option_selector_text_color);
-        setValueUpdateWidgetTemplate('compare_price_text_size', user?.widget_settings?.compare_price_text_size);
-        setValueUpdateWidgetTemplate('compare_price_text_color', user?.widget_settings?.compare_price_text_color);
-        setValueUpdateWidgetTemplate('offer_price_text_size', user?.widget_settings?.offer_price_text_size);
-        setValueUpdateWidgetTemplate('offer_price_text_color', user?.widget_settings?.offer_price_text_color);
-        setValueUpdateWidgetTemplate('add_to_cart_button_text_size', user?.widget_settings?.add_to_cart_button_text_size);
-        setValueUpdateWidgetTemplate('add_to_cart_button_text_color', user?.widget_settings?.add_to_cart_button_text_color);
-        setValueUpdateWidgetTemplate('add_to_cart_button_background_color', user?.widget_settings?.add_to_cart_button_background_color);
-        setValueUpdateWidgetTemplate('add_to_cart_button_style', user?.widget_settings?.add_to_cart_button_style);
-        setValueUpdateWidgetTemplate('add_to_cart_button_border_width', user?.widget_settings?.add_to_cart_button_border_width);
-        setValueUpdateWidgetTemplate('add_to_cart_button_border_color', user?.widget_settings?.add_to_cart_button_border_color);
+        setValueUpdateWidgetTemplate('image_size', user?.widget_settings?.image_size);
+        setValueUpdateWidgetTemplate('title_size', user?.widget_settings?.title_size);
+        setValueUpdateWidgetTemplate('title_color', user?.widget_settings?.title_color);
+        setValueUpdateWidgetTemplate('background_color', user?.widget_settings?.background_color);
+        setValueUpdateWidgetTemplate('compare_price_size', user?.widget_settings?.compare_price_size);
+        setValueUpdateWidgetTemplate('compare_price_color', user?.widget_settings?.compare_price_color);
+        setValueUpdateWidgetTemplate('offer_price_size', user?.widget_settings?.offer_price_size);
+        setValueUpdateWidgetTemplate('offer_price_color', user?.widget_settings?.offer_price_color);
+        setValueUpdateWidgetTemplate('button_text_color', user?.widget_settings?.button_text_color);
+        setValueUpdateWidgetTemplate('button_color', user?.widget_settings?.button_color);
 
         let elementsData = '';
         if (user?.widget_settings?.desktop_hide_image === true) {
@@ -88,10 +81,19 @@ export function Widget(props) {
         }
 
         manageWidgetSettings('template', user?.widget_settings?.widget_template);
-        manageWidgetSettings('style', user?.widget_settings?.widget_style);
         manageWidgetSettings('position', user?.widget_settings?.widget_position);
         manageWidgetSettings('width', user?.widget_settings?.widget_width);
         manageWidgetSettings('elements', elementsData);
+
+        if(user?.widget_settings?.widget_style === "custom") {
+            setToggleAdvanced(true);
+        } else {
+            setToggleAdvanced(false);
+        }
+
+        setTimeout(() => {
+            manageWidgetSettings('style', user?.widget_settings?.widget_style);
+        }, 100);
     }, []);
 
     const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, setValue: setValueUpdateWidgetTemplate, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
@@ -109,23 +111,16 @@ export function Widget(props) {
                 mobile_hide_title: yup.boolean(),
                 mobile_hide_compare_price: yup.boolean(),
                 mobile_hide_sale_price: yup.boolean(),
-                product_image_size: yup.string(),
-                product_image_style: yup.string(),
-                product_title_size: yup.string(),
-                product_title_color: yup.string(),
-                option_selector_style: yup.string(),
-                option_selector_text_size: yup.string(),
-                option_selector_text_color: yup.string(),
-                compare_price_text_size: yup.string(),
-                compare_price_text_color: yup.string(),
-                offer_price_text_size: yup.string(),
-                offer_price_text_color: yup.string(),
-                add_to_cart_button_text_size: yup.string(),
-                add_to_cart_button_text_color: yup.string(),
-                add_to_cart_button_background_color: yup.string(),
-                add_to_cart_button_style: yup.string(),
-                add_to_cart_button_border_width: yup.string(),
-                add_to_cart_button_border_color: yup.string()
+                image_size: yup.string(),
+                title_size: yup.string(),
+                title_color: yup.string(),
+                background_color: yup.string(),
+                compare_price_size: yup.string(),
+                compare_price_color: yup.string(),
+                offer_price_size: yup.string(),
+                offer_price_color: yup.string(),
+                button_text_color: yup.string(),
+                button_color: yup.string()
             })
         )
     });
@@ -169,7 +164,7 @@ export function Widget(props) {
 
             initFetchTemplateStyle({
                 template: value,
-                style: widgetData
+                style: widgetData === undefined ? "s2" : widgetData
             });
 
             setWidgetTemplate(value);
@@ -177,10 +172,16 @@ export function Widget(props) {
         }
 
         if (type === "style") {
+            if(value === "custom") {
+                setToggleAdvanced(true);
+            } else {
+                setToggleAdvanced(false);
+            }
+
             let widgetData = getValuesUpdateWidgetTemplate('widget_template');
 
             initFetchTemplateStyle({
-                template: widgetData,
+                template: widgetData === undefined ? "t1" : widgetData,
                 style: value
             });
 
@@ -247,6 +248,10 @@ export function Widget(props) {
         manageWidgetSettings('elements', elementsData);
     }
 
+    const PriceFormat = (format, price) => {
+        return format.replace('{{amount}}', parseFloat(price / 100).toFixed(2));
+    }
+
     return (
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate} />
@@ -293,9 +298,9 @@ export function Widget(props) {
                                             <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' />
                                         </span>
                                     </label>
-                                    <label class="relative inline-block w-15 h-8 switch-slider-wrap">
+                                    <label className="relative inline-block w-15 h-8 switch-slider-wrap">
                                         <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('widget_status')} />
-                                        <span class="absolute cursor-pointer inset-0 bg-red-600 ring-1 ring-red-700 transition-all slider rounded-full flex items-center">
+                                        <span className="absolute cursor-pointer inset-0 bg-red-600 ring-1 ring-red-700 transition-all slider rounded-full flex items-center">
                                             <span className='status-text active text-white font-medium text-xs mr-8.5'>Yes</span>
                                             <span className='status-text inactive text-white font-medium text-xs mr-2.5 ml-auto'>No</span>
                                         </span>
@@ -329,6 +334,7 @@ export function Widget(props) {
                                             <option value="s4">Style 4</option>
                                             <option value="s5">Style 5</option>
                                             <option value="s6">Style 6</option>
+                                            <option value="custom">Custom</option>
                                         </select>
                                         <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -340,12 +346,13 @@ export function Widget(props) {
                                         {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
                                     </div>
                                 </div>
-                                <div className='border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4'>
+
+                                <div className={`${toggleAdvanced ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
                                     <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Image Size</label>
                                         <div className="relative z-20 bg-white w-36 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('product_image_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="32">32px x 32px</option>
                                                 <option value="48">48px x 48px</option>
@@ -363,9 +370,9 @@ export function Widget(props) {
                                     </div>
 
                                     <div className="mb-3 flex items-center">
-                                        <label className="text-sm font-medium text-black">Title Font Size</label>
+                                        <label className="text-sm font-medium text-black">Title Size</label>
                                         <div className="relative z-20 bg-white w-36 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('product_title_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -388,7 +395,7 @@ export function Widget(props) {
                                         <label className="text-sm font-medium text-black">Compare Price Size
                                         </label>
                                         <div className="relative z-20 bg-white w-36 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_text_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -411,7 +418,7 @@ export function Widget(props) {
                                         <label className="text-sm font-medium text-black">Offer Price Size
                                         </label>
                                         <div className="relative z-20 bg-white w-36 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_text_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -433,38 +440,39 @@ export function Widget(props) {
                                     <div className='mb-3 flex flex-wrap'>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('product_title_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} />
                                         </div>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('product_title_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('title_color')} />
                                         </div>
                                     </div>
                                     <div className='mb-3 flex flex-wrap'>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
                                             </label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_text_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} />
                                         </div>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
                                             </label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_text_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} />
                                         </div>
                                     </div>
 
                                     <div className='flex flex-wrap'>
                                         <div className="w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('add_to_cart_button_background_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('button_color')} />
                                         </div>
                                         <div className="w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('add_to_cart_button_text_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} />
                                         </div>
                                     </div>
 
                                 </div>
+
                                 <div className="mb-4 flex items-center">
                                     <label className="font-medium text-graydark w-22">Position</label>
                                     <div className="relative z-20 flex py-2 w-44 ml-auto">
@@ -482,7 +490,7 @@ export function Widget(props) {
                                 <div className="mb-4 flex items-center">
                                     <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width
                                         <span className='w-4.5 h-4.5 ml-2 cursor-pointer opacity-70'>
-                                            <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' />
+                                            <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' data-tooltip="lotion tech"/>
                                         </span>
                                     </label>
                                     <div className="relative z-20 flex py-2 w-44 ml-auto">
@@ -498,7 +506,6 @@ export function Widget(props) {
                                     </div>
                                 </div>
                                 <div className="mb-6 gap-25 justify-between border-t border-stroke pt-6">
-                                    {/* <label className="mb-1.5 block font-medium text-graydark">Elements</label> */}
                                     <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
                                         <div className={`px-4 py-2 cursor-pointer flex-grow text-center font-medium ${deviceToggle === "desktop" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>Desktop</div>
                                         <div className={`px-4 py-2 cursor-pointer flex-grow text-center font-medium ${deviceToggle === "mobile" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>Mobile</div>
@@ -579,13 +586,7 @@ export function Widget(props) {
                                 </div>
 
                                 <div className="mt-4 flex justify-end space-x-2">
-                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-90" onClick={() => {
-                                        let currentFormValues = getValuesUpdateWidgetTemplate();
-                                        resetUpdateWidgetTemplate();
-
-                                        setValueUpdateWidgetTemplate('widget_template', currentFormValues?.widget_template);
-                                        setValueUpdateWidgetTemplate('widget_position', currentFormValues?.widget_position);
-                                    }}>
+                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-90">
                                         Reset
                                     </a>
                                     <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
@@ -595,169 +596,6 @@ export function Widget(props) {
                             </form>
                         </div>
                     </div>
-
-                    {/* {
-                        user?.plan_details !== undefined ? */}
-                    {/* <div className="rounded-sm border border-stroke bg-white shadow-default mb-2">
-                        <div className="border-b border-stroke px-6 py-4">
-                            <h3 className="font-medium text-black">
-                                <span>Customization Options</span>
-                            </h3>
-                        </div>
-                        <div className="py-4 px-6">
-                            <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
-                                <div className="mb-3 flex items-center">
-                                    <label className="mb-3 block text-sm font-medium text-black">Image Size</label>
-                                    <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('product_image_size')}>
-                                            <option value="">Select Size</option>
-                                            <option value="32">32px x 32px</option>
-                                            <option value="48">48px x 48px</option>
-                                            <option value="64">64px x 64px</option>
-                                            <option value="128">128px x 128px</option>
-                                        </select>
-                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g opacity="0.8">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="mb-3 flex items-center">
-                                    <label className="text-sm font-medium text-black">Title Font Size</label>
-                                    <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('product_title_size')}>
-                                            <option value="">Select Size</option>
-                                            <option value="12">12px</option>
-                                            <option value="14">14px</option>
-                                            <option value="16">16px</option>
-                                            <option value="18">18px</option>
-                                            <option value="20">20px</option>
-                                            <option value="22">22px</option>
-                                            <option value="24">24px</option>
-                                        </select>
-                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g opacity="0.8">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="mb-3 flex items-center">
-                                    <label className="text-sm font-medium text-black">Compare Price Text Size
-                                    </label>
-                                    <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_text_size')}>
-                                            <option value="">Select Size</option>
-                                            <option value="12">12px</option>
-                                            <option value="14">14px</option>
-                                            <option value="16">16px</option>
-                                            <option value="18">18px</option>
-                                            <option value="20">20px</option>
-                                            <option value="22">22px</option>
-                                            <option value="24">24px</option>
-                                        </select>
-                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g opacity="0.8">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="mb-3 flex items-center">
-                                    <label className="text-sm font-medium text-black">Offer Price Text Size
-                                    </label>
-                                    <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_text_size')}>
-                                            <option value="">Select Size</option>
-                                            <option value="12">12px</option>
-                                            <option value="14">14px</option>
-                                            <option value="16">16px</option>
-                                            <option value="18">18px</option>
-                                            <option value="20">20px</option>
-                                            <option value="22">22px</option>
-                                            <option value="24">24px</option>
-                                        </select>
-                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g opacity="0.8">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className='mb-3 flex flex-wrap'>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('product_title_color')} />
-                                        </div>
-                                    </div>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('product_title_color')} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='mb-3 flex flex-wrap'>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black"> Compare Price Text Color
-                                        </label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_text_color')} />
-                                        </div>
-                                    </div>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black">Offer Price Text Color
-                                        </label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_text_color')} />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className='mb-3 flex flex-wrap'>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('add_to_cart_button_background_color')} />
-                                        </div>
-                                    </div>
-                                    <div className="mb-3 w-1/2">
-                                        <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
-                                        <div className="relative z-20 bg-white w-44 ml-auto">
-                                            <input type="color" {...registerUpdateWidgetTemplate('add_to_cart_button_text_color')} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mt-4 flex justify-between">
-                                    <a className="flex justify-center rounded bg-danger px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
-                                        let currentFormValues = getValuesUpdateWidgetTemplate();
-                                        resetUpdateWidgetTemplate();
-
-                                        setValueUpdateWidgetTemplate('widget_template', currentFormValues?.widget_template);
-                                        setValueUpdateWidgetTemplate('widget_position', currentFormValues?.widget_position);
-                                    }}>
-                                        Reset
-                                    </a>
-                                    <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div> */}
-                    {/* : ""
-                    } */}
                 </div>
 
                 <style>{templateStyle}</style>
@@ -849,10 +687,10 @@ export function Widget(props) {
                                                 {
                                                     widgetTemplate === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
                                                         {
-                                                            widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                            widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
                                                         }
                                                         {
-                                                            widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                            widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
                                                         }
                                                     </div>
                                                 }
@@ -889,10 +727,10 @@ export function Widget(props) {
                                                     {
                                                         widgetTemplate === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
                                                             {
-                                                                widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                                widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
                                                             }
                                                             {
-                                                                widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                                widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
                                                             }
                                                         </div> : ""
                                                     }
@@ -944,7 +782,7 @@ export function Widget(props) {
                         </div>
                     </div>
                 </div>
-            </div >
-        </UserDashboardLayout >
+            </div>
+        </UserDashboardLayout>
     )
 }

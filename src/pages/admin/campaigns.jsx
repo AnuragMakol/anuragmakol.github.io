@@ -220,6 +220,6 @@ export function AdminCampaigns(props) {
           </div>
         </div>
       </div>
-    </AdminDashboardLayout >
+    </AdminDashboardLayout>
   )
 }

@@ -225,7 +225,7 @@ export function AdminManageCampaign(props) {
                 <div className="mb-5.5">
                   <label className="mb-3 block text-sm font-medium text-black">Email Service Provider</label>
                   <div className="relative z-20 bg-white">
-                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('provider')} >
+                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary" {...registerUpdateCampaign('provider')}>
                       <option value="">Select Service Provider</option>
                       <option value="sendgrid">Sendgrid</option>
                       <option value="resend">Resend</option>

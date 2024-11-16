@@ -20,84 +20,68 @@ export function Widget(props) {
     const navigate = useNavigate();
     const [user, setUser] = useRecoilState(userStore);
     const [deviceToggle, setDeviceToggle] = useState('desktop');
-    const [widgetTemplate, setWidgetTemplate] = useState('');
-    const [widgetStyle, setWidgetStyle] = useState('');
-    const [widgetPosition, setWidgetPosition] = useState('');
-    const [widgetWidth, setWidgetWidth] = useState('');
-    const [widgetElements, setWidgetElements] = useState('');
-    const [toggleAdvanced, setToggleAdvanced] = useState(false);
     const [templateStyle, setTemplateStyle] = useState('');
+    const [customStyle, setCustomStyle] = useState('');
+
+    const [widgetSettings, setWidgetSettings] = useState({
+        widget_template: "",
+        widget_style: "",
+        widget_position: "",
+        widget_width: "",
+        widget_status: "",
+        desktop_hide_image: "",
+        desktop_hide_title: "",
+        desktop_hide_compare_price: "",
+        desktop_hide_offer_price: "",
+        mobile_hide_image: "",
+        mobile_hide_title: "",
+        mobile_hide_compare_price: "",
+        mobile_hide_offer_price: "",
+        image_size: "",
+        title_size: "",
+        title_color: "",
+        background_color: "",
+        compare_price_size: "",
+        compare_price_color: "",
+        offer_price_size: "",
+        offer_price_color: "",
+        button_text_color: "",
+        button_color: ""
+    });
 
     useEffect(() => {
-        setValueUpdateWidgetTemplate('widget_template', user?.widget_settings?.widget_template);
-        setValueUpdateWidgetTemplate('widget_style', user?.widget_settings?.widget_style);
-        setValueUpdateWidgetTemplate('widget_position', user?.widget_settings?.widget_position);
-        setValueUpdateWidgetTemplate('widget_width', user?.widget_settings?.widget_width);
-        setValueUpdateWidgetTemplate('widget_status', user?.widget_settings?.widget_status);
-
-        setValueUpdateWidgetTemplate('desktop_hide_image', user?.widget_settings?.desktop_hide_image);
-        setValueUpdateWidgetTemplate('desktop_hide_title', user?.widget_settings?.desktop_hide_title);
-        setValueUpdateWidgetTemplate('desktop_hide_compare_price', user?.widget_settings?.desktop_hide_compare_price);
-        setValueUpdateWidgetTemplate('desktop_hide_offer_price', user?.widget_settings?.desktop_hide_offer_price);
-        setValueUpdateWidgetTemplate('mobile_hide_image', user?.widget_settings?.mobile_hide_image);
-        setValueUpdateWidgetTemplate('mobile_hide_title', user?.widget_settings?.mobile_hide_title);
-        setValueUpdateWidgetTemplate('mobile_hide_compare_price', user?.widget_settings?.mobile_hide_compare_price);
-        setValueUpdateWidgetTemplate('mobile_hide_sale_price', user?.widget_settings?.mobile_hide_sale_price);
-
-        setValueUpdateWidgetTemplate('image_size', user?.widget_settings?.image_size);
-        setValueUpdateWidgetTemplate('title_size', user?.widget_settings?.title_size);
-        setValueUpdateWidgetTemplate('title_color', user?.widget_settings?.title_color);
-        setValueUpdateWidgetTemplate('background_color', user?.widget_settings?.background_color);
-        setValueUpdateWidgetTemplate('compare_price_size', user?.widget_settings?.compare_price_size);
-        setValueUpdateWidgetTemplate('compare_price_color', user?.widget_settings?.compare_price_color);
-        setValueUpdateWidgetTemplate('offer_price_size', user?.widget_settings?.offer_price_size);
-        setValueUpdateWidgetTemplate('offer_price_color', user?.widget_settings?.offer_price_color);
-        setValueUpdateWidgetTemplate('button_text_color', user?.widget_settings?.button_text_color);
-        setValueUpdateWidgetTemplate('button_color', user?.widget_settings?.button_color);
-
-        let elementsData = '';
-        if (user?.widget_settings?.desktop_hide_image === true) {
-            elementsData = `${elementsData}di`;
-        }
-        if (user?.widget_settings?.desktop_hide_title === true) {
-            elementsData = `${elementsData}dt`;
-        }
-        if (user?.widget_settings?.desktop_hide_compare_price === true) {
-            elementsData = `${elementsData}dc`;
-        }
-        if (user?.widget_settings?.desktop_hide_offer_price === true) {
-            elementsData = `${elementsData}ds`;
-        }
-        if (user?.widget_settings?.mobile_hide_image === true) {
-            elementsData = `${elementsData}mi`;
-        }
-        if (user?.widget_settings?.mobile_hide_title === true) {
-            elementsData = `${elementsData}mt`;
-        }
-        if (user?.widget_settings?.mobile_hide_compare_price === true) {
-            elementsData = `${elementsData}mc`;
-        }
-        if (user?.widget_settings?.mobile_hide_sale_price === true) {
-            elementsData = `${elementsData}ms`;
+        let updateParams = {
+            widget_status: user?.widget_settings?.widget_status,
+            widget_template: user?.widget_settings?.widget_template,
+            widget_style: user?.widget_settings?.widget_style,
+            widget_position: user?.widget_settings?.widget_position,
+            widget_width: user?.widget_settings?.widget_width,
+            desktop_hide_image: user?.widget_settings?.desktop_hide_image,
+            desktop_hide_title: user?.widget_settings?.desktop_hide_title,
+            desktop_hide_compare_price: user?.widget_settings?.desktop_hide_compare_price,
+            desktop_hide_offer_price: user?.widget_settings?.desktop_hide_offer_price,
+            mobile_hide_image: user?.widget_settings?.mobile_hide_image,
+            mobile_hide_title: user?.widget_settings?.mobile_hide_title,
+            mobile_hide_compare_price: user?.widget_settings?.mobile_hide_compare_price,
+            mobile_hide_offer_price: user?.widget_settings?.mobile_hide_offer_price,
+            image_size: user?.widget_settings?.image_size,
+            title_size: user?.widget_settings?.title_size,
+            title_color: user?.widget_settings?.title_color,
+            background_color: user?.widget_settings?.background_color,
+            compare_price_size: user?.widget_settings?.compare_price_size,
+            compare_price_color: user?.widget_settings?.compare_price_color,
+            offer_price_size: user?.widget_settings?.offer_price_size,
+            offer_price_color: user?.widget_settings?.offer_price_color,
+            button_text_color: user?.widget_settings?.button_text_color,
+            button_color: user?.widget_settings?.button_color
         }
 
-        manageWidgetSettings('template', user?.widget_settings?.widget_template);
-        manageWidgetSettings('position', user?.widget_settings?.widget_position);
-        manageWidgetSettings('width', user?.widget_settings?.widget_width);
-        manageWidgetSettings('elements', elementsData);
-
-        if (user?.widget_settings?.widget_style === "custom") {
-            setToggleAdvanced(true);
-        } else {
-            setToggleAdvanced(false);
-        }
-
-        setTimeout(() => {
-            manageWidgetSettings('style', user?.widget_settings?.widget_style);
-        }, 100);
+        resetUpdateWidgetTemplate(updateParams);
+        setWidgetSettings(updateParams);
+        triggerFetchTemplate(user?.widget_settings?.widget_template, user?.widget_settings?.widget_style);
     }, []);
 
-    const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, setValue: setValueUpdateWidgetTemplate, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
+    const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
         resolver: yupResolver(
             yup.object().shape({
                 widget_template: yup.string().required(),
@@ -111,7 +95,7 @@ export function Widget(props) {
                 mobile_hide_image: yup.boolean(),
                 mobile_hide_title: yup.boolean(),
                 mobile_hide_compare_price: yup.boolean(),
-                mobile_hide_sale_price: yup.boolean(),
+                mobile_hide_offer_price: yup.boolean(),
                 image_size: yup.string(),
                 title_size: yup.string(),
                 title_color: yup.string(),
@@ -128,6 +112,13 @@ export function Widget(props) {
 
     const onSubmitUpdateWidgetTemplate = (form) => {
         initUpdateWidgetTemplate(form);
+    }
+
+    const triggerFetchTemplate = (template, style) => {
+        initFetchTemplateStyle({
+            template: template,
+            style: style
+        });
     }
 
     const { mutate: initUpdateWidgetTemplate, isLoading: loadingUpdateWidgetTemplate } = useMutation(updateWidgetTemplate, {
@@ -159,98 +150,49 @@ export function Widget(props) {
         }
     });
 
-    const manageWidgetSettings = (type, value) => {
-        if (type === "template") {
-            let widgetData = getValuesUpdateWidgetTemplate('widget_style');
-
-            initFetchTemplateStyle({
-                template: value,
-                style: widgetData === undefined ? "s2" : widgetData
-            });
-
-            setWidgetTemplate(value);
-            setWidgetStyle(widgetData);
-        }
-
-        if (type === "style") {
-            if (value === "custom") {
-                setToggleAdvanced(true);
-            } else {
-                setToggleAdvanced(false);
-            }
-
-            let widgetData = getValuesUpdateWidgetTemplate('widget_template');
-
-            initFetchTemplateStyle({
-                template: widgetData === undefined ? "t1" : widgetData,
-                style: value
-            });
-
-            setWidgetTemplate(widgetData);
-            setWidgetStyle(value);
-        }
-
-        if (type === "position") {
-            let positioning_classes = '';
-
-            if (value === "top") {
-                positioning_classes = "asbw-fixed-d-top";
-            } else if (value === "bottom") {
-                positioning_classes = "asbw-fixed-d-bottom";
-            }
-
-            setWidgetPosition(positioning_classes);
-        }
-
-        if (type === "width") {
-            let positioning_classes = '';
-
-            if (value === "boxed") {
-                positioning_classes = "asbw-boxed";
-            } else {
-                positioning_classes = ""
-            }
-
-            setWidgetWidth(positioning_classes);
-        }
-
-        if (type === "elements") {
-            setWidgetElements(value);
-        }
-    }
-
-    const manageElementsStatus = (type, value) => {
-        let elementsData = widgetElements;
-        if (type === "desktop_hide_image") {
-            elementsData = value ? `${elementsData}di` : elementsData.replace('di', '');
-        }
-        if (type === "desktop_hide_title") {
-            elementsData = value ? `${elementsData}dt` : elementsData.replace('dt', '');
-        }
-        if (type === "desktop_hide_compare_price") {
-            elementsData = value ? `${elementsData}dc` : elementsData.replace('dc', '');
-        }
-        if (type === "desktop_hide_offer_price") {
-            elementsData = value ? `${elementsData}ds` : elementsData.replace('ds', '');
-        }
-        if (type === "mobile_hide_image") {
-            elementsData = value ? `${elementsData}mi` : elementsData.replace('mi', '');
-        }
-        if (type === "mobile_hide_title") {
-            elementsData = value ? `${elementsData}mt` : elementsData.replace('mt', '');
-        }
-        if (type === "mobile_hide_compare_price") {
-            elementsData = value ? `${elementsData}mc` : elementsData.replace('mc', '');
-        }
-        if (type === "mobile_hide_sale_price") {
-            elementsData = value ? `${elementsData}ms` : elementsData.replace('ms', '');
-        }
-
-        manageWidgetSettings('elements', elementsData);
-    }
-
     const PriceFormat = (format, price) => {
         return format.replace('{{amount}}', parseFloat(price / 100).toFixed(2));
+    }
+
+    const manageCustomStyle = (type, value) => {
+        let tempData = {
+            ...widgetSettings,
+            [type]: value
+        }
+
+        if (tempData?.widget_style === "custom") {
+            let tempStylesheet = `
+            .asbw-stickybag-widget {
+                ${tempData?.background_color !== undefined ? `background: ${tempData?.background_color} !important;` : ""}
+            }
+            .asbw-product-item-image {
+                ${tempData?.image_size !== undefined ? `width: ${tempData?.image_size}px !important;` : ""}
+                ${tempData?.image_size !== undefined ? `height: ${tempData?.image_size}px !important;` : ""}
+                ${tempData?.image_size !== undefined ? `min-width: ${tempData?.image_size}px !important;` : ""}
+            }
+            .asbw-product-item-title {
+                ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
+                ${tempData?.title_size !== undefined ? `font-size: ${tempData?.title_size}px !important;` : ""}
+            }
+            .asbw-stickybag-offer-price {
+                ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
+                ${tempData?.offer_price_size !== undefined ? `font-size: ${tempData?.offer_price_size}px !important;` : ""}
+            }
+            .asbw-item-compare-price {
+                ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
+                ${tempData?.compare_price_size !== undefined ? `font-size: ${tempData?.compare_price_size}px !important;` : ""}
+            }
+            .asbw-action-btn {
+                ${tempData?.button_color !== undefined ? `background-color: ${tempData?.button_color} !important;` : ""}
+                ${tempData?.button_color !== undefined ? `border: 1px solid ${tempData?.button_color} !important;` : ""}
+                ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
+            }
+        `;
+
+            setCustomStyle(tempStylesheet);
+        } else {
+            setCustomStyle("");
+        }
     }
 
     return (
@@ -306,7 +248,15 @@ export function Widget(props) {
                                 <div className="mb-3 flex items-center">
                                     <label className="mb-1.5 block font-medium text-graydark w-22">Template</label>
                                     <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => manageWidgetSettings('template', e.target.value)}>
+                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
+                                            setWidgetSettings({
+                                                ...widgetSettings,
+                                                widget_template: e.target.value
+                                            });
+
+                                            triggerFetchTemplate(e.target.value, getValuesUpdateWidgetTemplate('widget_style'));
+                                            manageCustomStyle('widget_template', e.target.value);
+                                        }}>
                                             <option value="t1">Template 1</option>
                                             <option value="t2">Template 2</option>
                                             <option value="t3">Template 3</option>
@@ -324,7 +274,15 @@ export function Widget(props) {
                                 <div className="mb-2 flex items-center">
                                     <label className="mb-1.5 block font-medium text-graydark w-22">Style</label>
                                     <div className="relative z-20 bg-white w-44 ml-auto">
-                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => manageWidgetSettings('style', e.target.value)}>
+                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
+                                            setWidgetSettings({
+                                                ...widgetSettings,
+                                                widget_style: e.target.value
+                                            });
+
+                                            triggerFetchTemplate(getValuesUpdateWidgetTemplate('widget_template'), e.target.value);
+                                            manageCustomStyle('widget_style', e.target.value);
+                                        }}>
                                             <option value="s1">Style 1</option>
                                             <option value="s2">Style 2</option>
                                             <option value="s3">Style 3</option>
@@ -344,12 +302,19 @@ export function Widget(props) {
                                     </div>
                                 </div>
 
-                                <div className={`${toggleAdvanced ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
+                                <div className={`${widgetSettings?.widget_style === "custom" ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
                                     <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Image Size</label>
                                         <div className="relative z-20 bg-white w-40 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    image_size: e.target.value
+                                                });
+
+                                                manageCustomStyle('image_size', e.target.value);
+                                            }}>
                                                 <option value="">Select Size</option>
                                                 <option value="32">32px x 32px</option>
                                                 <option value="48">48px x 48px</option>
@@ -369,7 +334,14 @@ export function Widget(props) {
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Title Size</label>
                                         <div className="relative z-20 bg-white w-40 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    title_size: e.target.value
+                                                });
+
+                                                manageCustomStyle('title_size', e.target.value);
+                                            }}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -392,7 +364,14 @@ export function Widget(props) {
                                         <label className="text-sm font-medium text-black">Compare Price Size
                                         </label>
                                         <div className="relative z-20 bg-white w-40 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    compare_price_size: e.target.value
+                                                });
+
+                                                manageCustomStyle('compare_price_size', e.target.value);
+                                            }}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -415,7 +394,14 @@ export function Widget(props) {
                                         <label className="text-sm font-medium text-black">Offer Price Size
                                         </label>
                                         <div className="relative z-20 bg-white w-40 ml-auto">
-                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')}>
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    offer_price_size: e.target.value
+                                                });
+
+                                                manageCustomStyle('offer_price_size', e.target.value);
+                                            }}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
                                                 <option value="14">14px</option>
@@ -437,34 +423,76 @@ export function Widget(props) {
                                     <div className='mb-3 flex flex-wrap'>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    background_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('background_color', e.target.value);
+                                            }} />
                                         </div>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('title_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    title_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('title_color', e.target.value);
+                                            }} />
                                         </div>
                                     </div>
                                     <div className='mb-3 flex flex-wrap'>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
                                             </label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    compare_price_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('compare_price_color', e.target.value);
+                                            }} />
                                         </div>
                                         <div className="mb-3 w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
                                             </label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    offer_price_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('offer_price_color', e.target.value);
+                                            }} />
                                         </div>
                                     </div>
 
                                     <div className='flex flex-wrap'>
                                         <div className="w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('button_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('button_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    button_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('button_color', e.target.value);
+                                            }} />
                                         </div>
                                         <div className="w-1/2">
                                             <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
-                                            <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} />
+                                            <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    button_text_color: e.target.value
+                                                });
+
+                                                manageCustomStyle('button_text_color', e.target.value);
+                                            }} />
                                         </div>
                                     </div>
 
@@ -474,11 +502,21 @@ export function Widget(props) {
                                     <label className="font-medium text-graydark w-22">Position</label>
                                     <div className="flex py-2 w-44 ml-auto">
                                         <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => manageWidgetSettings('position', e.target.value)} />
+                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    widget_position: e.target.value
+                                                });
+                                            }} />
                                             <span className="ml-2">Top</span>
                                         </label>
                                         <label className="flex cursor-pointer select-none items-center text-sm font-medium ml-6">
-                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => manageWidgetSettings('position', e.target.value)} />
+                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    widget_position: e.target.value
+                                                });
+                                            }} />
                                             <span className="ml-2">Bottom</span>
                                         </label>
                                         {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold">Please select a position</span>}
@@ -490,11 +528,21 @@ export function Widget(props) {
                                     </label>
                                     <div className="flex py-2 w-44 ml-auto">
                                         <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => manageWidgetSettings('width', e.target.value)} />
+                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    widget_width: e.target.value
+                                                });
+                                            }} />
                                             <span className="ml-2">Full Width</span>
                                         </label>
                                         <label className="flex cursor-pointer select-none items-center text-sm font-medium ml-6">
-                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => manageWidgetSettings('width', e.target.value)} />
+                                            <input type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    widget_width: e.target.value
+                                                });
+                                            }} />
                                             <span className="ml-2">Boxed</span>
                                         </label>
                                         {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold">Please select a width</span>}
@@ -510,7 +558,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_image')} onChange={(e) => {
-                                                        manageElementsStatus('desktop_hide_image', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            desktop_hide_image: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Image</span>
                                                 </label>
@@ -518,7 +569,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_title')} onChange={(e) => {
-                                                        manageElementsStatus('desktop_hide_title', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            desktop_hide_title: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Title</span>
                                                 </label>
@@ -526,7 +580,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_compare_price')} onChange={(e) => {
-                                                        manageElementsStatus('desktop_hide_compare_price', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            desktop_hide_compare_price: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Compare Price</span>
                                                 </label>
@@ -534,7 +591,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('desktop_hide_offer_price')} onChange={(e) => {
-                                                        manageElementsStatus('desktop_hide_offer_price', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            desktop_hide_offer_price: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Offer Price</span>
                                                 </label>
@@ -547,7 +607,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_image')} onChange={(e) => {
-                                                        manageElementsStatus('mobile_hide_image', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            mobile_hide_image: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Image</span>
                                                 </label>
@@ -555,7 +618,10 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_title')} onChange={(e) => {
-                                                        manageElementsStatus('mobile_hide_title', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            mobile_hide_title: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Title</span>
                                                 </label>
@@ -563,15 +629,21 @@ export function Widget(props) {
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
                                                     <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_compare_price')} onChange={(e) => {
-                                                        manageElementsStatus('mobile_hide_compare_price', e.target.checked);
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            mobile_hide_compare_price: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Compare Price</span>
                                                 </label>
                                             </div>
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
-                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_sale_price')} onChange={(e) => {
-                                                        manageElementsStatus('mobile_hide_sale_price', e.target.checked);
+                                                    <input type="checkbox" {...registerUpdateWidgetTemplate('mobile_hide_offer_price')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            mobile_hide_offer_price: e.target.checked
+                                                        });
                                                     }} />
                                                     <span className="ml-2">Hide Offer Price</span>
                                                 </label>
@@ -594,21 +666,19 @@ export function Widget(props) {
                 </div>
 
                 <style>{templateStyle}</style>
+                <style>{customStyle}</style>
                 <div className='flex-grow pl-6'>
                     <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in delay-150 opacity-100 h-auto visible" : "opacity-0 h-0 ease-out invisible"}`}>
                         <div className='mb-10 border border-stroke shadow bg-white relative min-h-150 rounded-lg desktop-view flex flex-col'>
                             <div className='border-b border-stroke h-13 flex items-center justify-between'>
-                               <div className='flex pl-5 w-48 items-center'>
-                               <div className='flex space-x-2 w-25'>
-                                    <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500'></span>
-                                    <span className='w-3 h-3 bg-orange-300 rounded-full border border-orange-400'></span>
-                                    <span className='w-3 h-3 bg-green-400 rounded-full border border-green-500'></span>
+                                <div className='flex pl-5 w-48 items-center'>
+                                    <div className='flex space-x-2 w-25'>
+                                        <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500'></span>
+                                        <span className='w-3 h-3 bg-orange-300 rounded-full border border-orange-400'></span>
+                                        <span className='w-3 h-3 bg-green-400 rounded-full border border-green-500'></span>
+                                    </div>
+                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-safari-toolabr-left.svg`} alt='safari icons' />
                                 </div>
-                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-safari-toolabr-left.svg`} alt='safari icons' />
-                                <div>
-
-                                </div>
-                               </div>
                                 <div className='w-96 flex items-center'>
                                     <span className='mr-4'><svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.5 17.6147C7.63281 17.6147 7.84863 17.5649 8.05615 17.4487C12.7793 14.8008 14.3979 13.6802 14.3979 10.6504V4.30029C14.3979 3.42871 14.0244 3.15479 13.3188 2.85596C12.3394 2.44922 9.17676 1.31201 8.19727 0.97168C7.97314 0.896973 7.73242 0.847168 7.5 0.847168C7.26758 0.847168 7.02686 0.913574 6.81104 0.97168C5.83154 1.25391 2.66064 2.45752 1.68115 2.85596C0.983887 3.14648 0.602051 3.42871 0.602051 4.30029V10.6504C0.602051 13.6802 2.229 14.7925 6.94385 17.4487C7.15967 17.5649 7.36719 17.6147 7.5 17.6147ZM7.83203 2.2583C9.08545 2.75635 11.5176 3.63623 12.8042 4.07617C13.0283 4.15918 13.0781 4.27539 13.0781 4.55762V10.3433C13.0781 12.9082 11.8496 13.5806 8.01465 15.9131C7.77393 16.0625 7.64111 16.104 7.5083 16.1123V2.18359C7.59131 2.18359 7.69922 2.2085 7.83203 2.2583Z" fill="#737373" />
@@ -619,33 +689,33 @@ export function Widget(props) {
                                             <path d="M1.21094 11.7158H6.78906C7.54492 11.7158 7.91406 11.3408 7.91406 10.5205V6.21973C7.91406 5.48145 7.60938 5.10059 6.98242 5.03613V3.55957C6.98242 1.35059 5.53516 0.28418 4 0.28418C2.46484 0.28418 1.01758 1.35059 1.01758 3.55957V5.06543C0.443359 5.15332 0.0859375 5.52832 0.0859375 6.21973V10.5205C0.0859375 11.3408 0.455078 11.7158 1.21094 11.7158ZM1.96094 3.43652C1.96094 1.96582 2.9043 1.18652 4 1.18652C5.0957 1.18652 6.03906 1.96582 6.03906 3.43652V5.03027L1.96094 5.03613V3.43652Z" fill="#9E9E9E" />
                                         </svg>
                                         </span>
-                                        <span className='text-xs font-medium text-zinc-500'>Stickybar.com</span>
+                                        <span className='text-xs font-medium text-zinc-500'>google.com</span>
                                     </div>
                                 </div>
                                 <div className='pr-5 w-48 justify-end flex items-center'>
-                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-safari-toolabr-right.svg`} alt='safari icons' />
+                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-safari-toolabr-right.svg`} alt='safari icons' />
                                 </div>
                             </div>
                             <div className='relative flex-grow'>
-                                <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate}-${widgetStyle} ${widgetPosition} ${widgetWidth}`}>
+                                <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "asbw-fixed-d-top" : "asbw-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "asbw-boxed" : ""}`}>
                                     <div id="widget-container">
                                         <div className="asbw-stickybag-product">
                                             <div className="asbw-product-item-image">
                                                 {
-                                                    widgetElements.includes('di') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                                    widgetSettings?.desktop_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
                                                 }
                                             </div>
                                             <div className="asbw-stickybag-content">
                                                 {
-                                                    widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
+                                                    widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
                                                 }
                                                 {
-                                                    widgetTemplate === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
                                                         {
-                                                            widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                            widgetSettings?.desktop_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                         }
                                                         {
-                                                            widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                            widgetSettings?.desktop_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                         }
                                                     </div> : ""
                                                 }
@@ -676,12 +746,12 @@ export function Widget(props) {
                                             </div>
                                             <div className="asbw-stickybag-actions">
                                                 {
-                                                    widgetTemplate === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                    widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
                                                         {
-                                                            widgetElements.includes('ds') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
+                                                            widgetSettings?.desktop_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                         }
                                                         {
-                                                            widgetElements.includes('dc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
+                                                            widgetSettings?.desktop_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                         }
                                                     </div>
                                                 }
@@ -702,25 +772,25 @@ export function Widget(props) {
                                     <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-iphone-statusbar.svg`} alt='iphone status bar' />
                                 </div>
                                 <div className='relative flex-grow'>
-                                    <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetTemplate}-${widgetStyle} ${widgetPosition} ${widgetWidth}`}>
+                                    <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "asbw-fixed-d-top" : "asbw-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "asbw-boxed" : ""}`}>
                                         <div id="widget-container">
                                             <div className="asbw-stickybag-product">
                                                 <div className="asbw-product-item-image">
                                                     {
-                                                        widgetElements.includes('mi') ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                                        widgetSettings?.mobile_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
                                                     }
                                                 </div>
                                                 <div className="asbw-stickybag-content">
                                                     {
-                                                        widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
+                                                        widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
                                                     }
                                                     {
-                                                        widgetTemplate === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                        widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
                                                             {
-                                                                widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
+                                                                widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
                                                             }
                                                             {
-                                                                widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
+                                                                widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
                                                             }
                                                         </div> : ""
                                                     }
@@ -751,12 +821,12 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="asbw-stickybag-actions">
                                                     {
-                                                        widgetTemplate === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                        widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
                                                             {
-                                                                widgetElements.includes('ms') ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">Rs. 36.00</span>
+                                                                widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                             }
                                                             {
-                                                                widgetElements.includes('mc') ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">Rs. 46.00</span>
+                                                                widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                             }
                                                         </div>
                                                     }

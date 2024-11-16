@@ -6,7 +6,7 @@ export const Tooltip = (props) => {
         <React.Fragment>
             <div className={`${props.property} ml-2 cursor-pointer group relative z-100`}>
                 <img src={props.image} alt={props.alt} />
-                <div className={`absolute z-20 whitespace-nowrap rounded bg-black px-4.5 py-1.5 text-sm font-medium text-white opacity-0 group-hover:opacity-100 
+                <div className={`absolute z-20 whitespace-nowrap rounded bg-black px-4.5 py-1.5 text-sm font-medium text-white invisible group-hover:visible opacity-0 group-hover:opacity-100 
                     ${props.position === "right" ? "left-full top-1/2 ml-3 -translate-y-1/2" : ""} 
                     ${props.position === "left" ? "right-full top-1/2 mr-3 -translate-y-1/2" : ""} 
                     ${props.position === "top" ? "bottom-full left-1/2 mb-3 -translate-x-1/2" : ""} 

@@ -15,7 +15,7 @@ export const UserHeader = (props) => {
 
     return (
         <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
-            <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
+            <div className="flex flex-grow items-center justify-between px-4 py-2 shadow-2 md:px-6 2xl:px-11">
                 <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
                     <button className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm  lg:hidden">
                         <span className="relative block h-5.5 w-5.5 cursor-pointer">
@@ -45,7 +45,7 @@ export const UserHeader = (props) => {
                                 <span className="block text-xs font-medium">UX Designer</span>
                             </span>
 
-                            <span className="h-12 w-12 rounded-full">
+                            <span className="h-10 w-10 rounded-full">
                                 <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/user/user-03.png'}`} alt="User" />
                             </span>
                         </a>
@@ -61,7 +61,7 @@ export const UserSidebar = (props) => {
     const [user, setUser] = useRecoilState(userStore);
 
     return (
-        <aside className="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  lg:static lg:translate-x-0">
+        <aside className="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  xl:static xl:translate-x-0 -translate-x-full">
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
                 <a className="text-2xl" onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} alt="Logo" />
@@ -143,7 +143,7 @@ export const AdminHeader = (props) => {
     return (
         <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1  ">
             <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
-                <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
+                <div className="flex items-center gap-2 sm:gap-4 xl:hidden">
                     <button className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm  lg:hidden">
                         <span className="relative block h-5.5 w-5.5 cursor-pointer">
                             <span className="du-block absolute right-0 h-full w-full">

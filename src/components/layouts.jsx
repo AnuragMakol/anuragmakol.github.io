@@ -17,7 +17,7 @@ export const UserDashboardLayout = (props) => {
             <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                 <UserHeader />
                 <main>
-                    <div className="mx-auto p-4 md:p-6 2xl:p-10">
+                    <div className="mx-auto p-4 lg:py-6 lg:px-8 h-[calc(100vh-50px)] min-h-180">
                         {props.children}
                     </div>
                 </main>

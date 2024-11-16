@@ -14,6 +14,7 @@ import { UserDashboardLayout } from '../../components/layouts';
 import { userStore } from '../../atoms';
 import { updateWidgetTemplate, resetScriptTag, fetchTemplateStyle } from '../../api';
 import { successHandler, errorHandler } from "../../helpers";
+import { Tooltip } from '../../components/kitchen-sink';
 
 export function Widget(props) {
     const navigate = useNavigate();
@@ -85,7 +86,7 @@ export function Widget(props) {
         manageWidgetSettings('width', user?.widget_settings?.widget_width);
         manageWidgetSettings('elements', elementsData);
 
-        if(user?.widget_settings?.widget_style === "custom") {
+        if (user?.widget_settings?.widget_style === "custom") {
             setToggleAdvanced(true);
         } else {
             setToggleAdvanced(false);
@@ -172,7 +173,7 @@ export function Widget(props) {
         }
 
         if (type === "style") {
-            if(value === "custom") {
+            if (value === "custom") {
                 setToggleAdvanced(true);
             } else {
                 setToggleAdvanced(false);
@@ -275,13 +276,7 @@ export function Widget(props) {
                             }
                         });
                     }}>Reset Integration</button>
-                    <div className='w-6 h-6 ml-2 cursor-pointer group relative'>
-                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' />
-                        <div className="absolute right-full top-1/2 z-20 mr-3 -translate-y-1/2 whitespace-nowrap rounded bg-black px-4.5 py-1.5 text-sm font-medium text-white opacity-0 group-hover:opacity-100">
-                            <span className="absolute right-[-3px] top-1/2 -z-10 h-2 w-2 -translate-y-1/2 rotate-45 rounded-sm bg-black"></span>
-                            This will reset the sticky add to cart <br/>widget integration with your store. <br/>This will reset the sticky add to cart widget <br/> integration with your store.                            
-                          </div>               
-                    </div>
+                    <Tooltip position="left" property={`w-6 h-6`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the sticky add to cart`} />
                 </div>
             </div>
 
@@ -298,9 +293,7 @@ export function Widget(props) {
                             <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                                 <div className='flex items-center justify-between rounded mb-5'>
                                     <label className="font-medium text-graydark flex items-center">Show Widget
-                                        <span className='w-4.5 h-4.5 ml-2 cursor-pointer opacity-70'>
-                                            <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' />
-                                        </span>
+                                        <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the sticky add to cart`} />
                                     </label>
                                     <label className="relative inline-block w-15 h-8 switch-slider-wrap">
                                         <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('widget_status')} />
@@ -493,9 +486,7 @@ export function Widget(props) {
                                 </div>
                                 <div className="mb-4 flex items-center">
                                     <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width
-                                        <span className='w-4.5 h-4.5 ml-2 cursor-pointer opacity-70'>
-                                            <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' data-tooltip="lotion tech"/>
-                                        </span>
+                                        <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the sticky add to cart`} />
                                     </label>
                                     <div className="relative z-20 flex py-2 w-44 ml-auto">
                                         <label className="flex cursor-pointer select-none items-center text-sm font-medium">

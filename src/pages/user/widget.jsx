@@ -275,9 +275,13 @@ export function Widget(props) {
                             }
                         });
                     }}>Reset Integration</button>
-                    <span className='w-6 h-6 ml-2 cursor-pointer'>
+                    <div className='w-6 h-6 ml-2 cursor-pointer group relative'>
                         <img src={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt='info' />
-                    </span>
+                        <div className="absolute right-full top-1/2 z-20 mr-3 -translate-y-1/2 whitespace-nowrap rounded bg-black px-4.5 py-1.5 text-sm font-medium text-white opacity-0 group-hover:opacity-100">
+                            <span className="absolute right-[-3px] top-1/2 -z-10 h-2 w-2 -translate-y-1/2 rotate-45 rounded-sm bg-black"></span>
+                            This will reset the sticky add to cart <br/>widget integration with your store. <br/>This will reset the sticky add to cart widget <br/> integration with your store.                            
+                          </div>               
+                    </div>
                 </div>
             </div>
 
@@ -351,7 +355,7 @@ export function Widget(props) {
                                     <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Image Size</label>
-                                        <div className="relative z-20 bg-white w-36 ml-auto">
+                                        <div className="relative z-20 bg-white w-40 ml-auto">
                                             <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="32">32px x 32px</option>
@@ -371,7 +375,7 @@ export function Widget(props) {
 
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Title Size</label>
-                                        <div className="relative z-20 bg-white w-36 ml-auto">
+                                        <div className="relative z-20 bg-white w-40 ml-auto">
                                             <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
@@ -394,7 +398,7 @@ export function Widget(props) {
                                     <div className="mb-3 flex items-center">
                                         <label className="text-sm font-medium text-black">Compare Price Size
                                         </label>
-                                        <div className="relative z-20 bg-white w-36 ml-auto">
+                                        <div className="relative z-20 bg-white w-40 ml-auto">
                                             <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
@@ -417,7 +421,7 @@ export function Widget(props) {
                                     <div className="mb-5 flex items-center">
                                         <label className="text-sm font-medium text-black">Offer Price Size
                                         </label>
-                                        <div className="relative z-20 bg-white w-36 ml-auto">
+                                        <div className="relative z-20 bg-white w-40 ml-auto">
                                             <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')}>
                                                 <option value="">Select Size</option>
                                                 <option value="12">12px</option>
@@ -510,7 +514,7 @@ export function Widget(props) {
                                         <div className={`px-4 py-2 cursor-pointer flex-grow text-center font-medium ${deviceToggle === "desktop" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>Desktop</div>
                                         <div className={`px-4 py-2 cursor-pointer flex-grow text-center font-medium ${deviceToggle === "mobile" ? "bg-primary text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>Mobile</div>
                                     </div>
-                                    <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in-out delay-200 opacity-100 h-auto" : "h-0 opacity-0"}`}>
+                                    <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in-out delay-150 opacity-100 h-auto visible" : "h-0 opacity-0 invisible"}`}>
                                         <div className="relative z-20 bg-white flex flex-wrap">
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
@@ -547,7 +551,7 @@ export function Widget(props) {
                                         </div>
                                     </div>
 
-                                    <div className={`${deviceToggle === "mobile" ? "transition-opacity ease-in-out delay-200 opacity-100 h-auto" : "h-0 opacity-0"}`}>
+                                    <div className={`${deviceToggle === "mobile" ? "transition-opacity ease-in-out delay-150 opacity-100 h-auto visible" : "h-0 opacity-0 invisible"}`}>
                                         <div className="relative z-20 bg-white flex flex-wrap">
                                             <div className="mb-3 w-1/2">
                                                 <label className="flex cursor-pointer select-none items-center text-sm font-medium">
@@ -586,7 +590,7 @@ export function Widget(props) {
                                 </div>
 
                                 <div className="mt-4 flex justify-end space-x-2">
-                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-90">
+                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15">
                                         Reset
                                     </a>
                                     <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
@@ -646,7 +650,7 @@ export function Widget(props) {
                                             </div>
                                             <div className="asbw-stickybag-content">
                                                 {
-                                                    widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                                    widgetElements.includes('dt') ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
                                                 }
                                                 {
                                                     widgetTemplate === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
@@ -722,7 +726,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="asbw-stickybag-content">
                                                     {
-                                                        widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Pivl Women Solid Hooded Jacket for Winter</div>
+                                                        widgetElements.includes('mt') ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
                                                     }
                                                     {
                                                         widgetTemplate === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">

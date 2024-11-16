@@ -276,7 +276,7 @@ export function Widget(props) {
                             }
                         });
                     }}>Reset Integration</button>
-                    <Tooltip position="left" property={`w-6 h-6`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the sticky add to cart`} />
+                    <Tooltip position="left" property={`w-6 h-6`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the integration of the app with your store`} />
                 </div>
             </div>
 
@@ -293,7 +293,7 @@ export function Widget(props) {
                             <form onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                                 <div className='flex items-center justify-between rounded mb-5'>
                                     <label className="font-medium text-graydark flex items-center">Show Widget
-                                        <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the sticky add to cart`} />
+                                        <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />
                                     </label>
                                     <label className="relative inline-block w-15 h-8 switch-slider-wrap">
                                         <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('widget_status')} />
@@ -596,7 +596,6 @@ export function Widget(props) {
                 <style>{templateStyle}</style>
                 <div className='flex-grow pl-6'>
                     <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in delay-150 opacity-100 h-auto visible" : "opacity-0 h-0 ease-out invisible"}`}>
-                        <h3 className='font-bold text-black mb-4 text-2xl'>Desktop View</h3>
                         <div className='mb-10 border border-stroke shadow bg-white relative min-h-150 rounded-lg desktop-view flex flex-col'>
                             <div className='border-b border-stroke h-13 flex items-center justify-between'>
                                <div className='flex pl-5 w-48 items-center'>
@@ -697,7 +696,6 @@ export function Widget(props) {
                         </div>
                     </div>
                     <div className={`${deviceToggle === "mobile" ? "transition-opacity ease-in delay-150 opacity-100 h-auto visible" : "opacity-0 h-0 ease-out invisible"}`}>
-                        <h3 className='font-bold text-black mb-4 text-2xl'>Mobile View</h3>
                         <div className='border-4 border-slate-400 max-w-94 h-180 mx-auto relative rounded-iphone-outer mobile-view'>
                             <div className='mb-10 bg-white border-4 border-black h-full relative  flex flex-col rounded-7xl overflow-hidden'>
                                 <div className='relative w-full flex justify-center top-2.5 left-3 mb-4.5'>

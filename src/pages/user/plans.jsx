@@ -128,7 +128,7 @@ export function Plans(props) {
                                         </p>
                                         {
                                             user?.plan_details?.name === "Advanced" ?
-                                                <div className="grid grid-cols-2">
+                                                <div className="grid 2xl:grid-cols-2 flex-wrap">
                                                     <button className="col-span-1 rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90 mr-1" disabled> Current Plan </button>
                                                     <button className="col-span-1 rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90 ml-1" onClick={() => CancelPlan()}> Cancel Plan </button>
                                                 </div> :

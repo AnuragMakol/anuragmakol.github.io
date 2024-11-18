@@ -227,7 +227,7 @@ export function Widget(props) {
                             <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>
                         </svg>
                     </button>
-                    <div className='max-w-100 min-w-100 h-full absolute left-0 top-0 z-9999 duration-300 ease-linear  lg:static lg:translate-x-0 -translate-x-full lg:ml-0 -ml-px'>
+                    <div className='max-w-100 min-w-100 h-full absolute left-0 top-0 z-99 duration-300 ease-linear  lg:static lg:translate-x-0 -translate-x-full lg:ml-0 -ml-px'>
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                             <div className="rounded-sm border border-stroke bg-white shadow flex flex-col h-full">
                                 <div className="border-b border-stroke px-6 py-4 flex flex-shrink-0">
@@ -512,7 +512,7 @@ export function Widget(props) {
                                         </div> : ""
                                     }
 
-                                    <div className="mb-4 flex items-center">
+                                    <div className="mb-4 flex items-center flex-wrap">
                                         <label className="font-medium text-graydark w-22">Position</label>
                                         <div className="flex py-2 w-44 ml-auto">
                                             <label className="flex cursor-pointer select-none items-center text-sm font-medium">
@@ -534,9 +534,9 @@ export function Widget(props) {
                                                 <span className="ml-2">Bottom</span>
                                             </label>
                                         </div>
-                                        {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold">Please select a position</span>}
+                                        {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a position</span>}
                                     </div>
-                                    <div className="mb-4 flex items-center">
+                                    <div className="mb-4 flex items-center flex-wrap">
                                         <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width
                                             <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} />
                                         </label>
@@ -560,7 +560,7 @@ export function Widget(props) {
                                                 <span className="ml-2">Boxed</span>
                                             </label>
                                         </div>
-                                        {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold">Please select a width</span>}
+                                        {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a width</span>}
                                     </div>
                                     <div className="border-t border-stroke pt-6">
                                         <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>

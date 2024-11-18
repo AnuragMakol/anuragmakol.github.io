@@ -16,19 +16,22 @@ export const UserHeader = (props) => {
     return (
         <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
             <div className="flex flex-grow items-center justify-between px-4 py-2 shadow-2 md:px-6 2xl:px-11">
-                <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
-                    <button className="w-8 h-8 z-99999 block rounded-sm ring-1 ring-stroke bg-white p-1 shadow-sm  lg:hidden mr-2">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 4 7 L 4 9 L 28 9 L 28 7 Z M 4 15 L 4 17 L 28 17 L 28 15 Z M 4 23 L 4 25 L 28 25 L 28 23 Z"/></svg>
-                    </button>
-                    <a className="block flex-shrink-0 lg:hidden" onClick={() => navigate('/dashboard')}>
+                <div className="flex items-center gap-2 sm:gap-4 2xl:hidden">
+                    <a className="block flex-shrink-0 2xl:hidden" onClick={() => navigate('/dashboard')}>
                         <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" />
                     </a>
                 </div>
 
-                <div className="hidden sm:flex items-center"></div>
+                <div>
+                    <ul className="flex space-x-8 2xl:hidden lg:pl-36">
+                        <li><a className="text-black" onClick={() => navigate('/dashboard')}>Dashboard</a></li>
+                        <li><a className="text-black" onClick={() => navigate('/widget')}>Widget</a></li>
+                        <li><a className="text-black" onClick={() => navigate('/plans')}>Plans</a></li>
+                    </ul>
+                </div>
 
                 <div className="flex items-center gap-3 2xsm:gap-7">
-                    <div className="relative">
+                    <div className="relative group">
                         <a className="flex items-center gap-4 dropdown-flag" onClick={() => manageHeaderDropdown('settings')}>
                             <span className="hidden text-right lg:block">
                                 <span className="block text-sm font-medium text-black ">Thomas Anree</span>
@@ -38,7 +41,16 @@ export const UserHeader = (props) => {
                             <span className="h-10 w-10 rounded-full">
                                 <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/user/user-03.png'}`} alt="User" />
                             </span>
+                            <svg className="fill-current 2xl:hidden" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z" fill=""></path>
+                            </svg>
                         </a>
+                        <div className="hidden group-hover:flex absolute w-50 right-0 pt-3">
+                            <ul className="flex flex-col w-full py-2 bg-white shadow 2xl:hidden">
+                                <li className="flex"><a className="px-4 py-2 w-full text-black hover:bg-gray" onClick={() => navigate('/profile')}>My Profile</a></li>
+                                <li className="flex"><a className="px-4 py-2 w-full text-black hover:bg-gray" onClick={() => navigate('/logout')}>Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,19 +63,18 @@ export const UserSidebar = (props) => {
     const [user, setUser] = useRecoilState(userStore);
 
     return (
-        <aside className="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  xl:static xl:translate-x-0 -translate-x-full">
+        <aside className="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  2xl:static 2xl:translate-x-0 -translate-x-full">
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
                 <a className="text-2xl" onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} alt="Logo" />
                 </a>
 
-                <button className="block lg:hidden">
+                <button className="block 2xl:hidden">
                     <svg className="fill-current" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z" fill="" />
                     </svg>
                 </button>
             </div>
-
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
                 <nav className="mt-5 px-4 py-4 lg:mt-2 lg:px-6">
                     <div>
@@ -77,7 +88,7 @@ export const UserSidebar = (props) => {
                             </li>
                             <li>
                                 <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/widget')}>
-                                <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-widget.svg`} alt='widget' /></span>
+                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-widget.svg`} alt='widget' /></span>
                                     <span>Widget</span>
                                 </a>
                             </li>
@@ -87,19 +98,19 @@ export const UserSidebar = (props) => {
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
                                 <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/plans')}>
-                                <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
+                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
                                     <span>Plans</span>
                                 </a>
                             </li>
                             <li>
                                 <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/profile')}>
-                                <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-user.svg`} alt='profile' /></span>
+                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-user.svg`} alt='profile' /></span>
                                     <span>My Profile</span>
                                 </a>
                             </li>
                             <li>
                                 <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/logout')}>
-                                <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-logout.svg`} alt='log out' /></span>
+                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-logout.svg`} alt='log out' /></span>
                                     <span>Log Out</span>
                                 </a>
                             </li>

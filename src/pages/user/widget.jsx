@@ -261,8 +261,12 @@ export function Widget(props) {
                                                 manageCustomStyle('widget_template', e.target.value);
                                             }}>
                                                 <option value="t1">Template 1</option>
-                                                <option value="t2">Template 2</option>
-                                                <option value="t3">Template 3</option>
+                                                {
+                                                    user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                        <option value="t2">Template 2</option>
+                                                        <option value="t3">Template 3</option>
+                                                    </React.Fragment> : ""
+                                                }
                                             </select>
                                             <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -288,11 +292,17 @@ export function Widget(props) {
                                             }}>
                                                 <option value="s1">Style 1</option>
                                                 <option value="s2">Style 2</option>
-                                                <option value="s3">Style 3</option>
-                                                <option value="s4">Style 4</option>
-                                                <option value="s5">Style 5</option>
-                                                <option value="s6">Style 6</option>
-                                                <option value="custom">Custom</option>
+                                                {
+                                                    user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                        <option value="s3">Style 3</option>
+                                                        <option value="s4">Style 4</option>
+                                                        <option value="s5">Style 5</option>
+                                                        <option value="s6">Style 6</option>
+                                                    </React.Fragment> : ""
+                                                }
+                                                {
+                                                    user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
+                                                }
                                             </select>
                                             <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -305,201 +315,202 @@ export function Widget(props) {
                                         </div>
                                     </div>
 
-                                    <div className={`${widgetSettings?.widget_style === "custom" ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
-                                        <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
-                                        <div className="mb-3 flex items-center">
-                                            <label className="text-sm font-medium text-black">Image Size</label>
-                                            <div className="relative z-20 bg-white w-40 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        image_size: e.target.value
-                                                    });
+                                    {
+                                        user?.plan_details?.name === "Ultimate" ? <div className={`${widgetSettings?.widget_style === "custom" ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
+                                            <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
+                                            <div className="mb-3 flex items-center">
+                                                <label className="text-sm font-medium text-black">Image Size</label>
+                                                <div className="relative z-20 bg-white w-40 ml-auto">
+                                                    <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            image_size: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('image_size', e.target.value);
-                                                }}>
-                                                    <option value="">Select Size</option>
-                                                    <option value="32">32px x 32px</option>
-                                                    <option value="48">48px x 48px</option>
-                                                    <option value="64">64px x 64px</option>
-                                                    <option value="128">128px x 128px</option>
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
+                                                        manageCustomStyle('image_size', e.target.value);
+                                                    }}>
+                                                        <option value="">Select Size</option>
+                                                        <option value="32">32px x 32px</option>
+                                                        <option value="48">48px x 48px</option>
+                                                        <option value="64">64px x 64px</option>
+                                                        <option value="128">128px x 128px</option>
+                                                    </select>
+                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g opacity="0.8">
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="mb-3 flex items-center">
-                                            <label className="text-sm font-medium text-black">Title Size</label>
-                                            <div className="relative z-20 bg-white w-40 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        title_size: e.target.value
-                                                    });
+                                            <div className="mb-3 flex items-center">
+                                                <label className="text-sm font-medium text-black">Title Size</label>
+                                                <div className="relative z-20 bg-white w-40 ml-auto">
+                                                    <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            title_size: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('title_size', e.target.value);
-                                                }}>
-                                                    <option value="">Select Size</option>
-                                                    <option value="12">12px</option>
-                                                    <option value="14">14px</option>
-                                                    <option value="16">16px</option>
-                                                    <option value="18">18px</option>
-                                                    <option value="20">20px</option>
-                                                    <option value="22">22px</option>
-                                                    <option value="24">24px</option>
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
+                                                        manageCustomStyle('title_size', e.target.value);
+                                                    }}>
+                                                        <option value="">Select Size</option>
+                                                        <option value="12">12px</option>
+                                                        <option value="14">14px</option>
+                                                        <option value="16">16px</option>
+                                                        <option value="18">18px</option>
+                                                        <option value="20">20px</option>
+                                                        <option value="22">22px</option>
+                                                        <option value="24">24px</option>
+                                                    </select>
+                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g opacity="0.8">
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="mb-3 flex items-center">
-                                            <label className="text-sm font-medium text-black">Compare Price Size
-                                            </label>
-                                            <div className="relative z-20 bg-white w-40 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        compare_price_size: e.target.value
-                                                    });
-
-                                                    manageCustomStyle('compare_price_size', e.target.value);
-                                                }}>
-                                                    <option value="">Select Size</option>
-                                                    <option value="12">12px</option>
-                                                    <option value="14">14px</option>
-                                                    <option value="16">16px</option>
-                                                    <option value="18">18px</option>
-                                                    <option value="20">20px</option>
-                                                    <option value="22">22px</option>
-                                                    <option value="24">24px</option>
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="mb-5 flex items-center">
-                                            <label className="text-sm font-medium text-black">Offer Price Size
-                                            </label>
-                                            <div className="relative z-20 bg-white w-40 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        offer_price_size: e.target.value
-                                                    });
-
-                                                    manageCustomStyle('offer_price_size', e.target.value);
-                                                }}>
-                                                    <option value="">Select Size</option>
-                                                    <option value="12">12px</option>
-                                                    <option value="14">14px</option>
-                                                    <option value="16">16px</option>
-                                                    <option value="18">18px</option>
-                                                    <option value="20">20px</option>
-                                                    <option value="22">22px</option>
-                                                    <option value="24">24px</option>
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className='mb-3 flex flex-wrap'>
-                                            <div className="mb-3 w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        background_color: e.target.value
-                                                    });
-
-                                                    manageCustomStyle('background_color', e.target.value);
-                                                }} />
-                                            </div>
-                                            <div className="mb-3 w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        title_color: e.target.value
-                                                    });
-
-                                                    manageCustomStyle('title_color', e.target.value);
-                                                }} />
-                                            </div>
-                                        </div>
-                                        <div className='mb-3 flex flex-wrap'>
-                                            <div className="mb-3 w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
+                                            <div className="mb-3 flex items-center">
+                                                <label className="text-sm font-medium text-black">Compare Price Size
                                                 </label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        compare_price_color: e.target.value
-                                                    });
+                                                <div className="relative z-20 bg-white w-40 ml-auto">
+                                                    <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            compare_price_size: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('compare_price_color', e.target.value);
-                                                }} />
+                                                        manageCustomStyle('compare_price_size', e.target.value);
+                                                    }}>
+                                                        <option value="">Select Size</option>
+                                                        <option value="12">12px</option>
+                                                        <option value="14">14px</option>
+                                                        <option value="16">16px</option>
+                                                        <option value="18">18px</option>
+                                                        <option value="20">20px</option>
+                                                        <option value="22">22px</option>
+                                                        <option value="24">24px</option>
+                                                    </select>
+                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g opacity="0.8">
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div className="mb-3 w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
+                                            <div className="mb-5 flex items-center">
+                                                <label className="text-sm font-medium text-black">Offer Price Size
                                                 </label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        offer_price_color: e.target.value
-                                                    });
+                                                <div className="relative z-20 bg-white w-40 ml-auto">
+                                                    <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            offer_price_size: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('offer_price_color', e.target.value);
-                                                }} />
+                                                        manageCustomStyle('offer_price_size', e.target.value);
+                                                    }}>
+                                                        <option value="">Select Size</option>
+                                                        <option value="12">12px</option>
+                                                        <option value="14">14px</option>
+                                                        <option value="16">16px</option>
+                                                        <option value="18">18px</option>
+                                                        <option value="20">20px</option>
+                                                        <option value="22">22px</option>
+                                                        <option value="24">24px</option>
+                                                    </select>
+                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g opacity="0.8">
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div className='mb-3 flex flex-wrap'>
+                                                <div className="mb-3 w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            background_color: e.target.value
+                                                        });
 
-                                        <div className='flex flex-wrap'>
-                                            <div className="w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('button_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        button_color: e.target.value
-                                                    });
+                                                        manageCustomStyle('background_color', e.target.value);
+                                                    }} />
+                                                </div>
+                                                <div className="mb-3 w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            title_color: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('button_color', e.target.value);
-                                                }} />
+                                                        manageCustomStyle('title_color', e.target.value);
+                                                    }} />
+                                                </div>
                                             </div>
-                                            <div className="w-1/2">
-                                                <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
-                                                <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        button_text_color: e.target.value
-                                                    });
+                                            <div className='mb-3 flex flex-wrap'>
+                                                <div className="mb-3 w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
+                                                    </label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            compare_price_color: e.target.value
+                                                        });
 
-                                                    manageCustomStyle('button_text_color', e.target.value);
-                                                }} />
+                                                        manageCustomStyle('compare_price_color', e.target.value);
+                                                    }} />
+                                                </div>
+                                                <div className="mb-3 w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
+                                                    </label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            offer_price_color: e.target.value
+                                                        });
+
+                                                        manageCustomStyle('offer_price_color', e.target.value);
+                                                    }} />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                            <div className='flex flex-wrap'>
+                                                <div className="w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('button_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            button_color: e.target.value
+                                                        });
+
+                                                        manageCustomStyle('button_color', e.target.value);
+                                                    }} />
+                                                </div>
+                                                <div className="w-1/2">
+                                                    <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
+                                                    <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            button_text_color: e.target.value
+                                                        });
+
+                                                        manageCustomStyle('button_text_color', e.target.value);
+                                                    }} />
+                                                </div>
+                                            </div>
+                                        </div> : ""
+                                    }
 
                                     <div className="mb-4 flex items-center">
                                         <label className="font-medium text-graydark w-22">Position</label>
@@ -522,8 +533,8 @@ export function Widget(props) {
                                                 }} />
                                                 <span className="ml-2">Bottom</span>
                                             </label>
-                                            {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold">Please select a position</span>}
                                         </div>
+                                        {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold">Please select a position</span>}
                                     </div>
                                     <div className="mb-4 flex items-center">
                                         <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width
@@ -548,8 +559,8 @@ export function Widget(props) {
                                                 }} />
                                                 <span className="ml-2">Boxed</span>
                                             </label>
-                                            {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold">Please select a width</span>}
                                         </div>
+                                        {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold">Please select a width</span>}
                                     </div>
                                     <div className="border-t border-stroke pt-6">
                                         <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
@@ -847,11 +858,7 @@ export function Widget(props) {
                         </div>
                     </div>
                 </div>
-                <div className='pt-3'><p className='text-sm font-medium text-right'>Unlock full access and explore all features by <span className='text-red-600 underline cursor-pointer'>upgrading your plan</span> today!</p></div>
             </div>
-
-
-
         </UserDashboardLayout>
     )
 }

@@ -2,22 +2,25 @@ a {
   cursor: pointer;
 }
 
-input[type="checkbox"]  {
+input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
-input[type="color"]  {
-  @apply border border-stroke bg-white appearance-none w-8 h-8;  
+
+input[type="color"] {
+  @apply border border-stroke bg-white appearance-none w-8 h-8;
 }
+
 input[type="color"]::-webkit-color-swatch-wrapper {
-	@apply p-1
+  @apply p-1
 }
+
 input[type="color"]::-webkit-color-swatch {
-	@apply border-none
+  @apply border-none
 }
 
 .asbw-stickybag-widget {
-  position: absolute !important;  
+  position: absolute !important;
   z-index: 1 !important;
 }
 
@@ -73,39 +76,45 @@ input[type="color"]::-webkit-color-swatch {
   .desktop-view .asbw-stickybag-widget.asbw-boxed {
     margin-right: 15px !important;
     margin-left: 15px !important;
-}
+  }
 }
 
-@media (max-width:768px) { 
+@media (max-width:768px) {
   .desktop-view #widget-container {
     flex-direction: inherit !important;
-}
-.desktop-view .asbw-stickybag-widget.asbw-boxed {
+  }
+
+  .desktop-view .asbw-stickybag-widget.asbw-boxed {
     margin-right: 15px !important;
     margin-left: 15px !important;
     margin-top: 12px !important;
     margin-bottom: 12px !important;
     border-radius: 10px !important;
   }
+
   .desktop-view .asbw-stickybag-product {
     max-width: 50% !important;
   }
+
   .desktop-view .asbw-stickybag-widget-events {
     flex-direction: inherit !important;
     width: auto !important;
-}
-.desktop-view .asbw-stickybag-options {
-  width: auto !important;
-  margin-bottom: 0 !important;
-  gap: 0 !important;
-}
-.desktop-view .asbw-stickybag-options>div {
-  margin-left: 12px !important;
-  flex-grow: 0 !important;
-  flex-basis: 0 !important;
-}
-.desktop-view .asbw-stickybag-actions {
-  margin-left: 12px !important;
-  width: auto !important;
-}
+  }
+
+  .desktop-view .asbw-stickybag-options {
+    width: auto !important;
+    margin-bottom: 0 !important;
+    gap: 0 !important;
+  }
+
+  .desktop-view .asbw-stickybag-options>div {
+    margin-left: 12px !important;
+    flex-grow: 0 !important;
+    flex-basis: 0 !important;
+  }
+
+  .desktop-view .asbw-stickybag-actions {
+    margin-left: 12px !important;
+    width: auto !important;
+  }
 }

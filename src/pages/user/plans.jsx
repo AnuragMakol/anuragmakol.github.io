@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 import { Loader } from '../../loader';
 import { UserDashboardLayout } from '../../components/layouts';
@@ -89,6 +90,59 @@ export function Plans(props) {
                 </h2>
             </div>
 
+            {
+                user?.plan_details !== undefined ? <div className="bg-white border border-stroke mb-4">
+                    <div className="grid grid-cols-6 px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">
+                        <div className="col-span-2 flex items-center">
+                            <p className="font-medium">Plan Name</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Activated On</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Trial Days</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Trial Ends On</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Subscription Price</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Renews On</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">Actions</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">
+                        <div className="col-span-2 flex items-center">
+                            <p className="font-medium">{user?.plan_details?.name} Plan</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">{moment(user?.plan_details?.activated_on).format("DD MMM, YYYY")}</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">{user?.plan_details?.trial_days > 0 ? user?.plan_details?.trial_days : "N/A"}</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">{user?.plan_details?.trial_days > 0 ? moment(user?.plan_details?.trial_ends_on).format("DD MMM, YYYY") : "N/A"}</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">{user?.plan_details?.price} {user?.plan_details?.currency}</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">{moment(user?.plan_details?.trial_ends_on).format("Do")} of every month</p>
+                        </div>
+                        <div className="col-span-1 flex items-center">
+                            <p className="font-medium">
+                                <button className="block w-full rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90 ml-1" onClick={() => CancelPlan()}> Cancel Plan </button>
+                            </p>
+                        </div>
+                    </div>
+                </div> : ""
+            }
+
             <div className="relative z-10 overflow-hidden rounded-sm border border-stroke bg-white p-11 shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="w-full overflow-x-auto">
                     <table className="table-auto">
@@ -128,10 +182,7 @@ export function Plans(props) {
                                         </p>
                                         {
                                             user?.plan_details?.name === "Advanced" ?
-                                                <div className="grid 2xl:grid-cols-2 flex-wrap">
-                                                    <button className="col-span-1 rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90 mr-1" disabled> Current Plan </button>
-                                                    <button className="col-span-1 rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90 ml-1" onClick={() => CancelPlan()}> Cancel Plan </button>
-                                                </div> :
+                                                <button className="block w-full rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Current Plan </button> :
                                                 <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Advanced')}> Get Started </button>
                                         }
                                     </div>
@@ -150,10 +201,7 @@ export function Plans(props) {
                                         </p>
                                         {
                                             user?.plan_details?.name === "Ultimate" ?
-                                                <div className="grid grid-cols-2">
-                                                    <button className="col-span-1 rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90 mr-1" disabled> Current Plan </button>
-                                                    <button className="col-span-1 rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90 ml-1" onClick={() => CancelPlan()}> Cancel Plan </button>
-                                                </div> :
+                                                <button className="block w-full rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Current Plan </button> :
                                                 <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Ultimate')}> Get Started </button>
                                         }
                                     </div>
@@ -210,7 +258,7 @@ export function Plans(props) {
                                     </p>
                                 </td>
                                 <td className="border-t border-stroke px-7 py-5 dark:border-strokedark">
-                                <p className="flex justify-center text-center">
+                                    <p className="flex justify-center text-center">
                                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.4797 0C5.56911 0 0 5.56911 0 12.4797C0 19.3902 5.56911 25 12.4797 25C19.3902 25 25 19.3902 25 12.4797C25 5.56911 19.3902 0 12.4797 0ZM12.4797 23.5772C6.38211 23.5772 1.42276 18.5772 1.42276 12.4797C1.42276 6.38211 6.38211 1.42276 12.4797 1.42276C18.5772 1.42276 23.5772 6.38211 23.5772 12.4797C23.5772 18.5772 18.5772 23.5772 12.4797 23.5772Z" fill="#FF9494"></path>
                                             <path d="M16.2204 8.73978C15.9359 8.45523 15.4887 8.45523 15.2042 8.73978L12.4806 11.4634L9.75702 8.73978C9.47247 8.45523 9.02531 8.45523 8.74076 8.73978C8.45621 9.02433 8.45621 9.47149 8.74076 9.75604L11.4643 12.4796L8.74076 15.2032C8.45621 15.4878 8.45621 15.9349 8.74076 16.2195C8.86271 16.3414 9.06596 16.4227 9.22856 16.4227C9.39117 16.4227 9.59442 16.3414 9.71637 16.2195L12.4399 13.4959L15.1635 16.2195C15.2855 16.3414 15.4887 16.4227 15.6513 16.4227C15.8139 16.4227 16.0172 16.3414 16.1391 16.2195C16.4237 15.9349 16.4237 15.4878 16.1391 15.2032L13.4969 12.4796L16.2204 9.75604C16.4643 9.47149 16.4643 9.02433 16.2204 8.73978Z" fill="#FF9494"></path>

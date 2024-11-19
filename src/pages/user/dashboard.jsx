@@ -151,7 +151,7 @@ export function Dashboard(props) {
                     </a>
                   </div>
                   <div className="col-span-2 hidden items-center sm:flex">
-                    <p className="text-sm font-medium text-black dark:text-white">
+                    <div className="text-sm font-medium text-black dark:text-white">
                       {
                         !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
@@ -161,7 +161,7 @@ export function Dashboard(props) {
                           )
                         })
                       }
-                    </p>
+                    </div>
                   </div>
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm font-medium text-black dark:text-white">{item?.type}</p>
@@ -215,7 +215,7 @@ export function Dashboard(props) {
                     </a>
                   </div>
                   <div className="col-span-2 hidden items-center sm:flex">
-                    <p className="text-sm font-medium text-black dark:text-white">
+                    <div className="text-sm font-medium text-black dark:text-white">
                       {
                         !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
@@ -225,7 +225,7 @@ export function Dashboard(props) {
                           )
                         })
                       }
-                    </p>
+                    </div>
                   </div>
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm font-medium text-black dark:text-white">{item?.type}</p>
@@ -279,7 +279,7 @@ export function Dashboard(props) {
                     </a>
                   </div>
                   <div className="col-span-2 hidden items-center sm:flex">
-                    <p className="text-sm font-medium text-black dark:text-white">
+                    <div className="text-sm font-medium text-black dark:text-white">
                       {
                         !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
@@ -289,7 +289,7 @@ export function Dashboard(props) {
                           )
                         })
                       }
-                    </p>
+                    </div>
                   </div>
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm font-medium text-black dark:text-white">{item?.type}</p>
@@ -343,7 +343,7 @@ export function Dashboard(props) {
                     </a>
                   </div>
                   <div className="col-span-2 hidden items-center sm:flex">
-                    <p className="text-sm font-medium text-black dark:text-white">
+                    <div className="text-sm font-medium text-black dark:text-white">
                       {
                         !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                           return (
@@ -353,7 +353,7 @@ export function Dashboard(props) {
                           )
                         })
                       }
-                    </p>
+                    </div>
                   </div>
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm font-medium text-black dark:text-white">{item?.type}</p>

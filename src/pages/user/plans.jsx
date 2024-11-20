@@ -29,8 +29,7 @@ export function Plans(props) {
 
     const { mutate: initCreateRecurringCharge, isLoading: loadingCreateRecurringCharge } = useMutation(createRecurringCharge, {
         onSuccess: (result) => {
-            setUser(result.data);
-            window.location.href = result.data.recurring_application_charge.confirmation_url;
+            window.location.href = result.data.appSubscriptionCreate.confirmationUrl;
         },
         onError: (error) => {
             errorHandler(error);
@@ -120,19 +119,19 @@ export function Plans(props) {
                             <p className="font-medium">{user?.plan_details?.name} Plan</p>
                         </div>
                         <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{moment(user?.plan_details?.activated_on).format("DD MMM, YYYY")}</p>
+                            <p className="font-medium">{moment(user?.plan_details?.createdAt).format("DD MMM, YYYY")}</p>
                         </div>
                         <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{user?.plan_details?.trial_days > 0 ? user?.plan_details?.trial_days : "N/A"}</p>
+                            <p className="font-bold text-danger">{user?.plan_details?.trialDays > 0 ? user?.plan_details?.trialDays : "N/A"}</p>
                         </div>
                         <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{user?.plan_details?.trial_days > 0 ? moment(user?.plan_details?.trial_ends_on).format("DD MMM, YYYY") : "N/A"}</p>
+                            <p className="font-bold text-danger">{user?.plan_details?.trialDays > 0 ? moment(user?.plan_details?.createdAt).add(user?.plan_details?.trialDays, 'days').format("DD MMM, YYYY") : "N/A"}</p>
                         </div>
                         <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{user?.plan_details?.price} {user?.plan_details?.currency}</p>
+                            <p className="font-medium">{user?.plan_details?.price} {user?.plan_details?.currencyCode}</p>
                         </div>
                         <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{moment(user?.plan_details?.trial_ends_on).format("Do")} of every month</p>
+                            <p className="font-medium">{moment(user?.plan_details?.currentPeriodEnd).format("Do")} of every month</p>
                         </div>
                         <div className="col-span-1 flex items-center">
                             <p className="font-medium">

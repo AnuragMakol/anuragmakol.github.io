@@ -20,6 +20,7 @@ export function Widget(props) {
     const navigate = useNavigate();
     const [user, setUser] = useRecoilState(userStore);
     const [deviceToggle, setDeviceToggle] = useState('desktop');
+    const [sidebarToggle, setSidebarToggle] = useState(false);
     const [templateStyle, setTemplateStyle] = useState('');
     const [customStyle, setCustomStyle] = useState('');
 
@@ -222,12 +223,14 @@ export function Widget(props) {
                     </div>
                 </div>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
-                    <button className="fixed top-34 left-4 z-99999  rounded-md border border-stroke bg-white p-1.5 shadow-sm block lg:hidden">
-                        <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                            <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>
-                        </svg>
+                    <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-4 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
+                        {
+                            sidebarToggle ? <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>
+                            </svg> : <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z"/></svg>
+                        }
                     </button>
-                    <div className='max-w-100 min-w-100 h-full absolute left-0 top-0 z-99 duration-300 ease-linear  lg:static lg:translate-x-0 -translate-x-full lg:ml-0 -ml-px'>
+                    <div className={`max-w-100 min-w-100 h-full absolute left-0 top-0 z-99 duration-300 ease-linear lg:static lg:translate-x-0 lg:ml-0 ${sidebarToggle ? "-translate-x-full -ml-0.5" : "-translate-x-0 -ml-0"}`}>
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                             <div className="rounded-sm border border-stroke bg-white shadow flex flex-col h-full">
                                 <div className="border-b border-stroke px-6 py-4 flex flex-shrink-0">

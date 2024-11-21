@@ -163,7 +163,7 @@ export function Plans(props) {
                                         {
                                             user?.plan_details === undefined ?
                                                 <button className="block w-full rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Current Plan </button> :
-                                                <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Get Started </button>
+                                                <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => CancelPlan()}> Get Started </button>
                                         }
                                     </div>
                                 </th>

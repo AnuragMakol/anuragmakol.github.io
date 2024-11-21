@@ -182,7 +182,11 @@ export function Plans(props) {
                                         {
                                             user?.plan_details?.name === "Advanced" ?
                                                 <button className="block w-full rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Current Plan </button> :
-                                                <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Advanced')}> Get Started </button>
+                                                <React.Fragment>
+                                                    {
+                                                        user?.plan_details === undefined ? <button className="block w-full rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Advanced')}> Upgrade Now </button> : <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Advanced')}> Get Started </button>
+                                                    }
+                                                </React.Fragment>
                                         }
                                     </div>
                                 </th>
@@ -201,7 +205,7 @@ export function Plans(props) {
                                         {
                                             user?.plan_details?.name === "Ultimate" ?
                                                 <button className="block w-full rounded-md bg-primary p-3 text-center font-medium text-white transition hover:bg-opacity-90" disabled> Current Plan </button> :
-                                                <button className="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Ultimate')}> Get Started </button>
+                                                <button className="block w-full rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={() => SelectPlan('Ultimate')}> Upgrade Now </button>
                                         }
                                     </div>
                                 </th>

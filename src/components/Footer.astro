@@ -1,3 +1,11 @@
+---
+interface Props {
+	bodyclass: string;
+}
+
+const { bodyclass } = Astro.props;
+---
+
 <div class="rts-footer-area-one rts-section-gapTop">
 	<div class="container">
 		<div class="row">
@@ -16,10 +24,10 @@
 			<div class="col-lg-12">
 				<div class="footer-main-wrapper-one">
 					<div class="footer-left-area">
-						<a href="index.html" class="logo-footer logo">
+						<a href="/" class="logo-footer logo">
 							<img
 								class="logo-1"
-								src={`${import.meta.env.BASE_URL}images/logo-white.png`}
+								src={`${import.meta.env.BASE_URL}images/${bodyclass === "index-one" ? "logo-black" : "logo-white"}.png`}
 								alt="logo"
 							/>
 						</a>
@@ -55,31 +63,31 @@
 						</div>
 					</div>
 					<div class="footer-single-wized-start">
-						<h5 class="title">Useful Links</h5>
+						<h5 class={`${bodyclass === "index-one" ? "title" : "title text-white"}`}>Useful Links</h5>
 						<ul class="footer-nav">
 							<li>
-								<a href="about">About Us</a>
+								<a href="/about">About Us</a>
 							</li>
 							<li>
-								<a href="terms">Terms & Conditions</a>
+								<a href="/terms">Terms & Conditions</a>
 							</li>
 							<li>
-								<a href="privacy">Privacy</a>
+								<a href="/privacy">Privacy</a>
 							</li>
 							<li>
-								<a href="contact">Contact Us</a>
+								<a href="/contact">Contact Us</a>
 							</li>
 						</ul>
 					</div>
 					<div class="footer-single-wized-start">
-						<h5 class="title">Contact Info</h5>
+						<h5 class={`${bodyclass === "index-one" ? "title" : "title text-white"}`}>Contact Info</h5>
 						<div class="mail-contact-area">
 							<div class="single-con-info mb--40">
 								<a href="#">
 									Maxuel Street, Frankfurt <br /> 2589 Germany.
 								</a>
 							</div>
-							<div class="single-con-info mail">
+							<div class="single-con-info">
 								<a href="#"> info@appvertix.com </a>
 							</div>
 							<div class="single-con-info">
@@ -88,7 +96,7 @@
 						</div>
 					</div>
 					<div class="footer-single-wized-start">
-						<h5 class="title">Subscribe Us</h5>
+						<h5 class={`${bodyclass === "index-one" ? "title" : "title text-white"}`}>Subscribe Us</h5>
 						<div class="subscribtion-area">
 							<p class="disc">
 								Subscribe our newsletter for future updates. <br

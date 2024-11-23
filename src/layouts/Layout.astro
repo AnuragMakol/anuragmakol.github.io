@@ -33,7 +33,7 @@ const { title, bodyclass } = Astro.props;
 		<div id="smooth-wrapper">
 			<div id="smooth-content">
 				<slot />
-				{bodyclass.includes("coming-soon") ? "" : <Footer />}
+				{bodyclass.includes("coming-soon") ? "" : <Footer bodyclass={bodyclass} />}
 			</div>
 		</div>
 	</body>

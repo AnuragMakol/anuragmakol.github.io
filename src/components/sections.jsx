@@ -63,61 +63,64 @@ export const UserSidebar = (props) => {
     const [user, setUser] = useRecoilState(userStore);
 
     return (
-        <aside className="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  2xl:static 2xl:translate-x-0 -translate-x-full">
-            <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+        <aside className="absolute left-0 top-0 z-9999 flex h-screen 2xl:w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  2xl:static 2xl:translate-x-0 sidebar-nav-panel group">
+            <div className="flex items-center justify-between gap-2 px-4.5 2xl:px-6 py-5.5 lg:py-6.5">
                 <a className="text-2xl" onClick={() => navigate('/dashboard')}>
-                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} alt="Logo" />
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
+                    alt="Logo" className="group-hover:flex hidden 2xl:flex" />
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="flex group-hover:hidden 2xl:hidden" />
                 </a>
-                <button className="block 2xl:hidden">
+               
+                {/* <button className="block 2xl:hidden">
                     <svg className="fill-current" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z" fill="" />
                     </svg>
-                </button>
+                </button> */}
             </div>
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
-                <nav className="mt-5 px-4 py-4 lg:mt-2 lg:px-6">
+                <nav className="mt-5 px-2 2xl:px-4 py-4 lg:mt-2">
                     <div>
-                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
+                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 group-hover:flex hidden 2xl:flex">MENU</h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/dashboard')}>
+                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/dashboard')}>
                                     <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-dashboard.svg`} alt='dashboard' /></span>
-                                    <span>Dashboard</span>
+                                    <span className="group-hover:flex hidden 2xl:flex">Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/widget')}>
+                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/widget')}>
                                     <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-widget.svg`} alt='widget' /></span>
-                                    <span>Widget</span>
+                                    <span className="group-hover:flex hidden 2xl:flex">Widget</span>
                                 </a>
                             </li>
                         </ul>
 
-                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2">USER SETTINGS</h3>
+                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 group-hover:flex hidden 2xl:flex">USER SETTINGS</h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/plans')}>
+                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/plans')}>
                                     <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
-                                    <span>Plans</span>
+                                    <span className="group-hover:flex hidden 2xl:flex">Plans</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/profile')}>
+                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/profile')}>
                                     <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-user.svg`} alt='profile' /></span>
-                                    <span>My Profile</span>
+                                    <span className="group-hover:flex hidden 2xl:flex">My Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/logout')}>
+                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/logout')}>
                                     <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-logout.svg`} alt='log out' /></span>
-                                    <span>Log Out</span>
+                                    <span className="group-hover:flex hidden 2xl:flex">Log Out</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
 
-                <div className="mx-auto mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto">
+                <div className="mx-4 mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto group-hover:flex hidden 2xl:flex flex-col">
                     <h3 className="mb-1 font-semibold text-white">Facing an Issue ?</h3>
                     <p className="mb-4 text-xs text-white">Contact our support team and the issue will be resolved within 24 hours.</p>
                     <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL}`} className="flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95"> Contact Us </a>

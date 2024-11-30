@@ -241,3 +241,26 @@ span.flatpickr-weekday,
   -ms-transform: translateX(28px);
   transform: translateX(28px);
 }
+
+table {
+  @apply text-left
+}
+table th {
+  @apply bg-gray px-4 py-3 text-black
+}
+table td {
+  @apply px-4 py-3
+}
+
+/* Navigation  */
+/* .sidebar-nav-panel {
+  @apply group-[]:
+} */
+/* .sidebar-nav-panel .nav-link,
+.sidebar-nav-panel .sidebar-info-bottom,
+.sidebar-nav-panel .nav-label {
+  @apply hidden
+} */
+.sidebar-nav-panel .sidebar-logo {
+  @apply w-10 h-10 hidden
+}

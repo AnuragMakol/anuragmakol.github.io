@@ -67,8 +67,8 @@ export const UserSidebar = (props) => {
             <div className="flex items-center justify-between gap-2 px-4.5 2xl:px-6 py-5.5 lg:py-6.5">
                 <a className="text-2xl" onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
-                    alt="Logo" className="group-hover:flex hidden 2xl:flex" />
-                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="flex group-hover:hidden 2xl:hidden" />
+                    alt="Logo" className="group-hover:flex hidden 2xl:flex" />                    
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="w-8 flex group-hover:hidden 2xl:hidden" />
                 </a>
                
                 {/* <button className="block 2xl:hidden">

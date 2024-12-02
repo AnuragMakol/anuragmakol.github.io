@@ -7,32 +7,15 @@ import { userStore } from '../atoms';
 export const UserHeader = (props) => {
     const navigate = useNavigate();
     const [user, setUser] = useRecoilState(userStore);
-    const [headerDropdown, setHeaderDropdown] = useState('');
-
-    const manageHeaderDropdown = (value) => {
-        setHeaderDropdown(value);
-    }
 
     return (
         <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
             <div className="flex flex-grow items-center justify-between px-4 py-2 shadow-2 md:px-6 2xl:px-11">
-                <div className="flex items-center gap-2 sm:gap-4 2xl:hidden">
-                    <a className="block flex-shrink-0 2xl:hidden" onClick={() => navigate('/dashboard')}>
-                        <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" />
-                    </a>
-                </div>
-
-                <div>
-                    <ul className="flex space-x-8 2xl:hidden lg:pl-36">
-                        <li><a className="text-black" onClick={() => navigate('/dashboard')}>Dashboard</a></li>
-                        <li><a className="text-black" onClick={() => navigate('/widget')}>Widget</a></li>
-                        <li><a className="text-black" onClick={() => navigate('/plans')}>Plans</a></li>
-                    </ul>
-                </div>
+                <div className="flex items-center gap-2 sm:gap-4 2xl:hidden"></div>
 
                 <div className="flex items-center gap-3 2xsm:gap-7">
                     <div className="relative group">
-                        <a className="flex items-center gap-4 dropdown-flag" onClick={() => manageHeaderDropdown('settings')}>
+                        <a className="flex items-center gap-4 dropdown-flag">
                             <span className="hidden text-right lg:block">
                                 <span className="block text-sm font-medium text-black ">Thomas Anree</span>
                                 <span className="block text-xs font-medium">UX Designer</span>
@@ -70,12 +53,6 @@ export const UserSidebar = (props) => {
                     alt="Logo" className="group-hover:flex hidden 2xl:flex" />                    
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="w-8 flex group-hover:hidden 2xl:hidden" />
                 </a>
-               
-                {/* <button className="block 2xl:hidden">
-                    <svg className="fill-current" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z" fill="" />
-                    </svg>
-                </button> */}
             </div>
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
                 <nav className="mt-5 px-2 2xl:px-4 py-4 lg:mt-2">

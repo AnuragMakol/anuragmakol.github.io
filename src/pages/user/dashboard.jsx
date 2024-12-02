@@ -29,6 +29,23 @@ export function Dashboard(props) {
     }
   });
 
+  const BeautifyStatistics = (type, value) => {
+    let amount = 0;
+
+    if(value >= 1000) {
+      amount = value/1000;
+      amount = `${amount.toFixed(2)}K`;
+    } else {
+      amount = value;
+    }
+
+    if (type === "revenue") {
+      amount = user?.shop_details?.money_format.replace('{{amount}}', amount);
+    }
+
+    return amount;
+  }
+
   return (
     <UserDashboardLayout props={props}>
       <Loader loading={loadingFetchProducStatistics} />
@@ -46,7 +63,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Views</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.views?.$numberDecimal == undefined ? 0 : statistics?.weekly?.views?.$numberDecimal}
+                  {statistics?.weekly?.views?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.views?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -59,7 +76,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Added to Cart</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.added_to_cart?.$numberDecimal == undefined ? 0 : statistics?.weekly?.added_to_cart?.$numberDecimal}
+                  {statistics?.weekly?.added_to_cart?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.added_to_cart?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -69,15 +86,14 @@ export function Dashboard(props) {
           </div>
           <div className='col-span-12 lg:col-span-3 mb-3'>
             <div className='rounded-sm border border-stroke bg-white shadow-default p-6 flex justify-between items-center'>
-
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Conversions</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.conversions?.$numberDecimal == undefined ? 0 : statistics?.weekly?.conversions?.$numberDecimal}
+                  {statistics?.weekly?.conversions?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.conversions?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
-              <svg className='fill-primary' width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.8752 24.65H31.5564V9.19062C31.5564 7.96875 30.5471 6.90625 29.2721 6.90625H26.4033C25.1814 6.90625 24.1189 7.91562 24.1189 9.19062V24.65H20.7189V12.1656C20.7189 10.9437 19.7096 9.88125 18.4346 9.88125H15.5658C14.3439 9.88125 13.2814 10.8906 13.2814 12.1656V24.65H9.82832V15.6187C9.82832 14.3969 8.81895 13.3344 7.54395 13.3344H4.6752C3.45332 13.3344 2.39082 14.3437 2.39082 15.6187V24.65H2.1252C1.4877 24.65 0.90332 25.1813 0.90332 25.8719C0.90332 26.5625 1.43457 27.0938 2.1252 27.0938H31.8752C32.5127 27.0938 33.0971 26.5625 33.0971 25.8719C33.0971 25.1813 32.5127 24.65 31.8752 24.65ZM4.83457 24.65V15.7781H7.4377V24.65H4.83457ZM15.6721 24.65V12.325H18.2752V24.65H15.6721ZM26.5627 24.65V9.35H29.1658V24.65H26.5627V24.65Z" fill="#3C50E0"></path></svg>
+                <svg className='fill-primary' width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.8752 24.65H31.5564V9.19062C31.5564 7.96875 30.5471 6.90625 29.2721 6.90625H26.4033C25.1814 6.90625 24.1189 7.91562 24.1189 9.19062V24.65H20.7189V12.1656C20.7189 10.9437 19.7096 9.88125 18.4346 9.88125H15.5658C14.3439 9.88125 13.2814 10.8906 13.2814 12.1656V24.65H9.82832V15.6187C9.82832 14.3969 8.81895 13.3344 7.54395 13.3344H4.6752C3.45332 13.3344 2.39082 14.3437 2.39082 15.6187V24.65H2.1252C1.4877 24.65 0.90332 25.1813 0.90332 25.8719C0.90332 26.5625 1.43457 27.0938 2.1252 27.0938H31.8752C32.5127 27.0938 33.0971 26.5625 33.0971 25.8719C33.0971 25.1813 32.5127 24.65 31.8752 24.65ZM4.83457 24.65V15.7781H7.4377V24.65H4.83457ZM15.6721 24.65V12.325H18.2752V24.65H15.6721ZM26.5627 24.65V9.35H29.1658V24.65H26.5627V24.65Z" fill="#3C50E0"></path></svg>
               </div>
             </div>
           </div>
@@ -86,7 +102,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Revenue</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.revenue?.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.weekly?.revenue?.$numberDecimal)}
+                  {statistics?.weekly?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', statistics?.weekly?.revenue?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -95,7 +111,6 @@ export function Dashboard(props) {
             </div>
           </div>
         </div>
-
       </div>
       <div className='w-full mb-5'>
         <h2 className='text-xl font-bold text-black mb-3'>Monthly statistics</h2>
@@ -105,7 +120,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Views</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black md:text-title-lg">
-                  {statistics?.monthly?.views?.$numberDecimal == undefined ? 0 : statistics?.monthly?.views?.$numberDecimal}
+                  {statistics?.monthly?.views?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.views?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -118,9 +133,8 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Added to Cart</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.monthly?.added_to_cart?.$numberDecimal == undefined ? 0 : statistics?.monthly?.added_to_cart?.$numberDecimal}
+                  {statistics?.monthly?.added_to_cart?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.added_to_cart?.$numberDecimal)}
                 </h4>
-
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
                 <svg className="fill-primary" width="26" height="30" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.7531 16.4312C10.3781 16.4312 9.27808 17.5312 9.27808 18.9062C9.27808 20.2812 10.3781 21.3812 11.7531 21.3812C13.1281 21.3812 14.2281 20.2812 14.2281 18.9062C14.2281 17.5656 13.0937 16.4312 11.7531 16.4312ZM11.7531 19.8687C11.2375 19.8687 10.825 19.4562 10.825 18.9406C10.825 18.425 11.2375 18.0125 11.7531 18.0125C12.2687 18.0125 12.6812 18.425 12.6812 18.9406C12.6812 19.4219 12.2343 19.8687 11.7531 19.8687Z" fill=""></path><path d="M5.22183 16.4312C3.84683 16.4312 2.74683 17.5312 2.74683 18.9062C2.74683 20.2812 3.84683 21.3812 5.22183 21.3812C6.59683 21.3812 7.69683 20.2812 7.69683 18.9062C7.69683 17.5656 6.56245 16.4312 5.22183 16.4312ZM5.22183 19.8687C4.7062 19.8687 4.2937 19.4562 4.2937 18.9406C4.2937 18.425 4.7062 18.0125 5.22183 18.0125C5.73745 18.0125 6.14995 18.425 6.14995 18.9406C6.14995 19.4219 5.73745 19.8687 5.22183 19.8687Z" fill=""></path><path d="M19.0062 0.618744H17.15C16.325 0.618744 15.6031 1.23749 15.5 2.06249L14.95 6.01562H1.37185C1.0281 6.01562 0.684353 6.18749 0.443728 6.46249C0.237478 6.73749 0.134353 7.11562 0.237478 7.45937C0.237478 7.49374 0.237478 7.49374 0.237478 7.52812L2.36873 13.9562C2.50623 14.4375 2.9531 14.7812 3.46873 14.7812H12.9562C14.2281 14.7812 15.3281 13.8187 15.5 12.5469L16.9437 2.26874C16.9437 2.19999 17.0125 2.16562 17.0812 2.16562H18.9375C19.35 2.16562 19.7281 1.82187 19.7281 1.37499C19.7281 0.928119 19.4187 0.618744 19.0062 0.618744ZM14.0219 12.3062C13.9531 12.8219 13.5062 13.2 12.9906 13.2H3.7781L1.92185 7.56249H14.7094L14.0219 12.3062Z" fill=""></path></svg>
@@ -129,16 +143,14 @@ export function Dashboard(props) {
           </div>
           <div className='col-span-12 lg:col-span-3 mb-3'>
             <div className='rounded-sm border border-stroke bg-white shadow-default p-6 flex justify-between items-center'>
-
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Conversions</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black md:text-title-lg">
-                  {statistics?.monthly?.conversions?.$numberDecimal == undefined ? 0 : statistics?.monthly?.conversions?.$numberDecimal}
+                  {statistics?.monthly?.conversions?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.conversions?.$numberDecimal)}
                 </h4>
-
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
-              <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" className="fill-primary"><path d="M31.8752 24.65H31.5564V9.19062C31.5564 7.96875 30.5471 6.90625 29.2721 6.90625H26.4033C25.1814 6.90625 24.1189 7.91562 24.1189 9.19062V24.65H20.7189V12.1656C20.7189 10.9437 19.7096 9.88125 18.4346 9.88125H15.5658C14.3439 9.88125 13.2814 10.8906 13.2814 12.1656V24.65H9.82832V15.6187C9.82832 14.3969 8.81895 13.3344 7.54395 13.3344H4.6752C3.45332 13.3344 2.39082 14.3437 2.39082 15.6187V24.65H2.1252C1.4877 24.65 0.90332 25.1813 0.90332 25.8719C0.90332 26.5625 1.43457 27.0938 2.1252 27.0938H31.8752C32.5127 27.0938 33.0971 26.5625 33.0971 25.8719C33.0971 25.1813 32.5127 24.65 31.8752 24.65ZM4.83457 24.65V15.7781H7.4377V24.65H4.83457ZM15.6721 24.65V12.325H18.2752V24.65H15.6721ZM26.5627 24.65V9.35H29.1658V24.65H26.5627V24.65Z" fill="#3C50E0"></path></svg>
+                <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" className="fill-primary"><path d="M31.8752 24.65H31.5564V9.19062C31.5564 7.96875 30.5471 6.90625 29.2721 6.90625H26.4033C25.1814 6.90625 24.1189 7.91562 24.1189 9.19062V24.65H20.7189V12.1656C20.7189 10.9437 19.7096 9.88125 18.4346 9.88125H15.5658C14.3439 9.88125 13.2814 10.8906 13.2814 12.1656V24.65H9.82832V15.6187C9.82832 14.3969 8.81895 13.3344 7.54395 13.3344H4.6752C3.45332 13.3344 2.39082 14.3437 2.39082 15.6187V24.65H2.1252C1.4877 24.65 0.90332 25.1813 0.90332 25.8719C0.90332 26.5625 1.43457 27.0938 2.1252 27.0938H31.8752C32.5127 27.0938 33.0971 26.5625 33.0971 25.8719C33.0971 25.1813 32.5127 24.65 31.8752 24.65ZM4.83457 24.65V15.7781H7.4377V24.65H4.83457ZM15.6721 24.65V12.325H18.2752V24.65H15.6721ZM26.5627 24.65V9.35H29.1658V24.65H26.5627V24.65Z" fill="#3C50E0"></path></svg>
               </div>
             </div>
           </div>
@@ -147,7 +159,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Revenue</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.monthly?.revenue?.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', statistics?.monthly?.revenue?.$numberDecimal)}
+                  {statistics?.monthly?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', statistics?.monthly?.revenue?.$numberDecimal)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -156,7 +168,6 @@ export function Dashboard(props) {
             </div>
           </div>
         </div>
-
       </div>
       <div className='grid grid-cols-12 gap-4 md:gap-6 2xl:gap-7.5 pb-8'>
         <div className="col-span-12 lg:col-span-6">
@@ -175,10 +186,7 @@ export function Dashboard(props) {
                     <p className="font-medium">Type</p>
                   </th>
                   <th>
-                    <p className="font-medium">Vendor</p>
-                  </th>
-                  <th>
-                    <p className="font-medium">Views</p>
+                    <p className="font-medium">Revenue</p>
                   </th>
                 </tr>
               </thead>
@@ -203,7 +211,7 @@ export function Dashboard(props) {
                               !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{variant?.revenue == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', variant?.revenue)}</span>
+                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{variant?.revenue == undefined ? 0 : BeautifyStatistics('revenue', variant?.revenue)}</span>
                                   </div>
                                 )
                               })
@@ -214,11 +222,8 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black dark:text-white">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-black dark:text-white">{item?.vendor}</p>
-                        </td>
-                        <td>
                           <p className="text-sm font-medium text-green-600">
-                            {item?.revenue?.$numberDecimal == undefined ? 0 : user?.shop_details?.money_format.replace('{{amount}}', item?.revenue?.$numberDecimal)}
+                            {item?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', item?.revenue?.$numberDecimal)}
                           </p>
                         </td>
                       </tr>
@@ -227,7 +232,6 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
-
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6">
@@ -246,10 +250,7 @@ export function Dashboard(props) {
                     <p className="font-medium">Type</p>
                   </th>
                   <th>
-                    <p className="font-medium">Vendor</p>
-                  </th>
-                  <th>
-                    <p className="font-medium">Views</p>
+                    <p className="font-medium">Conversions</p>
                   </th>
                 </tr>
               </thead>
@@ -274,7 +275,7 @@ export function Dashboard(props) {
                               !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{variant?.conversions}</span>
+                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', variant?.conversions)}</span>
                                   </div>
                                 )
                               })
@@ -285,10 +286,7 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-black">{item?.vendor}</p>
-                        </td>
-                        <td>
-                          <p className="text-sm font-medium text-green-600">{item?.conversions?.$numberDecimal}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.conversions?.$numberDecimal)}</p>
                         </td>
                       </tr>
                     )
@@ -296,7 +294,6 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
-
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6">
@@ -315,15 +312,11 @@ export function Dashboard(props) {
                     <p className="font-medium">Type</p>
                   </th>
                   <th>
-                    <p className="font-medium">Vendor</p>
-                  </th>
-                  <th>
                     <p className="font-medium">Views</p>
                   </th>
                 </tr>
               </thead>
               <tbody>
-
                 {
                   !isEmpty(statistics?.product_stats?.views) && Object.values(statistics?.product_stats?.views).map((item, index) => {
                     return (
@@ -355,10 +348,7 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-black">{item?.vendor}</p>
-                        </td>
-                        <td>
-                          <p className="text-sm font-medium text-green-600">{item?.views?.$numberDecimal}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.views?.$numberDecimal)}</p>
                         </td>
                       </tr>
                     )
@@ -366,11 +356,9 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
-
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-6
-        ">
+        <div className="col-span-12 lg:col-span-6">
           <div className="rounded-sm border border-stroke bg-white shadow-default py-6">
             <h4 className="text-xl font-bold text-black mb-6 px-4">Products most added to cart</h4>
             <table className='w-full'>
@@ -386,10 +374,7 @@ export function Dashboard(props) {
                     <p className="font-medium">Type</p>
                   </th>
                   <th>
-                    <p className="font-medium">Vendor</p>
-                  </th>
-                  <th>
-                    <p className="font-medium">Views</p>
+                    <p className="font-medium">Add to Cart</p>
                   </th>
                 </tr>
               </thead>
@@ -414,7 +399,7 @@ export function Dashboard(props) {
                               !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{variant?.added_to_cart}</span>
+                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', variant?.added_to_cart)}</span>
                                   </div>
                                 )
                               })
@@ -425,10 +410,7 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black ">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-black ">{item?.vendor}</p>
-                        </td>
-                        <td>
-                          <p className="text-sm font-medium text-green-600">{item?.added_to_cart?.$numberDecimal}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.added_to_cart?.$numberDecimal)}</p>
                         </td>
                       </tr>
                     )

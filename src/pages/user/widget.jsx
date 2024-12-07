@@ -805,10 +805,10 @@ export function Widget(props) {
                                                         {
                                                             widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
                                                                 {
-                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '36.00')}</span>
+                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
                                                                 {
-                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '46.00')}</span>
+                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                                 }
                                                             </div> : ""
                                                         }

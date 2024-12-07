@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
-import { isEmpty } from 'lodash';
+import { isEmpty, sumBy } from 'lodash';
 
 import { Loader } from '../../loader';
 import { userStore, statisticsStore } from '../../atoms';
@@ -32,8 +32,8 @@ export function Dashboard(props) {
   const BeautifyStatistics = (type, value) => {
     let amount = 0;
 
-    if(value >= 1000) {
-      amount = value/1000;
+    if (value >= 1000) {
+      amount = value / 1000;
       amount = `${amount.toFixed(2)}K`;
     } else {
       amount = value;
@@ -63,7 +63,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Views</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.views?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.views?.$numberDecimal)}
+                  {statistics?.weekly?.views == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.views)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -76,7 +76,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Added to Cart</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.added_to_cart?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.added_to_cart?.$numberDecimal)}
+                  {statistics?.weekly?.added_to_cart == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.added_to_cart)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -89,7 +89,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Conversions</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.conversions?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.conversions?.$numberDecimal)}
+                  {statistics?.weekly?.conversions == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.conversions)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -102,7 +102,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Revenue</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.weekly?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', statistics?.weekly?.revenue?.$numberDecimal)}
+                  {statistics?.weekly?.revenue == undefined ? 0 : BeautifyStatistics('revenue', statistics?.weekly?.revenue)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -120,7 +120,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Views</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black md:text-title-lg">
-                  {statistics?.monthly?.views?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.views?.$numberDecimal)}
+                  {statistics?.monthly?.views == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.views)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -133,7 +133,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Added to Cart</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.monthly?.added_to_cart?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.added_to_cart?.$numberDecimal)}
+                  {statistics?.monthly?.added_to_cart == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.added_to_cart)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -146,7 +146,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Conversions</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black md:text-title-lg">
-                  {statistics?.monthly?.conversions?.$numberDecimal == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.conversions?.$numberDecimal)}
+                  {statistics?.monthly?.conversions == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.conversions)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -159,7 +159,7 @@ export function Dashboard(props) {
               <div>
                 <p className="text-sm text-black font-medium mb-2">Total Revenue</p>
                 <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                  {statistics?.monthly?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', statistics?.monthly?.revenue?.$numberDecimal)}
+                  {statistics?.monthly?.revenue == undefined ? 0 : BeautifyStatistics('revenue', statistics?.monthly?.revenue)}
                 </h4>
               </div>
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-meta-2">
@@ -192,7 +192,7 @@ export function Dashboard(props) {
               </thead>
               <tbody>
                 {
-                  !isEmpty(statistics?.product_stats?.revenue) && Object.values(statistics?.product_stats?.revenue).map((item, index) => {
+                  !isEmpty(statistics?.product_stats?.conversions) && Object.values(statistics?.product_stats?.conversions).map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>
@@ -208,10 +208,10 @@ export function Dashboard(props) {
                         <td>
                           <div className="text-sm font-medium text-black">
                             {
-                              !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
+                              !isEmpty(item?.variants) && Object.entries(item?.variants).map((stat, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{variant?.revenue == undefined ? 0 : BeautifyStatistics('revenue', variant?.revenue)}</span>
+                                    {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('revenue', sumBy(stat[1], function(o) { return parseFloat(o.revenue.$numberDecimal)} ))}</span>
                                   </div>
                                 )
                               })
@@ -223,15 +223,21 @@ export function Dashboard(props) {
                         </td>
                         <td>
                           <p className="text-sm font-medium text-green-600">
-                            {item?.revenue?.$numberDecimal == undefined ? 0 : BeautifyStatistics('revenue', item?.revenue?.$numberDecimal)}
+                            {BeautifyStatistics('revenue', item?.total_revenue)}
                           </p>
                         </td>
                       </tr>
                     )
                   })
                 }
+
               </tbody>
             </table>
+            {
+              isEmpty(statistics?.product_stats?.conversions) ? <div className='col-span-12'>
+                <p className='text-center pt-5'>No Results Found</p>
+              </div> : ""
+            }
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6">
@@ -272,10 +278,10 @@ export function Dashboard(props) {
                         <td>
                           <div className="text-sm font-medium text-black dark:text-white">
                             {
-                              !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
+                              !isEmpty(item?.variants) && Object.entries(item?.variants).map((stat, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', variant?.conversions)}</span>
+                                    {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', stat[1].length)}</span>
                                   </div>
                                 )
                               })
@@ -286,7 +292,7 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.conversions?.$numberDecimal)}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.total)}</p>
                         </td>
                       </tr>
                     )
@@ -294,6 +300,11 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
+            {
+              isEmpty(statistics?.product_stats?.conversions) ? <div className='col-span-12'>
+                <p className='text-center pt-5'>No Results Found</p>
+              </div> : ""
+            }
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6">
@@ -304,9 +315,6 @@ export function Dashboard(props) {
                 <tr>
                   <th>
                     <p className="font-medium">Product Name</p>
-                  </th>
-                  <th className=''>
-                    <p className="font-medium">Variants</p>
                   </th>
                   <th>
                     <p className="font-medium">Type</p>
@@ -332,23 +340,10 @@ export function Dashboard(props) {
                           </a>
                         </td>
                         <td>
-                          <div className="text-sm font-medium text-black">
-                            {
-                              !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
-                                return (
-                                  <div key={index2}>
-                                    {variant?.title}
-                                  </div>
-                                )
-                              })
-                            }
-                          </div>
-                        </td>
-                        <td>
                           <p className="text-sm font-medium text-black">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.views?.$numberDecimal)}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.total)}</p>
                         </td>
                       </tr>
                     )
@@ -356,6 +351,11 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
+            {
+              isEmpty(statistics?.product_stats?.views) ? <div className='col-span-12'>
+                <p className='text-center pt-5'>No Results Found</p>
+              </div> : ""
+            }
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6">
@@ -396,10 +396,10 @@ export function Dashboard(props) {
                         <td>
                           <div className="text-sm font-medium text-black">
                             {
-                              !isEmpty(item?.variants) && Object.values(item?.variants).map((variant, index2) => {
+                              !isEmpty(item?.variants) && Object.entries(item?.variants).map((stat, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {variant?.title} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', variant?.added_to_cart)}</span>
+                                    {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', stat[1].length)}</span>
                                   </div>
                                 )
                               })
@@ -410,7 +410,7 @@ export function Dashboard(props) {
                           <p className="text-sm font-medium text-black ">{item?.type}</p>
                         </td>
                         <td>
-                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.added_to_cart?.$numberDecimal)}</p>
+                          <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.total)}</p>
                         </td>
                       </tr>
                     )
@@ -418,6 +418,11 @@ export function Dashboard(props) {
                 }
               </tbody>
             </table>
+            {
+              isEmpty(statistics?.product_stats?.added_to_cart) ? <div className='col-span-12'>
+                <p className='text-center pt-5'>No Results Found</p>
+              </div> : ""
+            }
           </div>
         </div>
       </div>

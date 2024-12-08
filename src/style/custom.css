@@ -19,7 +19,7 @@ input[type="color"]::-webkit-color-swatch {
   @apply border-none
 }
 
-.asbw-stickybag-widget {
+.cpatc-widget {
   position: absolute !important;
   z-index: 1 !important;
 }
@@ -28,11 +28,11 @@ input[type="color"]::-webkit-color-swatch {
   display: none !important;
 }
 
-.mobile-view .asbw-stickybag-widget {
+.mobile-view .cpatc-widget {
   padding: 10px !important;
 }
 
-.mobile-view .asbw-stickybag-widget.asbw-boxed {
+.mobile-view .cpatc-widget.cpatc-boxed {
   margin: 0;
   border-radius: 0;
 }
@@ -41,39 +41,39 @@ input[type="color"]::-webkit-color-swatch {
   flex-direction: column;
 }
 
-.mobile-view .asbw-stickybag-product {
+.mobile-view .cpatc-product {
   max-width: 100%;
   margin-bottom: 10px;
 }
 
-.mobile-view .asbw-stickybag-widget-events {
+.mobile-view .cpatc-widget-events {
   flex-direction: column;
   width: 100%;
 }
 
-.mobile-view .asbw-stickybag-options {
+.mobile-view .cpatc-options {
   width: 100%;
   margin-bottom: 12px;
   gap: 5px;
 }
 
-.mobile-view .asbw-stickybag-options>div {
+.mobile-view .cpatc-options>div {
   margin-left: 0;
   flex-grow: 1;
   flex-basis: 0;
 }
 
-.mobile-view .asbw-stickybag-actions {
+.mobile-view .cpatc-actions {
   margin-left: 0;
   width: 100%;
 }
 
-.mobile-view .asbw-stickybag-action-wrapper {
+.mobile-view .cpatc-action-wrapper {
   flex-grow: 1;
 }
 
 @media (max-width:2090px) {
-  .desktop-view .asbw-stickybag-widget.asbw-boxed {
+  .desktop-view .cpatc-widget.cpatc-boxed {
     margin-right: 15px !important;
     margin-left: 15px !important;
   }
@@ -84,7 +84,7 @@ input[type="color"]::-webkit-color-swatch {
     flex-direction: inherit !important;
   }
 
-  .desktop-view .asbw-stickybag-widget.asbw-boxed {
+  .desktop-view .cpatc-widget.cpatc-boxed {
     margin-right: 15px !important;
     margin-left: 15px !important;
     margin-top: 12px !important;
@@ -92,28 +92,28 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 10px !important;
   }
 
-  .desktop-view .asbw-stickybag-product {
+  .desktop-view .cpatc-product {
     max-width: 50% !important;
   }
 
-  .desktop-view .asbw-stickybag-widget-events {
+  .desktop-view .cpatc-widget-events {
     flex-direction: inherit !important;
     width: auto !important;
   }
 
-  .desktop-view .asbw-stickybag-options {
+  .desktop-view .cpatc-options {
     width: auto !important;
     margin-bottom: 0 !important;
     gap: 0 !important;
   }
 
-  .desktop-view .asbw-stickybag-options>div {
+  .desktop-view .cpatc-options>div {
     margin-left: 12px !important;
     flex-grow: 0 !important;
     flex-basis: 0 !important;
   }
 
-  .desktop-view .asbw-stickybag-actions {
+  .desktop-view .cpatc-actions {
     margin-left: 12px !important;
     width: auto !important;
   }

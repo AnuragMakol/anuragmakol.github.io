@@ -163,27 +163,28 @@ export function Widget(props) {
 
         if (tempData?.widget_style === "custom") {
             let tempStylesheet = `
-            .asbw-stickybag-widget {
+            .cpatc-widget[class*="cpatc-"][class*="-custom"] {
                 ${tempData?.background_color !== undefined ? `background: ${tempData?.background_color} !important;` : ""}
             }
-            .asbw-product-item-image {
+            .cpatc-product .cpatc-product-item-image {
                 ${tempData?.image_size !== undefined ? `width: ${tempData?.image_size}px !important;` : ""}
                 ${tempData?.image_size !== undefined ? `height: ${tempData?.image_size}px !important;` : ""}
                 ${tempData?.image_size !== undefined ? `min-width: ${tempData?.image_size}px !important;` : ""}
             }
-            .asbw-product-item-title {
+                               
+            [class*="cpatc-"][class*="-custom"] .cpatc-content .cpatc-product-item-title {
                 ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
                 ${tempData?.title_size !== undefined ? `font-size: ${tempData?.title_size}px !important;` : ""}
             }
-            .asbw-stickybag-offer-price {
+            .cpatc-content .cpatc-offer-price {
                 ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                 ${tempData?.offer_price_size !== undefined ? `font-size: ${tempData?.offer_price_size}px !important;` : ""}
             }
-            .asbw-item-compare-price {
+            .cpatc-content .cpatc-item-compare-price {
                 ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                 ${tempData?.compare_price_size !== undefined ? `font-size: ${tempData?.compare_price_size}px !important;` : ""}
             }
-            .asbw-action-btn {
+            [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
                 ${tempData?.button_color !== undefined ? `background-color: ${tempData?.button_color} !important;` : ""}
                 ${tempData?.button_color !== undefined ? `border: 1px solid ${tempData?.button_color} !important;` : ""}
                 ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
@@ -223,7 +224,7 @@ export function Widget(props) {
                     </div>
                 </div>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
-                    <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-4 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
+                    <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
                         {
                             sidebarToggle ? <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                 <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>
@@ -684,7 +685,7 @@ export function Widget(props) {
 
                     <style>{templateStyle}</style>
                     <style>{customStyle}</style>
-                    <div className='flex-grow pl-11 lg:pl-4 xl:pl-6'>
+                    <div className='flex-grow pl-11 lg:pl-4 xl:pl-6 overflow-auto'>
                         <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in delay-150 opacity-100 h-full visible" : "opacity-0 h-0 ease-out invisible"}`}>
                             <div className='border border-stroke shadow bg-white relative rounded-lg desktop-view flex flex-col h-full'>
                                 <div className='border-b border-stroke h-13 flex items-center justify-between'>
@@ -714,67 +715,83 @@ export function Widget(props) {
                                     </div>
                                 </div>
                                 <div className='relative flex-grow'>
-                                    <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "asbw-fixed-d-top" : "asbw-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "asbw-boxed" : ""}`}>
+                                    <div className='flex w-full max-w-230 mx-auto h-full pt-36 justify-between px-4'>
+                                    <div className='w-1/2 pr-4'>
+                                    <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                    </div>
+                                    <div className='w-1/2 pt-4'>
+                                        <div>
+                                            <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
+                                            <div className='flex flex-col'>
+                                                <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
+                                                <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
+                                                <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
+                                                <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                            </div>
+                                         </div>                        
+                                    </div>
+                                    </div>
+                                    <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                         <div id="widget-container">
-                                            <div className="asbw-stickybag-product">
+                                            <div className="cpatc-product">
                                                 {
-                                                    widgetSettings?.desktop_hide_image ? "" : <div className="asbw-product-item-image">
+                                                    widgetSettings?.desktop_hide_image ? "" : <div className="cpatc-product-item-image">
                                                         <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
                                                     </div>
                                                 }
 
-                                                <div className="asbw-stickybag-content">
+                                                <div className="cpatc-content">
                                                     {
-                                                        widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
+                                                        widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
                                                     }
                                                     {
-                                                        widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                        widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
                                                             {
-                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                             }
                                                             {
-                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                             }
                                                         </div> : ""
                                                     }
                                                 </div>
                                             </div>
-                                            <div className="asbw-stickybag-widget-events">
-                                                <div id="widget-options" className="asbw-stickybag-options">
-                                                    <div className="asbw-variant-opt">
-                                                        <label className="asbw-label asbw-select-outer">
-                                                            <select id="widget-option1" className="asbw-select">
+                                            <div className="cpatc-widget-events">
+                                                <div id="widget-options" className="cpatc-options">
+                                                    <div className="cpatc-variant-opt">
+                                                        <label className="cpatc-label cpatc-select-outer">
+                                                            <select id="widget-option1" className="cpatc-select">
                                                                 <option value="Navy">Navy</option>
                                                             </select>
-                                                            <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                            <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
                                                         </label>
                                                     </div>
-                                                    <div className="asbw-variant-opt">
-                                                        <label className="asbw-label asbw-select-outer">
-                                                            <select id="widget-option2" className="asbw-select">
+                                                    <div className="cpatc-variant-opt">
+                                                        <label className="cpatc-label cpatc-select-outer">
+                                                            <select id="widget-option2" className="cpatc-select">
                                                                 <option value="XS">XS</option>
                                                                 <option value="S">S</option>
                                                                 <option value="M">M</option>
                                                                 <option value="L">L</option>
                                                                 <option value="XL">XL</option>
                                                             </select>
-                                                            <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                            <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div className="asbw-stickybag-actions">
+                                                <div className="cpatc-actions">
                                                     {
-                                                        widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                        widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
                                                             {
-                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                             }
                                                             {
-                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                             }
                                                         </div>
                                                     }
-                                                    <div className="asbw-stickybag-action-wrapper">
-                                                        <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                                    <div className="cpatc-action-wrapper">
+                                                        <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -783,73 +800,89 @@ export function Widget(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className={`${deviceToggle === "mobile" ? "transition-opacity ease-in delay-150 opacity-100 h-full visible" : "opacity-0 h-0 ease-out invisible"}`}>
-                            <div className='border-4 border-slate-400 max-w-94 h-180 mx-auto relative rounded-iphone-outer mobile-view h-full'>
-                                <div className='bg-white border-4 border-black h-full relative  flex flex-col rounded-7xl overflow-hidden'>
+                        <div className={`${deviceToggle === "mobile" ? "flex items-center transition-opacity ease-in delay-150 opacity-100 h-full visible min-h-180" : "opacity-0 h-0 ease-out invisible"}`}>
+                            <div className='border-4 border-slate-400 w-full max-w-94 mx-auto relative rounded-iphone-outer mobile-view h-full max-h-203'>
+                                <div className='bg-white border-4 border-black w-full h-full relative  flex flex-col rounded-7xl overflow-hidden max-h-203'>
                                     <div className='relative w-full flex justify-center top-2.5 left-3 mb-4.5'>
                                         <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-iphone-statusbar.svg`} alt='iphone status bar' />
                                     </div>
                                     <div className='relative flex-grow'>
-                                        <div id="widget-area" className={`asbw-stickybag-widget asbw-stickybag-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "asbw-fixed-d-top" : "asbw-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "asbw-boxed" : ""}`}>
+                                    <div className='flex flex-col w-full mx-auto pt-4 px-4'>
+                                    <div>
+                                    <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                    </div>
+                                    <div className='pt-4'>
+                                        <div>
+                                            <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
+                                            <div className='flex flex-col'>
+                                                <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
+                                                <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
+                                                <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
+                                                <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                            </div>
+                                         </div>                        
+                                    </div>
+                                    </div>
+                                        <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                             <div id="widget-container">
-                                                <div className="asbw-stickybag-product">
-                                                    <div className="asbw-product-item-image">
+                                                <div className="cpatc-product">
+                                                    <div className="cpatc-product-item-image">
                                                         {
                                                             widgetSettings?.mobile_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
                                                         }
                                                     </div>
-                                                    <div className="asbw-stickybag-content">
+                                                    <div className="cpatc-content">
                                                         {
-                                                            widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="asbw-product-item-title">Product Title</div>
+                                                            widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
                                                         }
                                                         {
-                                                            widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="asbw-product-price-wrapper">
+                                                            widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
-                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
                                                                 {
-                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                                 }
                                                             </div> : ""
                                                         }
                                                     </div>
                                                 </div>
-                                                <div className="asbw-stickybag-widget-events">
-                                                    <div id="widget-options" className="asbw-stickybag-options">
-                                                        <div className="asbw-variant-opt">
-                                                            <label className="asbw-label asbw-select-outer">
-                                                                <select id="widget-option1" className="asbw-select">
+                                                <div className="cpatc-widget-events">
+                                                    <div id="widget-options" className="cpatc-options">
+                                                        <div className="cpatc-variant-opt">
+                                                            <label className="cpatc-label cpatc-select-outer">
+                                                                <select id="widget-option1" className="cpatc-select">
                                                                     <option value="Navy">Navy</option>
                                                                 </select>
-                                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                                <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
                                                             </label>
                                                         </div>
-                                                        <div className="asbw-variant-opt">
-                                                            <label className="asbw-label asbw-select-outer">
-                                                                <select id="widget-option2" className="asbw-select">
+                                                        <div className="cpatc-variant-opt">
+                                                            <label className="cpatc-label cpatc-select-outer">
+                                                                <select id="widget-option2" className="cpatc-select">
                                                                     <option value="XS">XS</option>
                                                                     <option value="S">S</option>
                                                                     <option value="M">M</option>
                                                                     <option value="L">L</option>
                                                                     <option value="XL">XL</option>
                                                                 </select>
-                                                                <span className="asbw-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                                <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div className="asbw-stickybag-actions">
+                                                    <div className="cpatc-actions">
                                                         {
-                                                            widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="asbw-product-price-wrapper">
+                                                            widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
-                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="asbw-stickybag-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
                                                                 {
-                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="asbw-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                                 }
                                                             </div>
                                                         }
-                                                        <div className="asbw-stickybag-action-wrapper">
-                                                            <button id="widget-submit" className="asbw-action-btn asbw-action-btn-md">Add to cart</button>
+                                                        <div className="cpatc-action-wrapper">
+                                                            <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">Add to cart</button>
                                                         </div>
                                                     </div>
                                                 </div>

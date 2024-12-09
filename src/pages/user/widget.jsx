@@ -28,6 +28,7 @@ export function Widget(props) {
         widget_template: "",
         widget_style: "",
         widget_position: "",
+        widget_padding: "",
         widget_width: "",
         widget_status: "",
         desktop_hide_image: "",
@@ -56,6 +57,7 @@ export function Widget(props) {
             widget_template: user?.widget_settings?.widget_template,
             widget_style: user?.widget_settings?.widget_style,
             widget_position: user?.widget_settings?.widget_position,
+            widget_padding: user?.widget_settings?.widget_padding,
             widget_width: user?.widget_settings?.widget_width,
             desktop_hide_image: user?.widget_settings?.desktop_hide_image,
             desktop_hide_title: user?.widget_settings?.desktop_hide_title,
@@ -88,6 +90,7 @@ export function Widget(props) {
                 widget_template: yup.string().required(),
                 widget_style: yup.string().required(),
                 widget_position: yup.string().required(),
+                widget_padding: yup.string().required(),
                 widget_width: yup.string().required(),
                 desktop_hide_image: yup.boolean(),
                 desktop_hide_title: yup.boolean(),
@@ -163,37 +166,46 @@ export function Widget(props) {
 
         if (tempData?.widget_style === "custom") {
             let tempStylesheet = `
-            .cpatc-widget[class*="cpatc-"][class*="-custom"] {
-                ${tempData?.background_color !== undefined ? `background: ${tempData?.background_color} !important;` : ""}
-            }
-            .cpatc-product .cpatc-product-item-image {
-                ${tempData?.image_size !== undefined ? `width: ${tempData?.image_size}px !important;` : ""}
-                ${tempData?.image_size !== undefined ? `height: ${tempData?.image_size}px !important;` : ""}
-                ${tempData?.image_size !== undefined ? `min-width: ${tempData?.image_size}px !important;` : ""}
-            }
-                               
-            [class*="cpatc-"][class*="-custom"] .cpatc-content .cpatc-product-item-title {
-                ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
-                ${tempData?.title_size !== undefined ? `font-size: ${tempData?.title_size}px !important;` : ""}
-            }
-            .cpatc-content .cpatc-offer-price {
-                ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
-                ${tempData?.offer_price_size !== undefined ? `font-size: ${tempData?.offer_price_size}px !important;` : ""}
-            }
-            .cpatc-content .cpatc-item-compare-price {
-                ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
-                ${tempData?.compare_price_size !== undefined ? `font-size: ${tempData?.compare_price_size}px !important;` : ""}
-            }
-            [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                ${tempData?.button_color !== undefined ? `background-color: ${tempData?.button_color} !important;` : ""}
-                ${tempData?.button_color !== undefined ? `border: 1px solid ${tempData?.button_color} !important;` : ""}
-                ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
-            }
-        `;
+                .cpatc-widget {
+                    ${tempData?.padding !== undefined ? `margin-top: ${tempData?.padding}px !important;` : ""}
+                }
+                .cpatc-widget[class*="cpatc-"][class*="-custom"] {
+                    ${tempData?.background_color !== undefined ? `background: ${tempData?.background_color} !important;` : ""}
+                }
+                .cpatc-product .cpatc-product-item-image {
+                    ${tempData?.image_size !== undefined ? `width: ${tempData?.image_size}px !important;` : ""}
+                    ${tempData?.image_size !== undefined ? `height: ${tempData?.image_size}px !important;` : ""}
+                    ${tempData?.image_size !== undefined ? `min-width: ${tempData?.image_size}px !important;` : ""}
+                }
+                                
+                [class*="cpatc-"][class*="-custom"] .cpatc-content .cpatc-product-item-title {
+                    ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
+                    ${tempData?.title_size !== undefined ? `font-size: ${tempData?.title_size}px !important;` : ""}
+                }
+                .cpatc-content .cpatc-offer-price {
+                    ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
+                    ${tempData?.offer_price_size !== undefined ? `font-size: ${tempData?.offer_price_size}px !important;` : ""}
+                }
+                .cpatc-content .cpatc-item-compare-price {
+                    ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
+                    ${tempData?.compare_price_size !== undefined ? `font-size: ${tempData?.compare_price_size}px !important;` : ""}
+                }
+                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
+                    ${tempData?.button_color !== undefined ? `background-color: ${tempData?.button_color} !important;` : ""}
+                    ${tempData?.button_color !== undefined ? `border: 1px solid ${tempData?.button_color} !important;` : ""}
+                    ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
+                }
+            `;
 
             setCustomStyle(tempStylesheet);
         } else {
-            setCustomStyle("");
+            let tempStylesheet = `
+                .cpatc-widget {
+                    ${tempData?.padding !== undefined ? `margin-top: ${tempData?.padding}px !important;` : ""}
+                }
+            `;
+
+            setCustomStyle(tempStylesheet);
         }
     }
 
@@ -228,7 +240,7 @@ export function Widget(props) {
                         {
                             sidebarToggle ? <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                 <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>
-                            </svg> : <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z"/></svg>
+                            </svg> : <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z" /></svg>
                         }
                     </button>
                     <div className={`max-w-100 min-w-100 h-full absolute left-0 top-0 z-99 duration-300 ease-linear lg:static lg:translate-x-0 lg:ml-0 ${sidebarToggle ? "-translate-x-full -ml-0.5" : "-translate-x-0 -ml-0"}`}>
@@ -541,6 +553,20 @@ export function Widget(props) {
                                         {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a position</span>}
                                     </div>
                                     <div className="mb-4 flex items-center flex-wrap">
+                                        <label className="font-medium text-graydark w-22">Padding</label>
+                                        <div className="flex w-44 ml-auto">
+                                            <input type="number" className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 font-normal text-black outline-none transition" {...registerUpdateWidgetTemplate('widget_padding')} onChange={(e) => {
+                                                setWidgetSettings({
+                                                    ...widgetSettings,
+                                                    widget_padding: e.target.value
+                                                });
+
+                                                manageCustomStyle('padding', e.target.value);
+                                            }} />
+                                        </div>
+                                        {errorsUpdateWidgetTemplate?.widget_padding && <span className="text-danger text-sm text-bold w-44 ml-auto">Please choose a value</span>}
+                                    </div>
+                                    <div className="mb-4 flex items-center flex-wrap">
                                         <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width
                                             <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} />
                                         </label>
@@ -716,20 +742,20 @@ export function Widget(props) {
                                 </div>
                                 <div className='relative flex-grow'>
                                     <div className='flex w-full max-w-230 mx-auto h-full pt-36 justify-between px-4'>
-                                    <div className='w-1/2 pr-4'>
-                                    <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
-                                    </div>
-                                    <div className='w-1/2 pt-4'>
-                                        <div>
-                                            <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
-                                            <div className='flex flex-col'>
-                                                <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
-                                                <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
-                                                <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
-                                                <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                        <div className='w-1/2 pr-4'>
+                                            <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                        </div>
+                                        <div className='w-1/2 pt-4'>
+                                            <div>
+                                                <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
+                                                <div className='flex flex-col'>
+                                                    <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
+                                                    <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
+                                                    <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
+                                                    <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                                </div>
                                             </div>
-                                         </div>                        
-                                    </div>
+                                        </div>
                                     </div>
                                     <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                         <div id="widget-container">
@@ -807,22 +833,22 @@ export function Widget(props) {
                                         <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-iphone-statusbar.svg`} alt='iphone status bar' />
                                     </div>
                                     <div className='relative flex-grow'>
-                                    <div className='flex flex-col w-full mx-auto pt-4 px-4'>
-                                    <div>
-                                    <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
-                                    </div>
-                                    <div className='pt-4'>
-                                        <div>
-                                            <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
-                                            <div className='flex flex-col'>
-                                                <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
-                                                <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
-                                                <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
-                                                <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                        <div className='flex flex-col w-full mx-auto pt-4 px-4'>
+                                            <div>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
                                             </div>
-                                         </div>                        
-                                    </div>
-                                    </div>
+                                            <div className='pt-4'>
+                                                <div>
+                                                    <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
+                                                    <div className='flex flex-col'>
+                                                        <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
+                                                        <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
+                                                        <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
+                                                        <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                             <div id="widget-container">
                                                 <div className="cpatc-product">

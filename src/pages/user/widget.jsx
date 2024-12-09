@@ -28,7 +28,6 @@ export function Widget(props) {
         widget_template: "",
         widget_style: "",
         widget_position: "",
-        widget_padding: "",
         widget_width: "",
         widget_status: "",
         desktop_hide_image: "",
@@ -57,7 +56,6 @@ export function Widget(props) {
             widget_template: user?.widget_settings?.widget_template,
             widget_style: user?.widget_settings?.widget_style,
             widget_position: user?.widget_settings?.widget_position,
-            widget_padding: user?.widget_settings?.widget_padding,
             widget_width: user?.widget_settings?.widget_width,
             desktop_hide_image: user?.widget_settings?.desktop_hide_image,
             desktop_hide_title: user?.widget_settings?.desktop_hide_title,
@@ -90,7 +88,6 @@ export function Widget(props) {
                 widget_template: yup.string().required(),
                 widget_style: yup.string().required(),
                 widget_position: yup.string().required(),
-                widget_padding: yup.string().required(),
                 widget_width: yup.string().required(),
                 desktop_hide_image: yup.boolean(),
                 desktop_hide_title: yup.boolean(),
@@ -166,9 +163,6 @@ export function Widget(props) {
 
         if (tempData?.widget_style === "custom") {
             let tempStylesheet = `
-                .cpatc-widget {
-                    ${tempData?.padding !== undefined ? `margin-top: ${tempData?.padding}px !important;` : ""}
-                }
                 .cpatc-widget[class*="cpatc-"][class*="-custom"] {
                     ${tempData?.background_color !== undefined ? `background: ${tempData?.background_color} !important;` : ""}
                 }
@@ -199,13 +193,7 @@ export function Widget(props) {
 
             setCustomStyle(tempStylesheet);
         } else {
-            let tempStylesheet = `
-                .cpatc-widget {
-                    ${tempData?.padding !== undefined ? `margin-top: ${tempData?.padding}px !important;` : ""}
-                }
-            `;
-
-            setCustomStyle(tempStylesheet);
+            setCustomStyle("");
         }
     }
 
@@ -551,20 +539,6 @@ export function Widget(props) {
                                             </label>
                                         </div>
                                         {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a position</span>}
-                                    </div>
-                                    <div className="mb-4 flex items-center flex-wrap">
-                                        <label className="font-medium text-graydark w-22">Padding</label>
-                                        <div className="flex w-44 ml-auto">
-                                            <input type="number" className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 font-normal text-black outline-none transition" {...registerUpdateWidgetTemplate('widget_padding')} onChange={(e) => {
-                                                setWidgetSettings({
-                                                    ...widgetSettings,
-                                                    widget_padding: e.target.value
-                                                });
-
-                                                manageCustomStyle('padding', e.target.value);
-                                            }} />
-                                        </div>
-                                        {errorsUpdateWidgetTemplate?.widget_padding && <span className="text-danger text-sm text-bold w-44 ml-auto">Please choose a value</span>}
                                     </div>
                                     <div className="mb-4 flex items-center flex-wrap">
                                         <label className="mb-1.5 font-medium text-graydark w-22 flex items-center">Width

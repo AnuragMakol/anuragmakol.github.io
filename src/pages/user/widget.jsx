@@ -49,6 +49,7 @@ export function Widget(props) {
         button_text_color: "",
         button_color: "",
         button_text: "",
+        button_text_loading: "",
         button_redirect: ""
     });
 
@@ -78,6 +79,7 @@ export function Widget(props) {
             button_text_color: user?.widget_settings?.button_text_color,
             button_color: user?.widget_settings?.button_color,
             button_text: user?.widget_settings?.button_text,
+            button_text_loading: user?.widget_settings?.button_text_loading,
             button_redirect: user?.widget_settings?.button_redirect
         }
 
@@ -111,7 +113,8 @@ export function Widget(props) {
                 offer_price_color: yup.string(),
                 button_text_color: yup.string(),
                 button_color: yup.string(),
-                button_text: yup.string(),
+                button_text: yup.string().required(),
+                button_text_loading: yup.string().required(),
                 button_redirect: yup.string()
             })
         )
@@ -252,6 +255,11 @@ export function Widget(props) {
                                         <input type="text" className="w-full border-[1.5px] border-stroke bg-transparent px-3 py-2 font-normal text-black outline-none transition" {...registerUpdateWidgetTemplate('button_text')} />
                                         {errorsUpdateWidgetTemplate?.button_text && <span className="text-danger text-sm text-bold">Please add text for the add to cart button</span>}
                                     </div>
+                                    <div className='flex items-center justify-between rounded mb-5'>
+                                        <label className="font-medium text-graydark flex items-center">Button Text Loading</label>
+                                        <input type="text" className="w-full border-[1.5px] border-stroke bg-transparent px-3 py-2 font-normal text-black outline-none transition" {...registerUpdateWidgetTemplate('button_text_loading')} />
+                                        {errorsUpdateWidgetTemplate?.button_text_loading && <span className="text-danger text-sm text-bold">Please add text for the add to cart button while loading</span>}
+                                    </div>
                                     <div className="mb-2 flex items-center">
                                         <label className="mb-1.5 block font-medium text-graydark w-22">Button Redirect</label>
                                         <div className="relative z-20 bg-white w-44 ml-auto">
@@ -367,6 +375,9 @@ export function Widget(props) {
                                                         <option value="32">32px x 32px</option>
                                                         <option value="48">48px x 48px</option>
                                                         <option value="64">64px x 64px</option>
+                                                        <option value="80">80px x 80px</option>
+                                                        <option value="96">96px x 96px</option>
+                                                        <option value="112">112px x 112px</option>
                                                         <option value="128">128px x 128px</option>
                                                     </select>
                                                     <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">

@@ -47,7 +47,9 @@ export function Widget(props) {
         offer_price_size: "",
         offer_price_color: "",
         button_text_color: "",
-        button_color: ""
+        button_color: "",
+        button_text: "",
+        button_redirect: ""
     });
 
     useEffect(() => {
@@ -74,7 +76,9 @@ export function Widget(props) {
             offer_price_size: user?.widget_settings?.offer_price_size,
             offer_price_color: user?.widget_settings?.offer_price_color,
             button_text_color: user?.widget_settings?.button_text_color,
-            button_color: user?.widget_settings?.button_color
+            button_color: user?.widget_settings?.button_color,
+            button_text: user?.widget_settings?.button_text,
+            button_redirect: user?.widget_settings?.button_redirect
         }
 
         resetUpdateWidgetTemplate(updateParams);
@@ -106,7 +110,9 @@ export function Widget(props) {
                 offer_price_size: yup.string(),
                 offer_price_color: yup.string(),
                 button_text_color: yup.string(),
-                button_color: yup.string()
+                button_color: yup.string(),
+                button_text: yup.string(),
+                button_redirect: yup.string()
             })
         )
     });
@@ -126,6 +132,7 @@ export function Widget(props) {
         onSuccess: (result) => {
             successHandler(result);
             setUser(result.data);
+            setWidgetSettings(result.data.widget_settings);
         },
         onError: (error) => {
             errorHandler(error);
@@ -240,6 +247,29 @@ export function Widget(props) {
                                     </h3>
                                 </div>
                                 <div className="py-4 px-6 overflow-x-hidden overflow-y-auto flex flex-grow flex-col w-full">
+                                    <div className='flex items-center justify-between rounded mb-5'>
+                                        <label className="font-medium text-graydark flex items-center">Button Text</label>
+                                        <input type="text" className="w-full border-[1.5px] border-stroke bg-transparent px-3 py-2 font-normal text-black outline-none transition" {...registerUpdateWidgetTemplate('button_text')} />
+                                        {errorsUpdateWidgetTemplate?.button_text && <span className="text-danger text-sm text-bold">Please add text for the add to cart button</span>}
+                                    </div>
+                                    <div className="mb-2 flex items-center">
+                                        <label className="mb-1.5 block font-medium text-graydark w-22">Button Redirect</label>
+                                        <div className="relative z-20 bg-white w-44 ml-auto">
+                                            <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('button_redirect')}>
+                                                <option value="nothing">Do nothing (Stay on page)</option>
+                                                <option value="cart">Redirect to Cart Page</option>
+                                                <option value="checkout">Redirect to Checkout Page</option>
+                                            </select>
+                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g opacity="0.8">
+                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                        </div>
+                                    </div>
                                     <div className='flex items-center justify-between rounded mb-5'>
                                         <label className="font-medium text-graydark flex items-center">Show Widget
                                             <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />
@@ -791,7 +821,7 @@ export function Widget(props) {
                                                         </div>
                                                     }
                                                     <div className="cpatc-action-wrapper">
-                                                        <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">Add to cart</button>
+                                                        <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -800,6 +830,7 @@ export function Widget(props) {
                                 </div>
                             </div>
                         </div>
+
                         <div className={`${deviceToggle === "mobile" ? "flex items-center transition-opacity ease-in delay-150 opacity-100 h-full visible min-h-180" : "opacity-0 h-0 ease-out invisible"}`}>
                             <div className='border-4 border-slate-400 w-full max-w-94 mx-auto relative rounded-iphone-outer mobile-view h-full max-h-203'>
                                 <div className='bg-white border-4 border-black w-full h-full relative  flex flex-col rounded-7xl overflow-hidden max-h-203'>
@@ -882,7 +913,7 @@ export function Widget(props) {
                                                             </div>
                                                         }
                                                         <div className="cpatc-action-wrapper">
-                                                            <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">Add to cart</button>
+                                                            <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -115,7 +115,8 @@ export function Widget(props) {
                 button_color: yup.string(),
                 button_text: yup.string().required(),
                 button_text_loading: yup.string().required(),
-                button_redirect: yup.string()
+                button_redirect: yup.string(),
+                widget_visibility_height: yup().string().
             })
         )
     });
@@ -256,7 +257,6 @@ export function Widget(props) {
                                 </div>
                                 <div className="overflow-x-hidden overflow-y-auto flex flex-grow flex-col w-full">
                                     <div className='p-4' id='content-tab'>
-
                                         <div className='bg-white border border-stroke px-4 py-3 flex items-center justify-between rounded-md shadow-sm mb-3'>
                                             <label className="font-medium text-graydark flex items-center">Show Widget
                                                 <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />

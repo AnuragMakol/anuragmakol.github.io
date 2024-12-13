@@ -116,7 +116,7 @@ export function Widget(props) {
                 button_text: yup.string().required(),
                 button_text_loading: yup.string().required(),
                 button_redirect: yup.string(),
-                widget_visibility_height: yup().string().
+                widget_visibility_height: yup.string()
             })
         )
     });
@@ -244,7 +244,7 @@ export function Widget(props) {
                     </button>
                     <div className={`max-w-100 min-w-100 h-full absolute left-0 top-0 z-99 duration-300 ease-linear lg:static lg:translate-x-0 lg:ml-0 ${sidebarToggle ? "-translate-x-full -ml-0.5" : "-translate-x-0 -ml-0"}`}>
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
-                            <div className="rounded-sm border bg-gray-3 border-stroke shadow-md flex flex-col h-full">
+                            <div className="rounded-sm border bg-zinc-100 border-stroke shadow-md flex flex-col h-full">
                                 <div className='flex w-full border-b border-stroke bg-white'>
                                     <div className='flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 border-b-4 text-center font-bold text-black'>
                                         <span>i</span>
@@ -269,16 +269,16 @@ export function Widget(props) {
                                                 </span>
                                             </label>
                                         </div>
-                                        <div className='rounded bg-white p-4 border border-stroke shadow-sm mb-3'>
+                                        <div className='rounded-md bg-white p-4 border border-stroke shadow-sm mb-3'>
                                             <h3 className='text-black font-bold mb-3'>General Settings</h3>
                                             <div className='mb-4'>
                                                 <label className="block-label">Button Text</label>
-                                                <input type="text" className="block-form-control h-10" {...registerUpdateWidgetTemplate('button_text')} />
+                                                <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('button_text')} />
                                                 {errorsUpdateWidgetTemplate?.button_text && <span className="text-danger text-sm text-bold">Please add text for the add to cart button</span>}
                                             </div>
                                             <div className='mb-4'>
                                                 <label className="block-label">Button Text Loading</label>
-                                                <input type="text" className="block-form-control h-10" {...registerUpdateWidgetTemplate('button_text_loading')} />
+                                                <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('button_text_loading')} />
                                                 {errorsUpdateWidgetTemplate?.button_text_loading && <span className="text-danger text-sm text-bold">Please add text for the add to cart button while loading</span>}
                                             </div>
                                             <div className='mb-1'>
@@ -300,12 +300,12 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='rounded bg-white p-4 border border-stroke shadow-sm mb-3'>
+                                        <div className='rounded-md bg-white p-4 border border-stroke shadow-sm mb-3'>
                                             <h3 className='text-black font-bold mb-3'>Sticky cart position</h3>
                                             <div>
                                                 <div className="flex w-full space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed h-20 rounded-md group-hover:bg-input-color'>
+                                                        <div className='border border-dashed h-18 rounded-md group-hover:bg-input-color'>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -316,7 +316,7 @@ export function Widget(props) {
                                                         <span className="mt-2 block">Top</span>
                                                     </label>
                                                     <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed w-full h-20 rounded-md group-hover:bg-input-color'>
+                                                        <div className='border border-dashed w-full h-18 rounded-md group-hover:bg-input-color'>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -330,7 +330,7 @@ export function Widget(props) {
                                                 {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a position</span>}
                                             </div>
                                         </div>
-                                        <div className='rounded bg-white p-4 border border-stroke shadow-sm mb-3'>
+                                        <div className='rounded-md bg-white p-4 border border-stroke shadow-sm mb-3'>
                                             <h3 className='text-black font-bold mb-3 flex items-center'>Width <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} /></h3>
                                             <div>
                                                 <div className="flex space-x-4">
@@ -362,15 +362,15 @@ export function Widget(props) {
                                                 {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a width</span>}
                                             </div>
                                         </div>
-                                        <div className='rounded bg-white p-4 border border-stroke shadow-sm mb-3'>
+                                        <div className='rounded-md bg-white p-4 border border-stroke shadow-sm mb-3'>
                                             <h3 className='text-black font-bold mb-5'>Select the elements you want to show in the sticky add to cart bar</h3>
                                             <div>
-                                            <div className='inline-flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
-                                                <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
-                                                    <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg></div>
-                                                <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
-                                                <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z"/></svg></div>
-                                            </div>
+                                                <div className='inline-flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
+                                                    <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
+                                                        <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg></div>
+                                                    <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
+                                                        <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z" /></svg></div>
+                                                </div>
                                             </div>
                                             <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in-out delay-150 opacity-100 h-auto visible" : "h-0 opacity-0 invisible"}`}>
                                                 <div className="relative z-20 bg-white flex flex-wrap">
@@ -469,41 +469,49 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div className='p-4' id='design-tab'>
+                                        <div className='accordion-wrap'>
+                                            <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                                <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                    <h4 className='text-black font-bold'>
+                                                        Styled templates
+                                                    </h4>
+                                                    <span className='flex transform -rotate-90'>
+                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                    </span>
+                                                </div>
+                                                <div className='accordion-conetnt px-4 pb-4'>
+                                                    <div className="relative z-20 bg-white">
+                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_template: e.target.value
+                                                            });
 
-                                        <div className="mb-3 flex items-center">
-                                            <label className="mb-1.5 block font-medium text-graydark w-22">Template</label>
-                                            <div className="relative z-20 bg-white w-44 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        widget_template: e.target.value
-                                                    });
-
-                                                    triggerFetchTemplate(e.target.value, getValuesUpdateWidgetTemplate('widget_style'));
-                                                    manageCustomStyle('widget_template', e.target.value);
-                                                }}>
-                                                    <option value="t1">Template 1</option>
-                                                    {
-                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                            <option value="t2">Template 2</option>
-                                                            <option value="t3">Template 3</option>
-                                                        </React.Fragment> : ""
-                                                    }
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
-                                                {errorsUpdateWidgetTemplate?.widget_template && <span className="text-danger text-sm text-bold">Please select a template</span>}
+                                                            triggerFetchTemplate(e.target.value, getValuesUpdateWidgetTemplate('widget_style'));
+                                                            manageCustomStyle('widget_template', e.target.value);
+                                                        }}>
+                                                            <option value="t1">Template 1</option>
+                                                            {
+                                                                user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                                    <option value="t2">Template 2</option>
+                                                                    <option value="t3">Template 3</option>
+                                                                </React.Fragment> : ""
+                                                            }
+                                                        </select>
+                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <g opacity="0.8">
+                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                        {errorsUpdateWidgetTemplate?.widget_template && <span className="text-danger text-sm text-bold">Please select a template</span>}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="mb-2 flex items-center">
+                                        </div><div className="mb-2 flex items-center">
                                             <label className="mb-1.5 block font-medium text-graydark w-22">Style</label>
                                             <div className="relative z-20 bg-white w-44 ml-auto">
                                                 <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
@@ -539,131 +547,19 @@ export function Widget(props) {
                                                 {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
                                             </div>
                                         </div>
-                                        {
-                                            user?.plan_details?.name === "Ultimate" ? <div className={`${widgetSettings?.widget_style === "custom" ? "border border-yellow-300 bg-yellow-50 bg-opacity-30 p-4 mt-6 mb-4" : "hidden"}`}>
-                                                <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
-                                                <div className="mb-3 flex items-center">
-                                                    <label className="text-sm font-medium text-black">Image Size</label>
-                                                    <div className="relative z-20 bg-white w-40 ml-auto">
-                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                image_size: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('image_size', e.target.value);
-                                                        }}>
-                                                            <option value="">Select Size</option>
-                                                            <option value="32">32px x 32px</option>
-                                                            <option value="48">48px x 48px</option>
-                                                            <option value="64">64px x 64px</option>
-                                                            <option value="80">80px x 80px</option>
-                                                            <option value="96">96px x 96px</option>
-                                                            <option value="112">112px x 112px</option>
-                                                            <option value="128">128px x 128px</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="mb-3 flex items-center">
-                                                    <label className="text-sm font-medium text-black">Title Size</label>
-                                                    <div className="relative z-20 bg-white w-40 ml-auto">
-                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                title_size: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('title_size', e.target.value);
-                                                        }}>
-                                                            <option value="">Select Size</option>
-                                                            <option value="12">12px</option>
-                                                            <option value="14">14px</option>
-                                                            <option value="16">16px</option>
-                                                            <option value="18">18px</option>
-                                                            <option value="20">20px</option>
-                                                            <option value="22">22px</option>
-                                                            <option value="24">24px</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="mb-3 flex items-center">
-                                                    <label className="text-sm font-medium text-black">Compare Price Size
-                                                    </label>
-                                                    <div className="relative z-20 bg-white w-40 ml-auto">
-                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                compare_price_size: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('compare_price_size', e.target.value);
-                                                        }}>
-                                                            <option value="">Select Size</option>
-                                                            <option value="12">12px</option>
-                                                            <option value="14">14px</option>
-                                                            <option value="16">16px</option>
-                                                            <option value="18">18px</option>
-                                                            <option value="20">20px</option>
-                                                            <option value="22">22px</option>
-                                                            <option value="24">24px</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="mb-5 flex items-center">
-                                                    <label className="text-sm font-medium text-black">Offer Price Size
-                                                    </label>
-                                                    <div className="relative z-20 bg-white w-40 ml-auto">
-                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                offer_price_size: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('offer_price_size', e.target.value);
-                                                        }}>
-                                                            <option value="">Select Size</option>
-                                                            <option value="12">12px</option>
-                                                            <option value="14">14px</option>
-                                                            <option value="16">16px</option>
-                                                            <option value="18">18px</option>
-                                                            <option value="20">20px</option>
-                                                            <option value="22">22px</option>
-                                                            <option value="24">24px</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className='mb-3 flex flex-wrap'>
-                                                    <div className="mb-3 w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black">Background Color</label>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Customize widget
+                                                </h4>
+                                                <span className='flex transform'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-conetnt px-4 pb-4'>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Background Color</label>
+                                                    <div className='w-44 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -673,71 +569,262 @@ export function Widget(props) {
                                                             manageCustomStyle('background_color', e.target.value);
                                                         }} />
                                                     </div>
-                                                    <div className="mb-3 w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                title_color: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('title_color', e.target.value);
-                                                        }} />
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <div className='w-44'>
+                                                        <input type='number' className='block-form-control h-9' />
                                                     </div>
                                                 </div>
-                                                <div className='mb-3 flex flex-wrap'>
-                                                    <div className="mb-3 w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
-                                                        </label>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                compare_price_color: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('compare_price_color', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                    <div className="mb-3 w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
-                                                        </label>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                offer_price_color: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('offer_price_color', e.target.value);
-                                                        }} />
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <div className='w-44'>
+                                                        <input type='number' className='block-form-control h-9' />
                                                     </div>
                                                 </div>
-
-                                                <div className='flex flex-wrap'>
-                                                    <div className="w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('button_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                button_color: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('button_color', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                    <div className="w-1/2">
-                                                        <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                button_text_color: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('button_text_color', e.target.value);
-                                                        }} />
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <div className='w-44'>
+                                                        <input type='number' className='block-form-control h-9' />
                                                     </div>
                                                 </div>
-                                            </div> : ""
-                                        }
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <div className='w-44'>
+                                                        <input className='block-form-control h-9' />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-1">
+                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <div className='w-44'>
+                                                        <input type='number' className='block-form-control h-9' />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Customize overall sticky bar design
+                                                </h4>
+                                                <span className='flex transform -rotate-90'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-conetnt px-0 pb-4'>
+                                                {
+                                                    user?.plan_details?.name === "Ultimate" ? <div className={`${widgetSettings?.widget_style === "custom" ? "border border-l-0 border-r-0 p-4 border-yellow-300 bg-yellow-50 bg-opacity-30" : "hidden"}`}>
+                                                        <h4 className='font-bold text-graydark mb-4'>Advanced Settings</h4>
+                                                        <div className="mb-3 flex items-center">
+                                                            <label className="text-sm font-medium text-black">Image Size</label>
+                                                            <div className="relative z-20 bg-white w-40 ml-auto">
+                                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('image_size')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        image_size: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('image_size', e.target.value);
+                                                                }}>
+                                                                    <option value="">Select Size</option>
+                                                                    <option value="32">32px x 32px</option>
+                                                                    <option value="48">48px x 48px</option>
+                                                                    <option value="64">64px x 64px</option>
+                                                                    <option value="80">80px x 80px</option>
+                                                                    <option value="96">96px x 96px</option>
+                                                                    <option value="112">112px x 112px</option>
+                                                                    <option value="128">128px x 128px</option>
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="mb-3 flex items-center">
+                                                            <label className="text-sm font-medium text-black">Title Size</label>
+                                                            <div className="relative z-20 bg-white w-40 ml-auto">
+                                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('title_size')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        title_size: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('title_size', e.target.value);
+                                                                }}>
+                                                                    <option value="">Select Size</option>
+                                                                    <option value="12">12px</option>
+                                                                    <option value="14">14px</option>
+                                                                    <option value="16">16px</option>
+                                                                    <option value="18">18px</option>
+                                                                    <option value="20">20px</option>
+                                                                    <option value="22">22px</option>
+                                                                    <option value="24">24px</option>
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="mb-3 flex items-center">
+                                                            <label className="text-sm font-medium text-black">Compare Price Size
+                                                            </label>
+                                                            <div className="relative z-20 bg-white w-40 ml-auto">
+                                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('compare_price_size')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        compare_price_size: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('compare_price_size', e.target.value);
+                                                                }}>
+                                                                    <option value="">Select Size</option>
+                                                                    <option value="12">12px</option>
+                                                                    <option value="14">14px</option>
+                                                                    <option value="16">16px</option>
+                                                                    <option value="18">18px</option>
+                                                                    <option value="20">20px</option>
+                                                                    <option value="22">22px</option>
+                                                                    <option value="24">24px</option>
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="mb-5 flex items-center">
+                                                            <label className="text-sm font-medium text-black">Offer Price Size
+                                                            </label>
+                                                            <div className="relative z-20 bg-white w-40 ml-auto">
+                                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('offer_price_size')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        offer_price_size: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('offer_price_size', e.target.value);
+                                                                }}>
+                                                                    <option value="">Select Size</option>
+                                                                    <option value="12">12px</option>
+                                                                    <option value="14">14px</option>
+                                                                    <option value="16">16px</option>
+                                                                    <option value="18">18px</option>
+                                                                    <option value="20">20px</option>
+                                                                    <option value="22">22px</option>
+                                                                    <option value="24">24px</option>
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-3 flex flex-wrap'>
+
+                                                            <div className="mb-3 w-1/2">
+                                                                <label className="mb-1 block text-sm font-medium text-black">Title Color</label>
+                                                                <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        title_color: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('title_color', e.target.value);
+                                                                }} />
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-3 flex flex-wrap'>
+                                                            <div className="mb-3 w-1/2">
+                                                                <label className="mb-1 block text-sm font-medium text-black"> Compare Price Color
+                                                                </label>
+                                                                <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        compare_price_color: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('compare_price_color', e.target.value);
+                                                                }} />
+                                                            </div>
+                                                            <div className="mb-3 w-1/2">
+                                                                <label className="mb-1 block text-sm font-medium text-black">Offer Price Color
+                                                                </label>
+                                                                <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        offer_price_color: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('offer_price_color', e.target.value);
+                                                                }} />
+                                                            </div>
+                                                        </div>
+
+                                                        <div className='flex flex-wrap'>
+                                                            <div className="w-1/2">
+                                                                <label className="mb-1 block text-sm font-medium text-black">Button Color</label>
+                                                                <input type="color" {...registerUpdateWidgetTemplate('button_color')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        button_color: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('button_color', e.target.value);
+                                                                }} />
+                                                            </div>
+                                                            <div className="w-1/2">
+                                                                <label className="mb-1 block text-sm font-medium text-black">Button Text Color</label>
+                                                                <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        button_text_color: e.target.value
+                                                                    });
+
+                                                                    manageCustomStyle('button_text_color', e.target.value);
+                                                                }} />
+                                                            </div>
+                                                        </div>
+                                                    </div> : ""
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Add custom styling
+                                                </h4>
+                                                <span className='flex transform -rotate-90'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-conetnt px-4 pb-4'>
+                                                <div>
+                                                    <textarea className='block-form-control' rows={5}></textarea>
+                                                </div>
+                                                <p className='py-2'>
+                                                    Enter the CSS selector you'd like to target, as displayed below.
+                                                </p>
+                                                <p className='text-red-500'> .goodst-title  &#10627; text-align: center; letter-spacing: 0.5px; &#x2983;
+                                                    .goodst-price &#10627; margin: 0px 10px; &#x2983;</p>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
 

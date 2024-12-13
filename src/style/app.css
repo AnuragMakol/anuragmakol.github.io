@@ -269,7 +269,7 @@ table td {
   @apply font-medium text-black w-full mb-1 block
 }
 .block-form-control {
-  @apply w-full rounded border border-stroke p-3 font-medium text-black focus:border-black focus-visible:outline-none bg-input-color;  
+  @apply w-full rounded border border-stroke py-2 px-3 font-medium text-black focus:border-black focus-visible:outline-none bg-input-color;  
 }
 .block-select-control {
   @apply relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-black active:border-black;  

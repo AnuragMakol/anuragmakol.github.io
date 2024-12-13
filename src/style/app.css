@@ -261,6 +261,10 @@ table td {
 .sidebar-nav-panel .nav-label {
   @apply hidden
 } */
+
+.card {
+  @apply rounded-md bg-white p-4 border border-stroke shadow-sm mb-3
+}
 .sidebar-nav-panel .sidebar-logo {
   @apply w-10 h-10 hidden
 }
@@ -272,5 +276,31 @@ table td {
   @apply w-full rounded border border-stroke py-2 px-3 font-medium text-black focus:border-black focus-visible:outline-none bg-input-color;  
 }
 .block-select-control {
-  @apply relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-black active:border-black;  
+  @apply relative text-graydark z-20 w-full appearance-none rounded border font-medium border-stroke bg-transparent py-1 pl-3 pr-10 outline-none transition focus:border-black active:border-black;  
+}
+.custom-radio {
+  @apply block relative pl-9 mb-4 select-none cursor-pointer text-black font-medium
+}
+.custom-radio input {
+  @apply opacity-0 absolute cursor-pointer;
+}
+.checkmark {
+  @apply absolute top-0.5 left-0 w-5 h-5 border border-stroke rounded-full flex justify-center items-center;  
+}
+.custom-radio:hover input ~ .checkmark {
+  @apply border-primary
+}
+.custom-radio input:checked ~ .checkmark {
+  @apply bg-white border border-primary
+}
+.checkmark:after {
+  content: "";
+  @apply absolute hidden;
+}
+
+.custom-radio input:checked ~ .checkmark:after {
+  @apply block
+}
+.custom-radio .checkmark:after {
+  @apply bg-primary rounded-full w-2.5 h-2.5;
 }

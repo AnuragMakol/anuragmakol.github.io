@@ -22,6 +22,7 @@ export function Widget(props) {
     const [deviceToggle, setDeviceToggle] = useState('desktop');
     const [sidebarToggle, setSidebarToggle] = useState(false);
     const [templateStyle, setTemplateStyle] = useState('');
+    const [tabToggle, setTabToggle] = useState('content');
     const [customStyle, setCustomStyle] = useState('');
 
     const [widgetSettings, setWidgetSettings] = useState({
@@ -246,17 +247,17 @@ export function Widget(props) {
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                             <div className="rounded-sm border bg-zinc-100 border-stroke shadow-md flex flex-col h-full">
                                 <div className='flex w-full border-b border-stroke bg-white'>
-                                    <div className='flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 border-b-4 text-center font-bold text-black'>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 text-center font-bold text-black ${tabToggle === "content" ? "border-b-4" : ""}`} onClick={() => setTabToggle('content')}>
                                         <span>i</span>
                                         Content
                                     </div>
-                                    <div className='flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 border-b-4 border-white text-center font-bold text-black'>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 text-center font-bold text-black ${tabToggle === "design" ? "border-b-4" : ""}`} onClick={() => setTabToggle('design')}>
                                         <span>i</span>
                                         Design
                                     </div>
                                 </div>
                                 <div className="overflow-x-hidden overflow-y-auto flex flex-grow flex-col w-full">
-                                    <div className='p-4' id='content-tab'>
+                                    <div className={`p-4 ${tabToggle === "content" ? "" : "hide-desktop"}`}>
                                         <div className='bg-white border border-stroke px-4 py-3 flex items-center justify-between rounded-md shadow-sm mb-3'>
                                             <label className="font-medium text-graydark flex items-center">Show Widget
                                                 <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />
@@ -470,7 +471,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='p-4' id='design-tab'>
+                                    <div className={`p-4 ${tabToggle === "design" ? "" : "hide-desktop"}`}>
                                         <div className='accordion-wrap'>
                                             <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                                 <div className='accordion-head cursor-pointer flex justify-between p-3'>

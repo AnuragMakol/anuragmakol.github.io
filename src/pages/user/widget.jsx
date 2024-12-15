@@ -247,12 +247,20 @@ export function Widget(props) {
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                             <div className="rounded-sm border bg-slate-50 border-stroke shadow-md flex flex-col h-full">
                                 <div className='flex w-full border-b border-stroke bg-white'>
-                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 text-center font-bold text-black ${tabToggle === "content" ? "border-b-4" : ""}`} onClick={() => setTabToggle('content')}>
-                                        <span>i</span>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 items-center font-bold text-black ${tabToggle === "content" ? "border-b-4" : ""}`} onClick={() => setTabToggle('content')}>
+                                        <span className='w-5 h-5'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                                <path d="M 25 4.03125 C 24.234375 4.03125 23.484375 4.328125 22.90625 4.90625 L 13 14.78125 L 12.78125 15 L 12.71875 15.3125 L 12.03125 18.8125 L 11.71875 20.28125 L 13.1875 19.96875 L 16.6875 19.28125 L 17 19.21875 L 17.21875 19 L 27.09375 9.09375 C 28.246094 7.941406 28.246094 6.058594 27.09375 4.90625 C 26.515625 4.328125 25.765625 4.03125 25 4.03125 Z M 25 5.96875 C 25.234375 5.96875 25.464844 6.089844 25.6875 6.3125 C 26.132813 6.757813 26.132813 7.242188 25.6875 7.6875 L 16 17.375 L 14.28125 17.71875 L 14.625 16 L 24.3125 6.3125 C 24.535156 6.089844 24.765625 5.96875 25 5.96875 Z M 4 8 L 4 28 L 24 28 L 24 14.8125 L 22 16.8125 L 22 26 L 6 26 L 6 10 L 15.1875 10 L 17.1875 8 Z" />
+                                            </svg>
+                                        </span>
                                         Content
                                     </div>
-                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 text-center font-bold text-black ${tabToggle === "design" ? "border-b-4" : ""}`} onClick={() => setTabToggle('design')}>
-                                        <span>i</span>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 items-center font-bold text-black ${tabToggle === "design" ? "border-b-4" : ""}`} onClick={() => setTabToggle('design')}>
+                                        <span className='w-5 h-5'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                                <path d="M 5.25 2.75 L 4.6875 3.28125 L 3.28125 4.6875 L 2.75 5.25 L 3.15625 5.90625 L 5.25 9.40625 L 5.53125 9.90625 L 8.46875 9.90625 L 12.46875 13.875 C 8.894531 17.464844 4.347656 22.027344 4.1875 22.1875 C 2.621094 23.753906 2.617188 26.320313 4.21875 27.8125 C 5.78125 29.355469 8.328125 29.394531 9.8125 27.8125 C 9.824219 27.800781 9.832031 27.792969 9.84375 27.78125 L 16 21.59375 L 22.1875 27.8125 L 22.28125 27.875 C 23.851563 29.355469 26.347656 29.375 27.8125 27.8125 L 27.8125 27.78125 L 27.84375 27.78125 C 29.375 26.214844 29.390625 23.667969 27.8125 22.1875 L 27.78125 22.15625 L 22.5625 16.96875 C 26.074219 16.640625 28.824219 13.675781 28.875 10.09375 L 28.90625 10.09375 C 28.910156 10.074219 28.90625 10.050781 28.90625 10.03125 C 28.90625 10.019531 28.90625 10.011719 28.90625 10 C 29.003906 8.84375 28.753906 7.738281 28.15625 6.78125 L 27.46875 5.71875 L 22.8125 10.375 L 21.40625 8.90625 L 26.15625 4.15625 L 24.78125 3.59375 C 23.976563 3.25 23.046875 3 22 3 C 18.15625 3 15 6.15625 15 10 C 15 10.417969 15.089844 10.78125 15.15625 11.15625 C 14.71875 11.59375 14.390625 11.953125 13.875 12.46875 L 9.90625 8.5 L 9.90625 5.53125 L 9.40625 5.25 L 5.90625 3.15625 Z M 22 5 C 22.140625 5 22.238281 5.082031 22.375 5.09375 L 18.59375 8.875 L 19.28125 9.59375 L 22.09375 12.5 L 22.78125 13.21875 L 26.75 9.25 C 26.769531 9.480469 26.933594 9.648438 26.90625 9.90625 L 26.90625 10 C 26.90625 12.753906 24.660156 15 21.90625 15 C 21.539063 15 21.09375 14.914063 20.59375 14.8125 L 20.0625 14.71875 L 19.6875 15.09375 L 8.40625 26.40625 L 8.375 26.40625 L 8.375 26.4375 C 7.664063 27.214844 6.421875 27.234375 5.59375 26.40625 L 5.59375 26.375 L 5.5625 26.375 C 4.785156 25.664063 4.765625 24.421875 5.59375 23.59375 C 5.972656 23.214844 13.3125 15.8125 16.90625 12.21875 L 17.3125 11.8125 L 17.15625 11.25 C 17.074219 10.925781 17 10.367188 17 10 C 17 7.246094 19.246094 5 22 5 Z M 5.5625 5.25 L 7.90625 6.6875 L 7.90625 7.6875 L 7.6875 7.90625 L 6.6875 7.90625 L 5.25 5.5625 Z M 20.1875 17.40625 L 26.40625 23.59375 L 26.40625 23.625 L 26.4375 23.625 C 27.214844 24.335938 27.234375 25.578125 26.40625 26.40625 L 26.375 26.40625 L 26.375 26.4375 C 25.664063 27.214844 24.421875 27.234375 23.59375 26.40625 L 17.40625 20.1875 Z" />
+                                            </svg>
+                                        </span>
                                         Design
                                     </div>
                                 </div>
@@ -492,12 +500,12 @@ export function Widget(props) {
                                             <h3 className='text-black font-bold mb-3 flex items-center'>Choose when the bar should appear as the user scrolls down</h3>
                                             <div>
                                                 <div className='flex items-center mb-4'>
-                                                <label className="block-label max-w-28">After Scrolling</label>
+                                                    <label className="block-label max-w-28">After Scrolling</label>
                                                     <div className='min-w-15 max-w-15'>
                                                         <input type="text" className="block-form-control h-9" name="" value={"10"} />
                                                     </div>
                                                     <span className='text-sm text-black pl-2 font-medium'>% Of The Page</span>
-                                                </div>                                               
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
@@ -678,8 +686,8 @@ export function Widget(props) {
                                                     </span>
                                                 </div>
                                                 <div className='accordion-content px-4 pb-4'>
-                                                    <div className="relative z-20 bg-white">
-                                                        <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
+                                                    <div className="relative z-20 bg-input-color mb-3">
+                                                        <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
                                                                 widget_template: e.target.value
@@ -705,44 +713,43 @@ export function Widget(props) {
                                                         </span>
                                                         {errorsUpdateWidgetTemplate?.widget_template && <span className="text-danger text-sm text-bold">Please select a template</span>}
                                                     </div>
+                                                    <div className="relative z-20 bg-input-color">
+                                                        <select className="block-select-control" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_style: e.target.value
+                                                            });
+
+                                                            triggerFetchTemplate(getValuesUpdateWidgetTemplate('widget_template'), e.target.value);
+                                                            manageCustomStyle('widget_style', e.target.value);
+                                                        }}>
+                                                            <option value="s1">Style 1</option>
+                                                            <option value="s2">Style 2</option>
+                                                            {
+                                                                user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                                    <option value="s3">Style 3</option>
+                                                                    <option value="s4">Style 4</option>
+                                                                    <option value="s5">Style 5</option>
+                                                                    <option value="s6">Style 6</option>
+                                                                </React.Fragment> : ""
+                                                            }
+                                                            {
+                                                                user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
+                                                            }
+                                                        </select>
+                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <g opacity="0.8">
+                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                        {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div><div className="mb-2 flex items-center">
-                                            <label className="mb-1.5 block font-medium text-graydark w-22">Style</label>
-                                            <div className="relative z-20 bg-white w-44 ml-auto">
-                                                <select className="relative text-graydark z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 pl-3 pr-10 outline-none transition focus:border-primary active:border-primary" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
-                                                    setWidgetSettings({
-                                                        ...widgetSettings,
-                                                        widget_style: e.target.value
-                                                    });
-
-                                                    triggerFetchTemplate(getValuesUpdateWidgetTemplate('widget_template'), e.target.value);
-                                                    manageCustomStyle('widget_style', e.target.value);
-                                                }}>
-                                                    <option value="s1">Style 1</option>
-                                                    <option value="s2">Style 2</option>
-                                                    {
-                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                            <option value="s3">Style 3</option>
-                                                            <option value="s4">Style 4</option>
-                                                            <option value="s5">Style 5</option>
-                                                            <option value="s6">Style 6</option>
-                                                        </React.Fragment> : ""
-                                                    }
-                                                    {
-                                                        user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
-                                                    }
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.8">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
-                                                {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
-                                            </div>
                                         </div>
+
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                             <div className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
@@ -798,7 +805,7 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                             <div className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Customize countdown timer design
@@ -883,258 +890,470 @@ export function Widget(props) {
                                                     <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
                                                 </span>
                                             </div>
-                                            <div className='accordion-content px-4 pb-4'>                                                
+                                            <div className='accordion-content px-4 pb-4'>
                                                 <div className='relative'>
-                                                <div className='pb-1 border-b border-stroke'>
-                                                <div className='cursor-pointer font-medium text-black flex justify-between p-2 hover:text-primary'>"Add to cart" button design <span>{">"}</span></div>
-                                                <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
-                                                <div>
-                                                <div className='flex items-center justify-between'>
-                                                <h5 className='text-black font-bold'>
-                                                    Add to cart button design 
-                                                </h5>
-                                                <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                </span>
-                                                </div>
-                                                <div className='pt-4'>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Background Color</label>
-                                                    <div className='w-44 flex justify-end'>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                background_color: e.target.value
-                                                            });
+                                                    <div className='pb-1 border-b border-stroke'>
+                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center'>
+                                                            "Add to cart" button design
+                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' />
+                                                            </span></div>
+                                                        <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
+                                                            <div>
+                                                                <div className='flex items-center justify-between'>
+                                                                    <h5 className='text-black font-bold'>
+                                                                        Add to cart button design
+                                                                    </h5>
+                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
+                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon close' />
+                                                                    </span>
+                                                                </div>
+                                                                <div className='pt-4'>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Background Color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
 
-                                                            manageCustomStyle('background_color', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Background hover Color</label>
-                                                    <div className='min-w-36 max-w-36 flex justify-end'>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                background_color: e.target.value
-                                                            });
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Background hover Color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
 
-                                                            manageCustomStyle('background_color', e.target.value);
-                                                        }} />
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Text color</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='text' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Text hover color</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='text' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Font size</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='text' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Font weight</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <div className="relative z-20 bg-input-color">
+                                                                                <select className="block-select-control h-9">
+                                                                                    <option value="nothing">100</option>
+                                                                                    <option value="nothing">200</option>
+                                                                                    <option value="nothing">300</option>
+                                                                                    <option value="nothing">400</option>
+                                                                                    <option value="nothing">500</option>
+                                                                                    <option value="nothing">600</option>
+                                                                                    <option value="nothing">700</option>
+                                                                                    <option value="nothing">800</option>
+                                                                                    <option value="nothing">900</option>
+                                                                                </select>
+                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <g opacity="0.5">
+                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Border radius</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
+                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
+                                                                        <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Text color</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='text' className='block-form-control h-9' />
+                                                    <div className='pb-1 border-b border-stroke'>
+                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center'>Product image design
+                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
+                                                        </div>
+                                                        <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
+                                                            <div>
+                                                                <div className='flex items-center justify-between'>
+                                                                    <h5 className='text-black font-bold'>
+                                                                        Product image design
+                                                                    </h5>
+                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
+                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
+                                                                    </span>
+                                                                </div>
+                                                                <div className='pt-4'>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Image width</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Image width</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
+                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
+                                                                        <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Text hover color</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='text' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border radius</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                    <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
-                                                    <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
-                                            </div>
-                                                </div>
-                                                    </div>                                                
-                                                </div>
-                                                <div className='pb-1 border-b border-stroke'>
-                                                <div className='cursor-pointer font-medium text-black flex justify-between p-2 hover:text-primary'>Product image design <span>{">"}</span></div>
-                                                <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
-                                                <div>
-                                                <div className='flex items-center justify-between'>
-                                                <h5 className='text-black font-bold'>
-                                                    Product image design
-                                                </h5>
-                                                <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                </span>
-                                                </div>
-                                                <div className='pt-4'>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Image width</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Image width</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                    <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
-                                                    <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
-                                            </div>
-                                                </div>
-                                                    </div>                                                
-                                                </div>
-                                                <div className='pb-1 border-b border-stroke'>
-                                                <div className='cursor-pointer font-medium text-black flex justify-between p-2 hover:text-primary'>Product title design <span>{">"}</span></div>
-                                                <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
-                                                <div>
-                                                <div className='flex items-center justify-between'>
-                                                <h5 className='text-black font-bold'>
-                                                    Product title design
-                                                </h5>
-                                                <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                </span>
-                                                </div>
-                                                <div className='pt-4'>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title Color</label>
-                                                    <div className='w-44 flex justify-end'>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                background_color: e.target.value
-                                                            });
+                                                    <div className='pb-1 border-b border-stroke'>
+                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center'>Product title design
+                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
+                                                        </div>
+                                                        <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
+                                                            <div>
+                                                                <div className='flex items-center justify-between'>
+                                                                    <h5 className='text-black font-bold'>
+                                                                        Product title design
+                                                                    </h5>
+                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
+                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
+                                                                    </span>
+                                                                </div>
+                                                                <div className='pt-4'>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Title Color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
 
-                                                            manageCustomStyle('background_color', e.target.value);
-                                                        }} />
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Title font size</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Title font weight</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <div className="relative z-20 bg-input-color">
+                                                                                <select className="block-select-control h-9">
+                                                                                    <option value="nothing">100</option>
+                                                                                    <option value="nothing">200</option>
+                                                                                    <option value="nothing">300</option>
+                                                                                    <option value="nothing">400</option>
+                                                                                    <option value="nothing">500</option>
+                                                                                    <option value="nothing">600</option>
+                                                                                    <option value="nothing">700</option>
+                                                                                    <option value="nothing">800</option>
+                                                                                    <option value="nothing">900</option>
+                                                                                </select>
+                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <g opacity="0.5">
+                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Title line height</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
+                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
+                                                                        <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>                                                                                               
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font size</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font weight</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                    <div className="relative z-20 bg-input-color">
-                                                    <select className="block-select-control h-9">
-                                                        <option value="nothing">100</option>
-                                                        <option value="nothing">200</option>
-                                                        <option value="nothing">300</option>
-                                                        <option value="nothing">400</option>
-                                                        <option value="nothing">500</option>
-                                                        <option value="nothing">600</option>
-                                                        <option value="nothing">700</option>
-                                                        <option value="nothing">800</option>
-                                                        <option value="nothing">900</option>
-                                                    </select>
-                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g opacity="0.5">
-                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                            </g>
-                                                        </svg>
-                                                    </span>
-                                                    {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
-                                                </div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title line height</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                    <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
-                                                    <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
-                                            </div>
-                                                </div>
-                                                    </div>                                                
-                                                </div>
-                                                <div className='pb-1 border-b border-stroke'>
-                                                <div className='cursor-pointer font-medium text-black flex justify-between p-2 hover:text-primary'>Product price design <span>{">"}</span></div>
-                                                <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
-                                                <div>
-                                                <div className='flex items-center justify-between'>
-                                                <h5 className='text-black font-bold'>
-                                                    Product title design
-                                                </h5>
-                                                <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                </span>
-                                                </div>
-                                                <div className='pt-4'>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title Color</label>
-                                                    <div className='w-44 flex justify-end'>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                background_color: e.target.value
-                                                            });
+                                                    <div className='pb-1 border-b border-stroke'>
+                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center'>Product price design
+                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
+                                                        </div>
+                                                        <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
+                                                            <div>
+                                                                <div className='flex items-center justify-between'>
+                                                                    <h5 className='text-black font-bold'>
+                                                                        Product Price design
+                                                                    </h5>
+                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
+                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
+                                                                    </span>
+                                                                </div>
+                                                                <div className='pt-4'>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Price color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
 
-                                                            manageCustomStyle('background_color', e.target.value);
-                                                        }} />
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Price font size</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Price font weight</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <div className="relative z-20 bg-input-color">
+                                                                                <select className="block-select-control h-9">
+                                                                                    <option value="nothing">100</option>
+                                                                                    <option value="nothing">200</option>
+                                                                                    <option value="nothing">300</option>
+                                                                                    <option value="nothing">400</option>
+                                                                                    <option value="nothing">500</option>
+                                                                                    <option value="nothing">600</option>
+                                                                                    <option value="nothing">700</option>
+                                                                                    <option value="nothing">800</option>
+                                                                                    <option value="nothing">900</option>
+                                                                                </select>
+                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <g opacity="0.5">
+                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Price line height</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className='w-full h-px bg-stroke mb-4'></div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Compare price color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
+
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Compare price font size</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Compare price font weight</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <div className="relative z-20 bg-input-color">
+                                                                                <select className="block-select-control h-9">
+                                                                                    <option value="nothing">100</option>
+                                                                                    <option value="nothing">200</option>
+                                                                                    <option value="nothing">300</option>
+                                                                                    <option value="nothing">400</option>
+                                                                                    <option value="nothing">500</option>
+                                                                                    <option value="nothing">600</option>
+                                                                                    <option value="nothing">700</option>
+                                                                                    <option value="nothing">800</option>
+                                                                                    <option value="nothing">900</option>
+                                                                                </select>
+                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <g opacity="0.5">
+                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                            </div>
+                                                                            {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Compare price line height</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
+                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
+                                                                        <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>                                                                                               
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font size</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
+                                                    <div className='pb-1 border-b border-stroke'>
+                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center'>Product variations design
+                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
+                                                        </div>
+                                                        <div className='absolute hidden w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999'>
+                                                            <div>
+                                                                <div className='flex items-center justify-between'>
+                                                                    <h5 className='text-black font-bold'>
+                                                                        Product variations design
+                                                                    </h5>
+                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70'>
+                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
+                                                                    </span>
+                                                                </div>
+                                                                <div className='pt-4'>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Background color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
+
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Text color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
+
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Font size</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Font weight</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <div className="relative z-20 bg-input-color">
+                                                                                <select className="block-select-control h-9">
+                                                                                    <option value="nothing">100</option>
+                                                                                    <option value="nothing">200</option>
+                                                                                    <option value="nothing">300</option>
+                                                                                    <option value="nothing">400</option>
+                                                                                    <option value="nothing">500</option>
+                                                                                    <option value="nothing">600</option>
+                                                                                    <option value="nothing">700</option>
+                                                                                    <option value="nothing">800</option>
+                                                                                    <option value="nothing">900</option>
+                                                                                </select>
+                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <g opacity="0.5">
+                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Borer width</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Border color</label>
+                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
+                                                                            <input type="color" {...registerUpdateWidgetTemplate('background_color')} onChange={(e) => {
+                                                                                setWidgetSettings({
+                                                                                    ...widgetSettings,
+                                                                                    background_color: e.target.value
+                                                                                });
+
+                                                                                manageCustomStyle('background_color', e.target.value);
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="flex justify-between items-center mb-4">
+                                                                        <label className="block text-sm font-medium text-black">Border radius</label>
+                                                                        <div className='min-w-32 max-w-32'>
+                                                                            <input type='number' className='block-form-control h-9' />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
+                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
+                                                                        <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font weight</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                    <div className="relative z-20 bg-input-color">
-                                                    <select className="block-select-control h-9">
-                                                        <option value="nothing">100</option>
-                                                        <option value="nothing">200</option>
-                                                        <option value="nothing">300</option>
-                                                        <option value="nothing">400</option>
-                                                        <option value="nothing">500</option>
-                                                        <option value="nothing">600</option>
-                                                        <option value="nothing">700</option>
-                                                        <option value="nothing">800</option>
-                                                        <option value="nothing">900</option>
-                                                    </select>
-                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g opacity="0.5">
-                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                            </g>
-                                                        </svg>
-                                                    </span>
-                                                    {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
-                                                </div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title line height</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' />
-                                                    </div>
-                                                </div>
-                                                <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                    <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15">Close</a>
-                                                    <button className="flex justify-center rounded bg-black px-6 py-1 font-medium text-gray hover:bg-opacity-90" type="submit">Save</button></div>
-                                            </div>
-                                                </div>
-                                                    </div>                                                
-                                                </div>
                                                 </div>
                                                 {
                                                     user?.plan_details?.name === "Ultimate" ? <div className='hidden'>

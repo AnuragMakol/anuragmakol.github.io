@@ -45,58 +45,58 @@ export const UserSidebar = (props) => {
     const [user, setUser] = useRecoilState(userStore);
 
     return (
-        <aside className="absolute left-0 top-0 z-9999 flex h-screen 2xl:w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear  2xl:static 2xl:translate-x-0 sidebar-nav-panel group">
-            <div className="flex items-center justify-between gap-2 px-4.5 2xl:px-6 py-5.5 lg:py-6.5">
-                <a className="text-2xl" onClick={() => navigate('/dashboard')}>
+        <aside className="sidebar-nav-panel">
+            <div className="flex items-center justify-between gap-2 px-3 py-5.5 lg:py-6.5">
+                <a onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
-                    alt="Logo" className="group-hover:flex hidden 2xl:flex" />                    
-                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="w-8 flex group-hover:hidden 2xl:hidden" />
+                    alt="Logo" className="logo-full" />                    
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="logo-icon" />
                 </a>
             </div>
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
-                <nav className="mt-5 px-2 2xl:px-4 py-4 lg:mt-2">
+                <nav className="mt-5 px-2 py-4 lg:mt-2">
                     <div>
-                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 group-hover:flex hidden 2xl:flex">MENU</h3>
+                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 flex nav-label"><span>MENU</span></h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/dashboard')}>
-                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-dashboard.svg`} alt='dashboard' /></span>
-                                    <span className="group-hover:flex hidden 2xl:flex">Dashboard</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/dashboard')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-dashboard.svg`} alt='dashboard' /></span>
+                                    <span className="nav-title">Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/widget')}>
-                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-widget.svg`} alt='widget' /></span>
-                                    <span className="group-hover:flex hidden 2xl:flex">Widget</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/widget')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-widget.svg`} alt='widget' /></span>
+                                    <span className="nav-title">Widget</span>
                                 </a>
                             </li>
                         </ul>
 
-                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 group-hover:flex hidden 2xl:flex">USER SETTINGS</h3>
+                        <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 flex nav-label"><span>USER SETTINGS</span></h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/plans')}>
-                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
-                                    <span className="group-hover:flex hidden 2xl:flex">Plans</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/plans')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
+                                    <span className="nav-title">Plans</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/profile')}>
-                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-user.svg`} alt='profile' /></span>
-                                    <span className="group-hover:flex hidden 2xl:flex">My Profile</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/profile')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-user.svg`} alt='profile' /></span>
+                                    <span className="nav-title">My Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a className="group relative flex items-center gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark" onClick={() => navigate('/logout')}>
-                                    <span className="min-w-5 max-w-5"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-logout.svg`} alt='log out' /></span>
-                                    <span className="group-hover:flex hidden 2xl:flex">Log Out</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/logout')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-logout.svg`} alt='log out' /></span>
+                                    <span className="nav-title">Log Out</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
 
-                <div className="mx-4 mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto group-hover:flex hidden 2xl:flex flex-col">
+                <div className="mx-4 mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto flex-col nav-bottom-block">
                     <h3 className="mb-1 font-semibold text-white">Facing an Issue ?</h3>
                     <p className="mb-4 text-xs text-white">Contact our support team and the issue will be resolved within 24 hours.</p>
                     <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL}`} className="flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95"> Contact Us </a>

@@ -12,7 +12,7 @@ export const UserAuthLayout = (props) => {
 
 export const UserDashboardLayout = (props) => {
     return (
-        <div className="flex h-screen overflow-hidden">
+        <div className="flex h-screen overflow-hidden widget-page">
             <UserSidebar />
             <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden pl-16 2xl:pl-0">
                 <UserHeader />

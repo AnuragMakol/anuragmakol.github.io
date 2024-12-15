@@ -213,28 +213,6 @@ export function Widget(props) {
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate} />
             <div className='flex flex-col overflow-hidden h-full max-h-full'>
-                <div className="flex flex-shrink-0 items-center justify-between">
-                    <h2 className="text-title-md2 font-bold text-black fixed top-3 z-999">
-                        Widget Settings
-                    </h2>
-                    <div className='flex items-center fixed right-60 top-2 z-9999'>
-                        <button className="flex justify-center rounded bg-danger px-6 py-2 font-medium text-gray hover:bg-opacity-90" onClick={() => {
-                            Swal.fire({
-                                title: "Are you sure?",
-                                html: "This will reset the sticky add to cart widget integration with your store. <br /> <br /> Use this function only when you are not able to see the sticky widget on your store after installing the app and customizing the widget for your store.",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Yes',
-                                cancelButtonText: "No"
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    initResetScriptTag({});
-                                }
-                            });
-                        }}>Reset Integration</button>
-                        <Tooltip position="left" property={`w-6 h-6`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will reset the integration of the app with your store`} />
-                    </div>
-                </div>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
                     <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
                         {
@@ -345,7 +323,7 @@ export function Widget(props) {
                                                 <div className="flex space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group">
                                                         <div className='border border-dashed w-full h-10 rounded-md group-hover:bg-input-color flex items-center bg-input-color'>
-                                                            <div className='w-full bg-green-900 h-2 m-1'></div>
+                                                            <div className='w-full bg-green-900 h-2 m-1 rounded-full'></div>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -357,7 +335,7 @@ export function Widget(props) {
                                                     </label>
                                                     <label className="cursor-pointer select-none w-1/2 group">
                                                         <div className='border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color flex items-center justify-center '>
-                                                            <div className='w-4/6 bg-green-900 h-2 rounded-full'></div>
+                                                            <div className='w-3/6 bg-green-900 h-2 rounded-full'></div>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -373,7 +351,7 @@ export function Widget(props) {
                                         </div>
                                         <div className='card mb-3'>
                                             <div className='mb-5'>
-                                                <h3 className="text-black font-bold mb-1">Device settings</h3>
+                                                <h3 className="text-black font-bold mb-1">Widget Visibility</h3>
                                                 <div className="relative z-20 bg-input-color">
                                                     <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_redirect')}>
                                                         <option value="nothing">Show on all devices</option>
@@ -1591,16 +1569,30 @@ export function Widget(props) {
                                 <div className='border-b border-stroke h-13 flex items-center justify-between'>
                                     <div className='flex pl-5 min-w-48 max-w-48 items-center'>
                                         <div className='flex space-x-2 w-25'>
-                                            <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500'></span>
+                                            <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500' onClick={() => {
+                                                Swal.fire({
+                                                    title: "Are you sure?",
+                                                    html: "This will reset the sticky add to cart widget integration with your store. <br /> <br /> Use this function only when you are not able to see the sticky widget on your store after installing the app and customizing the widget for your store.",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: 'Yes',
+                                                    cancelButtonText: "No"
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        initResetScriptTag({});
+                                                    }
+                                                });
+                                            }}></span>
                                             <span className='w-3 h-3 bg-orange-300 rounded-full border border-orange-400'></span>
                                             <span className='w-3 h-3 bg-green-400 rounded-full border border-green-500'></span>
                                         </div>
                                         <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-safari-toolabr-left.svg`} alt='safari icons' />
                                     </div>
                                     <div className='max-w-96 w-full flex items-center'>
-                                        <span className='mr-4'><svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.5 17.6147C7.63281 17.6147 7.84863 17.5649 8.05615 17.4487C12.7793 14.8008 14.3979 13.6802 14.3979 10.6504V4.30029C14.3979 3.42871 14.0244 3.15479 13.3188 2.85596C12.3394 2.44922 9.17676 1.31201 8.19727 0.97168C7.97314 0.896973 7.73242 0.847168 7.5 0.847168C7.26758 0.847168 7.02686 0.913574 6.81104 0.97168C5.83154 1.25391 2.66064 2.45752 1.68115 2.85596C0.983887 3.14648 0.602051 3.42871 0.602051 4.30029V10.6504C0.602051 13.6802 2.229 14.7925 6.94385 17.4487C7.15967 17.5649 7.36719 17.6147 7.5 17.6147ZM7.83203 2.2583C9.08545 2.75635 11.5176 3.63623 12.8042 4.07617C13.0283 4.15918 13.0781 4.27539 13.0781 4.55762V10.3433C13.0781 12.9082 11.8496 13.5806 8.01465 15.9131C7.77393 16.0625 7.64111 16.104 7.5083 16.1123V2.18359C7.59131 2.18359 7.69922 2.2085 7.83203 2.2583Z" fill="#737373" />
-                                        </svg>
+                                        <span className='mr-4'>
+                                            <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.5 17.6147C7.63281 17.6147 7.84863 17.5649 8.05615 17.4487C12.7793 14.8008 14.3979 13.6802 14.3979 10.6504V4.30029C14.3979 3.42871 14.0244 3.15479 13.3188 2.85596C12.3394 2.44922 9.17676 1.31201 8.19727 0.97168C7.97314 0.896973 7.73242 0.847168 7.5 0.847168C7.26758 0.847168 7.02686 0.913574 6.81104 0.97168C5.83154 1.25391 2.66064 2.45752 1.68115 2.85596C0.983887 3.14648 0.602051 3.42871 0.602051 4.30029V10.6504C0.602051 13.6802 2.229 14.7925 6.94385 17.4487C7.15967 17.5649 7.36719 17.6147 7.5 17.6147ZM7.83203 2.2583C9.08545 2.75635 11.5176 3.63623 12.8042 4.07617C13.0283 4.15918 13.0781 4.27539 13.0781 4.55762V10.3433C13.0781 12.9082 11.8496 13.5806 8.01465 15.9131C7.77393 16.0625 7.64111 16.104 7.5083 16.1123V2.18359C7.59131 2.18359 7.69922 2.2085 7.83203 2.2583Z" fill="#737373" />
+                                            </svg>
                                         </span>
                                         <div className='flex-grow bg-black bg-opacity-10 h-8 rounded-md flex justify-center items-center px-4'>
                                             <span className='mr-1'><svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">

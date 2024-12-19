@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import { UserHeader, UserSidebar, AdminHeader, AdminSidebar } from "./sections";
 
@@ -11,8 +12,10 @@ export const UserAuthLayout = (props) => {
 }
 
 export const UserDashboardLayout = (props) => {
+    const location = useLocation();
+
     return (
-        <div className="flex h-screen overflow-hidden widget-page">
+        <div className={`flex h-screen overflow-hidden ${location.pathname.includes('widget') ? "widget-page": ""}`}>
             <UserSidebar />
             <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden pl-16 2xl:pl-0">
                 <UserHeader />

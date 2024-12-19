@@ -31,6 +31,7 @@ export function Widget(props) {
         widget_position: "",
         widget_width: "",
         widget_status: "",
+        widget_visibility: "",
         desktop_hide_image: "",
         desktop_hide_title: "",
         desktop_hide_compare_price: "",
@@ -61,6 +62,7 @@ export function Widget(props) {
             widget_style: user?.widget_settings?.widget_style,
             widget_position: user?.widget_settings?.widget_position,
             widget_width: user?.widget_settings?.widget_width,
+            widget_visibility: user?.widget_settings?.widget_visibility,
             desktop_hide_image: user?.widget_settings?.desktop_hide_image,
             desktop_hide_title: user?.widget_settings?.desktop_hide_title,
             desktop_hide_compare_price: user?.widget_settings?.desktop_hide_compare_price,
@@ -96,6 +98,7 @@ export function Widget(props) {
                 widget_style: yup.string().required(),
                 widget_position: yup.string().required(),
                 widget_width: yup.string().required(),
+                widget_visibility: yup.string().required(),
                 desktop_hide_image: yup.boolean(),
                 desktop_hide_title: yup.boolean(),
                 desktop_hide_compare_price: yup.boolean(),
@@ -116,8 +119,7 @@ export function Widget(props) {
                 button_color: yup.string(),
                 button_text: yup.string().required(),
                 button_text_loading: yup.string().required(),
-                button_redirect: yup.string(),
-                widget_visibility_height: yup.string()
+                button_redirect: yup.string()
             })
         )
     });
@@ -353,10 +355,10 @@ export function Widget(props) {
                                             <div className='mb-5'>
                                                 <h3 className="text-black font-bold mb-1">Widget Visibility</h3>
                                                 <div className="relative z-20 bg-input-color">
-                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_redirect')}>
-                                                        <option value="nothing">Show on all devices</option>
-                                                        <option value="cart">Show on desktop only</option>
-                                                        <option value="cart">Show on mobile only</option>
+                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_visibility')}>
+                                                        <option value="all">Show on all devices</option>
+                                                        <option value="desktop">Show on desktop only</option>
+                                                        <option value="mobile">Show on mobile only</option>
                                                     </select>
                                                     <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -476,24 +478,23 @@ export function Widget(props) {
                                         </div>
                                         <div className='card mb-3'>
                                             <h3 className='text-black font-bold mb-3 flex items-center'>Choose when the bar should appear as the user scrolls down</h3>
-                                            <div>
-                                                <div className='flex items-center mb-4'>
-                                                    <label className="block-label max-w-28">After Scrolling</label>
-                                                    <div className='min-w-15 max-w-15'>
-                                                        <input type="text" className="block-form-control h-9" name="" value={"10"} />
-                                                    </div>
-                                                    <span className='text-sm text-black pl-2 font-medium'>% Of The Page</span>
+                                            <div className='flex items-center mb-4'>
+                                                <label className="block-label max-w-28">After Scrolling</label>
+                                                <div className='min-w-15 max-w-15'>
+                                                    <input type="number" className="block-form-control h-9" {...registerUpdateWidgetTemplate('widget_scroll')} />
                                                 </div>
+                                                <span className='text-sm text-black pl-2 font-medium'>% Of The Page</span>
                                             </div>
+                                            {errorsUpdateWidgetTemplate?.widget_scroll && <span className="text-danger text-sm text-bold">Please add a value</span>}
                                         </div>
                                         <div className='card mb-3'>
                                             <h3 className='text-black font-bold mb-3 flex items-center'>Sticky bar entrance animation</h3>
                                             <div className="relative z-20 bg-input-color">
-                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_redirect')}>
-                                                    <option value="nothing">Slide in up</option>
-                                                    <option value="nothing">Slide in down</option>
-                                                    <option value="nothing">Fade in</option>
-                                                    <option value="nothing">None</option>
+                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
+                                                    <option value="none">None</option>
+                                                    <option value="slide-up">Slide in up</option>
+                                                    <option value="slide-down">Slide in down</option>
+                                                    <option value="fade-in">Fade in</option>
                                                 </select>
                                                 <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -502,7 +503,7 @@ export function Widget(props) {
                                                         </g>
                                                     </svg>
                                                 </span>
-                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
+                                                {errorsUpdateWidgetTemplate?.widget_animation && <span className="text-danger text-sm text-bold">Please add a value</span>}
                                             </div>
                                         </div>
                                         <div className='bg-white border border-stroke px-4 py-3 rounded-md shadow-sm mb-3'>
@@ -620,35 +621,7 @@ export function Widget(props) {
                                                     <div className='flex justify-end'>
                                                         <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">Calculate time</button>
                                                     </div>
-                                                </div>
-                                                <div className='mb-1'>
-                                                    <label className="block-label">Choose what happens when the timer reaches zero</label>
-                                                    <div className="relative z-20 bg-input-color">
-                                                        <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_redirect')}>
-                                                            <option value="nothing">Close timer</option>
-                                                            <option value="cart">Restart timer</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.5">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                        {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
-                                                    </div>
-                                                </div>
-                                                <div className='flex items-center justify-between pt-5 mb-4'>
-                                                    <label className="font-medium text-graydark flex items-center">Toggle text
-                                                    </label>
-                                                    <label className="relative inline-block w-15 h-8 switch-slider-wrap">
-                                                        <input type="checkbox" className="sr-only" />
-                                                        <span className="absolute cursor-pointer inset-0 bg-red-600 ring-1 ring-red-700 transition-all slider rounded-full flex items-center">
-                                                            <span className='status-text active text-white font-medium text-xs mr-8.5'>Yes</span>
-                                                            <span className='status-text inactive text-white font-medium text-xs mr-2.5 ml-auto'>No</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>

@@ -33,6 +33,7 @@ export function Widget(props) {
         widget_width: "",
         widget_status: "",
         widget_visibility: "",
+        widget_scroll: "",
         widget_background: "",
         widget_padding_x: "",
         widget_padding_y: "",
@@ -103,6 +104,7 @@ export function Widget(props) {
             widget_position: user?.widget_settings?.widget_position,
             widget_width: user?.widget_settings?.widget_width,
             widget_visibility: user?.widget_settings?.widget_visibility,
+            widget_scroll: user?.widget_settings?.widget_scroll,
             widget_background: user?.widget_settings?.widget_background,
             widget_padding_x: user?.widget_settings?.widget_padding_x,
             widget_padding_y: user?.widget_settings?.widget_padding_y,
@@ -173,11 +175,13 @@ export function Widget(props) {
     const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
         resolver: yupResolver(
             yup.object().shape({
+                widget_status: yup.boolean().required(),
                 widget_template: yup.string().required(),
                 widget_style: yup.string().required(),
                 widget_position: yup.string().required(),
                 widget_width: yup.string().required(),
                 widget_visibility: yup.string().required(),
+                widget_scroll: yup.string().required(),
                 widget_background: yup.string(),
                 widget_padding_x: yup.string(),
                 widget_padding_y: yup.string(),
@@ -216,7 +220,7 @@ export function Widget(props) {
                 button_text: yup.string(),
                 button_text_loading: yup.string(),
                 button_redirect: yup.string(),
-                urgency_bar_status: yup.string(),
+                urgency_bar_status: yup.boolean().required(),
                 urgency_bar_text_color: yup.string(),
                 urgency_bar_type: yup.string(),
                 urgency_bar_datestart: yup.string(),
@@ -297,29 +301,71 @@ export function Widget(props) {
             let tempStylesheet = `
                 .cpatc-widget[class*="cpatc-"][class*="-custom"] {
                     ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
+                    ${tempData?.widget_padding_x !== undefined ? `padding-left: ${tempData?.widget_padding_x}px !important;` : ""}
+                    ${tempData?.widget_padding_x !== undefined ? `padding-right: ${tempData?.widget_padding_x}px !important;` : ""}
+                    ${tempData?.widget_padding_y !== undefined ? `padding-top: ${tempData?.widget_padding_y}px !important;` : ""}
+                    ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}
+                    ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
+                    ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
+                    ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
                 }
                 .cpatc-product .cpatc-product-item-image {
                     ${tempData?.image_size_x !== undefined ? `width: ${tempData?.image_size_x}px !important;` : ""}
                     ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
                     ${tempData?.image_size_x !== undefined ? `min-width: ${tempData?.image_size_x}px !important;` : ""}
                 }
-                                
                 [class*="cpatc-"][class*="-custom"] .cpatc-content .cpatc-product-item-title {
                     ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
                     ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
+                    ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
+                    ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}px !important;` : ""}
                 }
                 .cpatc-content .cpatc-offer-price {
                     ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                     ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
+                    ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
+                    ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height}px !important;` : ""}
                 }
                 .cpatc-content .cpatc-item-compare-price {
                     ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                     ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
+                    ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
+                    ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height}px !important;` : ""}
                 }
                 [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
                     ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
-                    ${tempData?.button_background !== undefined ? `border: 1px solid ${tempData?.button_background} !important;` : ""}
                     ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
+                    ${tempData?.button_font_size !== undefined ? `font-size: ${tempData?.button_font_size}px !important;` : ""}
+                    ${tempData?.button_font_weight !== undefined ? `font-weight: ${tempData?.button_font_weight} !important;` : ""}
+                    ${tempData?.button_padding_x !== undefined ? `padding-left: ${tempData?.button_padding_x}px !important;` : ""}
+                    ${tempData?.button_padding_x !== undefined ? `padding-right: ${tempData?.button_padding_x}px !important;` : ""}
+                    ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
+                    ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
+                    ${tempData?.button_radius !== undefined ? `color: ${tempData?.button_radius}px !important;` : ""}
+                }
+                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
+                    ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}
+                    ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
+                    ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
+                    ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
+                    ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}
+                    ${tempData?.variants_padding_x !== undefined ? `padding-right: ${tempData?.variants_padding_x}px !important;` : ""}
+                    ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
+                    ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
+                    ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
+                    ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
+                    ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
+                }
+                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
+                    ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}
+                }
+                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
+                    ${tempData?.urgency_bar_text_size !== undefined ? `text-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
+                    ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
+                }
+                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
+                    ${tempData?.urgency_bar_timer_size !== undefined ? `text-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
+                    ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
                 }
             `;
 
@@ -627,77 +673,90 @@ export function Widget(props) {
                                                 <label className="font-medium text-graydark flex items-center">Real time urgency
                                                 </label>
                                                 <label className="relative inline-block w-15 h-8 switch-slider-wrap">
-                                                    <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('urgency_bar_status')} />
+                                                    <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('urgency_bar_status')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            urgency_bar_status: e.target.checked
+                                                        })
+
+                                                        if (e.target.checked) {
+                                                            setTimeout(() => {
+                                                                document.getElementsByClassName('intoView')[0].scrollIntoView({ block: "center", behavior: "smooth" })
+                                                            }, 200);
+                                                        }
+                                                    }} />
                                                     <span className="absolute cursor-pointer inset-0 bg-red-600 ring-1 ring-red-700 transition-all slider rounded-full flex items-center">
                                                         <span className='status-text active text-white font-medium text-xs mr-8.5'>Yes</span>
                                                         <span className='status-text inactive text-white font-medium text-xs mr-2.5 ml-auto'>No</span>
                                                     </span>
                                                 </label>
                                             </div>
-                                            <div className='pt-2'>
-                                                <div className='mb-4'>
-                                                    <label className="block-label">Text</label>
-                                                    <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_text')} />
-                                                </div>
-                                                <div className='mb-5'>
-                                                    <label className="block-label">Choose countdown style</label>
-                                                    <div className="relative z-20 bg-input-color">
-                                                        <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_type')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                urgency_bar_type: e.target.value
-                                                            });
-                                                        }}>
-                                                            <option value="minutes">Set a countdown based on minutes</option>
-                                                            <option value="specific">Select a specific end date and time</option>
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.5">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
+                                            {
+                                                widgetSettings?.urgency_bar_status ? <div className='pt-2'>
+                                                    <div className='mb-4'>
+                                                        <label className="block-label">Text</label>
+                                                        <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_text')} />
                                                     </div>
-                                                </div>
-                                                {
-                                                    widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md'>
-                                                        <label className="block-label pb-2">Enter duration</label>
-                                                        <div className='flex'>
-                                                            <div className='min-w-15 max-w-15'>
-                                                                <input type="number" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
-                                                                <p className='text-center text-black text-sm font-medium pt-0.5'>In Minutes</p>
-                                                            </div>
+                                                    <div className='mb-5'>
+                                                        <label className="block-label">Choose countdown style</label>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_type')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    urgency_bar_type: e.target.value
+                                                                });
+                                                            }}>
+                                                                <option value="minutes">Set a countdown based on minutes</option>
+                                                                <option value="specific">Select a specific end date and time</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
                                                         </div>
-                                                    </div> : ""
-                                                }
-                                                {
-                                                    widgetSettings?.urgency_bar_type === "specific" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md'>
-                                                        <div className='border-b border-stroke pb-5 mb-5'>
-                                                            <label className="block-label pb-1">Start date</label>
+                                                    </div>
+                                                    {
+                                                        widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
+                                                            <label className="block-label pb-2">Enter duration</label>
                                                             <div className='flex'>
-                                                                <div className='w-1/2 mr-2'>
-                                                                    <input type="date" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_datestart')} />
-                                                                </div>
-                                                                <div className='flex'>
-                                                                    <input type="time" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_dateend')} />
+                                                                <div className='min-w-15 max-w-15'>
+                                                                    <input type="number" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
+                                                                    <p className='text-center text-black text-sm font-medium pt-0.5'>In Minutes</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div className='mb-5'>
-                                                            <label className="block-label pb-1">End date</label>
-                                                            <div className='flex'>
-                                                                <div className='w-1/2 mr-2'>
-                                                                    <input type="date" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_timestart')} />
-                                                                </div>
+                                                        </div> : ""
+                                                    }
+                                                    {
+                                                        widgetSettings?.urgency_bar_type === "specific" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
+                                                            <div className='border-b border-stroke pb-5 mb-5'>
+                                                                <label className="block-label pb-1">Start date</label>
                                                                 <div className='flex'>
-                                                                    <input type="time" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_timeend')} />
+                                                                    <div className='w-1/2 mr-2'>
+                                                                        <input type="date" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_datestart')} />
+                                                                    </div>
+                                                                    <div className='flex'>
+                                                                        <input type="time" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_timestart')} />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div> : ""
-                                                }
-                                            </div>
+                                                            <div className='mb-5'>
+                                                                <label className="block-label pb-1">End date</label>
+                                                                <div className='flex'>
+                                                                    <div className='w-1/2 mr-2'>
+                                                                        <input type="date" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_dateend')} />
+                                                                    </div>
+                                                                    <div className='flex'>
+                                                                        <input type="time" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_timeend')} />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> : ""
+                                                    }
+                                                </div> : ""
+                                            }
                                         </div>
                                     </div>
                                     <div className={`p-4 ${tabToggle === "design" ? "" : "hide-desktop"}`}>
@@ -841,7 +900,7 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border color</label>
                                                     <div className='w-44'>
-                                                        <input className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_border_color')} onChange={(e) => {
+                                                        <input type="color" {...registerUpdateWidgetTemplate('widget_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
                                                                 widget_border_color: e.target.value
@@ -1454,13 +1513,13 @@ export function Widget(props) {
                                                                         <div className='min-w-32 max-w-32'>
                                                                             <div className="relative z-20 bg-input-color">
                                                                                 <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_font_weight: e.target.value
-                                                                                });
+                                                                                    setWidgetSettings({
+                                                                                        ...widgetSettings,
+                                                                                        compare_price_font_weight: e.target.value
+                                                                                    });
 
-                                                                                manageCustomStyle('compare_price_font_weight', e.target.value);
-                                                                            }}>
+                                                                                    manageCustomStyle('compare_price_font_weight', e.target.value);
+                                                                                }}>
                                                                                     <option value="100">100</option>
                                                                                     <option value="200">200</option>
                                                                                     <option value="300">300</option>
@@ -1491,7 +1550,7 @@ export function Widget(props) {
                                                                                 });
 
                                                                                 manageCustomStyle('compare_price_padding_y', e.target.value);
-                                                                            }}/>
+                                                                            }} />
                                                                         </div>
                                                                     </div>
                                                                     <div className="flex justify-between items-center mb-4">
@@ -1504,7 +1563,7 @@ export function Widget(props) {
                                                                                 });
 
                                                                                 manageCustomStyle('compare_price_padding_x', e.target.value);
-                                                                            }}/>
+                                                                            }} />
                                                                         </div>
                                                                     </div>
                                                                     <div className="flex justify-between items-center mb-4">
@@ -1517,7 +1576,7 @@ export function Widget(props) {
                                                                                 });
 
                                                                                 manageCustomStyle('compare_price_border_width', e.target.value);
-                                                                            }}/>
+                                                                            }} />
                                                                         </div>
                                                                     </div>
                                                                     <div className="flex justify-between items-center mb-4">
@@ -1543,7 +1602,7 @@ export function Widget(props) {
                                                                                 });
 
                                                                                 manageCustomStyle('compare_price_border_radius', e.target.value);
-                                                                            }}/>
+                                                                            }} />
                                                                         </div>
                                                                     </div>
                                                                     <div className="pt-2 flex justify-end space-x-2 bg-white">

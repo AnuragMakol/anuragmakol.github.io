@@ -47,10 +47,10 @@ export const UserSidebar = (props) => {
     return (
         <aside className="sidebar-nav-panel">
             <div className="flex items-center justify-between gap-2 px-3 py-5.5 lg:py-6.5">
-                <a onClick={() => navigate('/dashboard')}>
+                <a className="logo" onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
                     alt="Logo" className="logo-full" />                    
-                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="logo-icon" />
+                    {/* <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="logo-icon" /> */}
                 </a>
             </div>
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
@@ -96,7 +96,7 @@ export const UserSidebar = (props) => {
                     </div>
                 </nav>
 
-                <div className="mx-4 mb-6.5 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto flex-col nav-bottom-block">
+                <div className="mx-4 mb-6.5 w-full min-w-59 max-w-59 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto flex-col nav-bottom-block">
                     <h3 className="mb-1 font-semibold text-white">Facing an Issue ?</h3>
                     <p className="mb-4 text-xs text-white">Contact our support team and the issue will be resolved within 24 hours.</p>
                     <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL}`} className="flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95"> Contact Us </a>

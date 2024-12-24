@@ -273,9 +273,8 @@ table td {
   @apply w-full max-w-67 transition-all ease-in fixed left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden bg-black duration-100
 }
 .sidebar-nav-panel .nav-link {
-  @apply px-3
+  @apply px-3 min-h-11 items-center
 }
-
 
 
 .widget-page {
@@ -287,17 +286,21 @@ table td {
 .widget-page .sidebar-nav-panel {
   @apply  max-w-16 hover:max-w-67
 }
-
-.widget-page .sidebar-nav-panel .nav-link .nav-title {
-  @apply hidden whitespace-nowrap
-}
-
 .widget-page .nav-label,
+.widget-page .sidebar-nav-panel .nav-link .nav-title {
+  @apply opacity-0 whitespace-nowrap
+}
+.widget-page .sidebar-nav-panel:hover .nav-label,
+.widget-page .sidebar-nav-panel:hover .nav-link .nav-title {
+  @apply opacity-100
+}
+.widget-page .nav-label {
+  @apply whitespace-nowrap
+}
 .widget-page .nav-bottom-block {
   @apply hidden
 }
-.widget-page  .sidebar-nav-panel:hover .nav-bottom-block,
-.widget-page .sidebar-nav-panel:hover .nav-link .nav-title {
+.widget-page  .sidebar-nav-panel:hover .nav-bottom-block{
   @apply flex
 }
 .widget-page .logo {
@@ -323,7 +326,7 @@ table td {
 }
 
 .block-label {
-  @apply font-medium text-black w-full mb-1 block
+  @apply text-black w-full mb-1 block
 }
 .block-form-control {
   @apply w-full rounded border border-stroke py-2 px-3 font-medium text-black focus:border-black focus-visible:outline-none bg-input-color;  

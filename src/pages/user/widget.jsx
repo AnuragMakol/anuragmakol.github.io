@@ -391,7 +391,7 @@ export function Widget(props) {
                         <form className='h-full' onSubmit={handleUpdateWidgetTemplate(onSubmitUpdateWidgetTemplate)}>
                             <div className="rounded-sm border bg-slate-50 border-stroke shadow-md flex flex-col h-full">
                                 <div className='flex w-full border-b border-stroke bg-white'>
-                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 items-center font-bold text-black ${tabToggle === "content" ? "border-b-4" : ""}`} onClick={() => setTabToggle('content')}>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-3 px-4 items-center font-medium text-black  ${tabToggle === "content" ? "border-b-4 border-green-500" : ""}`} onClick={() => setTabToggle('content')}>
                                         <span className='w-5 h-5'>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                                 <path d="M 25 4.03125 C 24.234375 4.03125 23.484375 4.328125 22.90625 4.90625 L 13 14.78125 L 12.78125 15 L 12.71875 15.3125 L 12.03125 18.8125 L 11.71875 20.28125 L 13.1875 19.96875 L 16.6875 19.28125 L 17 19.21875 L 17.21875 19 L 27.09375 9.09375 C 28.246094 7.941406 28.246094 6.058594 27.09375 4.90625 C 26.515625 4.328125 25.765625 4.03125 25 4.03125 Z M 25 5.96875 C 25.234375 5.96875 25.464844 6.089844 25.6875 6.3125 C 26.132813 6.757813 26.132813 7.242188 25.6875 7.6875 L 16 17.375 L 14.28125 17.71875 L 14.625 16 L 24.3125 6.3125 C 24.535156 6.089844 24.765625 5.96875 25 5.96875 Z M 4 8 L 4 28 L 24 28 L 24 14.8125 L 22 16.8125 L 22 26 L 6 26 L 6 10 L 15.1875 10 L 17.1875 8 Z" />
@@ -399,7 +399,7 @@ export function Widget(props) {
                                         </span>
                                         Content
                                     </div>
-                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-2 px-4 items-center font-bold text-black ${tabToggle === "design" ? "border-b-4" : ""}`} onClick={() => setTabToggle('design')}>
+                                    <div className={`flex flex-col cursor-pointer flex-grow w-1/2 py-3 px-4 items-center font-medium text-black ${tabToggle === "design" ? "border-b-4 border-green-500" : ""}`} onClick={() => setTabToggle('design')}>
                                         <span className='w-5 h-5'>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                                 <path d="M 5.25 2.75 L 4.6875 3.28125 L 3.28125 4.6875 L 2.75 5.25 L 3.15625 5.90625 L 5.25 9.40625 L 5.53125 9.90625 L 8.46875 9.90625 L 12.46875 13.875 C 8.894531 17.464844 4.347656 22.027344 4.1875 22.1875 C 2.621094 23.753906 2.617188 26.320313 4.21875 27.8125 C 5.78125 29.355469 8.328125 29.394531 9.8125 27.8125 C 9.824219 27.800781 9.832031 27.792969 9.84375 27.78125 L 16 21.59375 L 22.1875 27.8125 L 22.28125 27.875 C 23.851563 29.355469 26.347656 29.375 27.8125 27.8125 L 27.8125 27.78125 L 27.84375 27.78125 C 29.375 26.214844 29.390625 23.667969 27.8125 22.1875 L 27.78125 22.15625 L 22.5625 16.96875 C 26.074219 16.640625 28.824219 13.675781 28.875 10.09375 L 28.90625 10.09375 C 28.910156 10.074219 28.90625 10.050781 28.90625 10.03125 C 28.90625 10.019531 28.90625 10.011719 28.90625 10 C 29.003906 8.84375 28.753906 7.738281 28.15625 6.78125 L 27.46875 5.71875 L 22.8125 10.375 L 21.40625 8.90625 L 26.15625 4.15625 L 24.78125 3.59375 C 23.976563 3.25 23.046875 3 22 3 C 18.15625 3 15 6.15625 15 10 C 15 10.417969 15.089844 10.78125 15.15625 11.15625 C 14.71875 11.59375 14.390625 11.953125 13.875 12.46875 L 9.90625 8.5 L 9.90625 5.53125 L 9.40625 5.25 L 5.90625 3.15625 Z M 22 5 C 22.140625 5 22.238281 5.082031 22.375 5.09375 L 18.59375 8.875 L 19.28125 9.59375 L 22.09375 12.5 L 22.78125 13.21875 L 26.75 9.25 C 26.769531 9.480469 26.933594 9.648438 26.90625 9.90625 L 26.90625 10 C 26.90625 12.753906 24.660156 15 21.90625 15 C 21.539063 15 21.09375 14.914063 20.59375 14.8125 L 20.0625 14.71875 L 19.6875 15.09375 L 8.40625 26.40625 L 8.375 26.40625 L 8.375 26.4375 C 7.664063 27.214844 6.421875 27.234375 5.59375 26.40625 L 5.59375 26.375 L 5.5625 26.375 C 4.785156 25.664063 4.765625 24.421875 5.59375 23.59375 C 5.972656 23.214844 13.3125 15.8125 16.90625 12.21875 L 17.3125 11.8125 L 17.15625 11.25 C 17.074219 10.925781 17 10.367188 17 10 C 17 7.246094 19.246094 5 22 5 Z M 5.5625 5.25 L 7.90625 6.6875 L 7.90625 7.6875 L 7.6875 7.90625 L 6.6875 7.90625 L 5.25 5.5625 Z M 20.1875 17.40625 L 26.40625 23.59375 L 26.40625 23.625 L 26.4375 23.625 C 27.214844 24.335938 27.234375 25.578125 26.40625 26.40625 L 26.375 26.40625 L 26.375 26.4375 C 25.664063 27.214844 24.421875 27.234375 23.59375 26.40625 L 17.40625 20.1875 Z" />
@@ -533,13 +533,19 @@ export function Widget(props) {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <h3 className='text-black font-bold mb-5'>Select the elements you want to show in the sticky add to cart bar</h3>
+                                            <h3 className='text-black mb-3 leading-tight'>Select the elements you want to hide 
+                                                {/* in the sticky add to cart bar */}
+                                                </h3>
                                             <div>
-                                                <div className='inline-flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
-                                                    <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
-                                                        <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg></div>
-                                                    <div className={`w-14 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
-                                                        <svg fill='currentColor' className='w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z" /></svg></div>
+                                                <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
+                                                    <div className={`w-1/2 px-3 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
+                                                        <svg fill='currentColor' className='w-6 mr-2' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg>
+                                                        Desktop
+                                                        </div>
+                                                    <div className={`w-1/2 px-3 py-2 flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
+                                                        <svg fill='currentColor' className='w-6 mr-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z" /></svg>
+                                                        Mobile
+                                                        </div>
                                                 </div>
                                             </div>
                                             <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in-out delay-150 opacity-100 h-auto visible" : "h-0 opacity-0 invisible"}`}>
@@ -640,7 +646,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
-                                            <h3 className='text-black font-bold mb-3 flex items-center'>Choose when the bar should appear as the user scrolls down</h3>
+                                            <h3 className='text-black font-medium mb-3 flex items-center'>Choose when the bar should appear as the user scrolls down</h3>
                                             <div className='flex items-center mb-4'>
                                                 <label className="block-label max-w-28">After Scrolling</label>
                                                 <div className='min-w-15 max-w-15'>
@@ -649,9 +655,8 @@ export function Widget(props) {
                                                 <span className='text-sm text-black pl-2 font-medium'>% Of The Page</span>
                                             </div>
                                             {errorsUpdateWidgetTemplate?.widget_scroll && <span className="text-danger text-sm text-bold">Please add a value</span>}
-                                        </div>
-                                        <div className='card mb-3'>
-                                            <h3 className='text-black font-bold mb-3 flex items-center'>Sticky bar entrance animation</h3>
+                                            <div>
+                                            <label class="block-label">Entrance animation</label>
                                             <div className="relative z-20 bg-input-color">
                                                 <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
                                                     <option value="none">None</option>
@@ -666,6 +671,7 @@ export function Widget(props) {
                                                         </g>
                                                     </svg>
                                                 </span>
+                                            </div>
                                             </div>
                                         </div>
                                         <div className='bg-white border border-stroke px-4 py-3 rounded-md shadow-sm mb-3'>

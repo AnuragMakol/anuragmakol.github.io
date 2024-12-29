@@ -458,26 +458,26 @@ export function Widget(props) {
                                             <div>
                                                 <div className="flex w-full space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed h-18 rounded-md group-hover:bg-input-color'>
-                                                            <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
+                                                        <div className='flex items-center justify-center border border-dashed rounded-md group-hover:bg-input-color'>
+                                                            <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
                                                                     widget_position: e.target.value
                                                                 });
                                                             }} />
+                                                                <img className='w-20 shadow-1' src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-top-position.svg`} alt='top' />
                                                         </div>
-                                                        <span className="mt-2 block">Top</span>
                                                     </label>
                                                     <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed w-full h-18 rounded-md group-hover:bg-input-color'>
-                                                            <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
+                                                        <div className='flex items-center justify-center border border-dashed w-full rounded-md group-hover:bg-input-color'>
+                                                            <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
                                                                     widget_position: e.target.value
                                                                 });
                                                             }} />
+                                                            <img className='w-20 shadow-1' src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-bottom-position.svg`} alt='bottom' />
                                                         </div>
-                                                        <span className="mt-2 block">Bottom</span>
                                                     </label>
                                                 </div>
                                                 {errorsUpdateWidgetTemplate?.widget_position && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a position</span>}
@@ -489,7 +489,7 @@ export function Widget(props) {
                                                 <div className="flex space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group">
                                                         <div className='border border-dashed w-full h-10 rounded-md group-hover:bg-input-color flex items-center bg-input-color'>
-                                                            <div className='w-full bg-green-900 h-2 m-1 rounded-full'></div>
+                                                            <div className='w-full bg-slate-500 h-2 m-1 rounded-full'></div>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -501,7 +501,7 @@ export function Widget(props) {
                                                     </label>
                                                     <label className="cursor-pointer select-none w-1/2 group">
                                                         <div className='border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color flex items-center justify-center '>
-                                                            <div className='w-3/6 bg-green-900 h-2 rounded-full'></div>
+                                                            <div className='w-3/6 bg-slate-500 h-2 rounded-full'></div>
                                                             <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
@@ -533,19 +533,19 @@ export function Widget(props) {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <h3 className='text-black mb-3 leading-tight'>Select the elements you want to hide 
+                                            <h3 className='text-black mb-3 leading-tight'>Select the elements you want to hide
                                                 {/* in the sticky add to cart bar */}
-                                                </h3>
+                                            </h3>
                                             <div>
                                                 <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
                                                     <div className={`w-1/2 px-3 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
                                                         <svg fill='currentColor' className='w-6 mr-2' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg>
                                                         Desktop
-                                                        </div>
+                                                    </div>
                                                     <div className={`w-1/2 px-3 py-2 flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
                                                         <svg fill='currentColor' className='w-6 mr-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z" /></svg>
                                                         Mobile
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in-out delay-150 opacity-100 h-auto visible" : "h-0 opacity-0 invisible"}`}>
@@ -656,22 +656,22 @@ export function Widget(props) {
                                             </div>
                                             {errorsUpdateWidgetTemplate?.widget_scroll && <span className="text-danger text-sm text-bold">Please add a value</span>}
                                             <div>
-                                            <label class="block-label">Entrance animation</label>
-                                            <div className="relative z-20 bg-input-color">
-                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
-                                                    <option value="none">None</option>
-                                                    <option value="slide-up">Slide in up</option>
-                                                    <option value="slide-down">Slide in down</option>
-                                                    <option value="fade-in">Fade in</option>
-                                                </select>
-                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g opacity="0.5">
-                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                        </g>
-                                                    </svg>
-                                                </span>
-                                            </div>
+                                                <label class="block-label">Entrance animation</label>
+                                                <div className="relative z-20 bg-input-color">
+                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
+                                                        <option value="none">None</option>
+                                                        <option value="slide-up">Slide in up</option>
+                                                        <option value="slide-down">Slide in down</option>
+                                                        <option value="fade-in">Fade in</option>
+                                                    </select>
+                                                    <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g opacity="0.5">
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='bg-white border border-stroke px-4 py-3 rounded-md shadow-sm mb-3'>
@@ -777,66 +777,81 @@ export function Widget(props) {
                                                     </span>
                                                 </div>
                                                 <div className='accordion-content px-4 pb-4'>
-                                                    <div className="relative z-20 bg-input-color mb-3">
-                                                        <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                widget_template: e.target.value
-                                                            });
+                                                    <div className='flex justify-between items-center mb-4'>
+                                                        <label class="block text-sm font-medium text-black">Template design</label>
+                                                        <div className='min-w-32 max-w-32'>
+                                                            <div className="relative z-20 bg-input-color">
+                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        widget_template: e.target.value
+                                                                    });
 
-                                                            triggerFetchTemplate(e.target.value, getValuesUpdateWidgetTemplate('widget_style'));
-                                                            manageCustomStyle('widget_template', e.target.value);
-                                                        }}>
-                                                            <option value="t1">Template 1</option>
-                                                            {
-                                                                user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                                    <option value="t2">Template 2</option>
-                                                                    <option value="t3">Template 3</option>
-                                                                </React.Fragment> : ""
-                                                            }
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                        {errorsUpdateWidgetTemplate?.widget_template && <span className="text-danger text-sm text-bold">Please select a template</span>}
+                                                                    triggerFetchTemplate(e.target.value, getValuesUpdateWidgetTemplate('widget_style'));
+                                                                    manageCustomStyle('widget_template', e.target.value);
+                                                                }}>
+                                                                    <option value="t1">Template 1</option>
+                                                                    {
+                                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                                            <option value="t2">Template 2</option>
+                                                                            <option value="t3">Template 3</option>
+                                                                        </React.Fragment> : ""
+                                                                    }
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                                {errorsUpdateWidgetTemplate?.widget_template && <span className="text-danger text-sm text-bold">Please select a template</span>}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div className="relative z-20 bg-input-color">
-                                                        <select className="block-select-control" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                widget_style: e.target.value
-                                                            });
+                                                    <div className='flex justify-between items-center'>
+                                                        <label class="block text-sm font-medium text-black">Template style</label>
+                                                        <div className='min-w-32 max-w-32'>
+                                                            <div className="relative z-20 bg-input-color">
+                                                                <select className="block-select-control" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
+                                                                    setWidgetSettings({
+                                                                        ...widgetSettings,
+                                                                        widget_style: e.target.value
+                                                                    });
 
-                                                            triggerFetchTemplate(getValuesUpdateWidgetTemplate('widget_template'), e.target.value);
-                                                            manageCustomStyle('widget_style', e.target.value);
-                                                        }}>
-                                                            <option value="s1">Style 1</option>
-                                                            <option value="s2">Style 2</option>
-                                                            {
-                                                                user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                                    <option value="s3">Style 3</option>
-                                                                    <option value="s4">Style 4</option>
-                                                                    <option value="s5">Style 5</option>
-                                                                    <option value="s6">Style 6</option>
-                                                                </React.Fragment> : ""
-                                                            }
-                                                            {
-                                                                user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
-                                                            }
-                                                        </select>
-                                                        <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g opacity="0.8">
-                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                        {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
+                                                                    triggerFetchTemplate(getValuesUpdateWidgetTemplate('widget_template'), e.target.value);
+                                                                    manageCustomStyle('widget_style', e.target.value);
+                                                                }}>
+                                                                    <option value="s1">Style 1</option>
+                                                                    <option value="s2">Style 2</option>
+                                                                    {
+                                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
+                                                                            <option value="s3">Style 3</option>
+                                                                            <option value="s4">Style 4</option>
+                                                                            <option value="s5">Style 5</option>
+                                                                            <option value="s6">Style 6</option>
+                                                                            <option value="s7">Style 7</option>
+                                                                            <option value="s8">Style 8</option>
+                                                                            <option value="s9">Style 9</option>
+                                                                            <option value="s10">Style 10</option>
+                                                                        </React.Fragment> : ""
+                                                                    }
+                                                                    {
+                                                                        user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
+                                                                    }
+                                                                </select>
+                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g opacity="0.8">
+                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#637381"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                                {errorsUpdateWidgetTemplate?.widget_style && <span className="text-danger text-sm text-bold">Please select a style</span>}
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -853,7 +868,7 @@ export function Widget(props) {
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background Color</label>
-                                                    <div className='w-44 flex justify-end'>
+                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('widget_background')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -866,7 +881,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Padding top/bottom</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_x')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -879,7 +894,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_y')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -892,7 +907,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border width</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_border_width')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -905,7 +920,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border color</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('widget_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -918,7 +933,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-1">
                                                     <label className="block text-sm font-medium text-black">Border radius</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_border_radius')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -943,7 +958,7 @@ export function Widget(props) {
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background Color</label>
-                                                    <div className='w-44 flex justify-end'>
+                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_background')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -956,7 +971,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Message text color</label>
-                                                    <div className='w-44 flex justify-end'>
+                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_text_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -969,7 +984,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Message text font size</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_timer_size')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -982,7 +997,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Timer text color</label>
-                                                    <div className='w-44 flex justify-end'>
+                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_timer_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -995,7 +1010,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Timer text font size</label>
-                                                    <div className='w-44'>
+                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_text_size')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -1011,612 +1026,546 @@ export function Widget(props) {
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                             <div className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Customize overall sticky bar design
+                                                    "Add to cart" button design
                                                 </h4>
-                                                <span className='flex transform -rotate-90'>
+                                                <span className='flex transform'>
                                                     <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
                                                 </span>
                                             </div>
                                             <div className='accordion-content px-4 pb-4'>
-                                                <div className='relative'>
-                                                    <div className='pb-1 border-b border-stroke'>
-                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center' onClick={() => setModalToggle('button')}>
-                                                            "Add to cart" button design
-                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' />
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Background Color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('button_background')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_background: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_background', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Text Color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_text_color: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_text_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Font size</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='text' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_font_size')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_font_size: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_font_size', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_font_weight')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    button_font_weight: e.target.value
+                                                                });
+
+                                                                manageCustomStyle('button_font_weight', e.target.value);
+                                                            }}>
+                                                                <option value="100">100</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="500">500</option>
+                                                                <option value="600">600</option>
+                                                                <option value="700">700</option>
+                                                                <option value="800">800</option>
+                                                                <option value="900">900</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
                                                             </span>
                                                         </div>
-                                                        <div className={`absolute w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999 ${modalToggle === "button" ? "" : "hidden"}`}>
-                                                            <div>
-                                                                <div className='flex items-center justify-between'>
-                                                                    <h5 className='text-black font-bold'>
-                                                                        Add to cart button design
-                                                                    </h5>
-                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70' onClick={() => setModalToggle("")}>
-                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon close' />
-                                                                    </span>
-                                                                </div>
-                                                                <div className='pt-4'>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Background Color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('button_background')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_background: e.target.value
-                                                                                });
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_y')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_padding_y: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_background', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Text Color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('button_text_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_text_color: e.target.value
-                                                                                });
+                                                            manageCustomStyle('button_padding_y', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_x')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_padding_x: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_text_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Font size</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='text' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_font_size')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_font_size: e.target.value
-                                                                                });
+                                                            manageCustomStyle('button_padding_x', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_radius')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_border_radius: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_font_size', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Font weight</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <div className="relative z-20 bg-input-color">
-                                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_font_weight')} onChange={(e) => {
-                                                                                    setWidgetSettings({
-                                                                                        ...widgetSettings,
-                                                                                        button_font_weight: e.target.value
-                                                                                    });
+                                                            manageCustomStyle('button_border_radius', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Product image design
+                                                </h4>
+                                                <span className='flex transform'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-content px-4 pb-4'>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Image width</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_x')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                image_size_x: e.target.value
+                                                            });
 
-                                                                                    manageCustomStyle('button_font_weight', e.target.value);
-                                                                                }}>
-                                                                                    <option value="100">100</option>
-                                                                                    <option value="200">200</option>
-                                                                                    <option value="300">300</option>
-                                                                                    <option value="400">400</option>
-                                                                                    <option value="500">500</option>
-                                                                                    <option value="600">600</option>
-                                                                                    <option value="700">700</option>
-                                                                                    <option value="800">800</option>
-                                                                                    <option value="900">900</option>
-                                                                                </select>
-                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <g opacity="0.5">
-                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                                        </g>
-                                                                                    </svg>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Padding top/bottom</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_y')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_padding_y: e.target.value
-                                                                                });
+                                                            manageCustomStyle('image_size_x', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Image width</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_y')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                image_size_y: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_padding_y', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_x')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_padding_x: e.target.value
-                                                                                });
+                                                            manageCustomStyle('image_size_y', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Product title design
+                                                </h4>
+                                                <span className='flex transform'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-content px-4 pb-4'>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Title Color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                title_color: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_padding_x', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Border radius</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_radius')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    button_border_radius: e.target.value
-                                                                                });
+                                                            manageCustomStyle('title_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Title font size</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_font_size')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                title_font_size: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('button_border_radius', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => setModalToggle("")}>Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            manageCustomStyle('title_font_size', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Title font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('title_font_weight')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    title_font_weight: e.target.value
+                                                                });
+
+                                                                manageCustomStyle('title_font_weight', e.target.value);
+                                                            }}>
+                                                                <option value="100">100</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="500">500</option>
+                                                                <option value="600">600</option>
+                                                                <option value="700">700</option>
+                                                                <option value="800">800</option>
+                                                                <option value="900">900</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
+                                                            {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
                                                         </div>
                                                     </div>
-                                                    <div className='pb-1 border-b border-stroke'>
-                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center' onClick={() => setModalToggle('image')}>Product image design
-                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
-                                                        </div>
-                                                        <div className={`absolute w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999 ${modalToggle === "image" ? "" : "hidden"}`}>
-                                                            <div>
-                                                                <div className='flex items-center justify-between'>
-                                                                    <h5 className='text-black font-bold'>
-                                                                        Product image design
-                                                                    </h5>
-                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70' onClick={() => setModalToggle("")}>
-                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                                    </span>
-                                                                </div>
-                                                                <div className='pt-4'>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Image width</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_x')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    image_size_x: e.target.value
-                                                                                });
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Title line height</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_line_height')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                title_line_height: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('image_size_x', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Image width</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_y')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    image_size_y: e.target.value
-                                                                                });
+                                                            manageCustomStyle('title_line_height', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Product Price design
+                                                </h4>
+                                                <span className='flex transform'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-content px-4 pb-4'>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Price color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                offer_price_color: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('image_size_y', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => setModalToggle("")}>Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            manageCustomStyle('offer_price_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Price font size</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_font_size')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                offer_price_font_size: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('offer_price_font_size', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Price font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('offer_price_font_weight')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    offer_price_font_weight: e.target.value
+                                                                });
+
+                                                                manageCustomStyle('offer_price_font_weight', e.target.value);
+                                                            }}>
+                                                                <option value="100">100</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="500">500</option>
+                                                                <option value="600">600</option>
+                                                                <option value="700">700</option>
+                                                                <option value="800">800</option>
+                                                                <option value="900">900</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div className='pb-1 border-b border-stroke'>
-                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center' onClick={() => setModalToggle('title')}>Product title design
-                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
-                                                        </div>
-                                                        <div className={`absolute w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999 ${modalToggle === "title" ? "" : "hidden"}`}>
-                                                            <div>
-                                                                <div className='flex items-center justify-between'>
-                                                                    <h5 className='text-black font-bold'>
-                                                                        Product title design
-                                                                    </h5>
-                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70' onClick={() => setModalToggle("")}>
-                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                                    </span>
-                                                                </div>
-                                                                <div className='pt-4'>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Title Color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('title_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    title_color: e.target.value
-                                                                                });
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Price line height</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_line_height')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                offer_price_line_height: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('title_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Title font size</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_font_size')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    title_font_size: e.target.value
-                                                                                });
+                                                            manageCustomStyle('offer_price_line_height', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className='w-full h-px bg-stroke mb-4'></div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Compare price color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_color: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('title_font_size', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Title font weight</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <div className="relative z-20 bg-input-color">
-                                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('title_font_weight')} onChange={(e) => {
-                                                                                    setWidgetSettings({
-                                                                                        ...widgetSettings,
-                                                                                        title_font_weight: e.target.value
-                                                                                    });
+                                                            manageCustomStyle('compare_price_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Compare price font size</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_font_size')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_font_size: e.target.value
+                                                            });
 
-                                                                                    manageCustomStyle('title_font_weight', e.target.value);
-                                                                                }}>
-                                                                                    <option value="100">100</option>
-                                                                                    <option value="200">200</option>
-                                                                                    <option value="300">300</option>
-                                                                                    <option value="400">400</option>
-                                                                                    <option value="500">500</option>
-                                                                                    <option value="600">600</option>
-                                                                                    <option value="700">700</option>
-                                                                                    <option value="800">800</option>
-                                                                                    <option value="900">900</option>
-                                                                                </select>
-                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <g opacity="0.5">
-                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                                        </g>
-                                                                                    </svg>
-                                                                                </span>
-                                                                                {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Title line height</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_line_height')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    title_line_height: e.target.value
-                                                                                });
+                                                            manageCustomStyle('compare_price_font_size', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Compare price font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    compare_price_font_weight: e.target.value
+                                                                });
 
-                                                                                manageCustomStyle('title_line_height', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => setModalToggle("")}>Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                manageCustomStyle('compare_price_font_weight', e.target.value);
+                                                            }}>
+                                                                <option value="100">100</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="500">500</option>
+                                                                <option value="600">600</option>
+                                                                <option value="700">700</option>
+                                                                <option value="800">800</option>
+                                                                <option value="900">900</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div className='pb-1 border-b border-stroke'>
-                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center' onClick={() => setModalToggle('price')}>Product price design
-                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
-                                                        </div>
-                                                        <div className={`absolute w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999 ${modalToggle === "price" ? "" : "hidden"}`}>
-                                                            <div>
-                                                                <div className='flex items-center justify-between'>
-                                                                    <h5 className='text-black font-bold'>
-                                                                        Product Price design
-                                                                    </h5>
-                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70' onClick={() => setModalToggle("")}>
-                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                                    </span>
-                                                                </div>
-                                                                <div className='pt-4'>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Price color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    offer_price_color: e.target.value
-                                                                                });
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Compare price line height</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_line_height')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_line_height: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('offer_price_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Price font size</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_font_size')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    offer_price_font_size: e.target.value
-                                                                                });
+                                                            manageCustomStyle('compare_price_line_height', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
+                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <h4 className='text-black font-bold'>
+                                                    Product variations design
+                                                </h4>
+                                                <span className='flex transform'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
+                                            </div>
+                                            <div className='accordion-content px-4 pb-4'>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Background color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('variants_background')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                variants_background: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('offer_price_font_size', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Price font weight</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <div className="relative z-20 bg-input-color">
-                                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('offer_price_font_weight')} onChange={(e) => {
-                                                                                    setWidgetSettings({
-                                                                                        ...widgetSettings,
-                                                                                        offer_price_font_weight: e.target.value
-                                                                                    });
+                                                            manageCustomStyle('variants_background', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Text color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('variants_text_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                variants_text_color: e.target.value
+                                                            });
 
-                                                                                    manageCustomStyle('offer_price_font_weight', e.target.value);
-                                                                                }}>
-                                                                                    <option value="100">100</option>
-                                                                                    <option value="200">200</option>
-                                                                                    <option value="300">300</option>
-                                                                                    <option value="400">400</option>
-                                                                                    <option value="500">500</option>
-                                                                                    <option value="600">600</option>
-                                                                                    <option value="700">700</option>
-                                                                                    <option value="800">800</option>
-                                                                                    <option value="900">900</option>
-                                                                                </select>
-                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <g opacity="0.5">
-                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                                        </g>
-                                                                                    </svg>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Price line height</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_line_height')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    offer_price_line_height: e.target.value
-                                                                                });
+                                                            manageCustomStyle('variants_text_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Font size</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_font_size')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                variants_font_size: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('offer_price_line_height', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className='w-full h-px bg-stroke mb-4'></div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Compare price color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_color: e.target.value
-                                                                                });
+                                                            manageCustomStyle('variants_font_size', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <div className="relative z-20 bg-input-color">
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
+                                                                setWidgetSettings({
+                                                                    ...widgetSettings,
+                                                                    compare_price_font_weight: e.target.value
+                                                                });
 
-                                                                                manageCustomStyle('compare_price_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Compare price font size</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_font_size')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_font_size: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_font_size', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Compare price font weight</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <div className="relative z-20 bg-input-color">
-                                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
-                                                                                    setWidgetSettings({
-                                                                                        ...widgetSettings,
-                                                                                        compare_price_font_weight: e.target.value
-                                                                                    });
-
-                                                                                    manageCustomStyle('compare_price_font_weight', e.target.value);
-                                                                                }}>
-                                                                                    <option value="100">100</option>
-                                                                                    <option value="200">200</option>
-                                                                                    <option value="300">300</option>
-                                                                                    <option value="400">400</option>
-                                                                                    <option value="500">500</option>
-                                                                                    <option value="600">600</option>
-                                                                                    <option value="700">700</option>
-                                                                                    <option value="800">800</option>
-                                                                                    <option value="900">900</option>
-                                                                                </select>
-                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <g opacity="0.5">
-                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                                        </g>
-                                                                                    </svg>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Compare price line height</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_line_height')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_line_height: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_line_height', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => setModalToggle("")}>Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                manageCustomStyle('compare_price_font_weight', e.target.value);
+                                                            }}>
+                                                                <option value="100">100</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="500">500</option>
+                                                                <option value="600">600</option>
+                                                                <option value="700">700</option>
+                                                                <option value="800">800</option>
+                                                                <option value="900">900</option>
+                                                            </select>
+                                                            <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g opacity="0.5">
+                                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div className='pb-1 border-b border-stroke'>
-                                                        <div className='cursor-pointer font-medium text-black flex justify-between p-2 group hover:text-primary items-center' onClick={() => setModalToggle('variants')}>Product variations design
-                                                            <span className='w-4 h-4 opacity-70 group-hover:opacity-100'><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-angle-right.svg`} alt='icon right' /></span>
-                                                        </div>
-                                                        <div className={`absolute w-full left-0 top-1 rounded-lg p-4 bg-white border border-stroke shadow-lg z-999 ${modalToggle === "variants" ? "" : "hidden"}`}>
-                                                            <div>
-                                                                <div className='flex items-center justify-between'>
-                                                                    <h5 className='text-black font-bold'>
-                                                                        Product variations design
-                                                                    </h5>
-                                                                    <span className='ml-auto w-5 h-5 flex cursor-pointer opacity-70' onClick={() => setModalToggle("")}>
-                                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-close.svg`} alt='icon down' />
-                                                                    </span>
-                                                                </div>
-                                                                <div className='pt-4'>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Background color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('variants_background')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    variants_background: e.target.value
-                                                                                });
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_y')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_padding_y: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('variants_background', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Text color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('variants_text_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    variants_text_color: e.target.value
-                                                                                });
+                                                            manageCustomStyle('compare_price_padding_y', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_x')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_padding_x: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('variants_text_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Font size</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_font_size')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    variants_font_size: e.target.value
-                                                                                });
+                                                            manageCustomStyle('compare_price_padding_x', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_width')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_border_width: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('variants_font_size', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Font weight</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <div className="relative z-20 bg-input-color">
-                                                                                <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
-                                                                                    setWidgetSettings({
-                                                                                        ...widgetSettings,
-                                                                                        compare_price_font_weight: e.target.value
-                                                                                    });
+                                                            manageCustomStyle('compare_price_border_width', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('compare_price_border_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_border_color: e.target.value
+                                                            });
 
-                                                                                    manageCustomStyle('compare_price_font_weight', e.target.value);
-                                                                                }}>
-                                                                                    <option value="100">100</option>
-                                                                                    <option value="200">200</option>
-                                                                                    <option value="300">300</option>
-                                                                                    <option value="400">400</option>
-                                                                                    <option value="500">500</option>
-                                                                                    <option value="600">600</option>
-                                                                                    <option value="700">700</option>
-                                                                                    <option value="800">800</option>
-                                                                                    <option value="900">900</option>
-                                                                                </select>
-                                                                                <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
-                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <g opacity="0.5">
-                                                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill="#000"></path>
-                                                                                        </g>
-                                                                                    </svg>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Padding top/bottom</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_y')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_padding_y: e.target.value
-                                                                                });
+                                                            manageCustomStyle('compare_price_border_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_radius')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                compare_price_border_radius: e.target.value
+                                                            });
 
-                                                                                manageCustomStyle('compare_price_padding_y', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_x')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_padding_x: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_padding_x', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Border width</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_width')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_border_width: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_border_width', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Border color</label>
-                                                                        <div className='min-w-32 max-w-32 flex justify-end'>
-                                                                            <input type="color" {...registerUpdateWidgetTemplate('compare_price_border_color')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_border_color: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_border_color', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="flex justify-between items-center mb-4">
-                                                                        <label className="block text-sm font-medium text-black">Border radius</label>
-                                                                        <div className='min-w-32 max-w-32'>
-                                                                            <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_radius')} onChange={(e) => {
-                                                                                setWidgetSettings({
-                                                                                    ...widgetSettings,
-                                                                                    compare_price_border_radius: e.target.value
-                                                                                });
-
-                                                                                manageCustomStyle('compare_price_border_radius', e.target.value);
-                                                                            }} />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="pt-2 flex justify-end space-x-2 bg-white">
-                                                                        <a className="flex justify-center items-center text-sm rounded bg-black bg-opacity-10 px-6 p1-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => setModalToggle("")}>Close</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                            manageCustomStyle('compare_price_border_radius', e.target.value);
+                                                        }} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1698,117 +1647,32 @@ export function Widget(props) {
                                         </div>
                                     </div>
                                     <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
-                                        <div id="widget-container">
-                                            <div className="cpatc-product">
-                                                {
-                                                    widgetSettings?.desktop_hide_image ? "" : <div className="cpatc-product-item-image">
-                                                        <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
-                                                    </div>
-                                                }
-
-                                                <div className="cpatc-content">
-                                                    {
-                                                        widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
-                                                    }
-                                                    {
-                                                        widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
-                                                            {
-                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
-                                                            }
-                                                            {
-                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
-                                                            }
-                                                        </div> : ""
-                                                    }
+                                        <div id='widget-container' className='has-shadow'>
+                                            <div className="cpatc-timer">
+                                                <div className='cpatc-timer-container'>
+                                                    <div className="cpatc-timer-title">Hurry up!</div>
+                                                    <div className="cpatc-timer-countdown"></div>
                                                 </div>
                                             </div>
-                                            <div className="cpatc-widget-events">
-                                                <div id="widget-options" className="cpatc-options">
-                                                    <div className="cpatc-variant-opt">
-                                                        <label className="cpatc-label cpatc-select-outer">
-                                                            <select id="widget-option1" className="cpatc-select">
-                                                                <option value="Navy">Navy</option>
-                                                            </select>
-                                                            <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                                        </label>
-                                                    </div>
-                                                    <div className="cpatc-variant-opt">
-                                                        <label className="cpatc-label cpatc-select-outer">
-                                                            <select id="widget-option2" className="cpatc-select">
-                                                                <option value="XS">XS</option>
-                                                                <option value="S">S</option>
-                                                                <option value="M">M</option>
-                                                                <option value="L">L</option>
-                                                                <option value="XL">XL</option>
-                                                            </select>
-                                                            <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div className="cpatc-actions">
+                                            <div id="widget-content">
+                                                <div className="cpatc-product">
                                                     {
-                                                        widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
-                                                            {
-                                                                widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
-                                                            }
-                                                            {
-                                                                widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
-                                                            }
+                                                        widgetSettings?.desktop_hide_image ? "" : <div className="cpatc-product-item-image">
+                                                            <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
                                                         </div>
                                                     }
-                                                    <div className="cpatc-action-wrapper">
-                                                        <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className={`${deviceToggle === "mobile" ? "flex items-center transition-opacity ease-in delay-150 opacity-100 h-full visible min-h-180" : "opacity-0 h-0 ease-out invisible"}`}>
-                            <div className='border-4 border-slate-400 w-full max-w-94 mx-auto relative rounded-iphone-outer mobile-view h-full max-h-203'>
-                                <div className='bg-white border-4 border-black w-full h-full relative  flex flex-col rounded-7xl overflow-hidden max-h-203'>
-                                    <div className='relative w-full flex justify-center top-2.5 left-3 mb-4.5'>
-                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-iphone-statusbar.svg`} alt='iphone status bar' />
-                                    </div>
-                                    <div className='relative flex-grow'>
-                                        <div className='flex flex-col w-full mx-auto pt-4 px-4'>
-                                            <div>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
-                                            </div>
-                                            <div className='pt-4'>
-                                                <div>
-                                                    <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
-                                                    <div className='flex flex-col'>
-                                                        <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
-                                                        <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
-                                                        <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
-                                                        <span className='w-20 h-3 bg-gray block rounded-md'></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
-                                            <div id="widget-container">
-                                                <div className="cpatc-product">
-                                                    <div className="cpatc-product-item-image">
-                                                        {
-                                                            widgetSettings?.mobile_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
-                                                        }
-                                                    </div>
                                                     <div className="cpatc-content">
                                                         {
-                                                            widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
+                                                            widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
                                                         }
                                                         {
                                                             widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
-                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
                                                                 {
-                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                                 }
                                                             </div> : ""
                                                         }
@@ -1841,15 +1705,114 @@ export function Widget(props) {
                                                         {
                                                             widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
-                                                                    widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
                                                                 {
-                                                                    widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    widgetSettings?.desktop_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
                                                                 }
                                                             </div>
                                                         }
                                                         <div className="cpatc-action-wrapper">
                                                             <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={`${deviceToggle === "mobile" ? "flex items-center transition-opacity ease-in delay-150 opacity-100 h-full visible min-h-180" : "opacity-0 h-0 ease-out invisible"}`}>
+                            <div className={`border-slate-400 w-full max-w-94 mx-auto relative rounded-iphone-outer mobile-view max-h-203 boder-4 h-full ${deviceToggle === "mobile" ? "" : " hidden"}`}>
+                                <div className='bg-white border-4 border-black w-full h-full relative  flex flex-col rounded-7xl overflow-hidden max-h-203'>
+                                    <div className='relative w-full flex justify-center top-2.5 left-3 mb-4.5'>
+                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-iphone-statusbar.svg`} alt='iphone status bar' />
+                                    </div>
+                                    <div className='relative flex-grow'>
+                                        <div className='flex flex-col w-full mx-auto pt-4 px-4'>
+                                            <div>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                            </div>
+                                            <div className='pt-4'>
+                                                <div>
+                                                    <h1 className='font-semibold text-2xl mb-4'>Product title</h1>
+                                                    <div className='flex flex-col'>
+                                                        <span className='w-20 h-3 bg-gray block rounded-md mb-4'></span>
+                                                        <span className='w-4/5 h-3 bg-gray block rounded-md mb-3'></span>
+                                                        <span className='w-8/12 h-3 bg-gray block rounded-md mb-3'></span>
+                                                        <span className='w-20 h-3 bg-gray block rounded-md'></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
+                                            <div id="widget-container">
+                                                <div className="cpatc-timer">
+                                                    <div className="cpatc-timer-title">Hurry up!</div>
+                                                    <div className="cpatc-timer-countdown"></div>
+                                                </div>
+                                                <div id='widget-content'>
+                                                    <div className="cpatc-product">
+                                                        <div className="cpatc-product-item-image">
+                                                            {
+                                                                widgetSettings?.mobile_hide_image ? "" : <img id="widget-image" src="//cdn.shopify.com/s/files/1/1449/3238/products/guaranteed_navy.jpg?v=1521562674" />
+                                                            }
+                                                        </div>
+                                                        <div className="cpatc-content">
+                                                            {
+                                                                widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
+                                                            }
+                                                            {
+                                                                widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                                    {
+                                                                        widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    }
+                                                                    {
+                                                                        widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    }
+                                                                </div> : ""
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div className="cpatc-widget-events">
+                                                        <div id="widget-options" className="cpatc-options">
+                                                            <div className="cpatc-variant-opt">
+                                                                <label className="cpatc-label cpatc-select-outer">
+                                                                    <select id="widget-option1" className="cpatc-select">
+                                                                        <option value="Navy">Navy</option>
+                                                                    </select>
+                                                                    <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                                </label>
+                                                            </div>
+                                                            <div className="cpatc-variant-opt">
+                                                                <label className="cpatc-label cpatc-select-outer">
+                                                                    <select id="widget-option2" className="cpatc-select">
+                                                                        <option value="XS">XS</option>
+                                                                        <option value="S">S</option>
+                                                                        <option value="M">M</option>
+                                                                        <option value="L">L</option>
+                                                                        <option value="XL">XL</option>
+                                                                    </select>
+                                                                    <span className="cpatc-select-indicate"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" /></svg></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div className="cpatc-actions">
+                                                            {
+                                                                widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                                    {
+                                                                        widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
+                                                                    }
+                                                                    {
+                                                                        widgetSettings?.mobile_hide_compare_price ? "" : <span className="cpatc-item-compare-price" id="widget-compare-price">{PriceFormat(user?.shop_details?.money_format, '4600')}</span>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            <div className="cpatc-action-wrapper">
+                                                                <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

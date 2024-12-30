@@ -118,7 +118,7 @@ export function AdminUsers(props) {
       </div>
 
       <div className="flex justify-between items-center pt-4">
-          <div>Showing <b>{users.length}</b> of <b>{total}</b> Users</div>
+        <div>Showing <b>{users.length}</b> of <b>{total}</b> Users</div>
         <nav className="pagination-wrap">
           <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
         </nav>

@@ -145,13 +145,13 @@ export function AdminManageCampaign(props) {
 
   const { mutate: initToggleCampaignStatus, isLoading: loadingToggleCampaignStatus } = useMutation(toggleCampaignStatus, {
     onSuccess: (result) => {
-        successHandler(result);
-        setCampaign(result.data);
+      successHandler(result);
+      setCampaign(result.data);
     },
     onError: (error) => {
-        errorHandler(error);
+      errorHandler(error);
     }
-});
+  });
 
   return (
     <AdminDashboardLayout props={props}>
@@ -434,7 +434,7 @@ export function AdminManageCampaign(props) {
       </div>
 
       <div className="flex justify-between items-center pt-4">
-          <div>Showing <b>{emailList.length}</b> of <b>{total}</b> Emails</div>
+        <div>Showing <b>{emailList.length}</b> of <b>{total}</b> Emails</div>
         <nav className="pagination-wrap">
           <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
         </nav>

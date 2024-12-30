@@ -48,8 +48,8 @@ export const UserSidebar = (props) => {
         <aside className="sidebar-nav-panel">
             <div className="flex items-center justify-between gap-2 px-3 py-6.5">
                 <a className="logo" onClick={() => navigate('/dashboard')}>
-                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
-                    alt="Logo" className="logo-full" />                    
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`}
+                        alt="Logo" className="logo-full" />
                     {/* <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-icon.svg`} alt="Logo" className="logo-icon" /> */}
                 </a>
             </div>

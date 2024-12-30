@@ -51,9 +51,16 @@ export const AdminLogin = (props) => {
 
             <div className="hidden w-full xl:block xl:w-1/2">
                 <div className="text-center">
-                    <a className="mb-5.5 inline-block" href="index.html">
-                        <img src="../../images/logo/logo-dark.svg" alt="Logo" />
+                <div className='flex items-center justify-center w-full mb-5'>
+               
+                    <a className="inline-block" href="index.html">
+                    <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-dark.svg`} alt="Logo" />
                     </a>
+                    <span className='block text-black font-medium pl-4 pr-2 pt-1'>by</span>
+                    <a className="mt-2.5 inline-block" href="index.html">
+                    <img className='max-w-20' src={`${import.meta.env.VITE_APP_URL}/images/logo/logo-appvertix.svg`} alt="Logo" />
+                    </a>
+                </div>
 
                     <p className="font-medium 2xl:px-20">
                         AIO Manager is the to go app for managing your shopify e-commerce store

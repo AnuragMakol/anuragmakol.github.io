@@ -117,13 +117,11 @@ export function AdminUsers(props) {
         }
       </div>
 
-      <div className="">
-        <div className="">
+      <div className="flex justify-between items-center pt-4">
           <div>Showing <b>{users.length}</b> of <b>{total}</b> Users</div>
-        </div>
-        <div className="">
+        <nav className="pagination-wrap">
           <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
-        </div>
+        </nav>
       </div>
     </AdminDashboardLayout>
   )

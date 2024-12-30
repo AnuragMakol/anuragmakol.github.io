@@ -433,13 +433,11 @@ export function AdminManageCampaign(props) {
         }
       </div>
 
-      <div className="">
-        <div className="">
+      <div className="flex justify-between items-center pt-4">
           <div>Showing <b>{emailList.length}</b> of <b>{total}</b> Emails</div>
-        </div>
-        <div className="">
+        <nav className="pagination-wrap">
           <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
-        </div>
+        </nav>
       </div>
     </AdminDashboardLayout>
   )

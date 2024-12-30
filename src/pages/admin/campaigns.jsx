@@ -187,13 +187,11 @@ export function AdminCampaigns(props) {
         }
       </div>
 
-      <div className="">
-        <div className="">
+      <div className="flex justify-between items-center pt-4">
           <div>Showing <b>{campaigns.length}</b> of <b>{total}</b> Campaigns</div>
-        </div>
-        <div className="">
+          <nav className="pagination-wrap">
           <Pagination activePage={page} itemsCountPerPage={limit} totalItemsCount={total} pageRangeDisplayed={5} onChange={(e) => setPage(e)} />
-        </div>
+        </nav>
       </div>
 
       <div className={`fixed left-0 top-0 z-999999 flex h-full min-h-screen w-full items-center justify-center bg-black/90 px-4 py-5 ${isActive}`}>

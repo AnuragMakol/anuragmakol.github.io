@@ -727,12 +727,10 @@ export function Widget(props) {
                                                     {
                                                         widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
                                                             <label className="block-label pb-2">Enter duration</label>
-                                                            <div className='flex'>
-                                                                <div className='min-w-15 max-w-15'>
-                                                                    <input type="number" className="block-form-control h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
-                                                                    <p className='text-center text-black text-sm font-medium pt-0.5'>In Minutes</p>
+                                                                <div className='flex items-center'>
+                                                                    <input type="number" className="block-form-control max-w-25 h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
+                                                                    <p className='text-black text-sm font-medium pl-2 italic'>In Minutes</p>
                                                                 </div>
-                                                            </div>
                                                         </div> : ""
                                                     }
                                                     {
@@ -1506,26 +1504,26 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Padding top/bottom</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_y')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_padding_y')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                compare_price_padding_y: e.target.value
+                                                                variants_padding_y: e.target.value
                                                             });
 
-                                                            manageCustomStyle('compare_price_padding_y', e.target.value);
+                                                            manageCustomStyle('variants_padding_y', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Padding left/right</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_padding_x')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_price_padding_x')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                compare_price_padding_x: e.target.value
+                                                                variants_price_padding_x: e.target.value
                                                             });
 
-                                                            manageCustomStyle('compare_price_padding_x', e.target.value);
+                                                            manageCustomStyle('variants_price_padding_x', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1545,26 +1543,26 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
-                                                        <input type="color" {...registerUpdateWidgetTemplate('compare_price_border_color')} onChange={(e) => {
+                                                        <input type="color" {...registerUpdateWidgetTemplate('variants_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                compare_price_border_color: e.target.value
+                                                                variants_border_color: e.target.value
                                                             });
 
-                                                            manageCustomStyle('compare_price_border_color', e.target.value);
+                                                            manageCustomStyle('variants_border_color', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border radius</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_radius')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_border_radius')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                compare_price_border_radius: e.target.value
+                                                                variants_border_radius: e.target.value
                                                             });
 
-                                                            manageCustomStyle('compare_price_border_radius', e.target.value);
+                                                            manageCustomStyle('variants_border_radius', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>

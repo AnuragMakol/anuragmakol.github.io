@@ -409,7 +409,7 @@ table td {
 }
 .nav-label:after {
   content: "";
-  @apply w-12 h-px bg-white bg-opacity-20 absolute left-2
+  @apply w-12 h-px mt-2.5 bg-white bg-opacity-20 absolute left-2
 }
 .sidebar-nav-panel:hover .nav-label {
   @apply text-opacity-100

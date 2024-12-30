@@ -457,25 +457,25 @@ export function Widget(props) {
                                             <h3 className='text-black font-bold mb-3'>Sticky cart position</h3>
                                             <div>
                                                 <div className="flex w-full space-x-4">
-                                                    <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='flex items-center justify-center border border-dashed rounded-md group-hover:bg-input-color'>
-                                                            <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
-                                                                setWidgetSettings({
-                                                                    ...widgetSettings,
-                                                                    widget_position: e.target.value
-                                                                });
-                                                            }} />
-                                                                <img className='w-20 shadow-1' src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-top-position.svg`} alt='top' />
+                                                    <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
+                                                        <input className='sr-only' type="radio" name='position' {...registerUpdateWidgetTemplate('widget_position')} value="top" onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_position: e.target.value
+                                                            });
+                                                        }} />
+                                                        <div className='flex cpatc-pw-btn items-center justify-center border border-dashed border-slate-400 rounded-md group-hover:bg-input-color group-hover:bg-opacity-50'>
+                                                            <img className='w-20 shadow-1' src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-top-position.svg`} alt='top' />
                                                         </div>
                                                     </label>
-                                                    <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='flex items-center justify-center border border-dashed w-full rounded-md group-hover:bg-input-color'>
-                                                            <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
-                                                                setWidgetSettings({
-                                                                    ...widgetSettings,
-                                                                    widget_position: e.target.value
-                                                                });
-                                                            }} />
+                                                    <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
+                                                        <input className='sr-only' type="radio" name='position' {...registerUpdateWidgetTemplate('widget_position')} value="bottom" onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_position: e.target.value
+                                                            });
+                                                        }} />
+                                                        <div className='flex cpatc-pw-btn items-center justify-center border border-dashed border-slate-400 w-full rounded-md group-hover:bg-input-color group-hover:bg-opacity-50'>
                                                             <img className='w-20 shadow-1' src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-bottom-position.svg`} alt='bottom' />
                                                         </div>
                                                     </label>
@@ -487,29 +487,29 @@ export function Widget(props) {
                                             <h3 className='text-black font-bold mb-3 flex items-center'>Width <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} /></h3>
                                             <div>
                                                 <div className="flex space-x-4">
-                                                    <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed w-full h-10 rounded-md group-hover:bg-input-color flex items-center bg-input-color'>
-                                                            <div className='w-full bg-slate-500 h-2 m-1 rounded-full'></div>
-                                                            <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => {
-                                                                setWidgetSettings({
-                                                                    ...widgetSettings,
-                                                                    widget_width: e.target.value
-                                                                });
-                                                            }} />
+                                                    <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
+                                                        <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="fullwidth" onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_width: e.target.value
+                                                            });
+                                                        }} />
+                                                        <div className='cpatc-pw-btn border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color group-hover:bg-opacity-50 flex items-center'>
+                                                            <div className='w-full h-2 m-1 rounded-full' style={{backgroundColor:"#7D8F9B"}}></div>
                                                         </div>
-                                                        <span className="mt-2 block">Full Width</span>
+                                                        <span className="mt-1 text-sm text-black text-center block">Full Width</span>
                                                     </label>
-                                                    <label className="cursor-pointer select-none w-1/2 group">
-                                                        <div className='border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color flex items-center justify-center '>
-                                                            <div className='w-3/6 bg-slate-500 h-2 rounded-full'></div>
-                                                            <input className='opacity-0 w-0' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => {
-                                                                setWidgetSettings({
-                                                                    ...widgetSettings,
-                                                                    widget_width: e.target.value
-                                                                });
-                                                            }} />
+                                                    <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
+                                                        <input className='sr-only' type="radio" {...registerUpdateWidgetTemplate('widget_width')} value="boxed" onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_width: e.target.value
+                                                            });
+                                                        }} />
+                                                        <div className='cpatc-pw-btn border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color group-hover:bg-opacity-50 flex items-center justify-center '>
+                                                            <div className='w-3/6 bg-slate-500 h-2 rounded-full' style={{backgroundColor:"#7D8F9B"}}></div>
                                                         </div>
-                                                        <span className="mt-2 block">Boxed</span>
+                                                        <span className="mt-1 text-sm text-black text-center block">Boxed</span>
                                                     </label>
                                                 </div>
                                                 {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a width</span>}
@@ -727,10 +727,10 @@ export function Widget(props) {
                                                     {
                                                         widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
                                                             <label className="block-label pb-2">Enter duration</label>
-                                                                <div className='flex items-center'>
-                                                                    <input type="number" className="block-form-control max-w-25 h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
-                                                                    <p className='text-black text-sm font-medium pl-2 italic'>In Minutes</p>
-                                                                </div>
+                                                            <div className='flex items-center'>
+                                                                <input type="number" className="block-form-control max-w-25 h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
+                                                                <p className='text-black text-sm font-medium pl-2 italic'>In Minutes</p>
+                                                            </div>
                                                         </div> : ""
                                                     }
                                                     {
@@ -765,15 +765,16 @@ export function Widget(props) {
                                     </div>
                                     <div className={`p-4 ${tabToggle === "design" ? "" : "hide-desktop"}`}>
                                         <div className='accordion-wrap'>
-                                            <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                                <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <div className='accordion-item '>
+                                                <label for='collapsible-item1' className='accordion-head cursor-pointer flex justify-between p-3'>
                                                     <h4 className='text-black font-bold'>
                                                         Styled templates
                                                     </h4>
-                                                    <span className='flex transform -rotate-90'>
-                                                        <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                    </span>
-                                                </div>
+                                                </label>
+                                                <input className='sr-only' type='checkbox' id="collapsible-item1" />
+                                                <span className='accordion-icon'>
+                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                                </span>
                                                 <div className='accordion-content px-4 pb-4'>
                                                     <div className='flex justify-between items-center mb-4'>
                                                         <label class="block text-sm font-medium text-black">Template design</label>
@@ -854,19 +855,20 @@ export function Widget(props) {
                                             </div>
                                         </div>
 
-                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                        <div className='accordion-item'>
+                                            <label for="collapsible-item2" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Customize widget
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item2" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background Color</label>
-                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
+                                                    <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('widget_background')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -918,7 +920,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border color</label>
-                                                    <div className='min-w-32 max-w-32'>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('widget_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -944,19 +946,20 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                        <div className='accordion-item'>
+                                            <label for="collapsible-item3" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Customize countdown timer design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item3" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background Color</label>
-                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
+                                                    <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_background')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -969,7 +972,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Message text color</label>
-                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
+                                                    <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_text_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -995,7 +998,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Timer text color</label>
-                                                    <div className='min-w-32 max-w-34 flex justify-en2'>
+                                                    <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_timer_color')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -1021,15 +1024,16 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                        <div className='accordion-item'>
+                                            <label for="collapsible-item4" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     "Add to cart" button design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item4" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background Color</label>
@@ -1143,15 +1147,16 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                        <div className='accordion-item'>
+                                            <label for="collapsible-item5" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product image design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item5" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Image width</label>
@@ -1182,14 +1187,15 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label for="collapsible-item6" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product title design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item6" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Title Color</label>
@@ -1265,15 +1271,16 @@ export function Widget(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                        <div className='accordion-item'>
+                                            <label for="collapsible-item7" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product Price design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item7" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Price color</label>
@@ -1421,14 +1428,15 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <div className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label for="collapsible-item8" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product variations design
                                                 </h4>
-                                                <span className='flex transform'>
-                                                    <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
-                                                </span>
-                                            </div>
+                                            </label>
+                                            <input className='sr-only' type='checkbox' id="collapsible-item8" />
+                                            <span className='accordion-icon'>
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-chevron.svg`} alt='icon down' />
+                                            </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Background color</label>
@@ -1748,8 +1756,10 @@ export function Widget(props) {
                                         <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                             <div id="widget-container">
                                                 <div className="cpatc-timer">
-                                                    <div className="cpatc-timer-title">Hurry up!</div>
-                                                    <div className="cpatc-timer-countdown"></div>
+                                                    <div className='cpatc-timer-container'>
+                                                        <div className="cpatc-timer-title">Hurry up!</div>
+                                                        <div className="cpatc-timer-countdown"></div>
+                                                    </div>
                                                 </div>
                                                 <div id='widget-content'>
                                                     <div className="cpatc-product">

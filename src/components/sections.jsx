@@ -46,7 +46,7 @@ export const UserSidebar = (props) => {
 
     return (
         <aside className="sidebar-nav-panel">
-            <div className="flex items-center justify-between gap-2 px-3 py-5.5 lg:py-6.5">
+            <div className="flex items-center justify-between gap-2 px-3 py-6.5">
                 <a className="logo" onClick={() => navigate('/dashboard')}>
                     <img src={`${import.meta.env.VITE_APP_URL}/images/logo/logo.svg`} 
                     alt="Logo" className="logo-full" />                    
@@ -54,7 +54,7 @@ export const UserSidebar = (props) => {
                 </a>
             </div>
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear flex-grow">
-                <nav className="mt-5 px-2 py-4 lg:mt-2">
+                <nav className="px-2 py-4 mt-2">
                     <div>
                         <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 flex nav-label"><span>MENU</span></h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
@@ -95,7 +95,6 @@ export const UserSidebar = (props) => {
                         </ul>
                     </div>
                 </nav>
-
                 <div className="mx-4 mb-6.5 w-full min-w-59 max-w-59 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default mt-auto flex-col nav-bottom-block">
                     <h3 className="mb-1 font-semibold text-white">Facing an Issue ?</h3>
                     <p className="mb-4 text-xs text-white">Contact our support team and the issue will be resolved within 24 hours.</p>

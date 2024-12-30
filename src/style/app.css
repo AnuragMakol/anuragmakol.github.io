@@ -253,7 +253,7 @@ table td {
 }
 
 .main {
-@apply pl-16 2xl:pl-67
+@apply pl-16 xl:pl-67
 }
 
 /* Navigation  */
@@ -276,7 +276,6 @@ table td {
   @apply px-3 min-h-11 items-center
 }
 
-
 .widget-page {
   @apply pl-16
 }
@@ -286,16 +285,25 @@ table td {
 .widget-page .sidebar-nav-panel {
   @apply  max-w-16 hover:max-w-67
 }
-.widget-page .nav-label,
 .widget-page .sidebar-nav-panel .nav-link .nav-title {
-  @apply opacity-0 whitespace-nowrap
+  @apply opacity-0 whitespace-nowrap 
 }
-.widget-page .sidebar-nav-panel:hover .nav-label,
+
 .widget-page .sidebar-nav-panel:hover .nav-link .nav-title {
   @apply opacity-100
 }
 .widget-page .nav-label {
-  @apply whitespace-nowrap
+  @apply text-opacity-0 whitespace-nowrap
+}
+.widget-page .nav-label:after {
+  content: "";
+  @apply w-12 h-px bg-white bg-opacity-20 absolute left-2
+}
+.widget-page .sidebar-nav-panel:hover .nav-label {
+  @apply text-opacity-100
+}
+.widget-page .sidebar-nav-panel:hover .nav-label::after {
+@apply hidden
 }
 .widget-page .nav-bottom-block {
   @apply hidden
@@ -382,4 +390,46 @@ table td {
 }
 .accordion-item input[type="checkbox"]:checked ~ .accordion-content {
   @apply hidden
+}
+
+@media (max-width:1280px){
+  
+.sidebar-nav-panel {
+  @apply  max-w-16 hover:max-w-67
+}
+.sidebar-nav-panel .nav-link .nav-title {
+  @apply opacity-0 whitespace-nowrap 
+}
+
+.sidebar-nav-panel:hover .nav-link .nav-title {
+  @apply opacity-100
+}
+.nav-label {
+  @apply text-opacity-0 whitespace-nowrap
+}
+.nav-label:after {
+  content: "";
+  @apply w-12 h-px bg-white bg-opacity-20 absolute left-2
+}
+.sidebar-nav-panel:hover .nav-label {
+  @apply text-opacity-100
+}
+.sidebar-nav-panel:hover .nav-label::after {
+@apply hidden
+}
+.nav-bottom-block {
+  @apply hidden
+}
+ .sidebar-nav-panel:hover .nav-bottom-block{
+  @apply flex
+}
+.logo {
+  @apply w-10 overflow-hidden
+}
+.sidebar-nav-panel:hover .logo {
+  @apply w-auto
+}
+.logo-full {
+  @apply max-w-max
+}
 }

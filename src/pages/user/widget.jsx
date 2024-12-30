@@ -1754,7 +1754,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
-                                            <div id="widget-container">
+                                            <div id="widget-container" className='has-shadow'>
                                                 <div className="cpatc-timer">
                                                     <div className='cpatc-timer-container'>
                                                         <div className="cpatc-timer-title">Hurry up!</div>

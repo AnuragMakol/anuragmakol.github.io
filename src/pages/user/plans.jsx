@@ -57,7 +57,7 @@ export function Plans(props) {
     const CancelPlan = () => {
         Swal.fire({
             title: "Are you sure?",
-            html: `This will cancel the subscription to the ${user?.plan_details?.name} Plan and remove access to the custom/predefined templates`,
+            html: `This will cancel the subscription to the ${user?.plan_details?.name} Plan`,
             icon: 'error',
             showCancelButton: true,
             confirmButtonText: 'Yes',

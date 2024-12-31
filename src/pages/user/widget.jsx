@@ -172,7 +172,7 @@ export function Widget(props) {
         triggerFetchTemplate(user?.widget_settings?.widget_template, user?.widget_settings?.widget_style);
     }, []);
 
-    const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate } = useForm({
+    const { register: registerUpdateWidgetTemplate, handleSubmit: handleUpdateWidgetTemplate, formState: { errors: errorsUpdateWidgetTemplate }, reset: resetUpdateWidgetTemplate, getValues: getValuesUpdateWidgetTemplate, setValue: setValueUpdateWidgetTemplate } = useForm({
         resolver: yupResolver(
             yup.object().shape({
                 widget_status: yup.boolean().required(),
@@ -280,7 +280,12 @@ export function Widget(props) {
     const { mutate: initFetchTemplateStyle } = useMutation(fetchTemplateStyle, {
         onSuccess: (result) => {
             successHandler(result);
-            setTemplateStyle(result.data);
+            setTemplateStyle(result.data.widget_style);
+            setWidgetSettings(result.data.widget_settings);
+
+            for (const label in result.data.widget_settings) {
+                setValueUpdateWidgetTemplate(label, result.data.widget_settings[label]);
+            }
         },
         onError: (error) => {
             errorHandler(error);
@@ -297,82 +302,78 @@ export function Widget(props) {
             [type]: value
         }
 
-        if (tempData?.widget_style === "custom") {
-            let tempStylesheet = `
-                .cpatc-widget[class*="cpatc-"][class*="-custom"] {
-                    ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
-                    ${tempData?.widget_padding_x !== undefined ? `padding-left: ${tempData?.widget_padding_x}px !important;` : ""}
-                    ${tempData?.widget_padding_x !== undefined ? `padding-right: ${tempData?.widget_padding_x}px !important;` : ""}
-                    ${tempData?.widget_padding_y !== undefined ? `padding-top: ${tempData?.widget_padding_y}px !important;` : ""}
-                    ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}
-                    ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
-                    ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
-                    ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
-                }
-                .cpatc-product .cpatc-product-item-image {
-                    ${tempData?.image_size_x !== undefined ? `width: ${tempData?.image_size_x}px !important;` : ""}
-                    ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
-                    ${tempData?.image_size_x !== undefined ? `min-width: ${tempData?.image_size_x}px !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-content .cpatc-product-item-title {
-                    ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
-                    ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
-                    ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
-                    ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}px !important;` : ""}
-                }
-                .cpatc-content .cpatc-offer-price {
-                    ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
-                    ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
-                    ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
-                    ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height}px !important;` : ""}
-                }
-                .cpatc-content .cpatc-item-compare-price {
-                    ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
-                    ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
-                    ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
-                    ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height}px !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                    ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
-                    ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
-                    ${tempData?.button_font_size !== undefined ? `font-size: ${tempData?.button_font_size}px !important;` : ""}
-                    ${tempData?.button_font_weight !== undefined ? `font-weight: ${tempData?.button_font_weight} !important;` : ""}
-                    ${tempData?.button_padding_x !== undefined ? `padding-left: ${tempData?.button_padding_x}px !important;` : ""}
-                    ${tempData?.button_padding_x !== undefined ? `padding-right: ${tempData?.button_padding_x}px !important;` : ""}
-                    ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
-                    ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
-                    ${tempData?.button_radius !== undefined ? `color: ${tempData?.button_radius}px !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                    ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}
-                    ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
-                    ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
-                    ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
-                    ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}
-                    ${tempData?.variants_padding_x !== undefined ? `padding-right: ${tempData?.variants_padding_x}px !important;` : ""}
-                    ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
-                    ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
-                    ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
-                    ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
-                    ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                    ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                    ${tempData?.urgency_bar_text_size !== undefined ? `text-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
-                    ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
-                }
-                [class*="cpatc-"][class*="-custom"] .cpatc-action-wrapper .cpatc-action-btn {
-                    ${tempData?.urgency_bar_timer_size !== undefined ? `text-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
-                    ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
-                }
-            `;
+        let tempStylesheet = `
+            .cpatc-widget[class*="cpatc-"] {
+                ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
+                ${tempData?.widget_padding_x !== undefined ? `padding-left: ${tempData?.widget_padding_x}px !important;` : ""}
+                ${tempData?.widget_padding_x !== undefined ? `padding-right: ${tempData?.widget_padding_x}px !important;` : ""}
+                ${tempData?.widget_padding_y !== undefined ? `padding-top: ${tempData?.widget_padding_y}px !important;` : ""}
+                ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}
+                ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
+                ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
+                ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
+            }
+            .cpatc-product .cpatc-product-item-image {
+                ${tempData?.image_size_x !== undefined ? `width: ${tempData?.image_size_x}px !important;` : ""}
+                ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
+                ${tempData?.image_size_x !== undefined ? `min-width: ${tempData?.image_size_x}px !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-content .cpatc-product-item-title {
+                ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
+                ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
+                ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
+                ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}px !important;` : ""}
+            }
+            .cpatc-content .cpatc-offer-price {
+                ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
+                ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
+                ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
+                ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height}px !important;` : ""}
+            }
+            .cpatc-content .cpatc-item-compare-price {
+                ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
+                ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
+                ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
+                ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height}px !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+                ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
+                ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
+                ${tempData?.button_font_size !== undefined ? `font-size: ${tempData?.button_font_size}px !important;` : ""}
+                ${tempData?.button_font_weight !== undefined ? `font-weight: ${tempData?.button_font_weight} !important;` : ""}
+                ${tempData?.button_padding_x !== undefined ? `padding-left: ${tempData?.button_padding_x}px !important;` : ""}
+                ${tempData?.button_padding_x !== undefined ? `padding-right: ${tempData?.button_padding_x}px !important;` : ""}
+                ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
+                ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
+                ${tempData?.button_radius !== undefined ? `color: ${tempData?.button_radius}px !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+                ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}
+                ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
+                ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
+                ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
+                ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}
+                ${tempData?.variants_padding_x !== undefined ? `padding-right: ${tempData?.variants_padding_x}px !important;` : ""}
+                ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
+                ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
+                ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
+                ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
+                ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+                ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+                ${tempData?.urgency_bar_text_size !== undefined ? `text-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
+                ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
+            }
+            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+                ${tempData?.urgency_bar_timer_size !== undefined ? `text-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
+                ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
+            }
+        `;
 
-            setCustomStyle(tempStylesheet);
-        } else {
-            setCustomStyle("");
-        }
+        setCustomStyle(tempStylesheet);
     }
 
     return (
@@ -495,7 +496,7 @@ export function Widget(props) {
                                                             });
                                                         }} />
                                                         <div className='cpatc-pw-btn border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color group-hover:bg-opacity-50 flex items-center'>
-                                                            <div className='w-full h-2 m-1 rounded-full' style={{backgroundColor:"#7D8F9B"}}></div>
+                                                            <div className='w-full h-2 m-1 rounded-full' style={{ backgroundColor: "#7D8F9B" }}></div>
                                                         </div>
                                                         <span className="mt-1 text-sm text-black text-center block">Full Width</span>
                                                     </label>
@@ -507,7 +508,7 @@ export function Widget(props) {
                                                             });
                                                         }} />
                                                         <div className='cpatc-pw-btn border border-dashed border-slate-400 w-full h-10 rounded-md group-hover:bg-input-color group-hover:bg-opacity-50 flex items-center justify-center '>
-                                                            <div className='w-3/6 bg-slate-500 h-2 rounded-full' style={{backgroundColor:"#7D8F9B"}}></div>
+                                                            <div className='w-3/6 bg-slate-500 h-2 rounded-full' style={{ backgroundColor: "#7D8F9B" }}></div>
                                                         </div>
                                                         <span className="mt-1 text-sm text-black text-center block">Boxed</span>
                                                     </label>
@@ -656,13 +657,12 @@ export function Widget(props) {
                                             </div>
                                             {errorsUpdateWidgetTemplate?.widget_scroll && <span className="text-danger text-sm text-bold">Please add a value</span>}
                                             <div>
-                                                <label class="block-label">Entrance animation</label>
+                                                <label className="block-label">Entrance animation</label>
                                                 <div className="relative z-20 bg-input-color">
                                                     <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
-                                                        <option value="none">None</option>
-                                                        <option value="slide-up">Slide in up</option>
-                                                        <option value="slide-down">Slide in down</option>
-                                                        <option value="fade-in">Fade in</option>
+                                                        <option value="no-animation">No Animation</option>
+                                                        <option value="slide">Slide</option>
+                                                        <option value="fade">Fade</option>
                                                     </select>
                                                     <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -777,7 +777,7 @@ export function Widget(props) {
                                                 </span>
                                                 <div className='accordion-content px-4 pb-4'>
                                                     <div className='flex justify-between items-center mb-4'>
-                                                        <label class="block text-sm font-medium text-black">Template design</label>
+                                                        <label className="block text-sm font-medium text-black">Template design</label>
                                                         <div className='min-w-32 max-w-32'>
                                                             <div className="relative z-20 bg-input-color">
                                                                 <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
@@ -809,7 +809,7 @@ export function Widget(props) {
                                                         </div>
                                                     </div>
                                                     <div className='flex justify-between items-center'>
-                                                        <label class="block text-sm font-medium text-black">Template style</label>
+                                                        <label className="block text-sm font-medium text-black">Template style</label>
                                                         <div className='min-w-32 max-w-32'>
                                                             <div className="relative z-20 bg-input-color">
                                                                 <select className="block-select-control" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
@@ -834,9 +834,6 @@ export function Widget(props) {
                                                                             <option value="s9">Style 9</option>
                                                                             <option value="s10">Style 10</option>
                                                                         </React.Fragment> : ""
-                                                                    }
-                                                                    {
-                                                                        user?.plan_details?.name === "Ultimate" ? <option value="custom">Custom</option> : ""
                                                                     }
                                                                 </select>
                                                                 <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">

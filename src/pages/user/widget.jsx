@@ -68,7 +68,7 @@ export function Widget(props) {
         button_font_weight: "",
         button_padding_x: "",
         button_padding_y: "",
-        button_radius: "",
+        button_border_radius: "",
         button_text: "",
         button_text_loading: "",
         button_redirect: "",
@@ -139,7 +139,7 @@ export function Widget(props) {
             button_font_weight: user?.widget_settings?.button_font_weight,
             button_padding_x: user?.widget_settings?.button_padding_x,
             button_padding_y: user?.widget_settings?.button_padding_y,
-            button_radius: user?.widget_settings?.button_radius,
+            button_border_radius: user?.widget_settings?.button_border_radius,
             button_text: user?.widget_settings?.button_text,
             button_text_loading: user?.widget_settings?.button_text_loading,
             button_redirect: user?.widget_settings?.button_redirect,
@@ -216,7 +216,7 @@ export function Widget(props) {
                 button_font_weight: yup.string(),
                 button_padding_x: yup.string(),
                 button_padding_y: yup.string(),
-                button_radius: yup.string(),
+                button_border_radius: yup.string(),
                 button_text: yup.string(),
                 button_text_loading: yup.string(),
                 button_redirect: yup.string(),
@@ -285,6 +285,10 @@ export function Widget(props) {
 
             for (const label in result.data.widget_settings) {
                 setValueUpdateWidgetTemplate(label, result.data.widget_settings[label]);
+                // setWidgetSettings({
+                //     ...widgetSettings,
+                //     [label]: result.data.widget_settings[label]
+                // });
             }
         },
         onError: (error) => {
@@ -303,40 +307,73 @@ export function Widget(props) {
         }
 
         let tempStylesheet = `
-            .cpatc-widget[class*="cpatc-"] {
+            .cpatc-widget {
+                ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
+            }
+            #widget-container {
+            ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
+            ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
+            ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
+            }
+            .cpatc-timer-wrapper {
+                ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}                
+            }
+            .cpatc-timer-wrapper .cpatc-timer-title {
+                ${tempData?.urgency_bar_text_size !== undefined ? `font-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
+                ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
+            }
+            .cpatc-timer-wrapper .cpatc-timer-countdown {
+                ${tempData?.urgency_bar_timer_size !== undefined ? `font-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
+                ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
+            }
+            .cpatc-widget:not(.cpatc-boxed),
+             #widget-content {
                 ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
+            }
+            #widget-content {                
                 ${tempData?.widget_padding_x !== undefined ? `padding-left: ${tempData?.widget_padding_x}px !important;` : ""}
                 ${tempData?.widget_padding_x !== undefined ? `padding-right: ${tempData?.widget_padding_x}px !important;` : ""}
                 ${tempData?.widget_padding_y !== undefined ? `padding-top: ${tempData?.widget_padding_y}px !important;` : ""}
-                ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}
-                ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
-                ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
-                ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
+                ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}                
             }
             .cpatc-product .cpatc-product-item-image {
                 ${tempData?.image_size_x !== undefined ? `width: ${tempData?.image_size_x}px !important;` : ""}
-                ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
                 ${tempData?.image_size_x !== undefined ? `min-width: ${tempData?.image_size_x}px !important;` : ""}
+                ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
             }
-            [class*="cpatc-"] .cpatc-content .cpatc-product-item-title {
+            .cpatc-content .cpatc-product-item-title {
                 ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
                 ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
                 ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
-                ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}px !important;` : ""}
+                ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}!important;` : ""}
             }
             .cpatc-content .cpatc-offer-price {
                 ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                 ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
                 ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
-                ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height}px !important;` : ""}
+                ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height} !important;` : ""}
             }
             .cpatc-content .cpatc-item-compare-price {
                 ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                 ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
                 ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
-                ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height}px !important;` : ""}
+                ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height} !important;` : ""}
             }
-            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
+            .cpatc-select-outer {
+                ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}                            
+                ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
+                ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}                
+                ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
+                ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
+                ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
+                ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
+                ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
+            }
+            .cpatc-select-outer .cpatc-select {
+                ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
+                ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
+            }
+            .cpatc-action-wrapper .cpatc-action-btn  {
                 ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
                 ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
                 ${tempData?.button_font_size !== undefined ? `font-size: ${tempData?.button_font_size}px !important;` : ""}
@@ -345,31 +382,7 @@ export function Widget(props) {
                 ${tempData?.button_padding_x !== undefined ? `padding-right: ${tempData?.button_padding_x}px !important;` : ""}
                 ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
                 ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
-                ${tempData?.button_radius !== undefined ? `color: ${tempData?.button_radius}px !important;` : ""}
-            }
-            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
-                ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}
-                ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
-                ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
-                ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
-                ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}
-                ${tempData?.variants_padding_x !== undefined ? `padding-right: ${tempData?.variants_padding_x}px !important;` : ""}
-                ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
-                ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
-                ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
-                ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
-                ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
-            }
-            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
-                ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}
-            }
-            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
-                ${tempData?.urgency_bar_text_size !== undefined ? `text-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
-                ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
-            }
-            [class*="cpatc-"] .cpatc-action-wrapper .cpatc-action-btn {
-                ${tempData?.urgency_bar_timer_size !== undefined ? `text-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
-                ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
+                ${tempData?.button_border_radius !== undefined ? `border-radius: ${tempData?.button_border_radius}px !important;` : ""}
             }
         `;
 
@@ -879,19 +892,6 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Padding top/bottom</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_x')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                widget_padding_x: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('widget_padding_x', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                    <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_y')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
@@ -899,6 +899,19 @@ export function Widget(props) {
                                                             });
 
                                                             manageCustomStyle('widget_padding_y', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_x')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                widget_padding_x: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('widget_padding_x', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1061,7 +1074,7 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Font size</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='text' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_font_size')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
                                                                 button_font_size: e.target.value
@@ -1478,13 +1491,13 @@ export function Widget(props) {
                                                     <label className="block text-sm font-medium text-black">Font weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
-                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
+                                                            <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('variants_font_weight')} onChange={(e) => {
                                                                 setWidgetSettings({
                                                                     ...widgetSettings,
-                                                                    compare_price_font_weight: e.target.value
+                                                                    variants_font_weight: e.target.value
                                                                 });
 
-                                                                manageCustomStyle('compare_price_font_weight', e.target.value);
+                                                                manageCustomStyle('variants_font_weight', e.target.value);
                                                             }}>
                                                                 <option value="100">100</option>
                                                                 <option value="200">200</option>
@@ -1651,10 +1664,10 @@ export function Widget(props) {
                                     </div>
                                     <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                         <div id='widget-container' className='has-shadow'>
-                                            <div className="cpatc-timer">
+                                            <div className="cpatc-timer-wrapper">
                                                 <div className='cpatc-timer-container'>
                                                     <div className="cpatc-timer-title">Hurry up!</div>
-                                                    <div className="cpatc-timer-countdown"></div>
+                                                    <div className="cpatc-timer-countdown">22:15:00:12</div>
                                                 </div>
                                             </div>
                                             <div id="widget-content">
@@ -1716,7 +1729,7 @@ export function Widget(props) {
                                                             </div>
                                                         }
                                                         <div className="cpatc-action-wrapper">
-                                                            <button id="widget-submit" className="cpatc-action-btn cpatc-action-btn-md">{widgetSettings?.button_text}</button>
+                                                            <button id="widget-submit" className="cpatc-action-btn">{widgetSettings?.button_text}</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1752,7 +1765,7 @@ export function Widget(props) {
                                         </div>
                                         <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                             <div id="widget-container" className='has-shadow'>
-                                                <div className="cpatc-timer">
+                                                <div className="cpatc-timer-wrapper">
                                                     <div className='cpatc-timer-container'>
                                                         <div className="cpatc-timer-title">Hurry up!</div>
                                                         <div className="cpatc-timer-countdown"></div>

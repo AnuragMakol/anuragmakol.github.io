@@ -201,16 +201,19 @@ export function Widget(props) {
             setTemplateStyle(result.data.widget_style);
             resetUpdateWidgetTemplate(result.data.widget_settings);
             setWidgetSettings(result.data.widget_settings);
-
-            for (const label in result.data.widget_settings) {
-                setValueUpdateWidgetTemplate(label, result.data.widget_settings[label]);
-                manageCustomStyle(label, result.data.widget_settings[label]);
-            }
         },
         onError: (error) => {
             errorHandler(error);
         }
     });
+
+    useEffect(() => {
+        let settings = Object.entries(widgetSettings)
+        for (let i = 0; i < settings.length; i++) {
+            setValueUpdateWidgetTemplate(settings[i][0], settings[i][1]);
+            manageCustomStyle(settings[i][0], settings[i][1]);
+        }
+    }, [widgetSettings]);
 
     const { mutate: initUpdateWidgetTemplate, isLoading: loadingUpdateWidgetTemplate } = useMutation(updateWidgetTemplate, {
         onSuccess: (result) => {

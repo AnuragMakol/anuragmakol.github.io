@@ -616,8 +616,7 @@ export function Widget(props) {
                                             <div>
                                                 <label className="block-label">Entrance animation</label>
                                                 <div className="relative z-20 bg-input-color">
-                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
-                                                        <option value="no-animation">No Animation</option>
+                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>                                                        
                                                         <option value="slide">Slide</option>
                                                         <option value="fade">Fade</option>
                                                     </select>

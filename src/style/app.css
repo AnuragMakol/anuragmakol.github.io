@@ -300,14 +300,12 @@ table td {
 }
 .widget-page .nav-label:after {
   content: "";
-  @apply w-12 h-px bg-white bg-opacity-20 absolute left-2
+  @apply w-12 h-px mt-2.5 bg-white bg-opacity-20 absolute left-2
 }
 .widget-page .sidebar-nav-panel:hover .nav-label {
   @apply text-opacity-100
 }
-.widget-page .sidebar-nav-panel:hover .nav-label::after {
-@apply hidden
-}
+.widget-page .sidebar-nav-panel:hover .nav-label::after,
 .widget-page .nav-bottom-block {
   @apply hidden
 }
@@ -395,7 +393,7 @@ table td {
   @apply hidden
 }
 
-@media (max-width:1280px){
+@media (max-width:1279px){
   
 .sidebar-nav-panel {
   @apply  max-w-16 hover:max-w-67
@@ -417,9 +415,7 @@ table td {
 .sidebar-nav-panel:hover .nav-label {
   @apply text-opacity-100
 }
-.sidebar-nav-panel:hover .nav-label::after {
-@apply hidden
-}
+.sidebar-nav-panel:hover .nav-label::after,
 .nav-bottom-block {
   @apply hidden
 }

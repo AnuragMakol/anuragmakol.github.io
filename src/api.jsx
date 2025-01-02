@@ -83,16 +83,6 @@ export const deleteUserProfilePicture = async (payload) => {
     return response.data;
 }
 
-export const updateWidgetTemplate = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-template`, payload, {
-        headers: {
-            "Authorization": "Bearer " + FetchFromStorage("token")
-        }
-    });
-
-    return response.data;
-}
-
 export const fetchProductStatistics = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/fetch-product-statistics`, payload, {
         headers: {
@@ -106,6 +96,26 @@ export const fetchProductStatistics = async (payload) => {
 export const fetchTemplateStyle = async (payload) => {
     let response = await axios.get(`${import.meta.env.VITE_API_URL}/shopify/fetch-template-style`, {
         params: payload,
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("token")
+        }
+    });
+
+    return response.data;
+}
+
+export const updateWidgetTemplate = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/update-widget-template`, payload, {
+        headers: {
+            "Authorization": "Bearer " + FetchFromStorage("token")
+        }
+    });
+
+    return response.data;
+}
+
+export const resetWidgetTemplate = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/reset-widget-template`, payload, {
         headers: {
             "Authorization": "Bearer " + FetchFromStorage("token")
         }

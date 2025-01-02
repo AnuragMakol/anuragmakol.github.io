@@ -12,7 +12,7 @@ import { Loader } from '../../loader';
 import { UserDashboardLayout } from '../../components/layouts';
 
 import { userStore } from '../../atoms';
-import { updateWidgetTemplate, resetScriptTag, fetchTemplateStyle } from '../../api';
+import { updateWidgetTemplate, resetScriptTag, fetchTemplateStyle, resetWidgetTemplate } from '../../api';
 import { successHandler, errorHandler } from "../../helpers";
 import { Tooltip } from '../../components/kitchen-sink';
 
@@ -23,7 +23,6 @@ export function Widget(props) {
     const [tabToggle, setTabToggle] = useState('content');
     const [deviceToggle, setDeviceToggle] = useState('desktop');
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const [modalToggle, setModalToggle] = useState('');
     const [customStyle, setCustomStyle] = useState('');
 
     const [widgetSettings, setWidgetSettings] = useState({
@@ -54,15 +53,15 @@ export function Widget(props) {
         title_font_size: "",
         title_font_weight: "",
         title_line_height: "",
+        title_spacing: "",
         offer_price_color: "",
         offer_price_font_size: "",
         offer_price_font_weight: "",
-        offer_price_line_height: "",
         compare_price_color: "",
         compare_price_font_size: "",
         compare_price_font_weight: "",
-        compare_price_line_height: "",
         button_background: "",
+        button_background_hover: "",
         button_text_color: "",
         button_font_size: "",
         button_font_weight: "",
@@ -83,92 +82,21 @@ export function Widget(props) {
         urgency_bar_background: "",
         urgency_bar_text: "",
         urgency_bar_text_size: "",
+        urgency_bar_text_font_weight: "",
         urgency_bar_timer_color: "",
         urgency_bar_timer_size: "",
+        urgency_bar_timer_font_weight: "",
         variants_background: "",
         variants_text_color: "",
         variants_font_size: "",
         variants_font_weight: "",
-        variants_padding_x: "",
-        variants_padding_y: "",
+        variants_height: "",
         variants_border_width: "",
         variants_border_color: "",
         variants_border_radius: ""
     });
 
     useEffect(() => {
-        let updateParams = {
-            widget_status: user?.widget_settings?.widget_status,
-            widget_template: user?.widget_settings?.widget_template,
-            widget_style: user?.widget_settings?.widget_style,
-            widget_position: user?.widget_settings?.widget_position,
-            widget_width: user?.widget_settings?.widget_width,
-            widget_visibility: user?.widget_settings?.widget_visibility,
-            widget_scroll: user?.widget_settings?.widget_scroll,
-            widget_background: user?.widget_settings?.widget_background,
-            widget_padding_x: user?.widget_settings?.widget_padding_x,
-            widget_padding_y: user?.widget_settings?.widget_padding_y,
-            widget_border_width: user?.widget_settings?.widget_border_width,
-            widget_border_color: user?.widget_settings?.widget_border_color,
-            widget_border_radius: user?.widget_settings?.widget_border_radius,
-            desktop_hide_image: user?.widget_settings?.desktop_hide_image,
-            desktop_hide_title: user?.widget_settings?.desktop_hide_title,
-            desktop_hide_compare_price: user?.widget_settings?.desktop_hide_compare_price,
-            desktop_hide_offer_price: user?.widget_settings?.desktop_hide_offer_price,
-            mobile_hide_image: user?.widget_settings?.mobile_hide_image,
-            mobile_hide_title: user?.widget_settings?.mobile_hide_title,
-            mobile_hide_compare_price: user?.widget_settings?.mobile_hide_compare_price,
-            mobile_hide_offer_price: user?.widget_settings?.mobile_hide_offer_price,
-            image_size_x: user?.widget_settings?.image_size_x,
-            image_size_y: user?.widget_settings?.image_size_y,
-            title_color: user?.widget_settings?.title_color,
-            title_font_size: user?.widget_settings?.title_font_size,
-            title_font_weight: user?.widget_settings?.title_font_weight,
-            title_line_height: user?.widget_settings?.title_line_height,
-            offer_price_color: user?.widget_settings?.offer_price_color,
-            offer_price_font_size: user?.widget_settings?.offer_price_font_size,
-            offer_price_font_weight: user?.widget_settings?.offer_price_font_weight,
-            offer_price_line_height: user?.widget_settings?.offer_price_line_height,
-            compare_price_color: user?.widget_settings?.compare_price_color,
-            compare_price_font_size: user?.widget_settings?.compare_price_font_size,
-            compare_price_font_weight: user?.widget_settings?.compare_price_font_weight,
-            compare_price_line_height: user?.widget_settings?.compare_price_line_height,
-            button_background: user?.widget_settings?.button_background,
-            button_text_color: user?.widget_settings?.button_text_color,
-            button_font_size: user?.widget_settings?.button_font_size,
-            button_font_weight: user?.widget_settings?.button_font_weight,
-            button_padding_x: user?.widget_settings?.button_padding_x,
-            button_padding_y: user?.widget_settings?.button_padding_y,
-            button_border_radius: user?.widget_settings?.button_border_radius,
-            button_text: user?.widget_settings?.button_text,
-            button_text_loading: user?.widget_settings?.button_text_loading,
-            button_redirect: user?.widget_settings?.button_redirect,
-            urgency_bar_status: user?.widget_settings?.urgency_bar_status,
-            urgency_bar_text_color: user?.widget_settings?.urgency_bar_text_color,
-            urgency_bar_type: user?.widget_settings?.urgency_bar_type,
-            urgency_bar_datestart: user?.widget_settings?.urgency_bar_datestart,
-            urgency_bar_dateend: user?.widget_settings?.urgency_bar_dateend,
-            urgency_bar_timestart: user?.widget_settings?.urgency_bar_timestart,
-            urgency_bar_timeend: user?.widget_settings?.urgency_bar_timeend,
-            urgency_bar_duration: user?.widget_settings?.urgency_bar_duration,
-            urgency_bar_background: user?.widget_settings?.urgency_bar_background,
-            urgency_bar_text: user?.widget_settings?.urgency_bar_text,
-            urgency_bar_text_size: user?.widget_settings?.urgency_bar_text_size,
-            urgency_bar_timer_color: user?.widget_settings?.urgency_bar_timer_color,
-            urgency_bar_timer_size: user?.widget_settings?.urgency_bar_timer_size,
-            variants_background: user?.widget_settings?.variants_background,
-            variants_text_color: user?.widget_settings?.variants_text_color,
-            variants_font_size: user?.widget_settings?.variants_font_size,
-            variants_font_weight: user?.widget_settings?.variants_font_weight,
-            variants_padding_x: user?.widget_settings?.variants_padding_x,
-            variants_padding_y: user?.widget_settings?.variants_padding_y,
-            variants_border_width: user?.widget_settings?.variants_border_width,
-            variants_border_color: user?.widget_settings?.variants_border_color,
-            variants_border_radius: user?.widget_settings?.variants_border_radius
-        }
-
-        resetUpdateWidgetTemplate(updateParams);
-        setWidgetSettings(updateParams);
         triggerFetchTemplate(user?.widget_settings?.widget_template, user?.widget_settings?.widget_style);
     }, []);
 
@@ -202,15 +130,15 @@ export function Widget(props) {
                 title_font_size: yup.string(),
                 title_font_weight: yup.string(),
                 title_line_height: yup.string(),
+                title_spacing: yup.string(),
                 offer_price_color: yup.string(),
                 offer_price_font_size: yup.string(),
                 offer_price_font_weight: yup.string(),
-                offer_price_line_height: yup.string(),
                 compare_price_color: yup.string(),
                 compare_price_font_size: yup.string(),
                 compare_price_font_weight: yup.string(),
-                compare_price_line_height: yup.string(),
                 button_background: yup.string(),
+                button_background_hover: yup.string(),
                 button_text_color: yup.string(),
                 button_font_size: yup.string(),
                 button_font_weight: yup.string(),
@@ -231,14 +159,15 @@ export function Widget(props) {
                 urgency_bar_background: yup.string(),
                 urgency_bar_text: yup.string(),
                 urgency_bar_text_size: yup.string(),
+                urgency_bar_text_font_weight: yup.string(),
                 urgency_bar_timer_color: yup.string(),
                 urgency_bar_timer_size: yup.string(),
+                urgency_bar_timer_font_weight: yup.string(),
                 variants_background: yup.string(),
                 variants_text_color: yup.string(),
                 variants_font_size: yup.string(),
                 variants_font_weight: yup.string(),
-                variants_padding_x: yup.string(),
-                variants_padding_y: yup.string(),
+                variants_height: yup.string(),
                 variants_border_width: yup.string(),
                 variants_border_color: yup.string(),
                 variants_border_radius: yup.string()
@@ -257,17 +186,6 @@ export function Widget(props) {
         });
     }
 
-    const { mutate: initUpdateWidgetTemplate, isLoading: loadingUpdateWidgetTemplate } = useMutation(updateWidgetTemplate, {
-        onSuccess: (result) => {
-            successHandler(result);
-            setUser(result.data);
-            setWidgetSettings(result.data.widget_settings);
-        },
-        onError: (error) => {
-            errorHandler(error);
-        }
-    });
-
     const { mutate: initResetScriptTag } = useMutation(resetScriptTag, {
         onSuccess: (result) => {
             successHandler(result);
@@ -281,14 +199,12 @@ export function Widget(props) {
         onSuccess: (result) => {
             successHandler(result);
             setTemplateStyle(result.data.widget_style);
+            resetUpdateWidgetTemplate(result.data.widget_settings);
             setWidgetSettings(result.data.widget_settings);
 
             for (const label in result.data.widget_settings) {
                 setValueUpdateWidgetTemplate(label, result.data.widget_settings[label]);
-                // setWidgetSettings({
-                //     ...widgetSettings,
-                //     [label]: result.data.widget_settings[label]
-                // });
+                manageCustomStyle(label, result.data.widget_settings[label]);
             }
         },
         onError: (error) => {
@@ -296,9 +212,27 @@ export function Widget(props) {
         }
     });
 
-    const PriceFormat = (format, price) => {
-        return format.replace('{{amount}}', parseFloat(price / 100).toFixed(2));
-    }
+    const { mutate: initUpdateWidgetTemplate, isLoading: loadingUpdateWidgetTemplate } = useMutation(updateWidgetTemplate, {
+        onSuccess: (result) => {
+            successHandler(result);
+            setUser(result.data);
+            setWidgetSettings(result.data.widget_settings);
+        },
+        onError: (error) => {
+            errorHandler(error);
+        }
+    });
+
+    const { mutate: initResetWidgetTemplate, isLoading: loadingResetWidgetTemplate } = useMutation(resetWidgetTemplate, {
+        onSuccess: (result) => {
+            successHandler(result);
+            setUser(result.data);
+            triggerFetchTemplate(result.data.widget_settings.widget_template, result.data.widget_settings.widget_style);
+        },
+        onError: (error) => {
+            errorHandler(error);
+        }
+    });
 
     const manageCustomStyle = (type, value) => {
         let tempData = {
@@ -306,14 +240,16 @@ export function Widget(props) {
             [type]: value
         }
 
+        console.log(type, value);
+
         let tempStylesheet = `
             .cpatc-widget {
                 ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
             }
             #widget-container {
-            ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
-            ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
-            ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
+                ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
+                ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
+                ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
             }
             .cpatc-timer-wrapper {
                 ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}                
@@ -321,13 +257,14 @@ export function Widget(props) {
             .cpatc-timer-wrapper .cpatc-timer-title {
                 ${tempData?.urgency_bar_text_size !== undefined ? `font-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
                 ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
+                ${tempData?.urgency_bar_text_font_weight !== undefined ? `font-weight: ${tempData?.urgency_bar_text_font_weight} !important;` : ""}
             }
             .cpatc-timer-wrapper .cpatc-timer-countdown {
                 ${tempData?.urgency_bar_timer_size !== undefined ? `font-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
                 ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
+                ${tempData?.urgency_bar_timer_font_weight !== undefined ? `font-weight: ${tempData?.urgency_bar_timer_font_weight} !important;` : ""}
             }
-            .cpatc-widget:not(.cpatc-boxed),
-             #widget-content {
+            .cpatc-widget:not(.cpatc-boxed), #widget-content {
                 ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
             }
             #widget-content {                
@@ -346,25 +283,21 @@ export function Widget(props) {
                 ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
                 ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
                 ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}!important;` : ""}
+                ${tempData?.title_spacing !== undefined ? `margin-bottom: ${tempData?.title_spacing}!important;` : ""}
             }
             .cpatc-content .cpatc-offer-price {
                 ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                 ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
                 ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
-                ${tempData?.offer_price_line_height !== undefined ? `line-height: ${tempData?.offer_price_line_height} !important;` : ""}
             }
             .cpatc-content .cpatc-item-compare-price {
                 ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                 ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
                 ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
-                ${tempData?.compare_price_line_height !== undefined ? `line-height: ${tempData?.compare_price_line_height} !important;` : ""}
             }
             .cpatc-select-outer {
                 ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}                            
                 ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
-                ${tempData?.variants_padding_x !== undefined ? `padding-left: ${tempData?.variants_padding_x}px !important;` : ""}                
-                ${tempData?.variants_padding_y !== undefined ? `padding-top: ${tempData?.variants_padding_y}px !important;` : ""}
-                ${tempData?.variants_padding_y !== undefined ? `padding-bottom: ${tempData?.variants_padding_y}px !important;` : ""}
                 ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
                 ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
                 ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
@@ -372,6 +305,7 @@ export function Widget(props) {
             .cpatc-select-outer .cpatc-select {
                 ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
                 ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
+                ${tempData?.variants_height !== undefined ? `height: ${tempData?.variants_height}px !important;` : ""}                
             }
             .cpatc-action-wrapper .cpatc-action-btn  {
                 ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
@@ -384,14 +318,21 @@ export function Widget(props) {
                 ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
                 ${tempData?.button_border_radius !== undefined ? `border-radius: ${tempData?.button_border_radius}px !important;` : ""}
             }
+            .cpatc-action-wrapper .cpatc-action-btn:hover  {
+                ${tempData?.button_background_hover !== undefined ? `background-color: ${tempData?.button_background_hover} !important;` : ""}
+            }
         `;
 
         setCustomStyle(tempStylesheet);
     }
 
+    const PriceFormat = (format, price) => {
+        return format.replace('{{amount}}', parseFloat(price / 100).toFixed(2));
+    }
+
     return (
         <UserDashboardLayout props={props}>
-            <Loader loading={loadingUpdateWidgetTemplate} />
+            <Loader loading={loadingUpdateWidgetTemplate || loadingResetWidgetTemplate} />
             <div className='flex flex-col overflow-hidden h-full max-h-full'>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
                     <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
@@ -779,7 +720,7 @@ export function Widget(props) {
                                     <div className={`p-4 ${tabToggle === "design" ? "" : "hide-desktop"}`}>
                                         <div className='accordion-wrap'>
                                             <div className='accordion-item '>
-                                                <label for='collapsible-item1' className='accordion-head cursor-pointer flex justify-between p-3'>
+                                                <label htmlFor='collapsible-item1' className='accordion-head cursor-pointer flex justify-between p-3'>
                                                     <h4 className='text-black font-bold'>
                                                         Styled templates
                                                     </h4>
@@ -866,7 +807,7 @@ export function Widget(props) {
                                         </div>
 
                                         <div className='accordion-item'>
-                                            <label for="collapsible-item2" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item2" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Customize widget
                                                 </h4>
@@ -957,7 +898,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='accordion-item'>
-                                            <label for="collapsible-item3" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item3" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Customize countdown timer design
                                                 </h4>
@@ -1007,6 +948,19 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Message text font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_text_font_weight')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                urgency_bar_text_font_weight: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('urgency_bar_text_font_weight', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Timer text color</label>
                                                     <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_timer_color')} onChange={(e) => {
@@ -1032,10 +986,23 @@ export function Widget(props) {
                                                         }} />
                                                     </div>
                                                 </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Timer text font weight</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_timer_font_weight')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                urgency_bar_timer_font_weight: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('urgency_bar_timer_font_weight', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='accordion-item'>
-                                            <label for="collapsible-item4" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item4" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     "Add to cart" button design
                                                 </h4>
@@ -1055,6 +1022,19 @@ export function Widget(props) {
                                                             });
 
                                                             manageCustomStyle('button_background', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Background Color on Hover</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('button_background_hover')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_background_hover: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_background_hover', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1158,7 +1138,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='accordion-item'>
-                                            <label for="collapsible-item5" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item5" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product image design
                                                 </h4>
@@ -1197,7 +1177,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <label for="collapsible-item6" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item6" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product title design
                                                 </h4>
@@ -1279,10 +1259,23 @@ export function Widget(props) {
                                                         }} />
                                                     </div>
                                                 </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Title spacing</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_spacing')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                title_spacing: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('title_spacing', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='accordion-item'>
-                                            <label for="collapsible-item7" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item7" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product Price design
                                                 </h4>
@@ -1350,19 +1343,6 @@ export function Widget(props) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Price line height</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_line_height')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                offer_price_line_height: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('offer_price_line_height', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
                                                 <div className='w-full h-px bg-stroke mb-4'></div>
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Compare price color</label>
@@ -1422,23 +1402,10 @@ export function Widget(props) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Compare price line height</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_line_height')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                compare_price_line_height: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('compare_price_line_height', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
-                                            <label for="collapsible-item8" className='accordion-head cursor-pointer flex justify-between p-3'>
+                                            <label htmlFor="collapsible-item8" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
                                                     Product variations design
                                                 </h4>
@@ -1520,28 +1487,15 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <label className="block text-sm font-medium text-black">Height</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_padding_y')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_height')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                variants_padding_y: e.target.value
+                                                                variants_height: e.target.value
                                                             });
 
-                                                            manageCustomStyle('variants_padding_y', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
-                                                    <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_price_padding_x')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                variants_price_padding_x: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('variants_price_padding_x', e.target.value);
+                                                            manageCustomStyle('variants_height', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1589,7 +1543,23 @@ export function Widget(props) {
                                     </div>
                                 </div>
                                 <div className="py-4 px-6 flex justify-end space-x-2 border-t border-stroke bg-white">
-                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15">
+                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
+                                        Swal.fire({
+                                            title: "Are you sure?",
+                                            html: "This will reset the current style for the template to the initial values.",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Yes',
+                                            cancelButtonText: "No"
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                initResetWidgetTemplate({
+                                                    template: user?.widget_settings?.widget_template,
+                                                    style: user?.widget_settings?.widget_style
+                                                });
+                                            }
+                                        });
+                                    }}>
                                         Reset
                                     </a>
                                     <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
@@ -1667,7 +1637,7 @@ export function Widget(props) {
                                             <div className="cpatc-timer-wrapper">
                                                 <div className='cpatc-timer-container'>
                                                     <div className="cpatc-timer-title">Hurry up!</div>
-                                                    <div className="cpatc-timer-countdown">22:15:00:12</div>
+                                                    <div className="cpatc-timer-countdown">00:15:00</div>
                                                 </div>
                                             </div>
                                             <div id="widget-content">

@@ -395,19 +395,19 @@ export function Widget(props) {
                                             </label>
                                         </div>
                                         <div className='card mb-3'>
-                                            <h3 className='text-black font-bold mb-3'>General Settings</h3>
+                                            <h3 className='text-black font-bold mb-3'>Text Settings</h3>
                                             <div className='mb-3'>
                                                 <label className="block-label">Button Text</label>
                                                 <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('button_text')} />
                                                 {errorsUpdateWidgetTemplate?.button_text && <span className="text-danger text-sm text-bold">Please add text for the add to cart button</span>}
                                             </div>
                                             <div className='mb-3'>
-                                                <label className="block-label">Button Text Loading</label>
+                                                <label className="block-label">Button Text - After Adding to Cart</label>
                                                 <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('button_text_loading')} />
-                                                {errorsUpdateWidgetTemplate?.button_text_loading && <span className="text-danger text-sm text-bold">Please add text for the add to cart button while loading</span>}
+                                                {errorsUpdateWidgetTemplate?.button_text_loading && <span className="text-danger text-sm text-bold">Please add text for the add to cart button after loading</span>}
                                             </div>
                                             <div className='mb-3'>
-                                                <label className="block-label">Button Redirect</label>
+                                                <label className="block-label">Page Redirect - After Adding to Cart</label>
                                                 <div className="relative z-20 bg-input-color">
                                                     <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_redirect')}>
                                                         <option value="nothing">Do nothing (Stay on page)</option>
@@ -426,7 +426,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
-                                            <h3 className='text-black font-bold mb-3'>Sticky cart position</h3>
+                                            <h3 className='text-black font-bold mb-3'>Widget Position</h3>
                                             <div>
                                                 <div className="flex w-full space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
@@ -456,7 +456,7 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
-                                            <h3 className='text-black font-bold mb-3 flex items-center'>Width <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} /></h3>
+                                            <h3 className='text-black font-bold mb-3 flex items-center'>Widget Type <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} /></h3>
                                             <div>
                                                 <div className="flex space-x-4">
                                                     <label className="cursor-pointer select-none w-1/2 group cpatc-pw-label">
@@ -505,9 +505,7 @@ export function Widget(props) {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <h3 className='text-black mb-3 leading-tight'>Select the elements you want to hide
-                                                {/* in the sticky add to cart bar */}
-                                            </h3>
+                                            <h3 className='text-black mb-3 leading-tight'>Select the elements you want to hide</h3>
                                             <div>
                                                 <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden'>
                                                     <div className={`w-1/2 px-3 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-black text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
@@ -618,17 +616,17 @@ export function Widget(props) {
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
-                                            <h3 className='text-black font-medium mb-3 flex items-center'>Choose when the bar should appear as the user scrolls down</h3>
+                                            <h3 className='text-black font-medium mb-3 flex items-center'>Show widget</h3>
                                             <div className='flex items-center mb-4'>
-                                                <label className="block-label max-w-28">After Scrolling</label>
+                                                <label className="block-label max-w-28">After scrolling </label>
                                                 <div className='min-w-15 max-w-15'>
                                                     <input type="number" className="block-form-control h-9" {...registerUpdateWidgetTemplate('widget_scroll')} />
                                                 </div>
-                                                <span className='text-sm text-black pl-2 font-medium'>% Of The Page</span>
+                                                <span className='text-sm text-black pl-2 font-medium'>% of The Page</span>
                                             </div>
                                             {errorsUpdateWidgetTemplate?.widget_scroll && <span className="text-danger text-sm text-bold">Please add a value</span>}
                                             <div>
-                                                <label className="block-label">Entrance animation</label>
+                                                <label className="block-label">Widget Show/Hide animation</label>
                                                 <div className="relative z-20 bg-input-color">
                                                     <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
                                                         <option value="slide">Slide</option>
@@ -646,7 +644,7 @@ export function Widget(props) {
                                         </div>
                                         <div className='bg-white border border-stroke px-4 py-3 rounded-md shadow-sm mb-3'>
                                             <div className='flex items-center justify-between'>
-                                                <label className="font-medium text-graydark flex items-center">Real time urgency
+                                                <label className="font-medium text-graydark flex items-center">Show Time Urgency Bar
                                                 </label>
                                                 <label className="relative inline-block w-15 h-8 switch-slider-wrap">
                                                     <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('urgency_bar_status')} onChange={(e) => {
@@ -670,11 +668,11 @@ export function Widget(props) {
                                             {
                                                 widgetSettings?.urgency_bar_status ? <div className='pt-2'>
                                                     <div className='mb-4'>
-                                                        <label className="block-label">Text</label>
+                                                        <label className="block-label">Urgency Text</label>
                                                         <input type="text" className="block-form-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_text')} />
                                                     </div>
                                                     <div className='mb-5'>
-                                                        <label className="block-label">Choose countdown style</label>
+                                                        <label className="block-label">Countdown/Timer Style</label>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('urgency_bar_type')} onChange={(e) => {
                                                                 setWidgetSettings({
@@ -682,8 +680,8 @@ export function Widget(props) {
                                                                     urgency_bar_type: e.target.value
                                                                 });
                                                             }}>
-                                                                <option value="minutes">Set a countdown based on minutes</option>
-                                                                <option value="specific">Select a specific end date and time</option>
+                                                                <option value="minutes">Countdown based on remaining minutes</option>
+                                                                <option value="specific">Countdown based on a specific date</option>
                                                             </select>
                                                             <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -696,7 +694,7 @@ export function Widget(props) {
                                                     </div>
                                                     {
                                                         widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
-                                                            <label className="block-label pb-2">Enter duration</label>
+                                                            <label className="block-label pb-2">Time Duration</label>
                                                             <div className='flex items-center'>
                                                                 <input type="number" className="block-form-control max-w-25 h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
                                                                 <p className='text-black text-sm font-medium pl-2 italic'>In Minutes</p>
@@ -738,7 +736,7 @@ export function Widget(props) {
                                             <div className='accordion-item '>
                                                 <label htmlFor='collapsible-item1' className='accordion-head cursor-pointer flex justify-between p-3'>
                                                     <h4 className='text-black font-bold'>
-                                                        Styled templates
+                                                        Theme Selection
                                                     </h4>
                                                 </label>
                                                 <input className='sr-only' type='checkbox' id="collapsible-item1" />
@@ -747,7 +745,7 @@ export function Widget(props) {
                                                 </span>
                                                 <div className='accordion-content px-4 pb-4'>
                                                     <div className='flex justify-between items-center mb-4'>
-                                                        <label className="block text-sm font-medium text-black">Template design</label>
+                                                        <label className="block text-sm font-medium text-black">Template</label>
                                                         <div className='min-w-32 max-w-32'>
                                                             <div className="relative z-20 bg-input-color">
                                                                 <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_template')} onChange={(e) => {
@@ -760,12 +758,8 @@ export function Widget(props) {
                                                                     manageCustomStyle('widget_template', e.target.value);
                                                                 }}>
                                                                     <option value="t1">Template 1</option>
-                                                                    {
-                                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                                            <option value="t2">Template 2</option>
-                                                                            <option value="t3">Template 3</option>
-                                                                        </React.Fragment> : ""
-                                                                    }
+                                                                    <option value="t2">Template 2</option>
+                                                                    <option value="t3">Template 3</option>
                                                                 </select>
                                                                 <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -779,7 +773,7 @@ export function Widget(props) {
                                                         </div>
                                                     </div>
                                                     <div className='flex justify-between items-center'>
-                                                        <label className="block text-sm font-medium text-black">Template style</label>
+                                                        <label className="block text-sm font-medium text-black">Style</label>
                                                         <div className='min-w-32 max-w-32'>
                                                             <div className="relative z-20 bg-input-color">
                                                                 <select className="block-select-control" {...registerUpdateWidgetTemplate('widget_style')} onChange={(e) => {
@@ -793,18 +787,14 @@ export function Widget(props) {
                                                                 }}>
                                                                     <option value="s1">Style 1</option>
                                                                     <option value="s2">Style 2</option>
-                                                                    {
-                                                                        user?.plan_details?.name === "Advanced" || user?.plan_details?.name === "Ultimate" ? <React.Fragment>
-                                                                            <option value="s3">Style 3</option>
-                                                                            <option value="s4">Style 4</option>
-                                                                            <option value="s5">Style 5</option>
-                                                                            <option value="s6">Style 6</option>
-                                                                            <option value="s7">Style 7</option>
-                                                                            <option value="s8">Style 8</option>
-                                                                            <option value="s9">Style 9</option>
-                                                                            <option value="s10">Style 10</option>
-                                                                        </React.Fragment> : ""
-                                                                    }
+                                                                    <option value="s3">Style 3</option>
+                                                                    <option value="s4">Style 4</option>
+                                                                    <option value="s5">Style 5</option>
+                                                                    <option value="s6">Style 6</option>
+                                                                    <option value="s7">Style 7</option>
+                                                                    <option value="s8">Style 8</option>
+                                                                    <option value="s9">Style 9</option>
+                                                                    <option value="s10">Style 10</option>
                                                                 </select>
                                                                 <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -825,7 +815,7 @@ export function Widget(props) {
                                         <div className='accordion-item'>
                                             <label htmlFor="collapsible-item2" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Customize widget
+                                                    Customize Widget
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item2" />
@@ -847,7 +837,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <label className="block text-sm font-medium text-black">Padding Top/Bottom</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_y')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -860,7 +850,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <label className="block text-sm font-medium text-black">Padding Left/Right</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_padding_x')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -873,7 +863,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <label className="block text-sm font-medium text-black">Border Width</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_border_width')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -886,7 +876,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <label className="block text-sm font-medium text-black">Border Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('widget_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -899,7 +889,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-1">
-                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <label className="block text-sm font-medium text-black">Border Radius</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('widget_border_radius')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -916,7 +906,7 @@ export function Widget(props) {
                                         <div className='accordion-item'>
                                             <label htmlFor="collapsible-item3" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Customize countdown timer design
+                                                    Customize Urgency Bar
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item3" />
@@ -951,7 +941,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Message text color</label>
+                                                    <label className="block text-sm font-medium text-black">Text Color</label>
                                                     <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_text_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -964,7 +954,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Message text font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_timer_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -977,7 +967,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Message text font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_text_font_weight')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -990,7 +980,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Timer text color</label>
+                                                    <label className="block text-sm font-medium text-black">Countdown Text Color</label>
                                                     <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_timer_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1003,7 +993,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Timer text font size</label>
+                                                    <label className="block text-sm font-medium text-black">Countdown Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_text_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1016,7 +1006,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Timer text font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Countdown Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('urgency_bar_timer_font_weight')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1033,7 +1023,7 @@ export function Widget(props) {
                                         <div className='accordion-item'>
                                             <label htmlFor="collapsible-item4" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    "Add to cart" button design
+                                                    Customize Button
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item4" />
@@ -1055,7 +1045,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Background Color on Hover</label>
+                                                    <label className="block text-sm font-medium text-black">Background Color (Hover)</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('button_background_hover')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1081,7 +1071,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1094,7 +1084,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('button_font_weight')} onChange={(e) => {
@@ -1126,7 +1116,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding top/bottom</label>
+                                                    <label className="block text-sm font-medium text-black">Padding Top/Bottom</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_y')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1139,7 +1129,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Padding left/right</label>
+                                                    <label className="block text-sm font-medium text-black">Padding Left/Right</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_padding_x')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1165,7 +1155,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <label className="block text-sm font-medium text-black">Border Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('button_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1178,7 +1168,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <label className="block text-sm font-medium text-black">Border Width</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_width')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1191,7 +1181,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <label className="block text-sm font-medium text-black">Border Radius</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_radius')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1208,7 +1198,7 @@ export function Widget(props) {
                                         <div className='accordion-item'>
                                             <label htmlFor="collapsible-item5" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Product image design
+                                                    Customize Product Image
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item5" />
@@ -1217,7 +1207,7 @@ export function Widget(props) {
                                             </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Image width</label>
+                                                    <label className="block text-sm font-medium text-black">Image Width</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_x')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1230,7 +1220,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Image width</label>
+                                                    <label className="block text-sm font-medium text-black">Image Height</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('image_size_y')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1247,7 +1237,7 @@ export function Widget(props) {
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                             <label htmlFor="collapsible-item6" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Product title design
+                                                    Customize Product Title
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item6" />
@@ -1269,7 +1259,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1282,7 +1272,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('title_font_weight')} onChange={(e) => {
@@ -1310,12 +1300,11 @@ export function Widget(props) {
                                                                     </g>
                                                                 </svg>
                                                             </span>
-                                                            {errorsUpdateWidgetTemplate?.button_redirect && <span className="text-danger text-sm text-bold">Please select a redirect type</span>}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title line height</label>
+                                                    <label className="block text-sm font-medium text-black">Line Height</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_line_height')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1328,7 +1317,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Title spacing</label>
+                                                    <label className="block text-sm font-medium text-black">Spacing</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('title_spacing')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1345,7 +1334,7 @@ export function Widget(props) {
                                         <div className='accordion-item'>
                                             <label htmlFor="collapsible-item7" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Product Price design
+                                                    Customize Product Price
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item7" />
@@ -1354,7 +1343,7 @@ export function Widget(props) {
                                             </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Price color</label>
+                                                    <label className="block text-sm font-medium text-black">Price Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('offer_price_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1367,7 +1356,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Price font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('offer_price_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1380,7 +1369,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Price font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('offer_price_font_weight')} onChange={(e) => {
@@ -1413,7 +1402,7 @@ export function Widget(props) {
                                                 </div>
                                                 <div className='w-full h-px bg-stroke mb-4'></div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Compare price color</label>
+                                                    <label className="block text-sm font-medium text-black">Compare Price Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('compare_price_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1426,7 +1415,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Compare price font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1439,7 +1428,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Compare price font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('compare_price_font_weight')} onChange={(e) => {
@@ -1475,7 +1464,7 @@ export function Widget(props) {
                                         <div className='accordion-item rounded-md bg-white border border-stroke shadow-sm mb-3'>
                                             <label htmlFor="collapsible-item8" className='accordion-head cursor-pointer flex justify-between p-3'>
                                                 <h4 className='text-black font-bold'>
-                                                    Product variations design
+                                                    Customize Product Options
                                                 </h4>
                                             </label>
                                             <input className='sr-only' type='checkbox' id="collapsible-item8" />
@@ -1484,7 +1473,7 @@ export function Widget(props) {
                                             </span>
                                             <div className='accordion-content px-4 pb-4'>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Background color</label>
+                                                    <label className="block text-sm font-medium text-black">Background Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('variants_background')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1497,7 +1486,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Text color</label>
+                                                    <label className="block text-sm font-medium text-black">Text Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('variants_text_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1510,7 +1499,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Font size</label>
+                                                    <label className="block text-sm font-medium text-black">Font Size</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_font_size')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1523,7 +1512,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Font weight</label>
+                                                    <label className="block text-sm font-medium text-black">Font Weight</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <div className="relative z-20 bg-input-color">
                                                             <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('variants_font_weight')} onChange={(e) => {
@@ -1568,7 +1557,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <label className="block text-sm font-medium text-black">Border Width</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_width')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1581,7 +1570,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <label className="block text-sm font-medium text-black">Border Color</label>
                                                     <div className='min-w-32 max-w-32 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('variants_border_color')} onChange={(e) => {
                                                             setWidgetSettings({
@@ -1594,7 +1583,7 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Border radius</label>
+                                                    <label className="block text-sm font-medium text-black">Border Radius</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_border_radius')} onChange={(e) => {
                                                             setWidgetSettings({

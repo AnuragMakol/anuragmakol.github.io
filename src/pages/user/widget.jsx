@@ -67,7 +67,10 @@ export function Widget(props) {
         button_font_weight: "",
         button_padding_x: "",
         button_padding_y: "",
+        button_height: "",
         button_border_radius: "",
+        button_border_color: "",
+        button_border_width: "",
         button_text: "",
         button_text_loading: "",
         button_redirect: "",
@@ -80,6 +83,7 @@ export function Widget(props) {
         urgency_bar_timeend: "",
         urgency_bar_duration: "",
         urgency_bar_background: "",
+        urgency_bar_padding_y: "",
         urgency_bar_text: "",
         urgency_bar_text_size: "",
         urgency_bar_text_font_weight: "",
@@ -144,7 +148,10 @@ export function Widget(props) {
                 button_font_weight: yup.string(),
                 button_padding_x: yup.string(),
                 button_padding_y: yup.string(),
+                button_height: yup.string(),
+                button_border_color: yup.string(),
                 button_border_radius: yup.string(),
+                button_border_width: yup.string(),
                 button_text: yup.string(),
                 button_text_loading: yup.string(),
                 button_redirect: yup.string(),
@@ -157,6 +164,7 @@ export function Widget(props) {
                 urgency_bar_timeend: yup.string(),
                 urgency_bar_duration: yup.string(),
                 urgency_bar_background: yup.string(),
+                urgency_bar_padding_y: yup.string(),
                 urgency_bar_text: yup.string(),
                 urgency_bar_text_size: yup.string(),
                 urgency_bar_text_font_weight: yup.string(),
@@ -177,6 +185,7 @@ export function Widget(props) {
 
     const onSubmitUpdateWidgetTemplate = (form) => {
         initUpdateWidgetTemplate(form);
+
     }
 
     const triggerFetchTemplate = (template, style) => {
@@ -219,7 +228,7 @@ export function Widget(props) {
         onSuccess: (result) => {
             successHandler(result);
             setUser(result.data);
-            setWidgetSettings(result.data.widget_settings);
+            triggerFetchTemplate(result.data.widget_settings.widget_template, result.data.widget_settings.widget_style);
         },
         onError: (error) => {
             errorHandler(error);
@@ -256,6 +265,8 @@ export function Widget(props) {
             }
             .cpatc-timer-wrapper {
                 ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}                
+                ${tempData?.urgency_bar_padding_y !== undefined ? `padding-top: ${tempData?.urgency_bar_padding_y}px !important;` : ""}                
+                ${tempData?.urgency_bar_padding_y !== undefined ? `padding-bottom: ${tempData?.urgency_bar_padding_y}px !important;` : ""}                
             }
             .cpatc-timer-wrapper .cpatc-timer-title {
                 ${tempData?.urgency_bar_text_size !== undefined ? `font-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
@@ -319,6 +330,9 @@ export function Widget(props) {
                 ${tempData?.button_padding_x !== undefined ? `padding-right: ${tempData?.button_padding_x}px !important;` : ""}
                 ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
                 ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
+                ${tempData?.button_height !== undefined ? `height: ${tempData?.button_height}px !important;` : ""}
+                ${tempData?.button_border_color !== undefined ? `border-color: ${tempData?.button_border_color} !important;` : ""}
+                ${tempData?.button_border_width !== undefined ? `border-width: ${tempData?.button_border_width}px !important;` : ""}
                 ${tempData?.button_border_radius !== undefined ? `border-radius: ${tempData?.button_border_radius}px !important;` : ""}
             }
             .cpatc-action-wrapper .cpatc-action-btn:hover  {
@@ -616,7 +630,7 @@ export function Widget(props) {
                                             <div>
                                                 <label className="block-label">Entrance animation</label>
                                                 <div className="relative z-20 bg-input-color">
-                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>                                                        
+                                                    <select className="block-select-control h-9" {...registerUpdateWidgetTemplate('widget_animation')}>
                                                         <option value="slide">Slide</option>
                                                         <option value="fade">Fade</option>
                                                     </select>
@@ -924,6 +938,19 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Spacing</label>
+                                                    <div className='min-w-32 max-w-34 flex justify-end'>
+                                                        <input type="number" {...registerUpdateWidgetTemplate('urgency_bar_padding_y')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                urgency_bar_padding_y: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('urgency_bar_padding_y', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Message text color</label>
                                                     <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_text_color')} onChange={(e) => {
@@ -1121,6 +1148,45 @@ export function Widget(props) {
                                                             });
 
                                                             manageCustomStyle('button_padding_x', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Height</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_height')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_height: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_height', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border color</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('button_border_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_border_color: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_border_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border width</label>
+                                                    <div className='min-w-32 max-w-32'>
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_width')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_border_width: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_border_width', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1545,25 +1611,27 @@ export function Widget(props) {
                                     </div>
                                 </div>
                                 <div className="py-4 px-6 flex justify-end space-x-2 border-t border-stroke bg-white">
-                                    <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
-                                        Swal.fire({
-                                            title: "Are you sure?",
-                                            html: "This will reset the current style for the template to the initial values.",
-                                            icon: 'warning',
-                                            showCancelButton: true,
-                                            confirmButtonText: 'Yes',
-                                            cancelButtonText: "No"
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                initResetWidgetTemplate({
-                                                    template: user?.widget_settings?.widget_template,
-                                                    style: user?.widget_settings?.widget_style
-                                                });
-                                            }
-                                        });
-                                    }}>
-                                        Reset
-                                    </a>
+                                    {
+                                        user?.widget_theme[`${widgetSettings.widget_template}-${widgetSettings.widget_style}`] !== undefined ? <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
+                                            Swal.fire({
+                                                title: "Are you sure?",
+                                                html: "This will reset the current style for the template to the initial values.",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Yes',
+                                                cancelButtonText: "No"
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    initResetWidgetTemplate({
+                                                        template: user?.widget_settings?.widget_template,
+                                                        style: user?.widget_settings?.widget_style
+                                                    });
+                                                }
+                                            });
+                                        }}>
+                                            Reset to Default
+                                        </a> : ""
+                                    }
                                     <button className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90" type="submit">
                                         Save
                                     </button>

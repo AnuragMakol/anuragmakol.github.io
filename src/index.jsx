@@ -24,7 +24,7 @@ import { Logout } from './pages/user/auth/logout';
 import { Dashboard } from './pages/user/dashboard';
 import { Profile } from './pages/user/profile';
 import { Widget } from './pages/user/widget';
-import { Plans } from './pages/user/plans';
+import { Billing } from './pages/user/billing';
 
 // Adminstrator Login
 import { AdminLogin } from './pages/admin/auth/login';
@@ -64,7 +64,7 @@ const App = () => {
             <Route path="/dashboard" element={<UserLockedRoute><Dashboard /></UserLockedRoute>} />
             <Route path="/profile" element={<UserLockedRoute><Profile /></UserLockedRoute>} />
             <Route path="/widget" element={<UserLockedRoute><Widget /></UserLockedRoute>} />
-            <Route path="/plans" element={<UserLockedRoute><Plans /></UserLockedRoute>} />
+            <Route path="/billing" element={<UserLockedRoute><Billing /></UserLockedRoute>} />
 
             {/* Admin Auth */}
             <Route path="/admin/login" element={<AdminLogin />} />

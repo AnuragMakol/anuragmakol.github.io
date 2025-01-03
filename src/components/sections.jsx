@@ -75,9 +75,9 @@ export const UserSidebar = (props) => {
                         <h3 className="mb-4 ml-4 text-sm font-medium text-bodydark2 flex nav-label"><span>USER SETTINGS</span></h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
                             <li>
-                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/plans')}>
-                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='plans' /></span>
-                                    <span className="nav-title">Plans</span>
+                                <a className="flex items-center gap-2.5 rounded py-3 font-medium text-bodydark1 hover:bg-graydark nav-link" onClick={() => navigate('/billing')}>
+                                    <span className="min-w-5 max-w-5 nav-icon"><img src={`${import.meta.env.VITE_APP_URL}/images/icon/icon-invoice.svg`} alt='billing' /></span>
+                                    <span className="nav-title">Billing</span>
                                 </a>
                             </li>
                             <li>

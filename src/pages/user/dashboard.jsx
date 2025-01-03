@@ -1,26 +1,63 @@
 import React, { useEffect } from 'react';
-import { useNavigate, } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
 import { isEmpty, sumBy } from 'lodash';
 
 import { Loader } from '../../loader';
 import { userStore, statisticsStore } from '../../atoms';
-import { fetchProductStatistics } from '../../api';
+import { fetchProductStatistics, createRecurringCharge, setRecurringCharge } from '../../api';
 import { UserDashboardLayout } from '../../components/layouts';
 
-import { errorHandler } from "../../helpers";
+import { successHandler, errorHandler } from "../../helpers";
 
 export function Dashboard(props) {
-  const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userStore);
   const [statistics, setStatistics] = useRecoilState(statisticsStore);
 
+  let location = new URLSearchParams(useLocation().search);
+  let chargeID = location.get("charge_id");
+
   useEffect(() => {
     initFetchProductStatistics({});
+
+    setTimeout(() => {
+      if (user.plan_details === undefined && chargeID === null) {
+        initCreateRecurringCharge({
+          page: "dashboard"
+        });
+      }
+    }, 1000);
   }, []);
 
-  const { mutate: initFetchProductStatistics, isLoading: loadingFetchProducStatistics } = useMutation(fetchProductStatistics, {
+  useEffect(() => {
+    if (chargeID !== null) {
+      initSetRecurringCharge({
+        id: chargeID
+      });
+    }
+  }, [chargeID]);
+
+  const { mutate: initCreateRecurringCharge, isLoading: loadingCreateRecurringCharge } = useMutation(createRecurringCharge, {
+    onSuccess: (result) => {
+      window.location.href = result.data.appSubscriptionCreate.confirmationUrl;
+    },
+    onError: (error) => {
+      errorHandler(error);
+    }
+  });
+
+  const { mutate: initSetRecurringCharge, isLoading: loadingSetRecurringCharge } = useMutation(setRecurringCharge, {
+    onSuccess: (result) => {
+      setUser(result.data);
+      successHandler(result);
+    },
+    onError: (error) => {
+      errorHandler(error);
+    }
+  });
+
+  const { mutate: initFetchProductStatistics, isLoading: loadingFetchProductStatistics } = useMutation(fetchProductStatistics, {
     onSuccess: (result) => {
       setStatistics(result.data);
     },
@@ -48,7 +85,7 @@ export function Dashboard(props) {
 
   return (
     <UserDashboardLayout props={props}>
-      <Loader loading={loadingFetchProducStatistics} />
+      <Loader loading={loadingFetchProductStatistics || loadingCreateRecurringCharge || loadingSetRecurringCharge} />
 
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-bold text-black ">
@@ -211,7 +248,7 @@ export function Dashboard(props) {
                               !isEmpty(item?.variants) && Object.entries(item?.variants).map((stat, index2) => {
                                 return (
                                   <div key={index2}>
-                                    {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('revenue', sumBy(stat[1], function(o) { return parseFloat(o.revenue.$numberDecimal)} ))}</span>
+                                    {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('revenue', sumBy(stat[1], function (o) { return parseFloat(o.revenue.$numberDecimal) }))}</span>
                                   </div>
                                 )
                               })

@@ -299,12 +299,14 @@ export function Widget(props) {
                 ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}!important;` : ""}
                 ${tempData?.title_spacing !== undefined ? `margin-bottom: ${tempData?.title_spacing}!important;` : ""}
             }
-            .cpatc-content .cpatc-offer-price {
+            .cpatc-content .cpatc-offer-price,
+            .cpatc-actions .cpatc-offer-price {
                 ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                 ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
                 ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
             }
-            .cpatc-content .cpatc-item-compare-price {
+            .cpatc-content .cpatc-item-compare-price,
+            .cpatc-actions .cpatc-item-compare-price {
                 ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                 ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
                 ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
@@ -760,6 +762,8 @@ export function Widget(props) {
                                                                     <option value="t1">Template 1</option>
                                                                     <option value="t2">Template 2</option>
                                                                     <option value="t3">Template 3</option>
+                                                                    <option value="t4">Template 4</option>
+                                                                    <option value="t5">Template 5</option>
                                                                 </select>
                                                                 <span className="absolute right-2 top-1/2 z-10 -translate-y-1/2">
                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -928,19 +932,6 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
-                                                    <label className="block text-sm font-medium text-black">Spacing</label>
-                                                    <div className='min-w-32 max-w-34 flex justify-end'>
-                                                        <input type="number" {...registerUpdateWidgetTemplate('urgency_bar_padding_y')} onChange={(e) => {
-                                                            setWidgetSettings({
-                                                                ...widgetSettings,
-                                                                urgency_bar_padding_y: e.target.value
-                                                            });
-
-                                                            manageCustomStyle('urgency_bar_padding_y', e.target.value);
-                                                        }} />
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Text Color</label>
                                                     <div className='min-w-32 max-w-34 flex justify-end'>
                                                         <input type="color" {...registerUpdateWidgetTemplate('urgency_bar_text_color')} onChange={(e) => {
@@ -950,6 +941,19 @@ export function Widget(props) {
                                                             });
 
                                                             manageCustomStyle('urgency_bar_text_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Spacing</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="number" className='block-form-control' {...registerUpdateWidgetTemplate('urgency_bar_padding_y')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                urgency_bar_padding_y: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('urgency_bar_padding_y', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1633,7 +1637,7 @@ export function Widget(props) {
                     <style>{customStyle}</style>
                     <div className='flex-grow pl-11 lg:pl-4 xl:pl-6 overflow-auto'>
                         <div className={`${deviceToggle === "desktop" ? "transition-opacity ease-in delay-150 opacity-100 h-full visible" : "opacity-0 h-0 ease-out invisible"}`}>
-                            <div className='border border-stroke shadow bg-white relative rounded-lg desktop-view flex flex-col h-full'>
+                            <div className='border border-stroke shadow bg-white relative rounded-lg desktop-view flex flex-col h-full overflow-hidden'>
                                 <div className='border-b border-stroke h-13 flex items-center justify-between'>
                                     <div className='flex pl-5 min-w-48 max-w-48 items-center'>
                                         <div className='flex space-x-2 w-25'>
@@ -1712,7 +1716,7 @@ export function Widget(props) {
                                                             widgetSettings?.desktop_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
                                                         }
                                                         {
-                                                            widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                            widgetSettings?.widget_template === 't1' || widgetSettings?.widget_template === 't4' ? <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
                                                                     widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
@@ -1748,7 +1752,7 @@ export function Widget(props) {
                                                     </div>
                                                     <div className="cpatc-actions">
                                                         {
-                                                            widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                            widgetSettings?.widget_template === 't1' || widgetSettings?.widget_template === 't4' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                 {
                                                                     widgetSettings?.desktop_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                 }
@@ -1812,7 +1816,7 @@ export function Widget(props) {
                                                                 widgetSettings?.mobile_hide_title ? "" : <div id="widget-title" className="cpatc-product-item-title">Product Title</div>
                                                             }
                                                             {
-                                                                widgetSettings?.widget_template === 't1' ? <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                                widgetSettings?.widget_template === 't1' || widgetSettings?.widget_template === 't4' ? <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                     {
                                                                         widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                     }
@@ -1848,7 +1852,7 @@ export function Widget(props) {
                                                         </div>
                                                         <div className="cpatc-actions">
                                                             {
-                                                                widgetSettings?.widget_template === 't1' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
+                                                                widgetSettings?.widget_template === 't1' || widgetSettings?.widget_template === 't4' ? "" : <div id="widget-price" className="cpatc-product-price-wrapper">
                                                                     {
                                                                         widgetSettings?.mobile_hide_offer_price ? "" : <span className="cpatc-offer-price" id="widget-offer-price">{PriceFormat(user?.shop_details?.money_format, '3600')}</span>
                                                                     }

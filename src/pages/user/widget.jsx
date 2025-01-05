@@ -333,8 +333,8 @@ export function Widget(props) {
                 ${tempData?.button_padding_y !== undefined ? `padding-top: ${tempData?.button_padding_y}px !important;` : ""}
                 ${tempData?.button_padding_y !== undefined ? `padding-bottom: ${tempData?.button_padding_y}px !important;` : ""}
                 ${tempData?.button_height !== undefined ? `height: ${tempData?.button_height}px !important;` : ""}
-                ${tempData?.button_border_color !== undefined ? `border-color: ${tempData?.button_border_color} !important;` : ""}
                 ${tempData?.button_border_width !== undefined ? `border-width: ${tempData?.button_border_width}px !important;` : ""}
+                ${tempData?.button_border_color !== undefined ? `border-color: ${tempData?.button_border_color} !important;` : ""}
                 ${tempData?.button_border_radius !== undefined ? `border-radius: ${tempData?.button_border_radius}px !important;` : ""}
             }
             .cpatc-action-wrapper .cpatc-action-btn:hover  {
@@ -355,7 +355,7 @@ export function Widget(props) {
             <Loader loading={loadingUpdateWidgetTemplate || loadingResetWidgetTemplate} />
             <div className='flex flex-col overflow-hidden h-full max-h-full'>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
-                    <button className={`z-99999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-36 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
+                    <button className={`z-999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-19 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
                         {
                             sidebarToggle ? <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                 <path d="M 22.1875 2.28125 L 20.78125 3.71875 L 25.0625 8 L 4 8 L 4 10 L 25.0625 10 L 20.78125 14.28125 L 22.1875 15.71875 L 28.90625 9 Z M 9.8125 16.28125 L 3.09375 23 L 9.8125 29.71875 L 11.21875 28.28125 L 6.9375 24 L 28 24 L 28 22 L 6.9375 22 L 11.21875 17.71875 Z"></path>

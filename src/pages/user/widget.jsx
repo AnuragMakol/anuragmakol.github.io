@@ -70,6 +70,7 @@ export function Widget(props) {
         button_height: "",
         button_border_radius: "",
         button_border_color: "",
+        button_border_hover_color: "",
         button_border_width: "",
         button_text: "",
         button_text_loading: "",
@@ -150,6 +151,7 @@ export function Widget(props) {
                 button_padding_y: yup.string(),
                 button_height: yup.string(),
                 button_border_color: yup.string(),
+                button_border_hover_color: yup.string(),
                 button_border_radius: yup.string(),
                 button_border_width: yup.string(),
                 button_text: yup.string(),
@@ -252,8 +254,6 @@ export function Widget(props) {
             [type]: value
         }
 
-        console.log(type, value);
-
         let tempStylesheet = `
             .cpatc-widget {
                 ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
@@ -339,6 +339,7 @@ export function Widget(props) {
             }
             .cpatc-action-wrapper .cpatc-action-btn:hover  {
                 ${tempData?.button_background_hover !== undefined ? `background-color: ${tempData?.button_background_hover} !important;` : ""}
+                ${tempData?.button_border_hover_color !== undefined ? `border-color: ${tempData?.button_border_hover_color} !important;` : ""}
             }
         `;
 
@@ -1172,6 +1173,19 @@ export function Widget(props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-4">
+                                                    <label className="block text-sm font-medium text-black">Border Color (Hover)</label>
+                                                    <div className='min-w-32 max-w-32 flex justify-end'>
+                                                        <input type="color" {...registerUpdateWidgetTemplate('button_border_hover_color')} onChange={(e) => {
+                                                            setWidgetSettings({
+                                                                ...widgetSettings,
+                                                                button_border_hover_color: e.target.value
+                                                            });
+
+                                                            manageCustomStyle('button_border_hover_color', e.target.value);
+                                                        }} />
+                                                    </div>
+                                                </div>
+                                                <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border Width</label>
                                                     <div className='min-w-32 max-w-32'>
                                                         <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('button_border_width')} onChange={(e) => {
@@ -1563,13 +1577,13 @@ export function Widget(props) {
                                                 <div className="flex justify-between items-center mb-4">
                                                     <label className="block text-sm font-medium text-black">Border Width</label>
                                                     <div className='min-w-32 max-w-32'>
-                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('compare_price_border_width')} onChange={(e) => {
+                                                        <input type='number' className='block-form-control h-9' {...registerUpdateWidgetTemplate('variants_border_width')} onChange={(e) => {
                                                             setWidgetSettings({
                                                                 ...widgetSettings,
-                                                                compare_price_border_width: e.target.value
+                                                                variants_border_width: e.target.value
                                                             });
 
-                                                            manageCustomStyle('compare_price_border_width', e.target.value);
+                                                            manageCustomStyle('variants_border_width', e.target.value);
                                                         }} />
                                                     </div>
                                                 </div>
@@ -1605,7 +1619,7 @@ export function Widget(props) {
                                 </div>
                                 <div className="py-4 px-6 flex justify-end space-x-2 border-t border-stroke bg-white">
                                     {
-                                        user?.widget_theme[`${widgetSettings.widget_template}-${widgetSettings.widget_style}`] !== undefined ? <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
+                                        user?.widget_theme[`${widgetSettings?.widget_template}-${widgetSettings?.widget_style}`] !== undefined ? <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
                                             Swal.fire({
                                                 title: "Are you sure?",
                                                 html: "This will reset the current style for the template to the initial values.",
@@ -1671,7 +1685,9 @@ export function Widget(props) {
                                                 <path d="M1.21094 11.7158H6.78906C7.54492 11.7158 7.91406 11.3408 7.91406 10.5205V6.21973C7.91406 5.48145 7.60938 5.10059 6.98242 5.03613V3.55957C6.98242 1.35059 5.53516 0.28418 4 0.28418C2.46484 0.28418 1.01758 1.35059 1.01758 3.55957V5.06543C0.443359 5.15332 0.0859375 5.52832 0.0859375 6.21973V10.5205C0.0859375 11.3408 0.455078 11.7158 1.21094 11.7158ZM1.96094 3.43652C1.96094 1.96582 2.9043 1.18652 4 1.18652C5.0957 1.18652 6.03906 1.96582 6.03906 3.43652V5.03027L1.96094 5.03613V3.43652Z" fill="#9E9E9E" />
                                             </svg>
                                             </span>
-                                            <span className='text-xs font-medium text-zinc-500'>google.com</span>
+                                            <a href="https://appvertix.com" target="_blank">
+                                                <span className='text-xs font-medium text-zinc-500'>appvertix.com</span>
+                                            </a>
                                         </div>
                                     </div>
                                     <div className='pr-5 min-w-48 max-w-48 justify-end flex items-center'>

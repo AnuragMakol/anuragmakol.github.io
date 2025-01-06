@@ -1714,12 +1714,14 @@ export function Widget(props) {
                                     </div>
                                     <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                         <div id='widget-container' className='has-shadow'>
-                                            <div className="cpatc-timer-wrapper">
-                                                <div className='cpatc-timer-container'>
-                                                    <div className="cpatc-timer-title">Hurry up!</div>
-                                                    <div className="cpatc-timer-countdown">00:15:00</div>
-                                                </div>
-                                            </div>
+                                            {
+                                                widgetSettings?.urgency_bar_status ? <div className="cpatc-timer-wrapper">
+                                                    <div className='cpatc-timer-container'>
+                                                        <div className="cpatc-timer-title">{widgetSettings.urgency_bar_text}</div>
+                                                        <div className="cpatc-timer-countdown">00:15:00</div>
+                                                    </div>
+                                                </div> : ""
+                                            }
                                             <div id="widget-content">
                                                 <div className="cpatc-product">
                                                     {
@@ -1815,12 +1817,14 @@ export function Widget(props) {
                                         </div>
                                         <div id="widget-area" className={`cpatc-widget cpatc-${widgetSettings?.widget_template}-${widgetSettings?.widget_style} ${widgetSettings?.widget_position === "top" ? "cpatc-fixed-d-top" : "cpatc-fixed-d-bottom"} ${widgetSettings?.widget_width === "boxed" ? "cpatc-boxed" : ""}`}>
                                             <div id="widget-container" className='has-shadow'>
-                                                <div className="cpatc-timer-wrapper">
-                                                    <div className='cpatc-timer-container'>
-                                                        <div className="cpatc-timer-title">Hurry up!</div>
-                                                        <div className="cpatc-timer-countdown"></div>
-                                                    </div>
-                                                </div>
+                                                {
+                                                    widgetSettings?.urgency_bar_status ? <div className="cpatc-timer-wrapper">
+                                                        <div className='cpatc-timer-container'>
+                                                            <div className="cpatc-timer-title">{widgetSettings.urgency_bar_text}</div>
+                                                            <div className="cpatc-timer-countdown">00:15:00</div>
+                                                        </div>
+                                                    </div> : ""
+                                                }
                                                 <div id='widget-content'>
                                                     <div className="cpatc-product">
                                                         <div className="cpatc-product-item-image">

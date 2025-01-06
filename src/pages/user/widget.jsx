@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
+import { isEmpty } from 'lodash';
 import Swal from 'sweetalert2';
 
 import { useForm } from "react-hook-form";
@@ -1619,7 +1620,7 @@ export function Widget(props) {
                                 </div>
                                 <div className="py-4 px-6 flex justify-end space-x-2 border-t border-stroke bg-white">
                                     {
-                                        user?.widget_theme[`${widgetSettings?.widget_template}-${widgetSettings?.widget_style}`] !== undefined ? <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
+                                        user?.widget_theme !== undefined && user?.widget_theme[`${widgetSettings?.widget_template}-${widgetSettings?.widget_style}`] ? <a className="flex justify-center rounded bg-black bg-opacity-10 px-6 py-2 font-medium text-graydark hover:bg-opacity-15" onClick={() => {
                                             Swal.fire({
                                                 title: "Are you sure?",
                                                 html: "This will reset the current style for the template to the initial values.",

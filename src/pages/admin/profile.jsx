@@ -168,7 +168,7 @@ export function AdminProfile(props) {
             <div className="p-7">
               <div className="mb-4 flex items-center gap-3">
                 <div className="h-14 w-14 rounded-full">
-                  <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/user/user-03.png'}`} alt="User" />
+                  <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/logo/logo-icon.svg'}`} alt="User" />
                 </div>
                 <div>
                   <span className="mb-1.5 font-medium text-black ">Edit your photo</span>

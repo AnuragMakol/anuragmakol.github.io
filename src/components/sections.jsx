@@ -21,7 +21,7 @@ export const UserHeader = (props) => {
                             </span>
 
                             <span className="h-10 w-10 rounded-full">
-                                <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/user/user-03.png'}`} alt="User" />
+                                <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/logo/logo-icon.svg'}`} alt="User" />
                             </span>
                             <svg className="fill-current 2xl:hidden" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z" fill=""></path>
@@ -151,7 +151,7 @@ export const AdminHeader = (props) => {
                             </span>
 
                             <span className="h-12 w-12 rounded-full">
-                                <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/user/user-03.png'}`} alt="User" />
+                                <img src={`${user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image}` : '/images/logo/logo-icon.svg'}`} alt="User" />
                             </span>
                         </a>
                     </div>

@@ -67,7 +67,7 @@ export const AdminLogin = (props) => {
                     </p>
 
                     <span className="mt-15 inline-block">
-                        <img src="../../images/illustration/illustration-03.svg" alt="illustration" />
+                        <img src="../../images/mobile-image.svg" alt="mobile image" />
                     </span>
                 </div>
             </div>

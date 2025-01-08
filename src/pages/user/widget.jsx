@@ -1698,7 +1698,7 @@ export function Widget(props) {
                                 <div className='relative flex-grow'>
                                     <div className='flex w-full max-w-230 mx-auto h-full pt-36 justify-between px-4'>
                                         <div className='w-1/2 pr-4'>
-                                            <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                            <img src={`${import.meta.env.VITE_APP_URL}/images/tshirt-vector.jpg`} alt='safari icons' />
                                         </div>
                                         <div className='w-1/2 pt-4'>
                                             <div>
@@ -1801,7 +1801,7 @@ export function Widget(props) {
                                     <div className='relative flex-grow'>
                                         <div className='flex flex-col w-full mx-auto pt-4 px-4'>
                                             <div>
-                                                <img src={`${import.meta.env.VITE_APP_URL}/images/cpwidget/tshirt-vector.jpg`} alt='safari icons' />
+                                                <img src={`${import.meta.env.VITE_APP_URL}/images/tshirt-vector.jpg`} alt='safari icons' />
                                             </div>
                                             <div className='pt-4'>
                                                 <div>

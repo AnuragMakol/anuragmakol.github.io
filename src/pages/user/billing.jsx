@@ -45,15 +45,41 @@ export function Billing(props) {
     return (
         <UserDashboardLayout props={props}>
             <Loader loading={loadingCancelRecurringCharge} />
-
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-title-md2 font-bold text-black">
+            <div className='max-w-150 mx-auto mb-5'>
+                <h1 className="text-title-md2 font-bold text-black mb-5">
                     Billing
-                </h2>
+                </h1>
+                {
+                    user?.plan_details !== undefined ? <div className='bg-white border border-stroke p-10 rounded '>
+                        <div className='border-b border-stroke pb-6 mb-6'>
+                            <h2 className='font-medium text-md mb-1'>Plan Name</h2>
+                            <p className="font-bold text-black text-lg">{user?.plan_details?.name} Plan {user?.plan_details?.trialDays > 0 ? `(${user?.plan_details?.trialDays} Days Trial)` : ""}</p>
+                            <p className='text-danger font-medium'>{user?.plan_details?.trialDays > 0 ? `Your trial will expire on ${moment(user?.plan_details?.createdAt).add(user?.plan_details?.trialDays, 'days').format("DD MMM, YYYY")}` : ""}</p>
+                        </div>
+
+                        <div className='border-b border-stroke pb-6 mb-6'>
+                            <div className='mb-6'>
+                                <h2 className='font-medium text-md mb-1'>Plan Start Date</h2>
+                                <p className="font-bold text-black text-lg">{moment(user?.plan_details?.createdAt).format("DD MMM, YYYY")}</p>
+                            </div>
+                            <div>
+                                <h2 className='font-medium text-md mb-1'>Billed On</h2>
+                                <p className="font-bold text-black text-lg">{moment(user?.plan_details?.currentPeriodEnd).format("Do")} of every month</p>
+                            </div>
+                        </div>
+                        <div className='mb-6'>
+                            <h2 className='font-medium text-md mb-1'>Subscription Price</h2>
+                            <p className="font-bold text-black text-lg">{user?.plan_details?.price} {user?.plan_details?.currencyCode}</p>
+                        </div>
+                        <div className='flex justify-end'>
+                            <button className="rounded-md border border-danger hover:bg-danger hover:text-white py-2 px-4 font-medium text-danger transition" onClick={() => CancelPlan()}> Cancel Plan </button>
+                        </div>
+                    </div> : ""
+                }
             </div>
 
             {
-                user?.plan_details !== undefined ? <div className="bg-white border border-stroke mb-4">
+                user?.plan_details !== undefined ? <div className="bg-white border border-stroke mb-4 hidden">
                     <div className="grid grid-cols-6 px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">
                         <div className="col-span-2 flex items-center">
                             <p className="font-medium">Plan Name</p>

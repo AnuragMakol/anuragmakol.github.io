@@ -30,6 +30,7 @@ export function Widget(props) {
         widget_style: "",
         widget_position: "",
         widget_width: "",
+        widget_container: "",
         widget_status: "",
         widget_visibility: "",
         widget_scroll: "",
@@ -113,6 +114,7 @@ export function Widget(props) {
                 widget_style: yup.string().required(),
                 widget_position: yup.string().required(),
                 widget_width: yup.string().required(),
+                widget_container: yup.string().required(),
                 widget_visibility: yup.string().required(),
                 widget_scroll: yup.string().required(),
                 widget_background: yup.string(),
@@ -258,72 +260,75 @@ export function Widget(props) {
             .cpatc-widget {
                 ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
             }
-            #widget-container {
+            .cpatc-widget #widget-container {
                 ${tempData?.widget_border_width !== undefined ? `border-width: ${tempData?.widget_border_width}px !important;` : ""}
                 ${tempData?.widget_border_color !== undefined ? `border-color: ${tempData?.widget_border_color} !important;` : ""}
                 ${tempData?.widget_border_radius !== undefined ? `border-radius: ${tempData?.widget_border_radius}px !important;` : ""}
             }
-            .cpatc-timer-wrapper {
+            .cpatc-widget .cpatc-timer-container, .cpatc-widget #widget-content {                
+                ${tempData?.widget_container !== undefined ? `max-width: ${tempData?.widget_container}px !important;` : ""}
+            }
+            .cpatc-widget .cpatc-timer-wrapper {
                 ${tempData?.urgency_bar_background !== undefined ? `background-color: ${tempData?.urgency_bar_background} !important;` : ""}                
                 ${tempData?.urgency_bar_padding_y !== undefined ? `padding-top: ${tempData?.urgency_bar_padding_y}px !important;` : ""}                
                 ${tempData?.urgency_bar_padding_y !== undefined ? `padding-bottom: ${tempData?.urgency_bar_padding_y}px !important;` : ""}                
             }
-            .cpatc-timer-wrapper .cpatc-timer-title {
+            .cpatc-widget .cpatc-timer-wrapper .cpatc-timer-title {
                 ${tempData?.urgency_bar_text_size !== undefined ? `font-size: ${tempData?.urgency_bar_text_size}px !important;` : ""}
                 ${tempData?.urgency_bar_text_color !== undefined ? `color: ${tempData?.urgency_bar_text_color} !important;` : ""}
                 ${tempData?.urgency_bar_text_font_weight !== undefined ? `font-weight: ${tempData?.urgency_bar_text_font_weight} !important;` : ""}
             }
-            .cpatc-timer-wrapper .cpatc-timer-countdown {
+            .cpatc-widget .cpatc-timer-wrapper .cpatc-timer-countdown {
                 ${tempData?.urgency_bar_timer_size !== undefined ? `font-size: ${tempData?.urgency_bar_timer_size}px !important;` : ""}
                 ${tempData?.urgency_bar_timer_color !== undefined ? `color: ${tempData?.urgency_bar_timer_color} !important;` : ""}
                 ${tempData?.urgency_bar_timer_font_weight !== undefined ? `font-weight: ${tempData?.urgency_bar_timer_font_weight} !important;` : ""}
             }
-            .cpatc-widget:not(.cpatc-boxed), #widget-content {
+            .cpatc-widget:not(.cpatc-boxed), .cpatc-widget #widget-content {
                 ${tempData?.widget_background !== undefined ? `background: ${tempData?.widget_background} !important;` : ""}
             }
-            #widget-content {                
+            .cpatc-widget #widget-content {                
                 ${tempData?.widget_padding_x !== undefined ? `padding-left: ${tempData?.widget_padding_x}px !important;` : ""}
                 ${tempData?.widget_padding_x !== undefined ? `padding-right: ${tempData?.widget_padding_x}px !important;` : ""}
                 ${tempData?.widget_padding_y !== undefined ? `padding-top: ${tempData?.widget_padding_y}px !important;` : ""}
                 ${tempData?.widget_padding_y !== undefined ? `padding-bottom: ${tempData?.widget_padding_y}px !important;` : ""}                
             }
-            .cpatc-product .cpatc-product-item-image {
+            .cpatc-widget .cpatc-product .cpatc-product-item-image {
                 ${tempData?.image_size_x !== undefined ? `width: ${tempData?.image_size_x}px !important;` : ""}
                 ${tempData?.image_size_x !== undefined ? `min-width: ${tempData?.image_size_x}px !important;` : ""}
                 ${tempData?.image_size_y !== undefined ? `height: ${tempData?.image_size_y}px !important;` : ""}
             }
-            .cpatc-content .cpatc-product-item-title {
+            .cpatc-widget .cpatc-content .cpatc-product-item-title {
                 ${tempData?.title_color !== undefined ? `color: ${tempData?.title_color} !important;` : ""}
                 ${tempData?.title_font_size !== undefined ? `font-size: ${tempData?.title_font_size}px !important;` : ""}
                 ${tempData?.title_font_weight !== undefined ? `font-weight: ${tempData?.title_font_weight} !important;` : ""}
                 ${tempData?.title_line_height !== undefined ? `line-height: ${tempData?.title_line_height}!important;` : ""}
                 ${tempData?.title_spacing !== undefined ? `margin-bottom: ${tempData?.title_spacing}!important;` : ""}
             }
-            .cpatc-content .cpatc-offer-price,
-            .cpatc-actions .cpatc-offer-price {
+            .cpatc-widget .cpatc-content .cpatc-offer-price,
+            .cpatc-widget .cpatc-actions .cpatc-offer-price {
                 ${tempData?.offer_price_color !== undefined ? `color: ${tempData?.offer_price_color} !important;` : ""}
                 ${tempData?.offer_price_font_size !== undefined ? `font-size: ${tempData?.offer_price_font_size}px !important;` : ""}
                 ${tempData?.offer_price_font_weight !== undefined ? `font-weight: ${tempData?.offer_price_font_weight} !important;` : ""}
             }
-            .cpatc-content .cpatc-item-compare-price,
-            .cpatc-actions .cpatc-item-compare-price {
+            .cpatc-widget .cpatc-content .cpatc-item-compare-price,
+            .cpatc-widget .cpatc-actions .cpatc-item-compare-price {
                 ${tempData?.compare_price_color !== undefined ? `color: ${tempData?.compare_price_color} !important;` : ""}
                 ${tempData?.compare_price_font_size !== undefined ? `font-size: ${tempData?.compare_price_font_size}px !important;` : ""}
                 ${tempData?.compare_price_font_weight !== undefined ? `font-weight: ${tempData?.compare_price_font_weight} !important;` : ""}
             }
-            .cpatc-select-outer {
+            .cpatc-widget .cpatc-select-outer {
                 ${tempData?.variants_background !== undefined ? `background-color: ${tempData?.variants_background} !important;` : ""}                            
                 ${tempData?.variants_font_weight !== undefined ? `font-weight: ${tempData?.variants_font_weight} !important;` : ""}
                 ${tempData?.variants_border_width !== undefined ? `border-width: ${tempData?.variants_border_width}px !important;` : ""}
                 ${tempData?.variants_border_color !== undefined ? `border-color: ${tempData?.variants_border_color} !important;` : ""}
                 ${tempData?.variants_border_radius !== undefined ? `border-radius: ${tempData?.variants_border_radius}px !important;` : ""}
             }
-            .cpatc-select-outer .cpatc-select {
+            .cpatc-widget .cpatc-select-outer .cpatc-select {
                 ${tempData?.variants_font_size !== undefined ? `font-size: ${tempData?.variants_font_size}px !important;` : ""}
                 ${tempData?.variants_text_color !== undefined ? `color: ${tempData?.variants_text_color} !important;` : ""}
                 ${tempData?.variants_height !== undefined ? `height: ${tempData?.variants_height}px !important;` : ""}                
             }
-            .cpatc-action-wrapper .cpatc-action-btn  {
+            .cpatc-widget .cpatc-action-wrapper .cpatc-action-btn  {
                 ${tempData?.button_background !== undefined ? `background-color: ${tempData?.button_background} !important;` : ""}
                 ${tempData?.button_text_color !== undefined ? `color: ${tempData?.button_text_color} !important;` : ""}
                 ${tempData?.button_font_size !== undefined ? `font-size: ${tempData?.button_font_size}px !important;` : ""}
@@ -337,9 +342,14 @@ export function Widget(props) {
                 ${tempData?.button_border_color !== undefined ? `border-color: ${tempData?.button_border_color} !important;` : ""}
                 ${tempData?.button_border_radius !== undefined ? `border-radius: ${tempData?.button_border_radius}px !important;` : ""}
             }
-            .cpatc-action-wrapper .cpatc-action-btn:hover  {
+            .cpatc-widget .cpatc-action-wrapper .cpatc-action-btn:hover  {
                 ${tempData?.button_background_hover !== undefined ? `background-color: ${tempData?.button_background_hover} !important;` : ""}
                 ${tempData?.button_border_hover_color !== undefined ? `border-color: ${tempData?.button_border_hover_color} !important;` : ""}
+            }
+            @media (min-width:768px) {
+                .cpatc-widget.cpatc-boxed #widget-container {
+                    ${tempData?.widget_container !== undefined ? `max-width: ${tempData?.widget_container}px !important;` : ""}
+                }
             }
         `;
 
@@ -354,6 +364,16 @@ export function Widget(props) {
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate || loadingResetWidgetTemplate} />
             <div className='flex flex-col overflow-hidden h-full max-h-full'>
+                <div className='flex border border-stroke shadow-sm mb-5 rounded overflow-hidden fixed top-1.5 z-999999 left-1/2 transform -translate-x-1/2 ml-5 md:ml-10'>
+                    <div className={`w-1/2 px-3 py-2  flex justify-center items-center cursor-pointer ${deviceToggle === "desktop" ? "bg-zinc-600 text-white" : ""}`} onClick={() => setDeviceToggle('desktop')}>
+                        <svg fill='currentColor' className='w-6 md:mr-2' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 2 6 L 2 24 L 15 24 L 15 26 L 10 26 L 10 28 L 22 28 L 22 26 L 17 26 L 17 24 L 30 24 L 30 6 Z M 4 8 L 28 8 L 28 22 L 4 22 Z" /></svg>
+                        <span className='hidden md:flex'>Desktop</span>
+                    </div>
+                    <div className={`w-1/2 px-3 py-2 flex justify-center items-center cursor-pointer ${deviceToggle === "mobile" ? "bg-zinc-600 text-white" : ""}`} onClick={() => setDeviceToggle('mobile')}>
+                        <svg fill='currentColor' className='w-6 md:mr-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 11 4 C 9.355469 4 8 5.355469 8 7 L 8 25 C 8 26.644531 9.355469 28 11 28 L 21 28 C 22.644531 28 24 26.644531 24 25 L 24 7 C 24 5.355469 22.644531 4 21 4 Z M 11 6 L 21 6 C 21.554688 6 22 6.445313 22 7 L 22 25 C 22 25.554688 21.554688 26 21 26 L 11 26 C 10.445313 26 10 25.554688 10 25 L 10 7 C 10 6.445313 10.445313 6 11 6 Z M 16 23 C 15.449219 23 15 23.449219 15 24 C 15 24.550781 15.449219 25 16 25 C 16.550781 25 17 24.550781 17 24 C 17 23.449219 16.550781 23 16 23 Z" /></svg>
+                        <span className='hidden md:flex'>Mobile</span>
+                    </div>
+                </div>
                 <div className='overflow-x-auto overflow-y-hidden flex flex-1 relative'>
                     <button className={`z-999 rounded-md  p-1.5  block lg:hidden ${sidebarToggle ? "fixed top-19 left-20 bg-graydark text-white border border-stroke shadow-sm" : "absolute left-90 mt-1 top-2"}`} onClick={() => setSidebarToggle(!sidebarToggle)}>
                         {
@@ -387,7 +407,7 @@ export function Widget(props) {
                                     <div className={`p-4 ${tabToggle === "content" ? "" : "hide-desktop"}`}>
                                         <div className='bg-white border border-stroke px-4 py-3 flex items-center justify-between rounded-md shadow-sm mb-3'>
                                             <label className="font-medium text-graydark flex items-center">Show Widget
-                                                <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />
+                                                <Tooltip position="right" width={50} property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`This will show/hide the widget on the store`} />
                                             </label>
                                             <label className="relative inline-block w-15 h-8 switch-slider-wrap">
                                                 <input type="checkbox" className="sr-only" {...registerUpdateWidgetTemplate('widget_status')} />
@@ -488,6 +508,22 @@ export function Widget(props) {
                                                     </label>
                                                 </div>
                                                 {errorsUpdateWidgetTemplate?.widget_width && <span className="text-danger text-sm text-bold w-44 ml-auto">Please select a width</span>}
+                                            </div>
+                                        </div>
+                                        <div className='card mb-3'>
+                                            <h3 className='text-black font-bold mb-3 flex items-center'>Widget Content Width <Tooltip position="right" property={`w-4.5 h-4.5`} image={`${import.meta.env.VITE_APP_URL}/images/icon/info-circle-solid.svg`} alt="info" title={`For Desktop only`} /></h3>
+                                            <div>
+                                                <div className='mb-3'>
+                                                    <input type="number" min="800" className="block-form-control h-9" {...registerUpdateWidgetTemplate('widget_container')} onChange={(e) => {
+                                                        setWidgetSettings({
+                                                            ...widgetSettings,
+                                                            widget_container: e.target.value
+                                                        });
+
+                                                        manageCustomStyle('widget_container', e.target.value);
+                                                    }} />
+                                                    {errorsUpdateWidgetTemplate?.widget_container && <span className="text-danger text-sm text-bold w-44 ml-auto">Please add a container width</span>}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='card mb-3'>
@@ -697,10 +733,9 @@ export function Widget(props) {
                                                     </div>
                                                     {
                                                         widgetSettings?.urgency_bar_type === "minutes" ? <div className='mb-5 border border-stroke py-4 px-3.5 rounded-md intoView'>
-                                                            <label className="block-label pb-2">Time Duration</label>
+                                                            <label className="block-label">Time Duration (In Minutes)</label>
                                                             <div className='flex items-center'>
-                                                                <input type="number" className="block-form-control max-w-25 h-9 text-center" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
-                                                                <p className='text-black text-sm font-medium pl-2 italic'>In Minutes</p>
+                                                                <input type="number" className="block-form-control h-9 mb-1" {...registerUpdateWidgetTemplate('urgency_bar_duration')} />
                                                             </div>
                                                         </div> : ""
                                                     }
@@ -717,7 +752,7 @@ export function Widget(props) {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className='mb-5'>
+                                                            <div className='mb-1'>
                                                                 <label className="block-label pb-1">End date</label>
                                                                 <div className='flex'>
                                                                     <div className='w-1/2 mr-2'>

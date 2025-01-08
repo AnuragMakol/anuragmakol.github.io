@@ -36,7 +36,6 @@ input[type="color"]::-webkit-color-swatch {
 
 .mobile-view #widget-content {
   flex-direction: column;
-  padding: 10px;
 }
 
 .mobile-view .cpatc-product {
@@ -75,10 +74,13 @@ input[type="color"]::-webkit-color-swatch {
   padding-right: 15px;
 }
 
-.desktop-view .cpatc-widget.cpatc-boxed #widget-container {
-  max-width: 992px;
+.mobile-view .cpatc-widget.cpatc-boxed {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-
+.mobile-view .cpatc-widget.cpatc-fixed-d-bottom.cpatc-boxed {
+  margin-bottom: 0;
+}
 @media (max-width:768px) {
   .desktop-view #widget-content {
     flex-direction: inherit !important;
@@ -116,4 +118,5 @@ input[type="color"]::-webkit-color-swatch {
     margin-left: 12px !important;
     width: auto !important;
   }
+  
 }

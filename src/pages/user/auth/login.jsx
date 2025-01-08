@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 
 import { userStore } from '../../../atoms';
 import { getToken, userLogin } from "../../../api";
-import { AddToStorage, successHandler, errorHandler } from '../../../helpers';
+import { AddToStorage, errorHandler } from '../../../helpers';
 import { Loader } from "../../../loader";
 
 export const Login = (props) => {

@@ -1,4 +1,3 @@
-import { dropRight } from "lodash";
 import React from "react";
 
 export const Tooltip = (props) => {

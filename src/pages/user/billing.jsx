@@ -69,7 +69,7 @@ export function Billing(props) {
                     Billing
                 </h1>
                 {
-                    user?.plan_details !== undefined ? <div className='bg-white border border-stroke p-10 rounded '>
+                    user?.plan_details !== undefined ? <div className='bg-white border border-stroke p-10'>
                         <div className='border-b border-stroke pb-6 mb-6'>
                             <h2 className='font-medium text-md mb-1'>Plan Name</h2>
                             <p className="font-bold text-black text-lg">{user?.plan_details?.name} Plan {ToggleTrialInfo("title")}</p>

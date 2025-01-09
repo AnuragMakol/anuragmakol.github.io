@@ -6,7 +6,7 @@ import countries from "./static/countries.json";
 //   \__ \/ __/ __ `/ __/ / ___/  / / / / __ `/ __/ __ `/
 //  ___/ / /_/ /_/ / /_/ / /__   / /_/ / /_/ / /_/ /_/ / 
 // /____/\__/\__,_/\__/_/\___/  /_____/\__,_/\__/\__,_/  
-                                                      
+
 export const ListCountries = () => {
     return countries.data;
 }
@@ -127,7 +127,7 @@ export const NumberFormat = (value) => {
 //   / /_/ / __ `/ __ \/ __  / / _ \/ ___/ ___/
 //  / __  / /_/ / / / / /_/ / /  __/ /  (__  ) 
 // /_/ /_/\__,_/_/ /_/\__,_/_/\___/_/  /____/  
-                                            
+
 export const errorHandler = async (error) => {
     let errorMessage = '';
     if (error.response.data.message === undefined) {
@@ -141,8 +141,13 @@ export const errorHandler = async (error) => {
         text: errorMessage,
         toast: true,
         timer: 5000,
+        timerProgressBar: true,
         position: 'top-end',
-        showConfirmButton: false
+        showConfirmButton: false,
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
     });
 }
 
@@ -153,8 +158,13 @@ export const successHandler = async (success) => {
             text: success.message,
             toast: true,
             timer: 3000,
+            timerProgressBar: true,
             position: 'top-end',
-            showConfirmButton: false
+            showConfirmButton: false,
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            }
         });
     }
 }

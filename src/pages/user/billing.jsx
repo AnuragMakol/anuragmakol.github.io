@@ -42,6 +42,25 @@ export function Billing(props) {
         });
     }
 
+    const ToggleTrialInfo = (type) => {
+        let currentDate = moment().format();
+        let trialEndDate = moment(user?.plan_details?.createdAt).add(user?.plan_details?.trialDays, 'days').format();
+
+        if (user?.plan_details?.trialDays > 0) {
+            if (moment(currentDate).isBefore(trialEndDate)) {
+                if (type === "title") {
+                    return `(${user?.plan_details?.trialDays} Days Trial)`;
+                } else if (type === "info") {
+                    return `Your trial will expire on ${moment(trialEndDate).format("DD MMM, YYYY")}`
+                }
+            } else {
+                return "";
+            }
+        } else {
+            return "";
+        }
+    }
+
     return (
         <UserDashboardLayout props={props}>
             <Loader loading={loadingCancelRecurringCharge} />
@@ -53,8 +72,8 @@ export function Billing(props) {
                     user?.plan_details !== undefined ? <div className='bg-white border border-stroke p-10 rounded '>
                         <div className='border-b border-stroke pb-6 mb-6'>
                             <h2 className='font-medium text-md mb-1'>Plan Name</h2>
-                            <p className="font-bold text-black text-lg">{user?.plan_details?.name} Plan {user?.plan_details?.trialDays > 0 ? `(${user?.plan_details?.trialDays} Days Trial)` : ""}</p>
-                            <p className='text-danger font-medium'>{user?.plan_details?.trialDays > 0 ? `Your trial will expire on ${moment(user?.plan_details?.createdAt).add(user?.plan_details?.trialDays, 'days').format("DD MMM, YYYY")}` : ""}</p>
+                            <p className="font-bold text-black text-lg">{user?.plan_details?.name} Plan {ToggleTrialInfo("title")}</p>
+                            <p className='text-danger font-medium'>{ToggleTrialInfo("info")}</p>
                         </div>
 
                         <div className='border-b border-stroke pb-6 mb-6'>
@@ -77,59 +96,6 @@ export function Billing(props) {
                     </div> : ""
                 }
             </div>
-
-            {
-                user?.plan_details !== undefined ? <div className="bg-white border border-stroke mb-4 hidden">
-                    <div className="grid grid-cols-6 px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">
-                        <div className="col-span-2 flex items-center">
-                            <p className="font-medium">Plan Name</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Activated On</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Trial Days</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Trial Ends On</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Subscription Price</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Renews On</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">Actions</p>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 sm:grid-cols-8 md:px-6 2xl:px-7.5">
-                        <div className="col-span-2 flex items-center">
-                            <p className="font-medium">{user?.plan_details?.name} Plan</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{moment(user?.plan_details?.createdAt).format("DD MMM, YYYY")}</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-bold text-danger">{user?.plan_details?.trialDays > 0 ? user?.plan_details?.trialDays : "N/A"}</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-bold text-danger">{user?.plan_details?.trialDays > 0 ? moment(user?.plan_details?.createdAt).add(user?.plan_details?.trialDays, 'days').format("DD MMM, YYYY") : "N/A"}</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{user?.plan_details?.price} {user?.plan_details?.currencyCode}</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">{moment(user?.plan_details?.currentPeriodEnd).format("Do")} of every month</p>
-                        </div>
-                        <div className="col-span-1 flex items-center">
-                            <p className="font-medium">
-                                <button className="block w-full rounded-md bg-danger p-3 text-center font-medium text-white transition hover:bg-opacity-90 ml-1" onClick={() => CancelPlan()}> Cancel Plan </button>
-                            </p>
-                        </div>
-                    </div>
-                </div> : ""
-            }
         </UserDashboardLayout>
     )
 }

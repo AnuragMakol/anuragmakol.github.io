@@ -37,13 +37,13 @@ export const Login = (props) => {
             AddToStorage('token', result.data.token);
             setUser(result.data);
 
-            // if (result.data.plan_details !== undefined) {
-            navigate("/dashboard");
-            // } else {
-            // initCreateRecurringCharge({
-            // page: "dashboard"
-            // });
-            // }
+            if (result.data.plan_details !== undefined) {
+                navigate("/dashboard");
+            } else {
+                initCreateRecurringCharge({
+                    page: "dashboard"
+                });
+            }
         },
         onError: (error) => {
             errorHandler(error);

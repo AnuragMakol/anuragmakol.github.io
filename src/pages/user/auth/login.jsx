@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilState } from "recoil";
 
 import { userStore } from '../../../atoms';
-import { getToken, userLogin } from "../../../api";
+import { getToken, userLogin, createRecurringCharge } from "../../../api";
 import { AddToStorage, errorHandler } from '../../../helpers';
 import { Loader } from "../../../loader";
 
@@ -20,7 +20,7 @@ export const Login = (props) => {
             code: location.get('code')
         })
     }, []);
-    
+
     const { mutate: initGetToken, isLoading: loadingGetToken } = useMutation(getToken, {
         onSuccess: (result) => {
             initUserLogin({
@@ -31,12 +31,28 @@ export const Login = (props) => {
             errorHandler(error);
         }
     });
-    
+
     const { mutate: initUserLogin, isLoading: loadingUserLogin } = useMutation(userLogin, {
         onSuccess: (result) => {
             AddToStorage('token', result.data.token);
             setUser(result.data);
+
+            // if (result.data.plan_details !== undefined) {
             navigate("/dashboard");
+            // } else {
+            // initCreateRecurringCharge({
+            // page: "dashboard"
+            // });
+            // }
+        },
+        onError: (error) => {
+            errorHandler(error);
+        }
+    });
+
+    const { mutate: initCreateRecurringCharge, isLoading: loadingCreateRecurringCharge } = useMutation(createRecurringCharge, {
+        onSuccess: (result) => {
+            window.location.href = result.data.appSubscriptionCreate.confirmationUrl;
         },
         onError: (error) => {
             errorHandler(error);
@@ -44,6 +60,6 @@ export const Login = (props) => {
     });
 
     return (
-        <Loader loading={loadingGetToken || loadingUserLogin} />
+        <Loader loading={loadingGetToken || loadingUserLogin || loadingCreateRecurringCharge} />
     );
 }

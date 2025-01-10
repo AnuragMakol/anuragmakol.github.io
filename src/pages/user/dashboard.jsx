@@ -20,14 +20,6 @@ export function Dashboard(props) {
 
   useEffect(() => {
     initFetchProductStatistics({});
-
-    setTimeout(() => {
-      if (user.plan_details === undefined && chargeID === null) {
-        initCreateRecurringCharge({
-          page: "dashboard"
-        });
-      }
-    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -37,15 +29,6 @@ export function Dashboard(props) {
       });
     }
   }, [chargeID]);
-
-  const { mutate: initCreateRecurringCharge, isLoading: loadingCreateRecurringCharge } = useMutation(createRecurringCharge, {
-    onSuccess: (result) => {
-      window.location.href = result.data.appSubscriptionCreate.confirmationUrl;
-    },
-    onError: (error) => {
-      errorHandler(error);
-    }
-  });
 
   const { mutate: initSetRecurringCharge, isLoading: loadingSetRecurringCharge } = useMutation(setRecurringCharge, {
     onSuccess: (result) => {
@@ -85,7 +68,7 @@ export function Dashboard(props) {
 
   return (
     <UserDashboardLayout props={props}>
-      <Loader loading={loadingFetchProductStatistics || loadingCreateRecurringCharge || loadingSetRecurringCharge} />
+      <Loader loading={loadingFetchProductStatistics || loadingSetRecurringCharge} />
 
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-title-md2 font-bold text-black ">

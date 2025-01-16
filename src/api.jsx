@@ -54,15 +54,6 @@ export const cancelRecurringCharge = async (payload) => {
     return response.data;
 }
 
-export const resetScriptTag = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/reset-script-tag`, payload, {
-        headers: {
-            "Authorization": "Bearer " + FetchFromStorage("token")
-        }
-    });
-    return response.data;
-}
-
 export const uploadUserProfilePicture = async (payload) => {
     let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/upload-user-profile-picture`, payload.formdata, {
         headers: {

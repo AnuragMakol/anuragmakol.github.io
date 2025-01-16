@@ -12,7 +12,7 @@ import { Loader } from '../../loader';
 import { UserDashboardLayout } from '../../components/layouts';
 
 import { userStore } from '../../atoms';
-import { updateWidgetTemplate, resetScriptTag, fetchTemplateStyle, resetWidgetTemplate } from '../../api';
+import { updateWidgetTemplate, fetchTemplateStyle, resetWidgetTemplate } from '../../api';
 import { successHandler, errorHandler } from "../../helpers";
 import { Tooltip } from '../../components/kitchen-sink';
 
@@ -198,15 +198,6 @@ export function Widget(props) {
             style: style
         });
     }
-
-    const { mutate: initResetScriptTag } = useMutation(resetScriptTag, {
-        onSuccess: (result) => {
-            successHandler(result);
-        },
-        onError: (error) => {
-            errorHandler(error);
-        }
-    });
 
     const { mutate: initFetchTemplateStyle } = useMutation(fetchTemplateStyle, {
         onSuccess: (result) => {
@@ -1690,20 +1681,7 @@ export function Widget(props) {
                                 <div className='border-b border-stroke h-13 flex items-center justify-between'>
                                     <div className='flex pl-5 min-w-48 max-w-48 items-center'>
                                         <div className='flex space-x-2 w-25'>
-                                            <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500' onClick={() => {
-                                                Swal.fire({
-                                                    title: "Are you sure?",
-                                                    html: "This will reset the sticky add to cart widget integration with your store. <br /> <br /> Use this function only when you are not able to see the sticky widget on your store after installing the app and customizing the widget for your store.",
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonText: 'Yes',
-                                                    cancelButtonText: "No"
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        initResetScriptTag({});
-                                                    }
-                                                });
-                                            }}></span>
+                                            <span className='w-3 h-3 bg-red-400 rounded-full border border-red-500'></span>
                                             <span className='w-3 h-3 bg-orange-300 rounded-full border border-orange-400'></span>
                                             <span className='w-3 h-3 bg-green-400 rounded-full border border-green-500'></span>
                                         </div>

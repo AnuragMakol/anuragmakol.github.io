@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
 import { isEmpty, sumBy } from 'lodash';
+import Swal from 'sweetalert2';
 
 import { Loader } from '../../loader';
 import { userStore, statisticsStore } from '../../atoms';
-import { fetchProductStatistics, createRecurringCharge, setRecurringCharge } from '../../api';
+import { fetchProductStatistics, setRecurringCharge } from '../../api';
 import { UserDashboardLayout } from '../../components/layouts';
 
 import { successHandler, errorHandler } from "../../helpers";
@@ -34,6 +35,9 @@ export function Dashboard(props) {
     onSuccess: (result) => {
       setUser(result.data);
       successHandler(result);
+      setTimeout(() => {
+        EmbedAppInit();
+      }, 1000);
     },
     onError: (error) => {
       errorHandler(error);
@@ -66,12 +70,31 @@ export function Dashboard(props) {
     return amount;
   }
 
+  const EmbedAppInit = () => {
+    Swal.fire({
+      html: `
+        <img src='${import.meta.env.VITE_APP_URL}/images/avatar.svg' alt="User" />
+        <div class="mt-5">When you click on the I'm ready button below it will take you to the new page. Follow the steps as shown in the quick tutorial above and then close the page.</div>
+      `,
+      showCancelButton: true,
+      confirmButtonText: "I'm Ready",
+      cancelButtonText: "Cancel"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.open(
+          `https://admin.shopify.com/store/${user?.shop.split('.')[0]}/themes/current/editor?context=apps&activateAppId=${import.meta.env.VITE_EXTENSION_ID}/${import.meta.env.VITE_EXTENSION_NAME}`,
+          '_blank'
+        )
+      }
+    });
+  }
+
   return (
     <UserDashboardLayout props={props}>
       <Loader loading={loadingFetchProductStatistics || loadingSetRecurringCharge} />
 
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-title-md2 font-bold text-black ">
+        <h2 className="text-title-md2 font-bold text-black" onClick={() => EmbedAppInit()}>
           Dashboard
         </h2>
       </div>

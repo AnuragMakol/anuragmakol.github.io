@@ -84,7 +84,7 @@ export function Dashboard(props) {
       showCloseButton: true,
       showCancelButton: false,
       confirmButtonText: "I'm Ready",
-      customClass: 'swal-wide',
+      customClass: 'swal-wide text-black',
     }).then((result) => {
       if (result.isConfirmed) {
         window.open(

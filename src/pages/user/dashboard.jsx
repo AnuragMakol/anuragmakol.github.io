@@ -72,13 +72,19 @@ export function Dashboard(props) {
 
   const EmbedAppInit = () => {
     Swal.fire({
+      title:"App Embed Tutorial",
       html: `
-        <img src='${import.meta.env.VITE_APP_URL}/images/avatar.svg' alt="User" />
-        <div class="mt-5">When you click on the I'm ready button below it will take you to the new page. Follow the steps as shown in the quick tutorial above and then close the page.</div>
+        <div>                  
+          <iframe width="100%" height="562" src="https://www.youtube.com/embed/Aa1I009GBhE?autoplay=1&loop=1&controls=0&rel=0&vq=hd1080" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="mt-5">
+          When you click on the I'm ready button below it will take you to the new page. Follow the steps as shown in the quick tutorial above and then close the page.
+        </div>
       `,
-      showCancelButton: true,
+      showCloseButton: true,
+      showCancelButton: false,
       confirmButtonText: "I'm Ready",
-      cancelButtonText: "Cancel"
+      customClass: 'swal-wide',
     }).then((result) => {
       if (result.isConfirmed) {
         window.open(
@@ -94,9 +100,10 @@ export function Dashboard(props) {
       <Loader loading={loadingFetchProductStatistics || loadingSetRecurringCharge} />
 
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-title-md2 font-bold text-black" onClick={() => EmbedAppInit()}>
+        <h2 className="text-title-md2 font-bold text-black">
           Dashboard
         </h2>
+        <button className='px-6 flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95' onClick={() => EmbedAppInit()}>Embed App</button>
       </div>
       <div className='w-full mb-4'>
         <h2 className='text-xl font-bold text-black mb-3'>Weekly statistics</h2>

@@ -311,7 +311,7 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
 @media (min-width:640px) {
   .swal-wide {
     width:100% !important;
-    max-width: 1058px;
+    max-width: 1000px;
   }
 }
 

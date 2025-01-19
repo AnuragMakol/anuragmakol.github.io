@@ -72,13 +72,15 @@ export function Dashboard(props) {
 
   const EmbedAppInit = () => {
     Swal.fire({
-      title:"App Embed Tutorial",
+      title:"CartPlus App Integration Guide",
       html: `
         <div>                  
-          <iframe width="100%" height="562" src="https://www.youtube.com/embed/Aa1I009GBhE?autoplay=1&loop=1&controls=0&rel=0&vq=hd1080" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="530" src="https://www.youtube.com/embed/Aa1I009GBhE?autoplay=1&loop=1&controls=0&list=PL7suC7X_043s5IZ6BH_J5Sk5_9WXpJG7k" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="mt-5">
-          When you click on the I'm ready button below it will take you to the new page. Follow the steps as shown in the quick tutorial above and then close the page.
+        <div class="mt-5 text-sm">
+          Once you've watched the video tutorial above on enabling the CartPlus App integration with your store, click the I'm Ready button below. After completing all the steps outlined in the video, you can close the page and start using the app.
+          <br /> <br />
+          If you wish to enable the integration later, simply click the ‘Integration Guide’ button on your dashboard to proceed.
         </div>
       `,
       showCloseButton: true,
@@ -103,7 +105,7 @@ export function Dashboard(props) {
         <h2 className="text-title-md2 font-bold text-black">
           Dashboard
         </h2>
-        <button className='px-6 flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95' onClick={() => EmbedAppInit()}>Embed App</button>
+        <button className='px-6 flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-95' onClick={() => EmbedAppInit()}>Integration Guide</button>
       </div>
       <div className='w-full mb-4'>
         <h2 className='text-xl font-bold text-black mb-3'>Weekly statistics</h2>

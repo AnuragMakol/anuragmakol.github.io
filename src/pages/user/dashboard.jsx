@@ -10,7 +10,7 @@ import { userStore, statisticsStore } from '../../atoms';
 import { fetchProductStatistics, setRecurringCharge } from '../../api';
 import { UserDashboardLayout } from '../../components/layouts';
 
-import { successHandler, errorHandler } from "../../helpers";
+import { successHandler, errorHandler, PriceFormat } from "../../helpers";
 
 export function Dashboard(props) {
   const [user, setUser] = useRecoilState(userStore);
@@ -64,7 +64,7 @@ export function Dashboard(props) {
     }
 
     if (type === "revenue") {
-      amount = user?.shop_details?.money_format.replace('{{amount}}', amount);
+      amount = PriceFormat(user?.shop_details?.money_format, amount);
     }
 
     return amount;
@@ -72,7 +72,7 @@ export function Dashboard(props) {
 
   const EmbedAppInit = () => {
     Swal.fire({
-      title:"CartPlus App Integration Guide",
+      title: "CartPlus App Integration Guide",
       html: `
         <div>                  
           <iframe width="100%" height="530" src="https://www.youtube.com/embed/Aa1I009GBhE?autoplay=1&loop=1&controls=0&list=PL7suC7X_043s5IZ6BH_J5Sk5_9WXpJG7k" frameborder="0" allowfullscreen></iframe>

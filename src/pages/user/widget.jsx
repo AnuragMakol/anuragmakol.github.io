@@ -347,10 +347,6 @@ export function Widget(props) {
         setCustomStyle(tempStylesheet);
     }
 
-    const PriceFormat = (format, price) => {
-        return format.replace('{{amount}}', parseFloat(price / 100).toFixed(2));
-    }
-
     return (
         <UserDashboardLayout props={props}>
             <Loader loading={loadingUpdateWidgetTemplate || loadingResetWidgetTemplate} />

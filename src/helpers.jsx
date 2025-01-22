@@ -122,6 +122,10 @@ export const NumberFormat = (value) => {
     }
 }
 
+export const PriceFormat = (type, value) => {
+    return type.replace(/{{.*}}/, value / 100).toFixed(2);
+}
+
 //     __  __                ____              
 //    / / / /___ _____  ____/ / /__  __________
 //   / /_/ / __ `/ __ \/ __  / / _ \/ ___/ ___/

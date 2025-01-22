@@ -123,7 +123,8 @@ export const NumberFormat = (value) => {
 }
 
 export const PriceFormat = (type, value) => {
-    return type.replace(/{{.*}}/, value / 100).toFixed(2);
+    let temp = type.replace(/{{.*}}/, value);
+    return parseFloat(temp/100).toFixed(2);
 }
 
 //     __  __                ____              

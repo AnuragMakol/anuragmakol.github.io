@@ -13,7 +13,7 @@ import { UserDashboardLayout } from '../../components/layouts';
 
 import { userStore } from '../../atoms';
 import { updateWidgetTemplate, fetchTemplateStyle, resetWidgetTemplate } from '../../api';
-import { successHandler, errorHandler } from "../../helpers";
+import { successHandler, errorHandler, PriceFormat } from "../../helpers";
 import { Tooltip } from '../../components/kitchen-sink';
 
 export function Widget(props) {

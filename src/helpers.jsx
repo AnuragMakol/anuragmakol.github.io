@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { isNaN } from "lodash";
 import countries from "./static/countries.json";
 
 //    _____ __        __  _         ____        __       
@@ -123,9 +124,7 @@ export const NumberFormat = (value) => {
 }
 
 export const PriceFormat = (type, value) => {
-    let formattedPrice = type.replace(/{{.*}}/, value);
-    formattedPrice =  parseFloat(formattedPrice/100).toFixed(2);
-    formattedPrice = formattedPrice ? formattedPrice : 0;
+    let formattedPrice = type.replace(/{{.*}}/, parseFloat(value/100).toFixed(2));
     return formattedPrice;
 }
 

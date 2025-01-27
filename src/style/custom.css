@@ -131,7 +131,7 @@ table {
   @apply text-left
 }
 table th {
-  @apply bg-gray px-4 py-3 text-black
+  @apply px-4 py-3 text-black border-b border-stroke
 }
 table td {
   @apply px-4 py-3

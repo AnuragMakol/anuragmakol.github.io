@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useRecoilState } from "recoil";
-import { isEmpty, sumBy } from 'lodash';
+import { isEmpty } from 'lodash';
 import Swal from 'sweetalert2';
 
 import { Loader } from '../../loader';
@@ -10,7 +10,7 @@ import { userStore, statisticsStore } from '../../atoms';
 import { fetchProductStatistics, setRecurringCharge } from '../../api';
 import { UserDashboardLayout } from '../../components/layouts';
 
-import { successHandler, errorHandler, PriceFormat } from "../../helpers";
+import { successHandler, errorHandler } from "../../helpers";
 
 export function Dashboard(props) {
   const [user, setUser] = useRecoilState(userStore);
@@ -53,7 +53,7 @@ export function Dashboard(props) {
     }
   });
 
-  const BeautifyStatistics = (type, value) => {
+  const BeautifyStatistics = (value) => {
     let amount = 0;
 
     if (value >= 1000) {
@@ -61,10 +61,6 @@ export function Dashboard(props) {
       amount = `${amount.toFixed(2)}K`;
     } else {
       amount = value;
-    }
-
-    if (type === "revenue") {
-      amount = PriceFormat(user?.shop_details?.money_format, amount);
     }
 
     return amount;
@@ -117,7 +113,7 @@ export function Dashboard(props) {
                   <div className='relative z-1'>
                     <p className="text-sm text-primary font-bold mb-2">Total Views</p>
                     <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                      {statistics?.weekly?.views == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.views)}
+                      {statistics?.weekly?.views == undefined ? 0 : BeautifyStatistics(statistics?.weekly?.views)}
                     </h4>
                   </div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 border border-blue-300">
@@ -135,7 +131,7 @@ export function Dashboard(props) {
                   <div className='relative z-1'>
                     <p className="text-sm text-primary font-bold mb-2">Added to Cart</p>
                     <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                      {statistics?.weekly?.added_to_cart == undefined ? 0 : BeautifyStatistics('number', statistics?.weekly?.added_to_cart)}
+                      {statistics?.weekly?.added_to_cart == undefined ? 0 : BeautifyStatistics(statistics?.weekly?.added_to_cart)}
                     </h4>
                   </div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-200 border border-pink-300">
@@ -158,7 +154,7 @@ export function Dashboard(props) {
                     <div className='relative z-1'>
                       <p className="text-sm text-primary font-bold mb-2">Total Views</p>
                       <h4 className="mb-0.5 text-xl font-bold text-black md:text-title-lg">
-                        {statistics?.monthly?.views == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.views)}
+                        {statistics?.monthly?.views == undefined ? 0 : BeautifyStatistics(statistics?.monthly?.views)}
                       </h4>
                     </div>
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 border border-blue-300">
@@ -175,7 +171,7 @@ export function Dashboard(props) {
                     <div className='relative z-1'>
                       <p className="text-sm text-primary font-bold mb-2">Added to Cart</p>
                       <h4 className="mb-0.5 text-xl font-bold text-black dark:text-white md:text-title-lg">
-                        {statistics?.monthly?.added_to_cart == undefined ? 0 : BeautifyStatistics('number', statistics?.monthly?.added_to_cart)}
+                        {statistics?.monthly?.added_to_cart == undefined ? 0 : BeautifyStatistics(statistics?.monthly?.added_to_cart)}
                       </h4>
                     </div>
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-200 border border-pink-300">
@@ -226,7 +222,7 @@ export function Dashboard(props) {
                             <p className="text-sm font-medium text-black">{item?.type}</p>
                           </td>
                           <td>
-                            <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.total)}</p>
+                            <p className="text-sm font-medium text-green-600">{BeautifyStatistics(item?.total)}</p>
                           </td>
                         </tr>
                       )
@@ -280,7 +276,7 @@ export function Dashboard(props) {
                                 !isEmpty(item?.variants) && Object.entries(item?.variants).map((stat, index2) => {
                                   return (
                                     <div key={index2}>
-                                      {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics('number', stat[1].length)}</span>
+                                      {stat[0]} - <span className="text-sm font-medium text-green-600">{BeautifyStatistics(stat[1].length)}</span>
                                     </div>
                                   )
                                 })
@@ -291,7 +287,7 @@ export function Dashboard(props) {
                             <p className="text-sm font-medium text-black ">{item?.type}</p>
                           </td>
                           <td>
-                            <p className="text-sm font-medium text-green-600">{BeautifyStatistics('number', item?.total)}</p>
+                            <p className="text-sm font-medium text-green-600">{BeautifyStatistics(item?.total)}</p>
                           </td>
                         </tr>
                       )
@@ -309,8 +305,8 @@ export function Dashboard(props) {
           <div className='min-w-100 max-w-100'>
             <div className='w-full rounded-sm border border-stroke bg-primary shadow-default p-6 mb-6 bg-no-repeat bg-cover' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_URL}/images/waves-card-bg.jpg)` }}>
               <h3 className='text-white font-semibold text-2xl mb-4'>Integration Guide</h3>
-              <p className='text-white text-lg mb-6'>App required integration first time, if not done yet please click on integration guide</p>
-              <button className='flex items-center justify-center rounded-md bg-red-600 text-white hover:bg-opacity-90 py-2 px-6 font-medium' onClick={() => EmbedAppInit()}>Integrate app</button>
+              <p className='text-white text-lg mb-6'>CartPlus requires a one-time integration during the installation process. If this step was skipped, you can initiate it again by clicking the button below.</p>
+              <button className='flex items-center justify-center rounded-md bg-red-600 text-white hover:bg-opacity-90 py-2 px-6 font-medium' onClick={() => EmbedAppInit()}>Start Integration</button>
             </div>
             <div className='rounded-sm border border-stroke bg-white shadow-default p-6 w-full'>
               <h2 className='text-xl font-bold text-black mb-3'>How to Use</h2>

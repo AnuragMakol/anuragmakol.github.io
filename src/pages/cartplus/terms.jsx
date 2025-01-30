@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { useMutation } from 'react-query';
+import React from 'react';
 
-import { WebsiteLayout } from '../components/layouts';
+import { WebsiteLayout } from '../../components/layouts';
 
-export function Terms(props) {
+export function CartplusTerms(props) {
     return (
         <WebsiteLayout props={props}>
             <div className="container pt-35 pb-10">

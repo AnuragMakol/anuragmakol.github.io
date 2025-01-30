@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useMutation } from 'react-query';
+import React from 'react';
 
 import { WebsiteLayout } from '../components/layouts';
 

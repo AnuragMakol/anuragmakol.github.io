@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const getToken = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/init`, payload);
+export const contactForm = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/appvertix/contact`, payload);
     return response.data;
 }
 
-export const userLogin = async (payload) => {
-    let response = await axios.post(`${import.meta.env.VITE_API_URL}/shopify/login`, payload);
+export const subscribeForm = async (payload) => {
+    let response = await axios.post(`${import.meta.env.VITE_API_URL}/appvertix/subscribe`, payload);
     return response.data;
 }

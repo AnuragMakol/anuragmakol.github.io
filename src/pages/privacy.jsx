@@ -137,7 +137,7 @@ export function Privacy(props) {
                             <li>Opting out of certain communications</li>
                         </ul>
                         <p>
-                            To exercise these rights, contact us at info@appvertix.com.
+                            To exercise these rights, contact us at {import.meta.env.VITE_INFO_EMAIL}
                         </p>
                     </div>
 
@@ -165,7 +165,7 @@ export function Privacy(props) {
                         <p>
                             If you have any questions or concerns about this Privacy
                             Policy or our data practices, please contact us at:<br />
-                            Email: info@appvertix.com
+                            Email: {import.meta.env.VITE_INFO_EMAIL}
                         </p>
                     </div>
                 </div>

@@ -225,7 +225,7 @@ export function Terms(props) {
                             <p>
                                 For questions or concerns about these Terms and
                                 Conditions, contact us at:<br />
-                                Email: info@appvertix.com
+                                Email: {import.meta.env.VITE_INFO_EMAIL}
                             </p>
                         </div>
                     </div>

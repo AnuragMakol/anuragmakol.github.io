@@ -173,7 +173,7 @@ export function CartplusPrivacy(props) {
                             <li>Request data deletion.</li>
                             <li>Opt-out of certain data uses.</li>
                         </ul>
-                        <p>For requests, contact us at info@appvertix.com</p>
+                        <p>For requests, contact us at {import.meta.env.VITE_INFO_EMAIL}</p>
                     </div>
 
                     <div className="mb-5">
@@ -192,7 +192,7 @@ export function CartplusPrivacy(props) {
                         <p>
                             If you have questions or concerns about this Privacy Policy,
                             contact us at:<br />
-                            Email: info@appvertix.com
+                            Email: {import.meta.env.VITE_INFO_EMAIL}
                         </p>
                     </div>
                 </div>

@@ -120,7 +120,7 @@ export function CartplusTerms(props) {
                         <ul className="pl-10 list-disc">
                             <li>
                                 We will provide reasonable support for the app. Support
-                                requests can be directed to info@appvertix.com
+                                requests can be directed to {import.meta.env.VITE_INFO_EMAIL}
                             </li>
                             <li>
                                 The app may be updated to improve functionality or
@@ -215,7 +215,7 @@ export function CartplusTerms(props) {
                         <p>
                             For questions or concerns regarding these Terms and
                             Conditions, please contact us:<br />
-                            Email: info@appvertix.com<br />
+                            Email: {import.meta.env.VITE_INFO_EMAIL}<br />
                         </p>
                     </div>
                 </div>

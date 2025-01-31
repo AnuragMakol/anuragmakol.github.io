@@ -1,36 +1,65 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import Swiper from "swiper";
 import 'swiper/css';
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+import { contactForm } from "../api";
 import { WebsiteLayout } from '../components/layouts';
 
 export function Homepage(props) {
+  const [showAlert, setAlert] = useState(false);
+
   useEffect(() => {
     const swiper = new Swiper(".case-study-slider", {
       slidesPerView: "auto",
       spaceBetween: 30,
       centeredSlides: true,
       loop: true,
+      autoplay: {
+        delay: 4000
+      }
     });
   }, []);
 
-  function ManageLinks(e) {
-    document.querySelector(e.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+  const { register: registerContactForm, handleSubmit: handleSubmitContactForm, reset: resetContactForm } = useForm({
+    resolver: yupResolver(
+      yup.object().shape({
+        name: yup.string().required(),
+        email: yup.string().email().required(),
+        message: yup.string().required()
+      })
+    )
+  });
+
+  const onSubmitContactForm = (form) => {
+    initContactForm(form);
   }
+
+  const { mutate: initContactForm } = useMutation(contactForm, {
+    onSuccess: (result) => {
+      setAlert(true);
+      resetContactForm();
+
+      setTimeout(() => {
+        setAlert(false)
+      }, 4000);
+    }
+  });
 
   return (
     <WebsiteLayout props={props}>
       <section className="bg-black h-full pt-28 relative overflow-hidden">
         <div className="absolute left-0 max-w-full w-full top-0 z-10">
-          <img src={`${import.meta.env.VITE_APP_URL}assets/images/hero-bg.webp`} alt="app vertix"
+          <img src={`${import.meta.env.VITE_APP_URL}/assets/images/hero-bg.webp`} alt="app vertix"
             className="w-full max-w-full" style={{ height: "1100px" }} />
         </div>
         <div className="container z-40 w-full lg:pt-[200px] lg:pb-[220px] relative">
           <div className="absolute max-w-[528px] max-h-[528px] right-0 top-30">
-            <img src={`${import.meta.env.VITE_APP_URL}assets/images/globe.svg`} alt="app vertix"
+            <img src={`${import.meta.env.VITE_APP_URL}/assets/images/globe.svg`} alt="app vertix"
               className="w-full max-w-full" />
           </div>
           <div className="w-full mb-20">
@@ -48,7 +77,7 @@ export function Homepage(props) {
           </div>
           <div className="w-full flex justify-between">
             <div>
-              <a href="mailto:info@appvertix.com" className="flex text-left cursor-pointer group">
+              <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="flex text-left cursor-pointer group">
                 <div className="relative z-10 w-12 h-10 flex flex-col gap-1 top_lines_animation top-2">
                   <span></span>
                   <span></span>
@@ -75,17 +104,17 @@ export function Homepage(props) {
           <div className="flex">
             <div className="min-w-[260px] max-w-[260px] mr-30 relative">
               <div className="absolute -left-full top-10 z-0">
-                <img src={`${import.meta.env.VITE_APP_URL}assets/images/lines-shape.png`} alt="app vertix" />
+                <img src={`${import.meta.env.VITE_APP_URL}/assets/images/lines-shape.png`} alt="app vertix" />
               </div>
               <div className="w-full h-full bg-black rounded-full overflow-hidden relative z-10">
                 <img className="w-full h-full opacity-90 object-cover"
-                  src={`${import.meta.env.VITE_APP_URL}assets/images/about-img.jpg`} />
+                  src={`${import.meta.env.VITE_APP_URL}/assets/images/about-img.jpg`} />
               </div>
             </div>
             <div>
               <div className="w-full flex mb-16">
                 <div className="mr-10">
-                  <img src={`${import.meta.env.VITE_APP_URL}assets/images/title-image-home.png`} alt="app vertix"
+                  <img src={`${import.meta.env.VITE_APP_URL}/assets/images/title-image-home.png`} alt="app vertix"
                     className="max-w-[135px]" />
                 </div>
                 <div>
@@ -125,14 +154,14 @@ export function Homepage(props) {
                   className="border border-gray-200 bg-gray-50 px-8 py-10 rounded-2xl flex justify-between relative overflow-hidden">
                   <div className="absolute right-0 w-full h-full opacity-20 z-0 bg-no-repeat transform -scale-120 bg-left top-0"
                     style={{
-                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/card-bg.png)`,
+                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/card-bg.png)`,
                     }}>
                   </div>
                   <div className="relative z-1">
                     <h6 className="font-bold mb-10 text-xl">
                       Ready to innovate and make a lasting impact?
                     </h6>
-                    <button className="btn btn-primary py-2">Get in touch</button>
+                    <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="btn btn-primary py-2">Get in touch</a>
                   </div>
                 </div>
               </div>
@@ -154,7 +183,7 @@ export function Homepage(props) {
                 <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
-                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/case-study/case-study1.webp)`,
+                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study1.webp)`,
                     }}>
                     <span className="absolute top-0 left-0 bg-black/30 w-full h-full z-0"></span>
                     <span
@@ -165,11 +194,6 @@ export function Homepage(props) {
                       <h6 className="text-4xl leading-12 font-black mb-5">
                         Rugged Roots
                       </h6>
-                      <p className="text-gray-200">
-                        During the CrossFit Boxing Challenge,
-                        you'll engage in a dynamic workout
-                        regimen that incorporates
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -178,7 +202,7 @@ export function Homepage(props) {
                 <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
-                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/case-study/case-study2.webp)`,
+                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study2.webp)`,
                     }}>
                     <span className="absolute top-0 left-0 bg-black/30 w-full h-full z-0"></span>
                     <span
@@ -189,11 +213,6 @@ export function Homepage(props) {
                       <h6 className="text-4xl leading-12 font-black mb-5">
                         The Box Studios
                       </h6>
-                      <p className="text-gray-200">
-                        During the CrossFit Boxing Challenge,
-                        you'll engage in a dynamic workout
-                        regimen that incorporates
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -202,7 +221,7 @@ export function Homepage(props) {
                 <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
-                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/case-study/case-study1.webp)`,
+                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study1.webp)`,
                     }}>
                     <span className="absolute top-0 left-0 bg-black/30 w-full h-full z-0"></span>
                     <span
@@ -213,11 +232,6 @@ export function Homepage(props) {
                       <h6 className="text-4xl leading-12 font-black mb-5">
                         Brainio Software
                       </h6>
-                      <p className="text-gray-200">
-                        During the CrossFit Boxing Challenge,
-                        you'll engage in a dynamic workout
-                        regimen that incorporates
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -226,7 +240,7 @@ export function Homepage(props) {
                 <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
-                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/case-study/case-study4.webp)`,
+                      backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study4.webp)`,
                     }}>
                     <span className="absolute top-0 left-0 bg-black/30 w-full h-full z-0"></span>
                     <span
@@ -237,22 +251,17 @@ export function Homepage(props) {
                       <h6 className="text-4xl leading-12 font-black mb-5">
                         Resume Hero
                       </h6>
-                      <p className="text-gray-200">
-                        During the CrossFit Boxing Challenge,
-                        you'll engage in a dynamic workout
-                        regimen that incorporates
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div >
-        </div >
-      </section >
+          </div>
+        </div>
+      </section>
       <section id="services" className="py-28 section-dark bg-no-repeat bg-cover"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/bg-1.webp)`,
+          backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/bg-1.webp)`,
         }}>
         <div className="container">
           <div className="section-head mb-10">
@@ -357,7 +366,7 @@ export function Homepage(props) {
             <div className="p-6 bg-primary rounded-2xl relative overflow-hidden flex items-center">
               <div className="absolute top-0 left-0 w-full h-full opacity-30"
                 style={{
-                  backgroundImage: `url(${import.meta.env.VITE_APP_URL}assets/images/wires-cart-bg.jpg)`,
+                  backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/wires-cart-bg.jpg)`,
                 }}>
               </div>
               <div className="relative z-1">
@@ -365,13 +374,13 @@ export function Homepage(props) {
                   Want to make your idea into reality and make your
                   brand presence online
                 </h4>
-                <button className="btn btn-secondary py-2 mt-auto">Get in Touch</button>
+                <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="btn btn-secondary py-2 mt-auto">Get in Touch</a>
               </div>
             </div>
           </div>
         </div>
-      </section >
-      < section className="py-28 section-dark bg-secondary" >
+      </section>
+      {/* <section className="py-28 section-dark bg-secondary">
         <div className="container">
           <div className="section-head mb-10">
             <h4 className="section-badge-primary">Technolgies we use</h4>
@@ -454,7 +463,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -466,7 +475,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/html-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -478,7 +487,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -490,7 +499,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -502,7 +511,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -514,7 +523,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -526,7 +535,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -538,7 +547,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -550,7 +559,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -562,7 +571,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -574,7 +583,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -586,7 +595,7 @@ export function Homepage(props) {
                             >
                               <span className="mr-4">
                                 <img
-                                  src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                   alt="css 3"
                                   className="max-w-9"
                                 /></span
@@ -623,7 +632,7 @@ export function Homepage(props) {
                           >
                             <span className="mr-4">
                               <img
-                                src={`${import.meta.env.VITE_APP_URL}assets/images/icons/css3-logo.svg`}
+                                src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
                                 alt="css 3"
                                 className="max-w-9"
                               /></span
@@ -635,7 +644,7 @@ export function Homepage(props) {
                           >
                             <span className="mr-4">
                               <img
-                                src={`${import.meta.env.VITE_APP_URL}assets/images/icons/html-logo.svg`}
+                                src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
                                 alt="css 3"
                                 className="max-w-9"
                               /></span
@@ -651,8 +660,8 @@ export function Homepage(props) {
             </div>
           </div>
         </div>
-      </section >
-      < section className="py-28" >
+      </section> */}
+      {/* <section className="py-28">
         <div className="container">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold">Frequently Asked Questions</h3>
@@ -667,7 +676,7 @@ export function Homepage(props) {
                     offer?
                   </h5>
                   <span className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center">
-                    <img src={`${import.meta.env.VITE_APP_URL}assets/images/arrow-down-solid.svg`}
+                    <img src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
                       alt="app vertix" className="w-6" />
                   </span>
                 </div>
@@ -736,7 +745,7 @@ export function Homepage(props) {
                     offer?
                   </h5>
                   <span className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center">
-                    <img src={`${import.meta.env.VITE_APP_URL}assets/images/arrow-down-solid.svg`}
+                    <img src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
                       alt="app vertix" className="w-6" />
                   </span>
                 </div>
@@ -798,7 +807,7 @@ export function Homepage(props) {
             </div>
           </div>
         </div>
-      </section >
+      </section> */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="container">
           <div className="flex justify-between">
@@ -814,21 +823,20 @@ export function Homepage(props) {
                   elevate your business through innovative digital
                   solutions.
                 </p>
-                <form>
+                <form onSubmit={handleSubmitContactForm(onSubmitContactForm)}>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="mb-4">
                       <label className="form-label">Full Name</label>
-                      <input type="text" placeholder="Full Name" className="form-control" />
+                      <input type="text" {...registerContactForm('name')} placeholder="Full Name" className="form-control" required />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">E-mail</label>
-                      <input type="text" placeholder="E-mail" className="form-control" />
+                      <input type="text" {...registerContactForm('email')} placeholder="E-mail" className="form-control" required />
                     </div>
                   </div>
                   <div className="mb-4">
                     <label className="form-label">Message</label>
-                    <textarea placeholder="Message" rows="4" className="textarea">
-                    </textarea>
+                    <textarea {...registerContactForm('message')} placeholder="Message" rows="4" className="textarea" required></textarea>
                   </div>
                   <div className="mb-4">
                     <button type="submit"
@@ -836,11 +844,12 @@ export function Homepage(props) {
                       Message</button>
                   </div>
                 </form>
+                {showAlert ? <div>Submitted</div> : ""}
               </div>
             </div>
           </div>
         </div>
       </section>
-    </WebsiteLayout >
+    </WebsiteLayout>
   )
 }

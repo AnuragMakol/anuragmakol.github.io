@@ -20,8 +20,8 @@ export function Cartplus(props) {
                             <div className="flex">
                                 <button className="btn btn-primary">Free Trial</button>
                                 <button className="btn btn-link-primary"
-                                >Got questions? Reach us now</button
-                                >
+                               >Got questions? Reach us now</button
+                               >
                             </div>
                         </div>
                     </div>
@@ -106,8 +106,8 @@ export function Cartplus(props) {
                     <div className="flex">
                         <button className="btn btn-primary">Free Trial</button>
                         <button className="btn btn-link-primary"
-                        >Got questions? Reach us now</button
-                        >
+                       >Got questions? Reach us now</button
+                       >
                     </div>
                 </div>
             </section>
@@ -130,23 +130,23 @@ export function Cartplus(props) {
                     <div className="accordion max-w-[992px] mx-auto">
                         <div
                             className="accordion-item border border-gray-800 rounded-2xl mb-4"
-                        >
+                       >
                             <label>
                                 <input type="checkbox" className="sr-only" />
                                 <div
                                     className="accordion-head cursor-pointer flex items-center justify-between group"
-                                >
+                               >
                                     <h5
                                         className="text-xl font-black group-hover:text-gray-800 pl-6 pr-10 py-4 flex-grow"
-                                    >
+                                   >
                                         What mobile app development services do you
                                         offer?
                                     </h5>
                                     <span
                                         className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center"
-                                    >
+                                   >
                                         <img
-                                            src={`${import.meta.env.VITE_APP_URL}assets/images/arrow-down-solid.svg`}
+                                            src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
                                             alt="app vertix"
                                             className="w-6"
                                         />
@@ -158,8 +158,8 @@ export function Cartplus(props) {
                                         <a
                                             href="https://appinventiv.com/mobile-app-development-services/"
                                             target="_blank"
-                                        >mobile application development service</a
-                                        > company, we offer a comprehensive array of services,
+                                       >mobile application development service</a
+                                       > company, we offer a comprehensive array of services,
                                         including:
                                     </p>
                                     <ul className="mb-6 list-disc ml-6">
@@ -167,55 +167,55 @@ export function Cartplus(props) {
                                             <a
                                                 href="https://appinventiv.com/iphone-application-development/"
                                                 target="_blank">iOS App Development</a
-                                            >
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/android-application-development/"
                                                 target="_blank"
-                                            >Android App Development</a
-                                            >
+                                           >Android App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/flutter-app-development/"
                                                 target="_blank"
-                                            >Flutter App Development</a
-                                            >
+                                           >Flutter App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/react-native-app-development/"
                                                 target="_blank"
-                                            >React Native App Development</a
-                                            >
+                                           >React Native App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/wearable-devices-app-development/"
                                                 target="_blank"
-                                            >Wearable App Development</a
-                                            >
+                                           >Wearable App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/web-application-development/"
                                                 target="_blank">Web App Development</a
-                                            >
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/progressive-web-apps/"
                                                 target="_blank"
-                                            >PWA Development
+                                           >PWA Development
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/healthcare-mobile-app-development-services/"
                                                 target="_blank"
-                                            >Healthcare App Development</a
-                                            >
+                                           >Healthcare App Development</a
+                                           >
                                         </li>
                                     </ul>
                                     <p>
@@ -233,23 +233,23 @@ export function Cartplus(props) {
                         </div>
                         <div
                             className="accordion-item border border-gray-800 rounded-2xl mb-4"
-                        >
+                       >
                             <label>
                                 <input type="checkbox" className="sr-only" />
                                 <div
                                     className="accordion-head cursor-pointer flex items-center justify-between group"
-                                >
+                               >
                                     <h5
                                         className="text-xl font-black group-hover:text-gray-800 pl-6 pr-10 py-4 flex-grow"
-                                    >
+                                   >
                                         What mobile app development services do you
                                         offer?
                                     </h5>
                                     <span
                                         className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center"
-                                    >
+                                   >
                                         <img
-                                            src={`${import.meta.env.VITE_APP_URL}assets/images/arrow-down-solid.svg`}
+                                            src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
                                             alt="app vertix"
                                             className="w-6"
                                         />
@@ -261,8 +261,8 @@ export function Cartplus(props) {
                                         <a
                                             href="https://appinventiv.com/mobile-app-development-services/"
                                             target="_blank"
-                                        >mobile application development service</a
-                                        > company, we offer a comprehensive array of services,
+                                       >mobile application development service</a
+                                       > company, we offer a comprehensive array of services,
                                         including:
                                     </p>
                                     <ul className="mb-6 list-disc ml-6">
@@ -270,55 +270,55 @@ export function Cartplus(props) {
                                             <a
                                                 href="https://appinventiv.com/iphone-application-development/"
                                                 target="_blank">iOS App Development</a
-                                            >
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/android-application-development/"
                                                 target="_blank"
-                                            >Android App Development</a
-                                            >
+                                           >Android App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/flutter-app-development/"
                                                 target="_blank"
-                                            >Flutter App Development</a
-                                            >
+                                           >Flutter App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/react-native-app-development/"
                                                 target="_blank"
-                                            >React Native App Development</a
-                                            >
+                                           >React Native App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/wearable-devices-app-development/"
                                                 target="_blank"
-                                            >Wearable App Development</a
-                                            >
+                                           >Wearable App Development</a
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/web-application-development/"
                                                 target="_blank">Web App Development</a
-                                            >
+                                           >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/progressive-web-apps/"
                                                 target="_blank"
-                                            >PWA Development
+                                           >PWA Development
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://appinventiv.com/healthcare-mobile-app-development-services/"
                                                 target="_blank"
-                                            >Healthcare App Development</a
-                                            >
+                                           >Healthcare App Development</a
+                                           >
                                         </li>
                                     </ul>
                                     <p>

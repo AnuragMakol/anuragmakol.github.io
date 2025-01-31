@@ -12,7 +12,7 @@ export const Header = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        HeaderVisibility();
+        HeaderVisibility(); 
     }, []);
 
     function ManageScroll(to) {
@@ -46,63 +46,61 @@ export const Header = (props) => {
     }
 
     return (
-        <header className="fixed w-full top-0 z-50 bg-black">
-            <div>
-                <nav>
-                    <div className="container">
-                        <div className="relative flex h-24 items-center justify-between">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
-                                    <span className="absolute -inset-0.5"></span>
-                                    <span className="sr-only">Open main menu</span>
-                                    <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                                    </svg>
-                                    <svg className="hidden size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
+        <header className="fixed w-full top-0 z-50">
+            <nav>
+                <div className="container">
+                    <div className="relative flex h-24 items-center justify-between">
+                        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                            <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+                                <span className="absolute -inset-0.5"></span>
+                                <span className="sr-only">Open main menu</span>
+                                <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                                </svg>
+                                <svg className="hidden size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex shrink-0 items-center">
+                                <a href="/" className="w-36 flex">
+                                    <img src={`${import.meta.env.VITE_APP_URL}/logo.svg`} alt="app vertix" />
+                                </a>
                             </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex shrink-0 items-center">
-                                    <a href="/" className="w-36 flex">
-                                        <img src={`${import.meta.env.VITE_APP_URL}/logo.svg`} alt="app vertix" />
-                                    </a>
-                                </div>
-                                <div className="hidden sm:mx-auto sm:block">
-                                    <div className="flex space-x-4">
-                                        <a onClick={() => ManageScroll('about')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">About</a>
-                                        <a onClick={() => ManageScroll('portfolio')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Portfolio</a>
-                                        <a onClick={() => ManageScroll('services')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Services</a>
-                                        <div className="relative group">
-                                            <a className="px-3 py-2 font-semibold text-sm text-white uppercase relative flex">Our Apps </a>
-                                            <div className="absolute left-4 top-0 pt-10 hidden group-hover:flex">
-                                                <div className="bg-white py-2 rounded-md w-[180px] shadow">
-                                                    <a href="/cartplus" className="block cursor-pointer font-medium px-4 py-2 hover:bg-gray-100">CartPlus</a>
-                                                </div>
+                            <div className="hidden sm:mx-auto sm:block">
+                                <div className="flex space-x-4">
+                                    <a onClick={() => ManageScroll('about')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">About</a>
+                                    <a onClick={() => ManageScroll('portfolio')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Portfolio</a>
+                                    <a onClick={() => ManageScroll('services')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Services</a>
+                                    <div className="relative group">
+                                        <a className="px-3 py-2 font-semibold text-sm text-white uppercase relative flex">Our Apps </a>
+                                        <div className="absolute left-4 top-0 pt-10 hidden group-hover:flex">
+                                            <div className="bg-white py-2 rounded-md w-[180px] shadow">
+                                                <a href="/cartplus" className="block cursor-pointer font-medium px-4 py-2 hover:bg-gray-100">CartPlus</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <div className="relative ml-3">
-                                    <div>
-                                        <a onClick={() => ManageScroll('contact')} type="button" className="btn btn-primary uppercase font-semibold text-sm group">
-                                            <span>Contact Us</span>
-                                            <span className="ml-1 transfrom transition-all group-hover:rotate-45">
-                                                <svg className="w-5" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                                    <path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                    </div>
+                        </div>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="relative ml-3">
+                                <div>
+                                    <a onClick={() => ManageScroll('contact')} type="button" className="btn btn-primary uppercase font-semibold text-sm group">
+                                        <span>Contact Us</span>
+                                        <span className="ml-1 transfrom transition-all group-hover:rotate-45">
+                                            <svg className="w-5" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </header>
     )
 }
@@ -122,7 +120,7 @@ export const Footer = (props) => {
     const onSubmitSubscribeForm = (form) => {
         initSubscribeForm(form);
     }
-    
+
     const { mutate: initSubscribeForm } = useMutation(subscribeForm, {
         onSuccess: (result) => {
             setAlert(true);

@@ -4,7 +4,7 @@ import { WebsiteLayout } from '../../components/layouts';
 
 export function Cartplus(props) {
     return (
-        <WebsiteLayout props={props}>
+        <WebsiteLayout props={props} footerVisible={false}> 
             <section className="pt-28 bg-gray-50">
                 <div className="container relative z-40 w-full lg:pt-[200px] lg:pb-[220px]">
                     <div className="w-full mb-20">

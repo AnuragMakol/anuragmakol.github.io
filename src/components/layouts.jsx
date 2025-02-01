@@ -3,11 +3,16 @@ import React from "react";
 import { Header, Footer } from "./sections";
 
 export const WebsiteLayout = (props) => {
+
     return (
         <React.Fragment>
-            <Header />
+            {
+                props?.headerVisible === undefined || props?.headerVisible === true ? <Header /> : ""
+            }
             {props.children}
-            <Footer />
+            {
+                props?.footerVisible === undefined || props?.footerVisible === true ? <Footer /> : ""
+            }
         </React.Fragment>
     )
 }

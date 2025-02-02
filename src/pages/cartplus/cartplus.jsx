@@ -4,25 +4,27 @@ import { WebsiteLayout } from '../../components/layouts';
 
 export function Cartplus(props) {
     return (
-        <WebsiteLayout props={props} footerVisible={false}> 
-            <section className="pt-28 bg-gray-50">
-                <div className="container relative z-40 w-full lg:pt-[200px] lg:pb-[220px]">
+        <WebsiteLayout props={props} footerVisible={false}>
+            <section className="pt-28 bg-black">
+                <div className="container w-full lg:pt-[50px] lg:pb-[320px]">
                     <div className="w-full mb-20">
-                        <div>
-                            <h1 className="text-6xl leading-18 font-bold mb-6 text-black">
-                                CartPlus Sticky Add To Cart
-                            </h1>
-                            <p className="text-2xl">
-                                Seamlessly integrates a sticky add-to-cart bar, ensuring
-                                your customers can easily add items to their carts from
-                                anywhere on your site.
-                            </p>
-                            <div className="flex">
-                                <button className="btn btn-primary">Free Trial</button>
-                                <button className="btn btn-link-primary"
-                               >Got questions? Reach us now</button
-                               >
+                        <div className='max-w-[600px] mx-auto text-center relative z-10 text-white'>
+                            <div className='mb-6 flex justify-center'>
+                                <img className='w-[320px]' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/logo-white.svg`} alt="cartPlus sticky add to cart" />
                             </div>
+                            <h1 className="text-6xl leading-18 font-bold mb-6">
+                                Sticky add to cart
+                            </h1>
+                            <p className="text-xl mb-8 text-gray-100">
+                                Keep the bar fixed at the top or bottom of the page so it's always visible to your customers.
+                            </p>
+                            {/* <div className="flex justify-center">
+                                <button className="btn btn-primary">Start Free Trial</button>
+                                <button className="btn btn-link-primary"
+                                >Got questions? Reach us now</button>
+                            </div> */}
+                        </div>
+                        <div className=''>
                         </div>
                     </div>
                 </div>
@@ -30,313 +32,171 @@ export function Cartplus(props) {
             <section className="py-28">
                 <div className="container">
                     <div className="section-head-light text-center">
-                        <h2 className="mb-10">Sticky Add To Cart Features</h2>
+                        <h2 className="mb-12">Features</h2>
                     </div>
                     <div className="grid grid-cols-4 gap-8 text-center">
 
-                        <div>
-                            <h3 className="mb-6 text-2xl font-bold">No Coding Required</h3>
-                            <p className="text-xl">
+                        <div className='shadow-xl px-4 py-10 rounded-2xl bg-white border border-gray-dark'>
+                            <div className='bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6'>
+                                <svg className='w-11' fill='#005CFF' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" /></svg>
+                            </div>
+                            <h2 className="mb-6 text-2xl font-bold">No Coding <br />Required</h2>
+                            <p className="text-lg">
                                 Configuring the widget is incredibly simple – no coding
                                 expertise is required.
                             </p>
                         </div>
-                        <div>
-                            <h3 className="mb-6 text-2xl font-bold">Fully Customizable</h3>
-                            <p className="text-xl">
+                        <div className='shadow-xl px-4 py-10 rounded-2xl bg-white border border-gray-dark'>
+                            <div className='bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6'>
+                                <svg className='w-11' fill='#005CFF' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" /></svg>
+                            </div>
+                            <h2 className="mb-6 text-2xl font-bold">Fully <br />Customizable</h2>
+                            <p className="text-lg">
                                 Customize everything to match your store's style with a
                                 powerful customizer.
                             </p>
                         </div>
-                        <div>
-                            <h3 className="mb-6 text-2xl font-bold">
+                        <div className='shadow-xl px-4 py-10 rounded-2xl bg-white border border-gray-dark'>
+                            <div className='bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6'>
+                                <svg className='w-11' fill='#005CFF' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" /></svg>
+                            </div>
+                            <h2 className="mb-6 text-2xl font-bold">
                                 Premade multiple templates
-                            </h3>
-                            <p className="text-xl">
-                                Ensures that the add to cart button remains visible and
-                                easily accessible, even on smaller screens. This
-                                optimizes the mobile experience and removes the need for
-                                users to manually scroll back to the top to add items to
-                                their cart
+                            </h2>
+                            <p className="text-lg">
+                                Use the pre-made templates or customize them to suit your store branding.
                             </p>
+                        </div>
+                        <div className='shadow-xl px-4 py-10 rounded-2xl bg-white border border-gray-dark'>
+                            <div className='bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6'>
+                                <svg className='w-11' fill='#005CFF' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" /></svg>
+                            </div>
+                            <h2 className="mb-6 text-2xl font-bold">
+                                Improved Conversion Rates
+                            </h2>
+                            <p className="text-lg">
+                                it encourages impulse purchases and increases the likelihood of shoppers adding
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="py-28 bg-blue-50">
+                <div className="container">
+                    <div className="flex items-center">
+                        <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/sticky-add-to-cart-img1.png`} alt="app vertix" className="max-w-full" /></div>
+                        <div className='pl-10 max-w-[600px]'>
+                            <div className="section-head-light">
+                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Generate More Revenue</span>
+                                <h3 className='mb-6'>Reduce cart abandonment</h3>
+                                <p className='text-lg mb-6'>Improves the user experience and increases checkout rates by showing the always-visible checkout button to your customers on the cart page.</p>
+                            </div>
+                            <ul className='list-disc pl-10'>
+                                <li className='mb-2 text-lg font-bold'>Top & Bottom bar</li>
+                                <li className='mb-2 text-lg font-bold'>Countdown Timer</li>
+                                <li className='text-lg font-bold'>Premade Various Templates</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section className="py-28">
+                <div className="container">
+                    <div className="flex items-center">
+                        <div className='pr-16 max-w-[600px]'>
+                            <div className="section-head-light">
+                                <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Design Your Own</span>
+                                <h3 className='mb-6'>Fully customizable with live preview</h3>
+                                <p className='text-lg mb-6'>Design cartplus sticky add to cart according to your brand and see real time preview</p>
+                            </div>
+                            <ul className='list-disc pl-10'>
+                                <li className='mb-2 text-lg font-bold'>Change container width</li>
+                                <li className='mb-2 text-lg font-bold'>Show/Hide urgency timer</li>
+                                <li className='text-lg font-bold'>Change colors as per your needs</li>
+                            </ul>
+                        </div>
+                        <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/fully-customizable.png`} alt="app vertix" className="max-w-full" /></div>
+                    </div>
+                </div>
+            </section>
+            <section className="py-28 bg-black">
+                <div className="max-w-[900px] mx-auto">
+                    <div className='flex justify-between items-center'>
+                        <div className="section-head text-white">
+                            <h3 className='mb-6'>Start 7 day free trial</h3>
+                            <p className='text-lg max-w-[500px] mx-auto'>If you’re having trouble getting motivated to keep to your fitness program.</p>
                         </div>
                         <div>
-                            <h3 className="mb-6 text-2xl font-bold">
-                                Enhanced Mobile Experience
-                            </h3>
-                            <p className="text-xl">
-                                Ensures that the add to cart button remains visible and
-                                easily accessible, even on smaller screens. This
-                                optimizes the mobile experience and removes the need for
-                                users to manually scroll back to the top to add items to
-                                their cart
+                            <a href='' className='btn btn-primary py-6 px-12 text-lg inline-flex'>Start free trial</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="py-28">
+                <div className="container">
+                    <div className="flex items-center">
+                    <div className='flex-grow'> </div>
+                        <div className='pr-16 max-w-[600px]'>
+                            <div className="section-head-light">
+                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Countdown Timer</span>
+                                <h3 className='mb-6'>Force your customers to buy with urgency timer</h3>
+                                <p className='text-lg mb-6'>Design cartplus sticky add to cart according to your brand and see real time preview</p>
+                            </div>
+                            <ul className='list-disc pl-10'>
+                                <li className='mb-2 text-lg font-bold'>Change container width</li>
+                                <li className='mb-2 text-lg font-bold'>Show/Hide urgency timer</li>
+                                <li className='text-lg font-bold'>Change colors as per your needs</li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </section>
+            <section className="py-28 bg-blue-50">
+                <div className="container">
+                    <div className="flex items-center">
+                        <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/mobile-ready-img.png`} alt="app vertix" className="max-w-full" /></div>
+                        <div className='pl-10 max-w-[600px]'>
+                            <div className="section-head-light">
+                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Responsive design</span>
+                                <h3 className='mb-6'>Mobile Ready</h3>
+                                <p className='text-lg mb-6'>Improves the user experience and increases checkout rates by showing the always-visible checkout button to your customers on the cart page.</p>
+                                <a href='#' className='btn btn-primary'>Start free trial</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="py-28">
+                <div className="container text-center">
+                    <div className="section-head-light max-w-3xl mx-auto mb-8">
+                        <h3 className='mb-6'>Configuring the widget is incredibly simple</h3>
+                        <p className='text-lg max-w-[500px] mx-auto'>We are here to help you every step of the way, so feel free to get in touch with us if you need any assistance.</p>
+                    </div>
+                    <a href='' className='btn btn-primary'>send a request</a>
+                </div>
+            </section>
+            <footer className='bg-gray-50'>
+                <div className="w-full py-6">
+                    <div className="container">
+                        <div className='flex justify-between'>
+                            <p>
+                                {new Date().getFullYear()} © All rights reserved.
                             </p>
+                            <div>
+                                <ul className='flex'>
+                                    <li className='mr-8'>
+                                        <a href="/cartplus/terms">Terms & Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a href="/cartplus/privacy">Privacy</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <section className="py-28 bg-gray-50">
-                <div className="container">
-                    <div className="grid grid-cols-2">
-                        <div className="section-head-light">
-                            <h4>Heding</h4>
-                            <p>Subhead</p>
-                        </div>
-                        <div>image placeholder</div>
-                    </div>
-                </div>
-            </section>
-            <section className="py-28">
-                <div className="container">
-                    <div className="grid grid-cols-2">
-                        <div>image placeholder</div>
-                        <div className="section-head-light">
-                            <h4>Heding</h4>
-                            <p>Subhead</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="py-28 bg-black section-dark">
-                <div className="container">
-                    <div className="section-head-light">
-                        <h5>Simplify Workflow. Save Time. Sale Smooth.				</h5>
-                        <p>Subhead</p>
-                    </div>
-                    <div className="flex">
-                        <button className="btn btn-primary">Free Trial</button>
-                        <button className="btn btn-link-primary"
-                       >Got questions? Reach us now</button
-                       >
-                    </div>
-                </div>
-            </section>
-            <section className="py-28 bg-gray-50">
-                <div className="container">
-                    <div className="grid grid-cols-2">
-                        <div className="section-head-light">
-                            <h4>Heding</h4>
-                            <p>Subhead</p>
-                        </div>
-                        <div>image placeholder</div>
-                    </div>
-                </div>
-            </section>
-            <section className="py-28">
-                <div className="container">
-                    <div className="text-center mb-16">
-                        <h3 className="text-5xl font-bold">Frequently Asked Questions</h3>
-                    </div>
-                    <div className="accordion max-w-[992px] mx-auto">
-                        <div
-                            className="accordion-item border border-gray-800 rounded-2xl mb-4"
-                       >
-                            <label>
-                                <input type="checkbox" className="sr-only" />
-                                <div
-                                    className="accordion-head cursor-pointer flex items-center justify-between group"
-                               >
-                                    <h5
-                                        className="text-xl font-black group-hover:text-gray-800 pl-6 pr-10 py-4 flex-grow"
-                                   >
-                                        What mobile app development services do you
-                                        offer?
-                                    </h5>
-                                    <span
-                                        className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center"
-                                   >
-                                        <img
-                                            src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
-                                            alt="app vertix"
-                                            className="w-6"
-                                        />
-                                    </span>
-                                </div>
-                                <div className="accordion-content px-6 py-4">
-                                    <p className="mb-6">
-                                        As a leading
-                                        <a
-                                            href="https://appinventiv.com/mobile-app-development-services/"
-                                            target="_blank"
-                                       >mobile application development service</a
-                                       > company, we offer a comprehensive array of services,
-                                        including:
-                                    </p>
-                                    <ul className="mb-6 list-disc ml-6">
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/iphone-application-development/"
-                                                target="_blank">iOS App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/android-application-development/"
-                                                target="_blank"
-                                           >Android App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/flutter-app-development/"
-                                                target="_blank"
-                                           >Flutter App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/react-native-app-development/"
-                                                target="_blank"
-                                           >React Native App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/wearable-devices-app-development/"
-                                                target="_blank"
-                                           >Wearable App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/web-application-development/"
-                                                target="_blank">Web App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/progressive-web-apps/"
-                                                target="_blank"
-                                           >PWA Development
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/healthcare-mobile-app-development-services/"
-                                                target="_blank"
-                                           >Healthcare App Development</a
-                                           >
-                                        </li>
-                                    </ul>
-                                    <p>
-                                        Our client-centric approach allows us to assist
-                                        our clients all the way from the initial idea
-                                        validation to execution and post maintenance.
-                                        This involves rigorous planning, design,
-                                        development, testing, and deployment, ensuring
-                                        that the mobile app is not only technologically
-                                        robust but also aligns with the client's
-                                        business vision and user expectations.
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
-                        <div
-                            className="accordion-item border border-gray-800 rounded-2xl mb-4"
-                       >
-                            <label>
-                                <input type="checkbox" className="sr-only" />
-                                <div
-                                    className="accordion-head cursor-pointer flex items-center justify-between group"
-                               >
-                                    <h5
-                                        className="text-xl font-black group-hover:text-gray-800 pl-6 pr-10 py-4 flex-grow"
-                                   >
-                                        What mobile app development services do you
-                                        offer?
-                                    </h5>
-                                    <span
-                                        className="ml-auto relative right-4 min-w-6 max-w-6 accordion-head-icon justify-center"
-                                   >
-                                        <img
-                                            src={`${import.meta.env.VITE_APP_URL}/assets/images/arrow-down-solid.svg`}
-                                            alt="app vertix"
-                                            className="w-6"
-                                        />
-                                    </span>
-                                </div>
-                                <div className="accordion-content px-6 py-4">
-                                    <p className="mb-6">
-                                        As a leading
-                                        <a
-                                            href="https://appinventiv.com/mobile-app-development-services/"
-                                            target="_blank"
-                                       >mobile application development service</a
-                                       > company, we offer a comprehensive array of services,
-                                        including:
-                                    </p>
-                                    <ul className="mb-6 list-disc ml-6">
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/iphone-application-development/"
-                                                target="_blank">iOS App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/android-application-development/"
-                                                target="_blank"
-                                           >Android App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/flutter-app-development/"
-                                                target="_blank"
-                                           >Flutter App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/react-native-app-development/"
-                                                target="_blank"
-                                           >React Native App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/wearable-devices-app-development/"
-                                                target="_blank"
-                                           >Wearable App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/web-application-development/"
-                                                target="_blank">Web App Development</a
-                                           >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/progressive-web-apps/"
-                                                target="_blank"
-                                           >PWA Development
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://appinventiv.com/healthcare-mobile-app-development-services/"
-                                                target="_blank"
-                                           >Healthcare App Development</a
-                                           >
-                                        </li>
-                                    </ul>
-                                    <p>
-                                        Our client-centric approach allows us to assist
-                                        our clients all the way from the initial idea
-                                        validation to execution and post maintenance.
-                                        This involves rigorous planning, design,
-                                        development, testing, and deployment, ensuring
-                                        that the mobile app is not only technologically
-                                        robust but also aligns with the client's
-                                        business vision and user expectations.
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </footer>
         </WebsiteLayout>
     )
 }

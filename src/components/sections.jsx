@@ -70,6 +70,7 @@ export const Header = (props) => {
                             </div>
                             <div className="hidden sm:mx-auto sm:block">
                                 <div className="flex space-x-4">
+                                <a onClick={() => ManageScroll('home')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">Home</a>
                                     <a onClick={() => ManageScroll('about')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">About</a>
                                     <a onClick={() => ManageScroll('portfolio')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Portfolio</a>
                                     <a onClick={() => ManageScroll('services')} className="px-3 py-2 font-semibold text-sm text-white uppercase">Services</a>
@@ -268,7 +269,7 @@ export const Footer = (props) => {
 		</div> */}
                 <div className="pt-6 flex justify-center">
                     <p>
-                        {new Date().getFullYear()} © All rights reserved.
+                        {new Date().getFullYear()} © All rights reserved. 
                     </p>
                 </div>
             </div>

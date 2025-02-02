@@ -52,7 +52,7 @@ export function Homepage(props) {
 
   return (
     <WebsiteLayout props={props}>
-      <section className="bg-black h-full pt-28 relative overflow-hidden">
+      <section id='home' className="bg-black h-full pt-28 relative overflow-hidden">
         <div className="absolute left-0 max-w-full w-full top-0 z-10">
           <img src={`${import.meta.env.VITE_APP_URL}/assets/images/hero-bg.webp`} alt="app vertix"
             className="w-full max-w-full" style={{ height: "1100px" }} />

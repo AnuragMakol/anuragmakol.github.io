@@ -6,30 +6,40 @@ export function Cartplus(props) {
     return (
         <WebsiteLayout props={props} footerVisible={false}>
             <section className="pt-28 bg-black">
-                <div className="container w-full lg:pt-[50px] lg:pb-[320px]">
+                <div className="container w-full lg:pt-[20px] lg:pb-[420px]">
                     <div className="w-full mb-20">
-                        <div className='max-w-[600px] mx-auto text-center relative z-10 text-white'>
-                            <div className='mb-6 flex justify-center'>
+                        <div className='max-w-[900px] mx-auto text-center relative z-10 text-white'>
+                            <div className='mb-8 flex justify-center'>
                                 <img className='w-[320px]' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/logo-white.svg`} alt="cartPlus sticky add to cart" />
                             </div>
-                            <h1 className="text-6xl leading-18 font-bold mb-6">
+                            <h1 className="text-7xl leading-18 font-bold mb-8">
                                 Sticky add to cart
                             </h1>
                             <p className="text-xl mb-8 text-gray-100">
                                 Keep the bar fixed at the top or bottom of the page so it's always visible to your customers.
                             </p>
-                            {/* <div className="flex justify-center">
-                                <button className="btn btn-primary">Start Free Trial</button>
-                                <button className="btn btn-link-primary"
-                                >Got questions? Reach us now</button>
-                            </div> */}
+                            <div className="flex justify-center mb-10">
+                                <a type="button" className="btn btn-primary px-10 py-6 font-semibold text-lg group">
+                                    <span>Start Free Trial</span>
+                                    <span className="ml-1 transfrom transition-all group-hover:rotate-45">
+                                        <svg className="w-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 25 25" fill="none">
+                                            <path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                {/* <button className="btn btn-link-primary"
+                                >Got questions? Reach us now</button> */}
+                            </div>
                         </div>
-                        <div className=''>
+                        <div className='absolute w-full left-0 right-0 max-w-[980px] mx-auto'>
+                            <div className='p-10 rounded-4xl screen-holder'>
+                                <img className='' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/cartplus-hero-img.svg`} alt="cartPlus sticky add to cart" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="py-28">
+            <section className="pt-[340px] pb-28">
                 <div className="container">
                     <div className="section-head-light text-center">
                         <h2 className="mb-12">Features</h2>
@@ -87,7 +97,7 @@ export function Cartplus(props) {
                         <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/sticky-add-to-cart-img1.png`} alt="app vertix" className="max-w-full" /></div>
                         <div className='pl-10 max-w-[600px]'>
                             <div className="section-head-light">
-                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Generate More Revenue</span>
+                                <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Generate More Revenue</span>
                                 <h3 className='mb-6'>Reduce cart abandonment</h3>
                                 <p className='text-lg mb-6'>Improves the user experience and increases checkout rates by showing the always-visible checkout button to your customers on the cart page.</p>
                             </div>
@@ -120,26 +130,29 @@ export function Cartplus(props) {
                     </div>
                 </div>
             </section>
-            <section className="py-28 bg-black">
-                <div className="max-w-[900px] mx-auto">
-                    <div className='flex justify-between items-center'>
-                        <div className="section-head text-white">
-                            <h3 className='mb-6'>Start 7 day free trial</h3>
-                            <p className='text-lg max-w-[500px] mx-auto'>If you’re having trouble getting motivated to keep to your fitness program.</p>
+            <section className="py-28 bg-blue-700">
+                <div className="container rounded-4xl">
+                    <div className='justify-between items-center'>
+                        <div className="section-head text-white mb-10">
+                            <h3 className='mb-6'>Deski ties into your existing tools, services, & workflow. Get notifications or create a Story with others tools.
+                            </h3>
+                            <p className='text-lg'>If you’re having trouble getting motivated to keep to your fitness program.</p>
                         </div>
                         <div>
-                            <a href='' className='btn btn-primary py-6 px-12 text-lg inline-flex'>Start free trial</a>
+                            <a href='' className='btn btn-secondary py-6 px-12 text-lg inline-flex'>Start free trial</a>
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="py-28">
+            <section className="pt-28">
                 <div className="container">
                     <div className="flex items-center">
-                    <div className='flex-grow'> </div>
+                        <div className='flex-grow'>
+                            <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/urgency-timer-img.png`} alt="app vertix" className="max-w-full" />
+                        </div>
                         <div className='pr-16 max-w-[600px]'>
                             <div className="section-head-light">
-                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Countdown Timer</span>
+                                <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Countdown Timer</span>
                                 <h3 className='mb-6'>Force your customers to buy with urgency timer</h3>
                                 <p className='text-lg mb-6'>Design cartplus sticky add to cart according to your brand and see real time preview</p>
                             </div>
@@ -148,26 +161,26 @@ export function Cartplus(props) {
                                 <li className='mb-2 text-lg font-bold'>Show/Hide urgency timer</li>
                                 <li className='text-lg font-bold'>Change colors as per your needs</li>
                             </ul>
-                        </div>                        
-                    </div>
-                </div>
-            </section>
-            <section className="py-28 bg-blue-50">
-                <div className="container">
-                    <div className="flex items-center">
-                        <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/mobile-ready-img.png`} alt="app vertix" className="max-w-full" /></div>
-                        <div className='pl-10 max-w-[600px]'>
-                            <div className="section-head-light">
-                            <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Responsive design</span>
-                                <h3 className='mb-6'>Mobile Ready</h3>
-                                <p className='text-lg mb-6'>Improves the user experience and increases checkout rates by showing the always-visible checkout button to your customers on the cart page.</p>
-                                <a href='#' className='btn btn-primary'>Start free trial</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section className="py-28">
+                <div className="container">
+                    <div className="flex items-center">
+                        <div className='pr-10 max-w-[600px]'>
+                            <div className="section-head-light">
+                                <span className='bg-blue-100 py-1 px-4 rounded-full mb-4 inline-flex text-primary font-medium border border-primary text-sm'>Responsive design</span>
+                                <h3 className='mb-6'>Mobile Ready</h3>
+                                <p className='text-lg mb-6'>Improves the user experience and increases checkout rates by showing the always-visible checkout button to your customers on the cart page.</p>
+                                <a href='#' className='btn btn-primary'>Start free trial</a>
+                            </div>
+                        </div>
+                        <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/mobile-ready-img.png`} alt="app vertix" className="max-w-full" /></div>
+                    </div>
+                </div>
+            </section>
+            <section className="py-28 bg-gradient">
                 <div className="container text-center">
                     <div className="section-head-light max-w-3xl mx-auto mb-8">
                         <h3 className='mb-6'>Configuring the widget is incredibly simple</h3>
@@ -176,7 +189,7 @@ export function Cartplus(props) {
                     <a href='' className='btn btn-primary'>send a request</a>
                 </div>
             </section>
-            <footer className='bg-gray-50'>
+            <footer className=''>
                 <div className="w-full py-6">
                     <div className="container">
                         <div className='flex justify-between'>

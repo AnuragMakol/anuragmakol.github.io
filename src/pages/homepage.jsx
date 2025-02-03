@@ -119,8 +119,7 @@ export function Homepage(props) {
                 </div>
                 <div>
                   <h2 className="text-5xl leading-14 font-bold">
-                    Transforming your brand <br /> with
-                    <span className="text-gray-dark">
+                    Transforming your brand <br /> with <span className="text-gray-dark">
                       innovative digital strategies and solutions</span>
                   </h2>
                 </div>

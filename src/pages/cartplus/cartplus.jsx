@@ -18,7 +18,7 @@ export function Cartplus(props) {
                             <p className="text-xl mb-8 text-gray-100">
                                 Keep the bar fixed at the top or bottom of the page so it's always visible to your customers.
                             </p>
-                            <div className="flex justify-center mb-10">
+                            <div className="flex justify-center mb-20">
                                 <a type="button" className="btn btn-primary px-10 py-6 font-semibold text-lg group">
                                     <span>Start Free Trial</span>
                                     <span className="ml-1 transfrom transition-all group-hover:rotate-45">

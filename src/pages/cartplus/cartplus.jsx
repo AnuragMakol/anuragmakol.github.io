@@ -8,18 +8,18 @@ export function Cartplus(props) {
             <section className="pt-28 bg-black">
                 <div className="container w-full lg:pt-[20px] lg:pb-[420px]">
                     <div className="w-full mb-20">
-                        <div className='max-w-[900px] mx-auto text-center relative z-10 text-white'>
+                        <div className='max-w-[700px] mx-auto text-center relative z-10 text-white'>
                             <div className='mb-8 flex justify-center'>
                                 <img className='w-[320px]' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/logo-white.svg`} alt="cartPlus sticky add to cart" />
                             </div>
                             <h1 className="text-7xl leading-18 font-bold mb-8">
-                                Sticky add to cart
+                                Sticky Add to Cart
                             </h1>
-                            <p className="text-xl mb-8 text-gray-100">
+                            <p className="text-2xl mb-8 text-gray-100">
                                 Keep the bar fixed at the top or bottom of the page so it's always visible to your customers.
                             </p>
                             <div className="flex justify-center mb-20">
-                                <a type="button" className="btn btn-primary px-10 py-6 font-semibold text-lg group">
+                                <a type="button" className="btn border border-white px-10 py-6 font-semibold text-2xl group">
                                     <span>Start Free Trial</span>
                                     <span className="ml-1 transfrom transition-all group-hover:rotate-45">
                                         <svg className="w-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 25 25" fill="none">
@@ -31,7 +31,7 @@ export function Cartplus(props) {
                                 >Got questions? Reach us now</button> */}
                             </div>
                         </div>
-                        <div className='absolute w-full left-0 right-0 max-w-[980px] mx-auto'>
+                        <div className='absolute w-full left-0 right-0 max-w-[980px] mx-auto shadow-2xl rounded-4xl'>
                             <div className='p-10 rounded-4xl screen-holder'>
                                 <img className='' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/cartplus-hero-img.svg`} alt="cartPlus sticky add to cart" />
                             </div>

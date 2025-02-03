@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,19 +10,29 @@ import { subscribeForm } from "../api";
 
 export const Header = (props) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        HeaderVisibility(); 
+        HeaderVisibility();
+
+        if(location.hash !== "") {
+            ManageScroll(location.hash.replace('#', ''));
+        }
     }, []);
 
     function ManageScroll(to) {
         let element = document.getElementById(to);
-        let position = element.getBoundingClientRect();
-        window.scrollTo({
-            top: position.top + window.scrollY - 80,
-            left: position.left,
-            behavior: 'smooth'
-        })
+
+        if (element === null) {
+            navigate(`/#${to}`);
+        } else {
+            let position = element.getBoundingClientRect();
+            window.scrollTo({
+                top: position.top + window.scrollY - 80,
+                left: position.left,
+                behavior: 'smooth'
+            })
+        }
     }
 
     function HeaderVisibility() {

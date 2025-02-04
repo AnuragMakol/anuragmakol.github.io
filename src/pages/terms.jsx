@@ -9,9 +9,6 @@ export function Terms(props) {
             <IntroSection title="Terms & Conditions" />
 
             <div className="container pt-15 pb-10">
-                <div className="section-head-light">
-                    <h1 className="text-3xl">Terms & Conditions</h1>
-                </div>
                 <div>
                     <p className="mb-4">
                         Welcome to CartPlus (“we,” “our,” “us”). By accessing or using

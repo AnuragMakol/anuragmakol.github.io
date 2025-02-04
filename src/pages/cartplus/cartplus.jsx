@@ -6,7 +6,8 @@ export function Cartplus(props) {
     return (
         <WebsiteLayout props={props} footerVisible={false}>
             <section className="pt-28 bg-black">
-                <div className="container w-full lg:pt-[20px] lg:pb-[420px]">
+                <div className="container w-full lg:pt-[20px] lg:pb-[420px] relative">
+                    <div className='icon-box-two block absolute md:block sm:hidden xsm:hidden w-[90px] h-[90px] shadow-[10px_20px_50px_rgba(31,36,44,0.07)] animate-[jump_4s_infinite_linear] left-[5%] top-[32%]'></div>
                     <div className="w-full mb-20">
                         <div className='max-w-[700px] mx-auto text-center relative z-10 text-white'>
                             <div className='mb-8 flex justify-center'>
@@ -32,6 +33,13 @@ export function Cartplus(props) {
                             </div>
                         </div>
                         <div className='absolute w-full left-0 right-0 max-w-[980px] mx-auto shadow-2xl rounded-4xl'>
+                            <div>
+                                <div className='absolute z-[1] bottom-[-5%] right-[-2%] w-[20.76%] animate-[jumpTwo_6s_infinite_linear] shadow-2xl rounded-[10px] xsm:right-0'>
+                                    <div className='bg-white rounded-2xl p-4 w-[310px]'>
+                                    <img className='rounded-2xl' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/customize-widget-img.png`} alt="Urgency Timer" />
+                                    </div>
+                                </div>
+                            </div>
                             <div className='p-10 rounded-4xl screen-holder'>
                                 <img className='' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/cartplus-hero-img.svg`} alt="cartPlus sticky add to cart" />
                             </div>

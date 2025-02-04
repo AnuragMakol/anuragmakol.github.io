@@ -9,11 +9,10 @@ export function CartplusTerms(props) {
             <div className='absolute top-27 flex justify-center w-full'>
                 <img className='w-[200px]' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/logo-white.svg`} alt="cartPlus sticky add to cart" />
             </div>
+
             <IntroSection title="Terms & Conditions" />
+
             <div className="container pt-15 pb-10">
-                <div className="section-head-light">
-                    <h1 className="text-3xl">Terms & Conditions</h1>
-                </div>
                 <div>
                     <h6 className="mb-2">Effective Date: 1/12/2024</h6>
                     <div className="mb-5">

@@ -9,9 +9,6 @@ export function Privacy(props) {
             <IntroSection title="Privacy Policy" />
 
             <div className="container pt-15 pb-10">
-                <div className="section-head-light">
-                    <h1 className="text-3xl">Privacy Policy</h1>
-                </div>
                 <div>
                     <h6 className="text-lg mb-2">Effective Date: 1/12/2024</h6>
                     <p className="mb-3">

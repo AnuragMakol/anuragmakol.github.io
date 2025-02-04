@@ -5,9 +5,17 @@ import { WebsiteLayout } from '../../components/layouts';
 export function Cartplus(props) {
     return (
         <WebsiteLayout props={props} footerVisible={false}>
-            <section className="pt-28 bg-black">
-                <div className="container w-full lg:pt-[20px] lg:pb-[420px] relative">
-                    <div className='icon-box-two block absolute md:block sm:hidden xsm:hidden w-[90px] h-[90px] shadow-[10px_20px_50px_rgba(31,36,44,0.07)] animate-[jump_4s_infinite_linear] left-[5%] top-[32%]'></div>
+            <section className="pt-28 bg-black relative ">
+                <div className="absolute left-0 max-w-full w-full top-0 z-10">
+                    <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/cartplus-hero-bg.jpg`} alt="app vertix"
+                        className="w-full max-w-full" style={{ height: "1100px" }} />
+                </div>
+                <div className="container w-full lg:pt-[20px] lg:pb-[420px] relative z-20">
+                    <div class="w-[95px] h-[95px] top-[-12%] animate-[rotated_14s_infinite_linear] absolute z-[-1] rounded-[50%] left-[24%] before:w-2 before:h-2 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:top-0 before:bg-[#6aee90]"> </div>
+                    <div class="w-40 h-40 left-[-1%] animate-[rotatedTwo_25s_infinite_linear] absolute z-[-1] rounded-[50%] top-[28%] before:w-[17px] before:h-[17px] before:content-[''] before:absolute before:rounded-[50%] before:right-full before:top-2/4 before:bg-[#ffb15f]"> </div>
+                    <div class="w-[120px] h-[120px] bottom-[-17%] left-[-0%] animate-[rotated_15s_infinite_linear] absolute z-[-1] rounded-[50%] before:w-[7px] before:h-[7px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#ff53b3]"> </div>
+                    <div class="w-[130px] h-[130px] top-[40%] animate-[rotatedTwo_15s_infinite_linear] absolute z-[-1] rounded-[50%] -right-[10%] before:w-[13px] before:h-[13px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#a49bff]"> </div>
+                    <div class="w-[120px] h-[120px] top-[-0%] animate-[rotatedTwo_17s_infinite_linear] absolute z-[-1] rounded-[50%] right-[27%] before:w-3 before:h-3 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#2eeaed]"> </div>
                     <div className="w-full mb-20">
                         <div className='max-w-[700px] mx-auto text-center relative z-10 text-white'>
                             <div className='mb-8 flex justify-center'>
@@ -33,11 +41,17 @@ export function Cartplus(props) {
                             </div>
                         </div>
                         <div className='absolute w-full left-0 right-0 max-w-[980px] mx-auto shadow-2xl rounded-4xl'>
-                            <div>
-                                <div className='absolute z-[1] bottom-[-5%] right-[-2%] w-[20.76%] animate-[jumpTwo_6s_infinite_linear] shadow-2xl rounded-[10px] xsm:right-0'>
-                                    <div className='bg-white rounded-2xl p-4 w-[310px]'>
+                            <div className='absolute z-[1] left-[-12%] w-[21.96%] animate-[jumpTwo_6s_infinite_linear] top-[6%] xsm:left-0 '><img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/hero-arrow2.png`} alt="Urgency Timer" />
+                                <span className='absolute -left-[25%] bottom-[2%] font-bold text-center'>
+                                    <span className='text-yellow-400 block'>Fully</span>
+                                    <span className='text-yellow-400 block'>Customizable</span>
+                                </span>
+                            </div>
+                            <div className='absolute bg-white rounded-[10px] py-4 flex justify-center shadow-2xl z-[1] left-[-12%] w-[30.96%] animate-[jumpTwo_6s_infinite_linear] bottom-[36%] xsm:left-0'><img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/urgency-bar-toggle.png`} alt="Urgency Timer" />
+                            </div>
+                            <div className='absolute z-[1] bottom-[-5%] right-[-2%] w-[20.76%] animate-[jumpTwo_6s_infinite_linear] shadow-2xl rounded-[10px] xsm:right-0'>
+                                <div className='bg-white rounded-2xl p-4 w-[310px]'>
                                     <img className='rounded-2xl' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/customize-widget-img.png`} alt="Urgency Timer" />
-                                    </div>
                                 </div>
                             </div>
                             <div className='p-10 rounded-4xl screen-holder'>
@@ -99,7 +113,7 @@ export function Cartplus(props) {
                     </div>
                 </div>
             </section>
-            <section className="py-28 bg-blue-50">
+            <section className="py-28 bg-gradient">
                 <div className="container">
                     <div className="flex items-center">
                         <div className='flex-grow'> <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/sticky-add-to-cart-img1.png`} alt="app vertix" className="max-w-full" /></div>

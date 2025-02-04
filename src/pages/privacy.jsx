@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { WebsiteLayout } from '../components/layouts';
+import { IntroSection } from '../components/sections';
 
 export function Privacy(props) {
     return (
         <WebsiteLayout props={props}>
-            <div className="container pt-35 pb-10">
+            <IntroSection title="Privacy Policy" />
+
+            <div className="container pt-15 pb-10">
                 <div className="section-head-light">
                     <h1 className="text-3xl">Privacy Policy</h1>
                 </div>

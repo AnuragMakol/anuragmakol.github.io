@@ -189,7 +189,7 @@ export function Cartplus(props) {
                     <a href='' className='btn btn-primary'>send a request</a>
                 </div>
             </section>
-            <footer className=''>
+            <footer>
                 <div className="w-full py-6">
                     <div className="container">
                         <div className='flex justify-between'>

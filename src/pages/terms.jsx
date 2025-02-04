@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { WebsiteLayout } from '../components/layouts';
+import { IntroSection } from '../components/sections';
 
 export function Terms(props) {
     return (
         <WebsiteLayout props={props}>
-            <div className="container pt-35 pb-10">
+            <IntroSection title="Terms & Conditions" />
+
+            <div className="container pt-15 pb-10">
                 <div className="section-head-light">
                     <h1 className="text-3xl">Terms & Conditions</h1>
                 </div>

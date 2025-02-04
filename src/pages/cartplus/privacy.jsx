@@ -1,11 +1,16 @@
 import React from 'react';
 
 import { WebsiteLayout } from '../../components/layouts';
+import { IntroSection } from '../../components/sections';
 
 export function CartplusPrivacy(props) {
     return (
-        <WebsiteLayout props={props}>
-            <div className="container pt-35 pb-10">
+        <WebsiteLayout props={props} footerVisible={false}>
+            <div className='absolute top-27 flex justify-center w-full'>
+                <img className='w-[200px]' src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/logo-white.svg`} alt="cartPlus sticky add to cart" />
+            </div>
+            <IntroSection title="Privacy Policy" />
+            <div className="container pt-15 pb-10">
                 <div className="section-head-light">
                     <h1 className="text-3xl">Privacy Policy</h1>
                 </div>
@@ -197,6 +202,27 @@ export function CartplusPrivacy(props) {
                     </div>
                 </div>
             </div>
+            <footer>
+                <div className="w-full py-6">
+                    <div className="container">
+                        <div className='flex justify-between'>
+                            <p>
+                                {new Date().getFullYear()} © All rights reserved.
+                            </p>
+                            <div>
+                                <ul className='flex'>
+                                    <li className='mr-8'>
+                                        <a href="/cartplus/terms">Terms & Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a href="/cartplus/privacy">Privacy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </WebsiteLayout>
     )
 }

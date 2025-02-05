@@ -60,7 +60,7 @@ export const Header = (props) => {
             <nav>
                 <div className="container">
                     <div className="relative flex h-24 items-center justify-between">
-                        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                             <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
                                 <span className="absolute -inset-0.5"></span>
                                 <span className="sr-only">Open main menu</span>
@@ -72,13 +72,13 @@ export const Header = (props) => {
                                 </svg>
                             </button>
                         </div>
-                        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
                             <div className="flex shrink-0 items-center">
                                 <a href="/" className="w-36 flex">
                                     <img src={`${import.meta.env.VITE_APP_URL}/logo.svg`} alt="app vertix" />
                                 </a>
                             </div>
-                            <div className="hidden sm:mx-auto sm:block">
+                            <div className="hidden lg:mx-auto lg:block">
                                 <div className="flex space-x-4">
                                     <a onClick={() => ManageScroll('home')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">Home</a>
                                     <a onClick={() => ManageScroll('about')} className="px-3 py-2 font-semibold text-sm text-white uppercase" aria-current="page">About</a>
@@ -95,12 +95,12 @@ export const Header = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0">
                             <div className="relative ml-3">
                                 <div>
                                     <a onClick={() => ManageScroll('contact')} type="button" className="btn btn-primary uppercase font-semibold text-sm group">
-                                        <span>Contact Us</span>
-                                        <span className="ml-1 transfrom transition-all group-hover:rotate-45">
+                                        <span className="hidden md:inline-flex">Contact Us</span>
+                                        <span className="md:ml-1 transfrom transition-all group-hover:rotate-45">
                                             <svg className="w-5" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                                 <path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path>
                                             </svg>
@@ -117,7 +117,6 @@ export const Header = (props) => {
 }
 
 export const Footer = (props) => {
-    const navigate = useNavigate();
     const [showAlert, setAlert] = useState(false);
 
     const { register: registerSubscribeForm, handleSubmit: handleSubmitSubscribeForm, reset: resetSubscribeForm } = useForm({
@@ -139,7 +138,7 @@ export const Footer = (props) => {
 
             setTimeout(() => {
                 setAlert(false)
-            }, 4000);
+            }, 6000);
         }
     });
 
@@ -233,7 +232,16 @@ export const Footer = (props) => {
                                 <label htmlFor="email"><i className="fa-regular fa-envelope"></i></label>
                                 <button type="submit" className="uppercase text-xs font-bold btn btn-secondary">Subscribe</button>
                             </form>
-                            {showAlert ? <div>Submitted</div> : ""}
+                            {showAlert ? <div className='bg-green-700 text-white shadow p-4 rounded-md flex text-lg items-start font-medium mt-3 w-full'>
+                                <span className='min-w-8 max-w-8 inline-flex mr-3'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill='#fff'>
+                                        <path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    Subscribed Successfully
+                                </div>
+                            </div> : ""}
                         </div>
                     </div>
                 </div>

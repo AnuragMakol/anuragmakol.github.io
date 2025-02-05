@@ -46,7 +46,7 @@ export function Homepage(props) {
 
       setTimeout(() => {
         setAlert(false)
-      }, 4000);
+      }, 6000);
     }
   });
 
@@ -57,17 +57,17 @@ export function Homepage(props) {
           <img src={`${import.meta.env.VITE_APP_URL}/assets/images/hero-bg.webp`} alt="app vertix"
             className="w-full max-w-full" style={{ height: "1100px" }} />
         </div>
-        <div className="container z-40 w-full lg:pt-[200px] lg:pb-[220px] relative">
+        <div className="container z-40 w-full max-[768px]:h-[520px] pt-[20px] md:pt-[200px] md:pb-[220px] relative">
           <div className="absolute max-w-[528px] max-h-[528px] right-0 top-30">
             <img src={`${import.meta.env.VITE_APP_URL}/assets/images/globe.svg`} alt="app vertix"
               className="w-full max-w-full" />
           </div>
-          <div className="w-full mb-20">
+          <div className="w-full mb-10 md:mb-20 relative">
             <div className="section-head max-w-[750px]">
-              <h1 className="text-6xl leading-18 font-bold mb-6">
+              <h1 className="text-5xl md:text-6xl leading-18 font-bold mb-6">
                 Empowering your <br /> digital journey
               </h1>
-              <p className="text-2xl text-gray-100">
+              <p className="text-xl md:text-2xl text-gray-100">
                 We fuel business growth by designing innovative, agile
                 digital solutions that solve complex challenges and
                 drive success in today's rapidly evolving digital
@@ -75,7 +75,7 @@ export function Homepage(props) {
               </p>
             </div>
           </div>
-          <div className="w-full flex justify-between">
+          <div className="w-full flex justify-between relative">
             <div>
               <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="flex text-left cursor-pointer group">
                 <div className="relative z-10 w-12 h-10 flex flex-col gap-1 top_lines_animation top-2">
@@ -99,10 +99,10 @@ export function Homepage(props) {
           </div>
         </div>
       </section>
-      <section id="about" className="py-28">
+      <section id="about" className="py-16 md:py-28">
         <div className="container">
           <div className="flex">
-            <div className="min-w-[260px] max-w-[260px] mr-30 relative">
+            <div className="min-w-[260px] max-w-[260px] mr-15 xl:mr-30 relative hidden lg:flex">
               <div className="absolute -left-full top-10 z-0">
                 <img src={`${import.meta.env.VITE_APP_URL}/assets/images/lines-shape.png`} alt="app vertix" />
               </div>
@@ -112,20 +112,20 @@ export function Homepage(props) {
               </div>
             </div>
             <div>
-              <div className="w-full flex mb-16">
-                <div className="mr-10">
+              <div className="w-full flex flex-col md:flex-row mb-8 md:mb-16">
+                <div className="mb-5 md:mb-0 md:mr-10">
                   <img src={`${import.meta.env.VITE_APP_URL}/assets/images/title-image-home.png`} alt="app vertix"
-                    className="max-w-[135px]" />
+                    className="max-w-[55px] md:max-w-[135px]" />
                 </div>
                 <div>
-                  <h2 className="text-5xl leading-14 font-bold">
+                  <h2 className="text-4xl md:text-5xl md:leading-14 font-bold">
                     Transforming your brand <br /> with <span className="text-gray-dark">
                       innovative digital strategies and solutions</span>
                   </h2>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-10">
-                <div className="border-r border-gray-200 pr-6">
+              <div className="grid md:grid-cols-3 gap-10">
+                <div className="border-b md:border-b-0 md:border-r border-gray-200 md:pr-6 pb-8 md:pb-0">
                   <h3 className="text-primary text-5xl font-extrabold mb-5">
                     12+
                   </h3>
@@ -270,7 +270,7 @@ export function Homepage(props) {
               Excellence
             </h2>
           </div>
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div
               className="p-6 pb-12 border transition border-gray-700 hover:border-primary rounded-2xl bg-gray-900 relative overflow-hidden">
               <span
@@ -809,14 +809,14 @@ export function Homepage(props) {
       </section> */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="container">
-          <div className="flex justify-between">
-            <div className="relative w-1/2">
-              <h3 className="text-[100px] leading-30 font-bold mb-8 mt-4">
-                Let's work <br />together
+          <div className="md:flex justify-between">
+            <div className="relative md:w-1/2">
+              <h3 className="text-5xl md:text-[80px] lg:text-[100px] lg:leading-30 font-bold mb-8 mt-4">
+                Let's work <span className='md:block'>together</span>
               </h3>
             </div>
-            <div className="flex-grow pl-10 w-1/2">
-              <div className="max-w-[550px] mx-auto">
+            <div className="flex-grow md:pl-10 md:w-1/2">
+              <div className="md:max-w-[550px] mx-auto">
                 <p className="mb-3">
                   Get in touch with us today to explore how we can
                   elevate your business through innovative digital
@@ -843,7 +843,16 @@ export function Homepage(props) {
                       Message</button>
                   </div>
                 </form>
-                {showAlert ? <div>Submitted</div> : ""}
+                {showAlert ? <div className='bg-green-700 text-white shadow p-4 rounded-md flex text-lg items-start font-medium'>
+                  <span className='min-w-8 max-w-8 inline-flex mr-3 relative top-1'>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill='#fff'>
+                      <path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z" />
+                    </svg>
+                  </span>
+                  <div>
+                    We have received your query, our team will reach out to you within 24 hours.
+                  </div>
+                </div> : ""}
               </div>
             </div>
           </div>

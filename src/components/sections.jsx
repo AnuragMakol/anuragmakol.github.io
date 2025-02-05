@@ -152,7 +152,8 @@ export const Footer = (props) => {
                             <img src={`${import.meta.env.VITE_APP_URL}/logo-primary.svg`} alt="app vertix" className="max-w-full" />
                         </a>
                         <p className="mb-6"> Elevating businesses with AI-driven software, web, and mobile solutions. </p>
-                        <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="text-gray-50 hover:text-gray-200 font-bold text-xl flex mb-7">{import.meta.env.VITE_INFO_EMAIL}</a>
+                        <a href={`mailto:${import.meta.env.VITE_INFO_EMAIL}`} className="text-gray-50 hover:text-gray-200 font-bold text-xl flex mb-1">{import.meta.env.VITE_INFO_EMAIL}</a>
+                        <a href={`mailto:${import.meta.env.VITE_SUPPORT_EMAIL}`} className="text-gray-50 hover:text-gray-200 font-bold text-xl flex mb-8">{import.meta.env.VITE_SUPPORT_EMAIL}</a>
                         <div className="flex">
                             <a href="/" className="text-gray-50 hover:opacity-70 font-bold text-xl mx-2.5">
                                 <svg aria-hidden="true" className="text-white w-4" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">

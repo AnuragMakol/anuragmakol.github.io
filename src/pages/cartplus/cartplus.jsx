@@ -147,7 +147,7 @@ export function Cartplus(props) {
                                 <li className='text-lg'><span className='font-bold'>Customize Colors</span> to align with your brand identity</li>
                             </ul>
                         </div>
-                        <div className='flex-grow order-1 md:order-2 mb-6 md:mb-0'>                        
+                        <div className='flex-grow order-1 md:order-2 mb-6 md:mb-0'>
                             <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/fully-customizable.png`} alt="app vertix" className="max-w-full" />
                         </div>
                     </div>
@@ -155,13 +155,17 @@ export function Cartplus(props) {
             </section>
             <section className="py-28 bg-blue-700">
                 <div className="container rounded-4xl text-center">
-                    <div className='justify-between items-center'>
+                    <div className='justify-between items-center max-w-4xl mx-auto'>
                         <div className="section-head text-white mb-10">
                             <h3 className='mb-6'>Maximize Conversions and Minimize Cart Abandonment</h3>
                             <p className='text-lg'>Ensure your customers complete their purchases by utilizing strategic tools that keep them engaged and encourage immediate action. Don’t let potential sales slip away—drive conversions and boost revenue.</p>
                         </div>
                         <div>
-                            <a href={import.meta.env.VITE_CARTPLUS_URL} target="_blank" className='btn btn-secondary py-6 px-12 text-lg inline-flex'>Start free trial</a>
+                            <a href={import.meta.env.VITE_CARTPLUS_URL} target="_blank" className='btn bg-black text-white text-xl py-6 px-12 text-lg inline-flex group'>Start free trial 
+                                <span class="md:ml-1 transfrom transition-all group-hover:rotate-45">
+                                    <svg class="w-7" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path></svg>
+                                </span>
+                                </a>
                         </div>
                     </div>
                 </div>

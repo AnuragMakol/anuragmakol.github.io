@@ -12,6 +12,8 @@ export const Header = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [navToggle, setNavToggle] = useState(false);
+
     useEffect(() => {
         HeaderVisibility();
 
@@ -61,7 +63,7 @@ export const Header = (props) => {
                 <div className="container">
                     <div className="relative flex h-24 items-center justify-between">
                         <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
-                            <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+                            <button type="button" onClick={() => setNavToggle(!navToggle)} className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
                                 <span className="absolute -inset-0.5"></span>
                                 <span className="sr-only">Open main menu</span>
                                 <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
@@ -111,6 +113,23 @@ export const Header = (props) => {
                         </div>
                     </div>
                 </div>
+                {
+                    navToggle ? <div className="bg-black  border-t-2 border-b-2 border-gray-500 shadow-2xl" id="mobile-menu">
+                        <div className="space-y-1 px-2 pt-2 pb-3">
+
+                            <a onClick={() => ManageScroll('home')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-100 hover:bg-gray-700 hover:text-white" aria-current="page">Home</a>
+                            <a onClick={() => ManageScroll('about')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-100 hover:bg-gray-700 hover:text-white" aria-current="page">About</a>
+                            <a onClick={() => ManageScroll('portfolio')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Portfolio</a>
+                            <a onClick={() => ManageScroll('services')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Services</a>
+                            <div>
+                                <a className="rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white relative flex">Our Apps </a>
+                                <div className="pl-5">
+                                    <a href="/cartplus" className="block rounded-md px-3 py-2 text-base font-medium text-gray-100 hover:bg-gray-700 hover:text-white ">CartPlus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> : ""
+                }
             </nav>
         </header>
     )
@@ -145,7 +164,7 @@ export const Footer = (props) => {
     return (
         <div className="w-full bg-black text-white pt-20 pb-10">
             <div className="container">
-                <div className="grid grid-cols-4 gap-6 mb-16">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 space-y-4 md:space-y-10 lg:space-y-0 gap-6 mb-16">
                     <div>
                         <a href="/" className="text-gray-50 hover:text-gray-200 max-w-[150px] flex mb-6">
                             <img src={`${import.meta.env.VITE_APP_URL}/logo-primary.svg`} alt="app vertix" className="max-w-full" />

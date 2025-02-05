@@ -178,8 +178,8 @@ export function Homepage(props) {
         <div>
           <div className="case-study-slider">
             <div className="swiper-wrapper">
-              <div className="swiper-slide min-w-[820px] max-w-[820px] h-[708px]">
-                <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
+              <div className="swiper-slide md:min-w-[620px] md:max-w-[620px] lg:min-w-[820px] lg:max-w-[820px] h-[600px] lg:h-[708px]">
+                <div className="p-7 bg-gray-900 md:rounded-2xl w-full h-[600px] lg:h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
                       backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study1.webp)`,
@@ -197,8 +197,8 @@ export function Homepage(props) {
                   </div>
                 </div>
               </div>
-              <div className="swiper-slide min-w-[820px] max-w-[820px] h-[708px]">
-                <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
+              <div className="swiper-slide md:min-w-[620px] md:max-w-[620px] lg:min-w-[820px] lg:max-w-[820px] h-[600px] lg:h-[708px]">
+                <div className="p-7 bg-gray-900 md:rounded-2xl w-full h-[600px] lg:h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
                       backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study2.webp)`,
@@ -216,8 +216,8 @@ export function Homepage(props) {
                   </div>
                 </div>
               </div>
-              <div className="swiper-slide min-w-[820px] max-w-[820px] h-[708px]">
-                <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
+              <div className="swiper-slide md:min-w-[620px] md:max-w-[620px] lg:min-w-[820px] lg:max-w-[820px] h-[600px] lg:h-[708px]">
+                <div className="p-7 bg-gray-900 md:rounded-2xl w-full h-[600px] lg:h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
                       backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study1.webp)`,
@@ -235,8 +235,8 @@ export function Homepage(props) {
                   </div>
                 </div>
               </div>
-              <div className="swiper-slide min-w-[820px] max-w-[820px] h-[708px]">
-                <div className="p-7 bg-gray-900 rounded-2xl w-full h-[708px] mx-auto">
+              <div className="swiper-slide md:min-w-[620px] md:max-w-[620px] lg:min-w-[820px] lg:max-w-[820px] h-[600px] lg:h-[708px]">
+                <div className="p-7 bg-gray-900 md:rounded-2xl w-full h-[600px] lg:h-[708px] mx-auto">
                   <div className="rounded-2xl bg-cover w-full h-full relative flex flex-col overflow-hidden"
                     style={{
                       backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/case-study/case-study4.webp)`,
@@ -258,7 +258,7 @@ export function Homepage(props) {
           </div>
         </div>
       </section>
-      <section id="services" className="py-28 section-dark bg-no-repeat bg-cover"
+      <section id="services" className="pb-16 md:py-28 section-dark bg-no-repeat bg-cover"
         style={{
           backgroundImage: `url(${import.meta.env.VITE_APP_URL}/assets/images/bg-1.webp)`,
         }}>

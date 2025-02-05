@@ -45,7 +45,7 @@ export function Cartplus(props) {
                                     <span className='text-yellow-400 block'>Customizable</span>
                                 </span>
                             </div>
-                            <div className='absolute bg-white rounded-[10px] py-4 flex justify-center shadow-2xl z-[1] left-[4%] lg:left-[-12%] w-[303px] animate-[jumpTwo_6s_infinite_linear] bottom-[10%] lg:bottom-[36%] xsm:left-0 hidden md:block'>
+                            <div className='absolute bg-white rounded-[10px] py-4 hidden md:flex justify-center shadow-2xl z-[1] left-[4%] lg:left-[-12%] w-[303px] animate-[jumpTwo_6s_infinite_linear] bottom-[10%] lg:bottom-[36%] xsm:left-0 '>
                                 <img src={`${import.meta.env.VITE_APP_URL}/assets/images/cartplus/urgency-bar-toggle.png`} alt="Urgency Timer" />
                             </div>
                             <div className='absolute z-[1] bottom-[-10%] xl:bottom-[-5%] right-[5%] lg:right-[-12%] w-[310px] animate-[jumpTwo_6s_infinite_linear] shadow-2xl rounded-[10px] xsm:right-0 hidden md:block'>
@@ -161,7 +161,7 @@ export function Cartplus(props) {
                             <p className='text-lg'>Ensure your customers complete their purchases by utilizing strategic tools that keep them engaged and encourage immediate action. Don’t let potential sales slip away—drive conversions and boost revenue.</p>
                         </div>
                         <div>
-                            <a href={import.meta.env.VITE_CARTPLUS_URL} target="_blank" className='btn bg-black text-white text-xl py-6 px-12 text-lg inline-flex group'>Start free trial 
+                            <a href={import.meta.env.VITE_CARTPLUS_URL} target="_blank" className='btn bg-black text-white text-xl py-6 px-12 inline-flex group'>Start free trial 
                                 <span class="md:ml-1 transfrom transition-all group-hover:rotate-45">
                                     <svg class="w-7" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path></svg>
                                 </span>

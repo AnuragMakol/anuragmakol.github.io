@@ -211,10 +211,10 @@ export function CartplusPrivacy(props) {
                             <div>
                                 <ul className='flex'>
                                     <li className='mr-8'>
-                                        <a href="/cartplus/terms">Terms & Conditions</a>
+                                        <a href="/#/cartplus/terms">Terms & Conditions</a>
                                     </li>
                                     <li>
-                                        <a href="/cartplus/privacy">Privacy</a>
+                                        <a href="/#/cartplus/privacy">Privacy</a>
                                     </li>
                                 </ul>
                             </div>

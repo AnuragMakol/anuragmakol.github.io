@@ -11,11 +11,11 @@ export function Cartplus(props) {
                         className="w-full max-w-full h-[700px] lg:h-[900px] xl:h-[1100px]" />
                 </div>
                 <div className="container w-full pt-[20px] md:pb-[320px] xl:pb-[420px] relative z-20">
-                    <div class="w-[95px] h-[95px] top-[-12%] animate-[rotated_14s_infinite_linear] absolute z-[-1] rounded-[50%] left-[24%] before:w-2 before:h-2 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:top-0 before:bg-[#6aee90]"> </div>
-                    <div class="w-40 h-40 left-[-1%] animate-[rotatedTwo_25s_infinite_linear] absolute z-[-1] rounded-[50%] top-[28%] before:w-[17px] before:h-[17px] before:content-[''] before:absolute before:rounded-[50%] before:right-full before:top-2/4 before:bg-[#ffb15f]"> </div>
-                    <div class="w-[120px] h-[120px] bottom-[-17%] left-[-0%] animate-[rotated_15s_infinite_linear] absolute z-[-1] rounded-[50%] before:w-[7px] before:h-[7px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#ff53b3]"> </div>
-                    <div class="w-[130px] h-[130px] top-[40%] animate-[rotatedTwo_15s_infinite_linear] absolute z-[-1] rounded-[50%] -right-[0%] before:w-[13px] before:h-[13px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#a49bff]"> </div>
-                    <div class="w-[120px] h-[120px] top-[-0%] animate-[rotatedTwo_17s_infinite_linear] absolute z-[-1] rounded-[50%] right-[27%] before:w-3 before:h-3 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#2eeaed]"> </div>
+                    <div className="w-[95px] h-[95px] top-[-12%] animate-[rotated_14s_infinite_linear] absolute z-[-1] rounded-[50%] left-[24%] before:w-2 before:h-2 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:top-0 before:bg-[#6aee90]"> </div>
+                    <div className="w-40 h-40 left-[-1%] animate-[rotatedTwo_25s_infinite_linear] absolute z-[-1] rounded-[50%] top-[28%] before:w-[17px] before:h-[17px] before:content-[''] before:absolute before:rounded-[50%] before:right-full before:top-2/4 before:bg-[#ffb15f]"> </div>
+                    <div className="w-[120px] h-[120px] bottom-[-17%] left-[-0%] animate-[rotated_15s_infinite_linear] absolute z-[-1] rounded-[50%] before:w-[7px] before:h-[7px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#ff53b3]"> </div>
+                    <div className="w-[130px] h-[130px] top-[40%] animate-[rotatedTwo_15s_infinite_linear] absolute z-[-1] rounded-[50%] -right-[0%] before:w-[13px] before:h-[13px] before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#a49bff]"> </div>
+                    <div className="w-[120px] h-[120px] top-[-0%] animate-[rotatedTwo_17s_infinite_linear] absolute z-[-1] rounded-[50%] right-[27%] before:w-3 before:h-3 before:content-[''] before:absolute before:rounded-[50%] before:left-2/4 before:bottom-0 before:bg-[#2eeaed]"> </div>
                     <div className="w-full md:mb-20">
                         <div className='max-w-[700px] mx-auto text-center relative z-10 text-white'>
                             <div className='mb-4 md:mb-8 flex justify-center'>
@@ -162,8 +162,8 @@ export function Cartplus(props) {
                         </div>
                         <div>
                             <a href={import.meta.env.VITE_CARTPLUS_URL} target="_blank" className='btn bg-black text-white text-xl py-6 px-12 inline-flex group'>Start free trial 
-                                <span class="md:ml-1 transfrom transition-all group-hover:rotate-45">
-                                    <svg class="w-7" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path></svg>
+                                <span className="md:ml-1 transfrom transition-all group-hover:rotate-45">
+                                    <svg className="w-7" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M16.8569 9.67962L8.24994 18.2866L6.83594 16.8726L15.4419 8.26562H7.85694V6.26562H18.8569V17.2656H16.8569V9.67962Z" fill="currentColor"></path></svg>
                                 </span>
                                 </a>
                         </div>
@@ -224,10 +224,10 @@ export function Cartplus(props) {
                             <div>
                                 <ul className='flex'>
                                     <li className='mr-8'>
-                                        <a href="/cartplus/terms">Terms & Conditions</a>
+                                        <a href="/#/cartplus/terms">Terms & Conditions</a>
                                     </li>
                                     <li>
-                                        <a href="/cartplus/privacy">Privacy</a>
+                                        <a href="/#/cartplus/privacy">Privacy</a>
                                     </li>
                                 </ul>
                             </div>

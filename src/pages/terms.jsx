@@ -11,7 +11,7 @@ export function Terms(props) {
             <div className="container pt-15 pb-10">
                 <div>
                     <p className="mb-4">
-                        Welcome to CartPlus (“we,” “our,” “us”). By accessing or using
+                        Welcome to Appvertix (“we,” “our,” “us”). By accessing or using
                         our services, including website and app development, you agree
                         to these Terms and Conditions. If you do not agree, you must not
                         use our services.

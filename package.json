@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://anuragmakol.github.io",
+  "homepage": "https://appvertix.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

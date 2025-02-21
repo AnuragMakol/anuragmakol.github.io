@@ -10,9 +10,9 @@ export function Privacy(props) {
 
             <div className="container pt-15 pb-10">
                 <div>
-                    <h6 className="text-lg mb-2">Effective Date: 1/12/2024</h6>
+                    <h6 className="text-lg mb-5 font-bold">Effective Date: 1/12/2024</h6>
                     <p className="mb-3">
-                        [Your Startup Name] (“we,” “our,” “us”) is committed to
+                        CartPlus (“we,” “our,” “us”) is committed to
                         protecting your privacy. This Privacy Policy explains how we
                         collect, use, and safeguard your information when you use our
                         services, including website and application development

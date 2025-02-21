@@ -14,7 +14,7 @@ export function CartplusPrivacy(props) {
 
             <div className="container pt-15 pb-10">
                 <div>
-                    <h6 className="mb-2">Effective Date: 1/12/2024</h6>
+                    <h6 className="mb-5 font-bold">Effective Date: 1/12/2024</h6>
                     <div className="mb-5">
                         <h4 className="mb-2 font-bold text-xl">
                             1. Information We Collect

@@ -14,7 +14,7 @@ export function CartplusTerms(props) {
 
             <div className="container pt-15 pb-10">
                 <div>
-                    <h6 className="mb-2">Effective Date: 1/12/2024</h6>
+                    <h6 className="mb-5 font-bold">Effective Date: 1/12/2024</h6>
                     <div className="mb-5">
                         <p className="mb-3">
                             Welcome to CartPlus (“we,” “our,” “us”), a Shopify app
@@ -93,7 +93,7 @@ export function CartplusTerms(props) {
                         <ul className="pl-10 list-disc">
                             <li>
                                 CartPlus may collect non-personal and personal data as
-                                outlined in our [Privacy Policy].
+                                outlined in our Privacy Policy.
                             </li>
                             <li>
                                 Data collected will be used to provide, enhance, and

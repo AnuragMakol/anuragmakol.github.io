@@ -12,6 +12,7 @@ import { WebsiteLayout } from '../components/layouts';
 
 export function Homepage(props) {
   const [showAlert, setAlert] = useState(false);
+  const [currentTab, setTab] = useState("tab1");
 
   useEffect(() => {
     const swiper = new Swiper(".case-study-slider", {
@@ -379,7 +380,7 @@ export function Homepage(props) {
           </div>
         </div>
       </section>
-      {/* <section className="py-28 section-dark bg-secondary">
+      <section className="py-28 section-dark bg-secondary">
         <div className="container">
           <div className="section-head mb-10">
             <h4 className="section-badge-primary">Technolgies we use</h4>
@@ -388,278 +389,1442 @@ export function Homepage(props) {
               Transformation for Our Clients
             </h2>
           </div>
-          <div className="border border-gray-700 rounded-2xl p-8 flex">
-            <div className="min-w-[520px] max-w-[520px] pr-10 hidden">
+          <div className="tablet:border tablet:border-gray-700 tablet:rounded-2xl tablet:p-8 tablet:flex w-full">
+            <div className='min-w-[460px] max-w-[460px] pr-5 mr-2 hidden tablet:block max-h-[430px] overflow-y-auto'>
               <ul>
                 <li
-                  className="bg-primary font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-default"
+                  className={`tech-tab-head ${currentTab === "tab1" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab1")}
                 >
                   <span>Frontend Programming Languages</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab2" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab2")}
                 >
                   <span>Backend Programming Languages</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab3" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab3")}
                 >
                   <span>Mobile</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab4" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab4")}
+                >
+                  <span>Big Data</span>
+                </li>
+                <li
+                  className={`tech-tab-head ${currentTab === "tab5" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab5")}
                 >
                   <span>Databases / Dara Storages</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab6" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab6")}
                 >
                   <span>Cloud DB, Warehouses And Storage</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab7" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab7")}
                 >
                   <span>DevOps</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab8" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab8")}
                 >
                   <span>Architecture Designs And Patterns</span>
                 </li>
                 <li
-                  className="font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200"
+                  className={`tech-tab-head ${currentTab === "tab9" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab9")}
                 >
                   <span>Artificial Intelligence</span>
                 </li>
               </ul>
             </div>
-            <div className="w-full relative min-h-[450px]">
-              <div className="tech-tabs-wrap">
-                <div className="tech-tab">
-                  <label>
-                    <input
-                      type="radio"
-                      name="tech-tab"
-                      className="sr-only"
-                    />
-                    <div
-                      className="tech-tab-head flex font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer min-w-[460px] max-w-[460px] relative z-10"
-                    >
-                      Frontend Programming Languages
-                    </div>
-                    <div
-                      className="tech-tabs-body absolute top-0 right-0 w-full pl-[490px] z-0"
-                    >
-                      <div
-                        className="tech-tab-content text-black font-semibold bg-white p-6 flex-grow rounded-2xl"
-                      >
-                        <div
-                          className="min-h-[400px] max-h-[400px] overflow-auto"
-                        >
-                          <div className="grid grid-cols-2 gap-2">
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center h-auto"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              CSS
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              HTML
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                            <div
-                              className="bg-gray-50 px-4 py-2 flex items-center"
-                            >
-                              <span className="mr-4">
-                                <img
-                                  src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                  alt="css 3"
-                                  className="max-w-9"
-                                /></span
-                              >
-                              Javascript
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
+            <div className='w-full'>
+              <div className="tech-tab">
+                <div className={`tech-tab-head-m ${currentTab === "tab1" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab1")}>
+                  Frontend Programming Languages
                 </div>
-                <div className="tech-tab">
-                  <label>
-                    <input
-                      type="radio"
-                      name="tech-tab"
-                      className="sr-only"
-                    />
-                    <div
-                      className="tech-tab-head flex font-bold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer min-w-[460px] max-w-[460px] relative z-10"
-                    >
-                      Backend Programming Languages
-                    </div>
-                    <div
-                      className="tech-tab-body absolute top-0 right-0 w-full pl-[490px] z-0"
-                    >
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab1" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
                       <div
-                        className="tech-tab-content text-black font-semibold bg-white p-6 flex-grow rounded-2xl"
+                        className="tech-logo"
                       >
-                        <div className="grid grid-cols-2 gap-2">
-                          <div
-                            className="bg-gray-50 px-4 py-2 flex items-center h-auto"
-                          >
-                            <span className="mr-4">
-                              <img
-                                src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
-                                alt="css 3"
-                                className="max-w-9"
-                              /></span
-                            >
-                            CSS
-                          </div>
-                          <div
-                            className="bg-gray-50 px-4 py-2 flex items-center"
-                          >
-                            <span className="mr-4">
-                              <img
-                                src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
-                                alt="css 3"
-                                className="max-w-9"
-                              /></span
-                            >
-                            HTML
-                          </div>
-                        </div>
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/logos/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        HTML
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        CSS
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/logos/javascript-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Javascript
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/logos/react-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        React
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Angular
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Vue.js
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Nextjs
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Meteor
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        ember
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Astro
                       </div>
                     </div>
-                  </label>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab2" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab2")}>
+                  Backend Programming Languages
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab2" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        .Net
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Java
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Python
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        PHP
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Node.js
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        GO
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab3" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab3")}>
+                  Mobile
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab3" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Android
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Flutter
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Cordova
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        iOS
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Xamarin
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        PWA
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Ionic
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        React Native
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab4" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab4")}>
+                  Big Data
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab4" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        amazon KINESIS
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        APACHE STORM
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Event Hubs
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        APACHE kafka STREAMS
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        APACHE Spark Streaming
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Flink
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Stream Analytics
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        RabbitMQ
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab5" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab5")}>
+                  Databases / Dara Storages
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab5" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Microsoft SQL Server
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        MySQL
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        PostgreSQL
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        ORACLE
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        APACHE HBASE
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        APACHE nifi
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Cassandra
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        HIVE
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Mongo DB
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab6" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab6")}>
+                  Cloud DB, Warehouses And Storage
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab6" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Amazon DocumentDB
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Amazon DynamoDB
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Amazon RDS
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Amazon REDSHIFT
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Aws Elasticache
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Blob Storage
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure cosmos DB
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Data Lake
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure SQL  Database
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Synapse  Analytics
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Google Cloud Datastore
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Google Cloud SQL
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab7" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab7")}>
+                  DevOps
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab7" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Apache Mesos
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Docker
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Kubernetes
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Openshift
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Teraaform
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Packer
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Ansible
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Chef
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Saltstack
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Puppet
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Aws Developer Tools
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Azure Devops
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        CI CD
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Jenkins
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Google  Developer Tools
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Teamcity
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Data Dog
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Elasticsearch
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Grafana
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Zabbix
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Prometheus
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Nagios
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab8" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab8")}>
+                  Architecture Designs And Patterns
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab8" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Traditional 3-layer architecture
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Cloud-native  architecture
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Microservices-based  architecture 
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Service-oriented architecture (SOA) 
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Reactive architecture 
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Computer vi 
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Various approaches to enterprise application integration 
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        PWA
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tech-tab">
+              <div className={`tech-tab-head-m ${currentTab === "tab9" ? "bg-primary pointer-events-none" : "" }`} onClick={() => setTab("tab9")}>
+                  Artificial Intelligence
+                </div>
+                <div className={`tech-tab-body bg-white rounded-2xl p-8 mb-2 tablet:mb-0 ${currentTab === "tab9" ? "block" : "hidden"}`}>
+                  <div className='text-black font-bold text-sm tablet:h-[370px] overflow-y-auto'>
+                    <h3 className='mb-2 font-bold text-black text-lg'>Models & APIs</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        OpenAI
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Meta
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Mistral AI
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Google
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Hugging Face
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Grok
+                      </div>
+                    </div>
+                    <h3 className='mb-2 font-bold text-black text-lg'>Vector Databases</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        MongoDB Atlas
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Chroma
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Mistral AI
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Google
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Meta
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        drant
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Pinecone
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Milvus
+                      </div>
+                    </div>
+                    <h3 className='mb-2 font-bold text-black text-lg'>LLM Frameworks</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        LangChain
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        LlamaIndex
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Haystack by deepset
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Microsoft AutoGen
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Nvidia NEMO
+                      </div>
+                    </div>
+                    <h3 className='mb-2 font-bold text-black text-lg'>Deployment</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/html-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Vertex.ai
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Kubernetes
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Hugging Face
+                      </div>
+                      <div
+                        className="tech-logo"
+                      >
+                        <span className="mr-4">
+                          <img
+                            src={`${import.meta.env.VITE_APP_URL}/assets/images/icons/css3-logo.svg`}
+                            alt="css 3"
+                            className="max-w-9"
+                          /></span
+                        >
+                        Docker
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* <section className="py-28">
         <div className="container">
           <div className="text-center mb-16">

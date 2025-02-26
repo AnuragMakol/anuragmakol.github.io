@@ -17,6 +17,8 @@
   --color-gray-800: #343434;
   --color-gray-900: #1a1a1a;
   --color-gray-950: #010101;
+
+  --breakpoint-tablet:62rem;
 }
 
 @layer components {
@@ -38,10 +40,9 @@
 
     h2,
     h3 {
-      font-weight: var(--font-weight-bold);
-      font-size: var(--text-5xl);
-      line-height: var(--leading-tight);
-      color: var(--color-white);
+      font-weight: var(--font-weight-medium);            
+      color: var(--color-white);      
+      @apply text-4xl leading-12 lg:text-[48px] lg:leading-16;
     }
 
     h4 {
@@ -81,7 +82,6 @@
 }
 
   .section-head-light {
-
     p,
     h1,
     h2,
@@ -145,17 +145,15 @@
   .accordion-item input:checked~.accordion-head .accordion-head-icon {
     @apply transform rotate-180
   }
-
-  .tech-tabs-wrap input:checked~.tech-tab-head {
-    @apply bg-primary
+  .tech-tab-head {
+    @apply font-semibold text-xl rounded-xl px-6 py-3.5 mb-2 cursor-pointer hover:text-gray-200
+  }
+  .tech-tab-head-m {
+    @apply bg-primary font-semibold text-lg rounded-xl px-6 py-3 mb-2 cursor-default w-full tablet:hidden
   }
 
-  .tech-tabs-wrap .tech-tab-body {
-    @apply hidden
-  }
-
-  .tech-tabs-wrap input:checked~.tech-tab-body {
-    @apply block
+  .tech-logo {
+    @apply bg-zinc-100 px-6 py-2 flex items-center rounded-xl
   }
 }
 
